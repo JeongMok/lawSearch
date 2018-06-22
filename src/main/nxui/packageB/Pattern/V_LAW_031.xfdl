@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_031" classname="DictWordList_wordtree" left="0" top="0" width="1000" height="280" titletext="법률용어 가나다검색" onload="searchTreeOnload">
+    <Layouts>
+      <Layout>
+        <Div id="div_paging" taborder="1" left="0%" top="280" right="0%" bottom="-3"/>
+        <Div id="div_wordtree" taborder="2" left="0%" top="0" height="597" right="0">
+          <Layouts>
+            <Layout width="250" height="650">
+              <Static id="st_kindName" taborder="6" text="사전종류" left="50.8%" top="13" right="43.1%" height="25"/>
+              <Combo id="cb_dictKind" taborder="7" text="전체" innerdataset="@ds_dict_kind" codecolumn="dictwordCode" datacolumn="dictwordCodeName" index="0" onitemchanged="div_wordtree_cb_dictKind_onitemchanged" left="57.1%" top="12" right="29.4%" height="25"/>
+              <Static id="st_indexName" taborder="8" text="색인" left="72.4%" top="11" right="24.8%" height="25"/>
+              <Combo id="cb_dictIndex" taborder="9" value="전체" text="전체" innerdataset="@ds_dict_index" codecolumn="index" datacolumn="index" index="0" onitemchanged="div_wordtree_cb_dictIndex_onitemchanged" left="76.4%" top="12" right="10.2%" height="25"/>
+              <Grid id="Grid00" taborder="10" binddataset="ds_dict_list" useinputpanel="false" oncellclick="dictwordlist_oncellclick" left="0%" top="43" height="213" style="align:center middle;" width="100%" autofittype="col" fillareatype="linerow">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="250"/>
+                      <Column size="300"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="법률용어"/>
+                      <Cell col="1" text="출처"/>
+                      <Cell col="2" text="법률사전"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell style="align:left middle;" text="bind:dictword"/>
+                      <Cell col="1" style="align:left middle;" text="bind:dictwordSource"/>
+                      <Cell col="2" text="bind:dictwordCodename"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="Button00" taborder="11" onclick="div_wordtree_Button00_onclick" left="92.7%" top="10" right="0.7%" height="28" style="image:URL('img::btn_MF_Search.png');background:transparent;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dict_kind">
+        <ColumnInfo>
+          <Column id="dictwordCode" type="STRING" size="100"/>
+          <Column id="dictwordCodeName" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="dictwordCode"> </Col>
+            <Col id="dictwordCodeName">전체</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011401</Col>
+            <Col id="dictwordCodeName">법령용어사전</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011402</Col>
+            <Col id="dictwordCodeName">법령정의사전</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011403</Col>
+            <Col id="dictwordCodeName">법령영어사전</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011405</Col>
+            <Col id="dictwordCodeName">생활용어사전</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dict_index">
+        <ColumnInfo>
+          <Column id="index" type="STRING" size="10"/>
+          <Column id="beforeIndex" type="STRING" size="256"/>
+          <Column id="afterIndex" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="index">전체</Col>
+            <Col id="beforeIndex"> </Col>
+            <Col id="afterIndex"> </Col>
+          </Row>
+          <Row>
+            <Col id="index">가</Col>
+            <Col id="beforeIndex">가</Col>
+            <Col id="afterIndex">나</Col>
+          </Row>
+          <Row>
+            <Col id="index">나</Col>
+            <Col id="beforeIndex">나</Col>
+            <Col id="afterIndex">다</Col>
+          </Row>
+          <Row>
+            <Col id="index">다</Col>
+            <Col id="beforeIndex">다</Col>
+            <Col id="afterIndex">라</Col>
+          </Row>
+          <Row>
+            <Col id="index">라</Col>
+            <Col id="beforeIndex">라</Col>
+            <Col id="afterIndex">마</Col>
+          </Row>
+          <Row>
+            <Col id="index">마</Col>
+            <Col id="beforeIndex">마</Col>
+            <Col id="afterIndex">바</Col>
+          </Row>
+          <Row>
+            <Col id="index">바</Col>
+            <Col id="beforeIndex">바</Col>
+            <Col id="afterIndex">사</Col>
+          </Row>
+          <Row>
+            <Col id="index">사</Col>
+            <Col id="beforeIndex">사</Col>
+            <Col id="afterIndex">아</Col>
+          </Row>
+          <Row>
+            <Col id="index">아</Col>
+            <Col id="beforeIndex">아</Col>
+            <Col id="afterIndex">자</Col>
+          </Row>
+          <Row>
+            <Col id="index">자</Col>
+            <Col id="beforeIndex">자</Col>
+            <Col id="afterIndex">차</Col>
+          </Row>
+          <Row>
+            <Col id="index">차</Col>
+            <Col id="beforeIndex">차</Col>
+            <Col id="afterIndex">카</Col>
+          </Row>
+          <Row>
+            <Col id="index">카</Col>
+            <Col id="beforeIndex">카</Col>
+            <Col id="afterIndex">타</Col>
+          </Row>
+          <Row>
+            <Col id="index">타</Col>
+            <Col id="beforeIndex">타</Col>
+            <Col id="afterIndex">파</Col>
+          </Row>
+          <Row>
+            <Col id="index">파</Col>
+            <Col id="beforeIndex">파</Col>
+            <Col id="afterIndex">하</Col>
+          </Row>
+          <Row>
+            <Col id="index">하</Col>
+            <Col id="beforeIndex">하</Col>
+            <Col id="afterIndex">金</Col>
+          </Row>
+          <Row>
+            <Col id="index">기타[0~9]</Col>
+            <Col id="beforeIndex">0</Col>
+            <Col id="afterIndex">A</Col>
+          </Row>
+          <Row>
+            <Col id="index">기타[a~z]</Col>
+            <Col id="beforeIndex">a</Col>
+            <Col id="afterIndex">가</Col>
+          </Row>
+          <Row>
+            <Col id="index">기타[A-Z]</Col>
+            <Col id="beforeIndex">A</Col>
+            <Col id="afterIndex">a</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_search" onload="fn_initPageSet">
+        <ColumnInfo>
+          <Column id="dictwordCodeSearch" type="STRING" size="256"/>
+          <Column id="dictwordCodeName" type="STRING" size="256"/>
+          <Column id="beforeIndex" type="STRING" size="10"/>
+          <Column id="afterIndex" type="STRING" size="10"/>
+          <Column id="orderby" type="INT" size="4"/>
+          <Column id="totalPage" type="INT" size="4"/>
+          <Column id="countList" type="INT" size="4"/>
+          <Column id="countPage" type="INT" size="4"/>
+          <Column id="page" type="INT" size="4"/>
+          <Column id="startPage" type="INT" size="4"/>
+          <Column id="endPage" type="INT" size="4"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dict_list" onrowposchanged="ds_dict_list_onrowposchanged">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="dictword" type="STRING" size="256" description="법령용어명"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_filter">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dict_content">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256" description="법령용어명"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+var parents=this.parent.parent.parent;
+this.searchTreeOnload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	
+	var countList=10;
+	var countPage=10;
+	var page=1;
+	this.ds_search.setColumn(0,"countList",countList);
+	this.ds_search.setColumn(0,"countPage",countPage);
+	this.ds_search.setColumn(0,"page",page);	
+
+	this.fn_DB_search();
+}
+
+this.ds_dict_list_onrowposchanged = function(obj:Dataset, e:nexacro.DSRowPosChangeEventInfo)
+{
+	//trace("현재 선택한 리스트 : "+e.newrow+", 값 : "+this.ds_dict_list.getColumn(e.newrow,"dictword"));
+	var clickedRow = this.ds_dict_list.getColumn(e.newrow, "dictword");
+	this.ds_filter.setColumn(0,"dictword",clickedRow);
+	//trace("복사된 필터 데이터  : "+this.ds_filter.getColumn(0,"dictword"));
+	var oDatas = {
+		svcid : "selectOne",
+		sController : "dicSearchSelectOneVO.do",
+		inds : ["ds_dict_list=ds_filter"],
+		outds : ["ds_dict_content=ds_dict_content"],
+		args : [],
+		bAsync : false,
+		nDataType : 0,
+		bCompress : false
+	};
+	
+	
+	Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+			Iject.alert(this.errorMsg);
+			return;
+		}
+		var pThis = this.fobj;
+		//trace("this.ds_dict_content"+pThis.ds_dict_content.saveXML());
+		pThis.parent.parent.parent.ds_dict_content.copyRow(0,pThis.ds_dict_content,0);
+		//trace("@@"+pThis.parent.parent.parent.ds_dict_content);
+	});	
+}
+
+this.fn_DB_modify = function(){
+	var oDatas = {
+		svcid: "update",
+		sController: "dicSearchUpdateVO.do",
+		inds:["ds_dict_list=ds_dict_list:U"],
+		outds:[],
+		args:[],
+		bAsync:false,
+		nDataType:0,
+		bCompress:false
+	};
+	
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode<0){
+			Iject.alert(this.errormsg);
+			return ;
+		}
+		var pThis = this.fobj;
+		trace("this.ds_dict_list : " + pThis.ds_dict_list.saveXML());
+	});
+}
+
+this.fn_DB_search = function(){
+	var oDatas = {
+			svcid: "select",
+			sController: "dicSearchSelectVO.do",
+			inds:["ds_search=ds_search"],
+			outds:["ds_dict_list=ds_dict_list, ds_search=ds_search"],
+			args:[],
+			bAsync:false,
+			nDataType:0,
+			bCompress:false
+		};
+		
+		
+		Iject.transaction(this, oDatas, function(){
+			if(this.errorcode<0){
+				Iject.alert(this.errormsg);
+				return ;
+			}
+			var pThis = this.fobj;
+			//trace("this.ds_dict_list : " + pThis.ds_dict_list.saveXML());
+			//trace("데이터 소스 값 : "+pThis.ds_dict_list.getColumn(0,"dictword"));
+		});
+};
+this.div_wordtree_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var kindNum = this.div_wordtree.cb_dictKind.index;
+	var indexNum = this.div_wordtree.cb_dictIndex.index;
+	var code=this.ds_dict_kind.getColumn(kindNum,"dictwordCode");
+	var bIndex=this.ds_dict_index.getColumn(indexNum,"beforeIndex");
+	var aIndex=this.ds_dict_index.getColumn(indexNum,"afterIndex");
+	
+	trace("사전종류 : "+code+",사전 인덱스 : "+bIndex);
+	
+	this.ds_search.setColumn(0,"dictwordCodeSearch",code);
+	this.ds_search.setColumn(0,"beforeIndex",bIndex);
+	this.ds_search.setColumn(0,"afterIndex",aIndex);
+	this.ds_search.setColumn(0,"page",1);
+	this.fn_DB_search();
+}
+
+//페이지 숫자 클릭시 페이지 이동
+this.page_click = function(pagenum){
+	var pnum = 0;
+	pnum = pagenum;
+	trace("페이지 갱신 정보 여부 : "+pnum);
+	this.ds_search.setColumn(0,"page",pnum);
+	this.fn_DB_search();
+};
+
+//페이징 처리
+this.div_pagingButton_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo){
+	var objName = obj.name.split('paging_btn_');
+	this.fn_page(objName[1]);
+};
+//페이징 숫자버튼 클릭시 이동
+this.div_pagingNumber_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo){
+	this.fn_page(obj.text);
+}
+//버튼 셋팅
+this.fn_initPageSet = function(){
+	this.div_paging.destroy();
+	var objDiv = new Div("div_paging","absolute","0%",258,null,32,"0%",null);
+	this.addChild("div_paging", objDiv);
+	objDiv.show();
+	trace("페이징 영역 생성 중");
+	this.initPageSet(this.ds_search);
+}
+this.initPageSet = function(objDs){
+	var startPage = objDs.getColumn(0,"startPage");
+	var endPage = objDs.getColumn(0,"endPage");
+	var totalPage = objDs.getColumn(0,"totalPage");
+	var page = objDs.getColumn(0,"page");
+	var countPage = objDs.getColumn(0,"countPage");
+	trace("시작 페이지 : "+startPage+", 끝 페이지 : "+endPage);
+	var fWidth = this.width;
+	var sDivPagingWidth =(45*4+10+10)+(10+10)+(countPage*50);
+	
+	//parentPage.div_paging.setOffsetWidth(sDivPagingWidth);
+	
+	var btnLeft= (fWidth-sDivPagingWidth)/2;
+	var btnTop =2;
+	var btnWidth =45;
+	var btnHeight = 21;
+	var i= startPage;
+	var j= endPage;
+	
+	//처음으로 버튼
+	if(page !=1 && totalPage >1){
+		var objBtnId = "paging_btn_First";
+		var objButton = new Button(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		objButton.style.set_border("0px none black");
+		objButton.style.set_background("none");
+		this.div_paging.addChild(objBtnId, objButton);
+		this.div_paging.paging_btn_First.set_text("처음");
+		this.div_paging.paging_btn_First.set_enable(true);
+		this.div_paging.paging_btn_First.addEventHandler("onclick",this.div_pagingButton_onclick,this);
+		objButton.show();
+	}
+	btnLeft = btnLeft +45+10;
+
+	//이전버튼 생성
+	if(page > 5){
+		var prevButton = new Button();
+		var prevBtnId = "paging_btn_Prev";
+		prevButton.init(prevBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		prevButton.style.set_border("0px none black");
+		prevButton.style.set_background("none");
+		prevButton.set_text("이전");
+		prevButton.set_enable(true);
+		prevButton.addEventHandler("onclick",this.div_pagingButton_onclick,this);
+		this.div_paging.addChild(prevBtnId, prevButton);
+		prevButton.show();
+	}
+	btnLeft = btnLeft +45+10;
+	
+	if(totalPage > 1){
+		for(i; i<=j; i++){
+			var objButton = new Button();
+			var objBtnId = "paging_btn_"+i;
+			objButton.init(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+			objButton.style.set_border("0px none black");
+			objButton.style.set_background("none");
+			objButton.set_text(i);
+			if(page==i){
+				objButton.set_enable(false);
+			}else{
+				objButton.set_enable(true);
+			}
+			objButton.addEventHandler("onclick", this.div_pagingNumber_onclick, this);
+			
+			this.div_paging.addChild(objBtnId,objButton);
+			objButton.show();
+			btnLeft = btnLeft+45+5;
+		}
+	}
+	
+	btnLeft = btnLeft+10;
+	//다음버튼
+	if(endPage != totalPage){
+		var nextButton = new Button();
+		var nextBtnId = "paging_btn_Next";
+		nextButton.init(nextBtnId, "absolute", btnLeft, btnTop, btnWidth, btnHeight, null, null);
+		nextButton.style.set_border("0px none black");
+		nextButton.style.set_background("none");
+		nextButton.set_text("다음");
+		nextButton.set_enable(true);
+		nextButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(nextBtnId,nextButton);
+		nextButton.show();
+	}
+		btnLeft = btnLeft+45+10;
+	//마지막 버튼
+	if(page < totalPage && totalPage > 1){
+		var lastButton = new Button();
+		var lastBtnId = "paging_btn_Last";
+		lastButton.init(lastBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		lastButton.style.set_border("0px none black");
+		lastButton.style.set_background("none");
+		lastButton.set_text("끝");
+		lastButton.set_enable(true);
+		lastButton.addEventHandler("onclick", this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(lastBtnId,lastButton);
+		lastButton.show();
+	}
+	
+	trace("페이징 영역 버튼 생성 완료");
+}
+	this.fn_page = function (btnText){
+		var objNum = 1;
+		trace("버튼 클릭 번호 : "+btnText);
+		if(btnText=='First'){
+			objNum = 1;
+		}else if(btnText=='Prev'){
+			objNum=this.ds_search.getColumn(0,"startPage")-1;
+		}else if(btnText=='Last'){
+			objNum=this.ds_search.getColumn(0,"totalPage");
+		}else if(btnText=='Next'){
+			objNum=this.ds_search.getColumn(0,"endPage")+1;
+		}else{
+			objNum=btnText;
+		}
+		//trace("이동할 페이지 : "+objNum);
+		this.page_click(objNum);
+	};
+
+
+
+this.div_keyword_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.open("modeless_lawSub","Pattern::V_OPR_025.xfdl",this.getOwnerFrame(), 
+	{mode:'modeless'}, "showtitlebar=false", 300, 20, 900, 600);
+}
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	parents.div_contents.edt_source.set_readonly(false);
+	parents.div_contents.edt_text.set_readonly(false);
+}
+
+this.save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var list = this.ds_dict_list;
+	var content = parents.ds_dict_content;
+	
+	this.ds_dict_list.copyRow(list.rowposition,content,content.rowposition);
+	this.fn_DB_modify();
+	
+	parents.div_contents.edt_source.set_readonly(true);
+	parents.div_contents.edt_text.set_readonly(true);
+}
+]]></Script>
+  </Form>
+</FDL>

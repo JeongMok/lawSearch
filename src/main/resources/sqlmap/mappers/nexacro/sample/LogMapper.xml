@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="management.lawmapper.service.LogMapper">
+	<resultMap type="management.lawmapper.vo.LogDataVo" id="logVo">
+		<result property = "userId" column = "USERID"/>
+		<result property ="logDate" column = "LOGDATE"/>
+		<result property = "logType" column = "LOGTYPE"/>
+		<result property = "id" column = "ID"/>
+		<result property = "userIp" column = "USERIP"/>
+		<result property = "logDetail" column = "LOGDETAILE"/>
+	</resultMap>
+	
+	
+	<select id="logCount" resultType="int" parameterType="management.lawmapper.vo.LogDataVo">
+        SELECT
+            COUNT(USERID)
+        FROM
+            T_LOGDATA
+         WHERE
+         	1=1
+         <if test="search_userId !=null">
+	         	AND
+	         	USERID 
+         	LIKE
+         			'%'|| #{search_userId}||'%'
+         </if>	
+         <if test="search_logType != null">
+	         	AND
+	         	LOGTYPE 
+	         LIKE
+	         	'%'|| #{search_logType}||'%'
+         </if>		  
+         <if test="search_logDate != null">
+
+	         	AND
+             	LOGDATE  
+			LIKE
+					'%'|| to_char(to_date(#{search_logDate},'yy/mm/dd hh24:mi:ss'), 'yy/mm/dd')||'%'
+
+         </if>		  	   
+	</select>
+
+	<select id="selectLogList" resultMap="logVo">
+		SELECT
+				*
+			FROM
+			(
+			SELECT
+				  (RANK()OVER(ORDER BY TO_NUMBER(ID)DESC)) RNUM
+				,ID
+				,LOGDATE
+				,LOGTYPE
+				,USERID
+				,USERIP
+				,LOGDETAIL
+				,MACADDRESS
+			FROM
+				T_LOGDATA
+			WHERE
+				1=1 
+				<if  test="search_userId != null">
+						AND
+						USERID
+					LIKE
+						'%'||#{search_userId}||'%'	
+				</if>		
+				<if test = "search_logType != null">
+					AND	
+					LOGTYPE
+				LIKE
+					'%'||#{search_logType}||'%'
+				</if>
+				<if test = "search_logDate != null and search_logDate != ''">
+						AND	
+						LOGDATE
+					LIKE
+						'%'||to_char(to_date(#{search_logDate},'yy/mm/dd hh24:mi:ss'), 'yy/mm/dd')||'%'	
+				</if>
+				ORDER BY RNUM
+				)
+				WHERE RNUM BETWEEN #{startList} AND #{endList} 
+				
+					
+	</select>
+	
+	<insert id="insertLog">
+		INSERT INTO 
+			T_LOGDATA 
+			(
+			 ID
+			,LOGTYPE 
+			,USERID
+			,USERIP
+			,LOGDETAIL
+			,MACADDRESS
+			)
+     	 VALUES 
+     	 (
+     	  logdata_seq.nextval
+     	 ,#{logType, jdbcType = VARCHAR} 
+     	 ,#{userId, jdbcType = VARCHAR}
+     	 ,#{userIp, jdbcType = VARCHAR}
+     	 ,#{logDetail, jdbcType = VARCHAR}
+     	 ,#{macAddress, jdbcType = VARCHAR}
+     	 )	
+     	 
+	</insert>
+</mapper> 

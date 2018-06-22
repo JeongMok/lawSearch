@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_041" classname="V_LAW_040" left="0" top="0" width="1000" height="600" titletext="New Form" style="font:12 Dotum;" dragscrolltype="none" onload="V_LAW_041_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div0" taborder="0" left="5%" top="2.83%" style="border:0 none #808080ff ;" right="6%" height="10%">
+          <Layouts>
+            <Layout width="1013" height="56">
+              <Combo id="Combo" taborder="2" left="52.7%" top="11.67%" displayrowcount="13" innerdataset="@ds_orgarea" datacolumn="area" index="-1" codecolumn="areacode" type="dropdown" onitemchanged="div0_Combo_onitemchanged" style="itemheight:30;font:10 Dotum;" width="15.84%" bottom="56.67%"/>
+              <Combo id="Combo00" taborder="1" left="32.13%" top="11.67%" displayrowcount="8" innerdataset="@ds_laworg" onitemchanged="div0_Combo00_onitemchanged" codecolumn="orgcode" datacolumn="label" type="dropdown" style="itemheight:30;font:10 Dotum;" index="-1" width="15.84%" bottom="56.67%"/>
+              <Edit id="edit_searchKeyword" taborder="0" onkeyup="div0_search_btn_search_onclick" oneditclick="div0_edit_searchKeyword_oneditclick" left="75.84%" top="11.67%" style="border:1 solid #a6a6a9ff,1 solid #d5d5d5ff,1 solid #d5d5d5ff,1 solid #a6a6a9ff;font:10 arial;" width="15.84%" bottom="56.67%"/>
+              <Button id="btn_search" taborder="3" onclick="div0_btn_search_onclick" left="93.48%" top="10%" style="image:URL('img::btn_MF_Search.png');border:1 solid #a6a6a9ff,1 solid #d5d5d5ff,1 solid #d5d5d5ff,1 solid #a6a6a9ff;font:10 Dotum;" width="5.06%" bottom="58.33%"/>
+              <Static id="search" taborder="4" text="검색어" onclick="Div02_Static00_onclick" left="70.56%" top="11.67%" style="border:0 none #a6a6a9ff ;font:10 Dotum;" width="6.52%" bottom="56.67%"/>
+              <Static id="search00" taborder="7" text="법조기관" onclick="Div02_Static00_onclick" left="25.62%" top="11.67%" bottom="56.67%" width="6.52%" style="border:0 none #a6a6a9ff ;font:10 Dotum;"/>
+              <Static id="search01" taborder="8" text="지역" onclick="Div02_Static00_onclick" left="48.99%" top="11.67%" bottom="56.67%" width="6.52%" style="border:0 none #a6a6a9ff ;font:10 Dotum;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div1" taborder="1" top="9.17%" height="74.5%" style="border:0 none #808080ff ;" left="0%" width="98.9%">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid01" taborder="14" binddataset="ds_laworg_info" useinputpanel="false" left="4.95%" top="2.91%" height="83.22%" style="align:center middle;font:10 Dotum;" oncellclick="ect_oncellclick" right="4.95%" autofittype="col" autosizingtype="none" cellsizingtype="none" autosizebandtype="body" position="absolute" onlbuttonup="div1_Grid01_onlbuttonup" treeuseline="false" selecttype="cell" extendsizetype="row" wheelscrollrow="1" oncelldblclick="fn_infopop" fillareatype="linerow">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="206"/>
+                      <Column size="68"/>
+                      <Column size="339"/>
+                      <Column size="59"/>
+                      <Column size="41"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="26"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell style="align:center middle;padding:0 0 0 3;linespace:BIND(name);" text="기관명"/>
+                      <Cell col="1" style="align:center middle;padding:0 0 0 3;" text="전화번호"/>
+                      <Cell col="2" style="align:center middle;padding:0 0 0 3;" text="주소"/>
+                      <Cell col="3" style="align:center middle;padding:0 0 0 3;" text="우편번호"/>
+                      <Cell col="4" style="align:center middle;" text="홈페이지"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell style="align:left middle;padding:0 0 0 3;linespace:3;" text="bind:name" expandsize="13" autosizerow="default" autosizecol="default"/>
+                      <Cell col="1" style="align:left middle;padding:0 0 0 3;linespace:3;" text="bind:phone" expandsize="13" autosizerow="default" autosizecol="default"/>
+                      <Cell col="2" style="align:left middle;padding:0 0 0 3;linespace:3;" text="bind:address" expandsize="13" autosizerow="default" autosizecol="default"/>
+                      <Cell col="3" style="align:center middle;padding:0 0 0 0;linespace:3;" text="bind:zipcode" expandsize="13" autosizerow="default" autosizecol="default"/>
+                      <Cell col="4" displaytype="image" style="cursor:hand;linespace:3;" text="img::link.png" expandsize="13" tooltiptext="홈페이지" autosizerow="limitmin" autosizecol="limitmin"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" text="Div02" left="5%" top="81.67%" right="6%" bottom="8.33%" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" text="신규등록" left="87.98%" top="3" right="1.35%" style="font:10 arial;" height="71.67%" onclick="Div02_Button00_onclick"/>
+              <Static id="Static00" taborder="1" text="기관명 더블클릭시 수정가능합니다." left="56.4%" top="14" right="13.48%" bottom="28.33%"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_laworg" onrowposchanged="ds_laworg_onrowposchanged">
+        <ColumnInfo>
+          <Column id="label" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+          <Column id="orgcode" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="label">법원</Col>
+            <Col id="level">1</Col>
+            <Col id="orgcode">1</Col>
+          </Row>
+          <Row>
+            <Col id="label">헌법재판소</Col>
+            <Col id="level">1</Col>
+            <Col id="orgcode">2</Col>
+          </Row>
+          <Row>
+            <Col id="label">법무부</Col>
+            <Col id="level">1</Col>
+            <Col id="orgcode">3</Col>
+          </Row>
+          <Row>
+            <Col id="label">법률구조공단</Col>
+            <Col id="level">1</Col>
+            <Col id="orgcode">4</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="label">등기소</Col>
+            <Col id="orgcode">5</Col>
+          </Row>
+          <Row>
+            <Col id="label">변호사회</Col>
+            <Col id="level">1</Col>
+            <Col id="orgcode">6</Col>
+          </Row>
+          <Row>
+            <Col id="label">검찰청</Col>
+            <Col id="level">1</Col>
+            <Col id="orgcode">7</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_orgarea">
+        <ColumnInfo>
+          <Column id="areacode" type="STRING" size="256"/>
+          <Column id="area" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="areacode">SU</Col>
+            <Col id="area">서울</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">BS</Col>
+            <Col id="area">부산</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">US</Col>
+            <Col id="area">울산</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">KJ</Col>
+            <Col id="area">광주</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">DG</Col>
+            <Col id="area">대구</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">DJ</Col>
+            <Col id="area">대전</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">IC</Col>
+            <Col id="area">인천</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">GG</Col>
+            <Col id="area">경기</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">GW</Col>
+            <Col id="area">강원</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">JL</Col>
+            <Col id="area">전라</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">KS</Col>
+            <Col id="area">경상</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">CC</Col>
+            <Col id="area">충청</Col>
+          </Row>
+          <Row>
+            <Col id="areacode">JJ</Col>
+            <Col id="area">제주</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_laworg_list">
+        <ColumnInfo>
+          <Column id="orgcode" type="STRING" size="256"/>
+          <Column id="areacode" type="STRING" size="256"/>
+          <Column id="laworgcode" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="zipcode" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_laworg_info">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="laworgcode" type="STRING" size="256"/>
+          <Column id="zipcode" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_laworg_search">
+        <ColumnInfo>
+          <ConstColumn id="pageIndex" type="INT" size="30" value=""/>
+          <ConstColumn id="pageSize" type="INT" size="30" value=""/>
+          <ConstColumn id="pageUnit" type="INT" size="30" value=""/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="searchCondition" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_laworg_filter">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+          <Column id="orgcode" type="STRING" size="256"/>
+          <Column id="areacode" type="STRING" size="256"/>
+          <Column id="area" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_laworg_inpo">
+        <ColumnInfo>
+          <Column id="orgcode" type="STRING" size="256"/>
+          <Column id="areacode" type="STRING" size="256"/>
+          <Column id="laworgcode" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="zipcode" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+          <Column id="orgno" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+this.V_LAW_041_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{	
+	var grade = application.gds_userInfo.getColumn(0,"grade");
+	if(grade == '0'){
+		this.Div02.set_visible(true);
+	}else{
+		this.Div02.set_visible(false);
+	};
+	
+	
+	
+	var searchKeyword = " ";
+   
+	this.ds_laworg_search.setColumn(0, "searchCondition", "NAME");
+	this.ds_laworg_search.setColumn(0, "searchKeyword", searchKeyword);
+   
+	
+	var oDatas =  {
+			svcid : "search",
+			sController : "laworgsearchVO.do",			 
+			inds :  ["ds_laworg_search=ds_laworg_search"],
+			outds : ["ds_laworg_info=output1"],			     
+			args: [],
+			bAsync : false,    
+			nDataType : 0,   
+			bCompress :false,	 			  
+			}; 
+	 trace(" this.ds_laworg_search : " + this.ds_laworg_search.saveXML());
+	 
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		
+		if(this.errorcode < 0)
+		{
+		    Iject.alert("검색어를 입력해주세요.");			
+		    return;
+		} 	      
+	       var pThis = this.fobj; 	      
+	       trace(" ds_laworg_info : " + pThis.ds_laworg_info.saveXML());
+	});
+	
+}
+
+
+// 버튼조회
+
+// 법조기관의 이름으로 검색
+this.div0_btn_search_onclick = function(thr_search)
+{
+   var searchCondition =  "NAME";
+   var searchKeyword = this.div0.edit_searchKeyword.value;
+   
+	this.ds_laworg_search.setColumn(0, "searchCondition", "NAME");
+	this.ds_laworg_search.setColumn(0, "searchKeyword", searchKeyword);
+   
+	var oDatas =  {
+			svcid : "search",
+			sController : "laworgsearchVO.do",			 
+			inds :  ["ds_laworg_search=ds_laworg_search"],
+			outds : ["ds_laworg_info=output1"],			     
+			args: [],
+			bAsync : false,    
+			nDataType : 0,   
+			bCompress :false,	 			  
+			}; 
+	 trace(" this.ds_laworg_search : " + this.ds_laworg_search.saveXML());
+	 
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+
+		if(this.errorcode < 0)
+		{
+		    Iject.alert("검색어를 입력해주세요.");			
+		    return;
+		} 	      
+	       var pThis = this.fobj; 	      
+	       trace(" ds_laworg_info : " + pThis.ds_laworg_info.saveXML());
+	}); 
+	
+// 	// searchKeyword 검색된 list를 combo로 출력, 검색하기 위한 조건문
+// 	if(thr_search == undefined)
+// 	{
+// 		this.ds_laworg_combo.copyData(this.ds_laworg_info);
+// 	}
+	
+}
+
+// 엔터처리
+this.div0_search_btn_search_onclick = function(obj:Edit,  e:nexacro.ClickEventInfo)
+{
+	if ( e.keycode == 13 )
+	{
+		this.div0_btn_search_onclick();
+	}
+}
+
+
+
+// 콤보로 1차 분류(기관분류) 
+
+this.div0_Combo00_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo)
+{
+	var nToRow = 0;
+	var nFromRow = e.row;	//복사할 row의 Position
+	//선택한 row위치의 orgcode를 가진 list를 복사
+	this.ds_laworg_filter.setColumn(0,'orgcode',this.div0.Combo00.value);
+	
+	var oDatas = {
+				svcid : "selectOne",
+				sController : "laworgSelectOneVO.do",
+				inds : ["ds_laworg_filter=ds_laworg_filter"],
+				outds : ["ds_laworg_info=output2"],
+				args  : [],
+				bAsync : false,    	// 비동기여부 (true : async  false: sync)
+				nDataType : 0,   	// (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+				bCompress :false,	//	
+	};
+					
+	trace("this.ds_laworg_filter : " + this.ds_laworg_filter.saveXML);
+	
+	Iject.transaction(this,oDatas,function(){
+		      
+	       var pThis = this.fobj;   //form object	      
+	       trace("pThis.ds_laworg_filter : " + pThis.ds_laworg_filter.saveXML());
+	});
+	if(this.ds_laworg_info.rowcount < 1)
+	{
+		alert("해당 지역에 해당 법조기관이 존재하지 않습니다.")
+	}
+}
+
+
+// 콤보로 2차 분류(지역분류) 
+
+this.div0_Combo_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo)
+{
+	
+	var nToRow = 0;
+	var nFromRow = e.row;	//복사할 row의 Position
+	//선택한 row위치의 areacode를  filter에 복사
+	this.ds_laworg_filter.setColumn(0,'areacode',this.div0.Combo.value);
+	
+// 위(기관분류)에서 가져온 orgcode와 콤보(지역분류)에서 선택한 areacode를 가진 list 출력	
+	 var oDatas =  {
+			  svcid : "selectTwo",
+			  sController : "laworgSelectTwoVO1.do",			 
+			  inds :["ds_laworg_filter=ds_laworg_filter"],
+			  outds :["ds_laworg_info=output3"],			     
+			  args  : [],
+			  bAsync : false,    
+			  nDataType : 0,   
+			  bCompress :false,	 			  
+			}; 
+	 trace(" this.ds_laworg_filter : " + this.ds_laworg_filter.saveXML());
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){
+		      
+	       var pThis = this.fobj;   //form object	      
+	       trace("pThis.ds_laworg_filter : " + pThis.ds_laworg_filter.saveXML());
+	});
+		
+	if(this.ds_laworg_info.rowcount < 1)
+	{
+		alert("해당 지역에 해당 법조기관이 존재하지 않습니다.")
+	}
+}
+
+// 홈페이지 링크
+this.ect_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	if(e.col==4){
+ 	var eRow = e.row;
+ 	
+ 	var url = this.ds_laworg_info.getColumn(0,'etc');
+	system.execBrowser(url);
+	}
+}
+
+//상세보기
+this.fn_infopop = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	this.ds_laworg_inpo.deleteAll();
+	this.ds_laworg_inpo.addRow();
+	var nToRow = 0;			//현재 dataSet에 복사되어 변경될 행의 위치
+	var objDataset = this.ds_laworg_info;
+	var nFromRow = e.row;	//복사할 row의 Position, int값
+	
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	this.ds_laworg_inpo.copyRow(nToRow, objDataset, nFromRow);
+	
+	this.fn_popup_modify();
+}
+
+
+this.fn_popup_modify = function(){
+	var strName = "V_LAW_099_open_modeless";
+	var strFormURL ="Pattern::V_LAW_099.xfdl";
+	var objParam = {ds_laworg_inpo : this.ds_laworg_inpo};
+	var strOpenStyle = "dragmovetype=all showtitlebar=true"
+						+"showstatusbar=false autosize=false resizable=false titletext=laworg";
+ 	var nLeft = 380;
+ 	var nTop = 150;
+ 	var nWidth = 450;
+ 	var nHeight = 600;					
+	trace("ds_laworg_inpo : "+ this.ds_laworg_inpo.saveXML());
+	application.open(strName, strFormURL, this.getOwnerFrame(), objParam, strOpenStyle, nLeft, nTop, nWidth, nHeight);					
+	
+}
+
+
+this.Div02_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ds_laworg_inpo.deleteAll();
+	this.ds_laworg_inpo.addRow();
+	var nToRow = 0;			//현재 dataSet에 복사되어 변경될 행의 위치
+	var objDataset = this.ds_laworg_info;
+	var nFromRow = e.row;	//복사할 row의 Position, int값
+	
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	this.ds_laworg_inpo.copyRow(nToRow, objDataset, nFromRow);
+	
+	this.fn_popup_insert();
+}
+
+
+this.fn_popup_insert = function(){
+	var strName = "V_LAW_098_open_modeless";
+	var strFormURL ="Pattern::V_LAW_098.xfdl";
+	var objParam = {ds_laworg_inpo : this.ds_laworg_inpo};
+	var strOpenStyle = "dragmovetype=all showtitlebar=true"
+						+"showstatusbar=false autosize=false resizable=false titletext=laworg";
+  	var nLeft = 380;
+ 	var nTop = 150;
+ 	var nWidth = 450;
+ 	var nHeight = 600;					
+	trace("ds_laworg_inpo : "+ this.ds_laworg_inpo.saveXML());
+	application.open(strName, strFormURL, this.getOwnerFrame(), objParam, strOpenStyle, nLeft, nTop, nWidth, nHeight);					
+	
+}
+]]></Script>
+  </Form>
+</FDL>

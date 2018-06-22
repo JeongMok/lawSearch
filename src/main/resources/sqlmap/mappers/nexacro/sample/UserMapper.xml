@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="management.lawmapper.service.UserMapper">
+
+	<resultMap type="management.lawmapper.vo.UserVo" id="resultuser"></resultMap>
+	<resultMap type="management.lawmapper.vo.UserSexVO" id="resultsex"></resultMap>
+	<resultMap type="management.lawmapper.vo.UserPositionVO" id="resultposition"></resultMap>
+
+	<insert id="adduser">
+		INSERT INTO T_USER(
+				USERID,
+				NAME,
+				PASSWORD,
+				ADDRESS,
+				PHONE,
+				EMAIL,
+				CAREER,
+				POSITION,
+				SEX,
+				BIRTH,
+				ENGNAME
+		) VALUES (
+			#{userid},
+			#{name},
+			#{password},
+			#{address},
+			#{phone},
+			#{email},
+			#{career},
+			#{position},
+			#{sex},
+			#{birth},
+			#{engname}
+		)
+	</insert>
+
+	<delete id="deleteuser" >
+		DELETE 
+		FROM 
+			T_USER 
+		WHERE 
+			USERID=#{userid} 
+	</delete>
+
+	<update id="updateuser" >
+		UPDATE 
+			T_USER SET 
+			ENGNAME=#{engname},
+			PASSWORD=#{password},
+			GRADE='0',
+			ADDRESS=#{address},
+			PHONE=#{phone},
+			EMAIL=#{email},
+			CAREER=#{career},
+			POSITION=#{position}
+		WHERE 
+			USERID=#{userid}
+	</update>
+	
+	<select id="userlist" resultMap="resultuser">
+		SELECT USERID,
+				NAME,
+				PASSWORD,
+				GRADE,
+				ADDRESS,
+				PHONE,
+				EMAIL,
+				CAREER,
+				POSITION,
+				SEX,
+				BIRTH,
+				ENGNAME 
+				FROM T_USER
+	</select>
+	
+	<select id="finduser" parameterType="String" resultMap="resultuser">
+		SELECT USERID,
+				NAME,
+				PASSWORD,
+				GRADE,
+				ADDRESS,
+				PHONE,
+				EMAIL,
+				CAREER,
+				POSITION,
+				SEX,
+				BIRTH,
+				ENGNAME 
+				FROM T_USER
+				WHERE USERID=#{userid}
+	</select>
+	
+	<select id="findid" parameterType="String" resultMap="resultuser">
+		SELECT USERID,
+				NAME,
+				PASSWORD,
+				GRADE,
+				ADDRESS,
+				PHONE,
+				EMAIL,
+				CAREER,
+				POSITION,
+				SEX,
+				BIRTH,
+				ENGNAME 
+				FROM T_USER
+				WHERE NAME=#{name} AND BIRTH=#{birth}
+	</select>
+	
+	<select id="findpassword" parameterType="String" resultMap="resultuser">
+		SELECT USERID,
+				NAME,
+				PASSWORD,
+				GRADE,
+				ADDRESS,
+				PHONE,
+				EMAIL,
+				CAREER,
+				POSITION,
+				SEX,
+				BIRTH,
+				ENGNAME 
+				FROM T_USER
+				WHERE USERID=#{userid} AND BIRTH=#{birth}
+	</select>
+	
+		<select id="loginuser" parameterType="String" resultMap="resultuser">
+		SELECT USERID,
+				NAME,
+				PASSWORD,
+				GRADE,
+				ADDRESS,
+				PHONE,
+				EMAIL,
+				CAREER,
+				POSITION,
+				SEX,
+				BIRTH,
+				ENGNAME 
+				FROM T_USER
+				WHERE USERID=#{userid}
+	</select>
+	
+	<update id="updatepassword" >
+		UPDATE 
+			T_USER SET 
+			PASSWORD=#{password}
+		WHERE 
+			USERID=#{userid} 
+			AND 
+			BIRTH=#{birth}
+	</update>
+	
+	<select id="sexsetting" resultMap="resultsex">
+		SELECT 
+			CLASS_CODE,
+			CODE_NO,
+			CODE_NAME,
+			CODE_NAME2
+	    FROM 
+	    	PD_LAW_CMM_CODE_DETAIL
+		WHERE 
+			CLASS_CODE='M'
+		AND
+			USE_YN='1'
+	</select>
+	
+	<select id="positionsetting" resultMap="resultposition">
+		SELECT
+			CLASS_CODE,
+			CODE_NO,
+			CODE_NAME
+		FROM
+			PD_LAW_CMM_CODE_DETAIL
+		WHERE
+			CLASS_CODE='J'
+		AND
+			USE_YN='1'
+	
+	</select>
+</mapper>

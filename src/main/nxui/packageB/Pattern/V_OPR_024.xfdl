@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_24" classname="V_OPR_24" left="0" top="0" width="1000" height="600" titletext="New Form" style="border:1 solid #808080ff ;">
+    <Layouts>
+      <Layout>
+        <Div id="div_contents" taborder="0" left="1.4%" top="2.17%" width="97.8%" height="96.5%" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout>
+              <FileUpload id="FileUpload00" taborder="24" retry="0" index="0" onsuccess="upload_onsuccess" onerror="upload_onerror" onitemchanged="addFile" left="61.04%" top="10" right="13.19%" height="20" style="buttontext:파일추가;"/>
+              <Grid id="Grid00" taborder="25" binddataset="ds_lawList_Output" useinputpanel="false" autofittype="col" fillareatype="linerow" left="2.86%" top="51" right="3.37%" height="219">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="70"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="150"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="80"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkbox" edittype="checkbox" text="chk"/>
+                      <Cell col="1" text="법령ID"/>
+                      <Cell col="2" text="법령일련번호"/>
+                      <Cell col="3" text="현행연혁코드"/>
+                      <Cell col="4" text="법령명"/>
+                      <Cell col="5" text="공포일자"/>
+                      <Cell col="6" text="공포번호"/>
+                      <Cell col="7" text="제개정구분"/>
+                      <Cell col="8" text="소관부처"/>
+                      <Cell col="9" text="법령구분"/>
+                      <Cell col="10" text="시행일자"/>
+                      <Cell col="11" text="자법타법여부"/>
+                      <Cell col="12" text="법령상세링크"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkbox" edittype="checkbox" text="bind:chk"/>
+                      <Cell col="1" text="bind:lawId"/>
+                      <Cell col="2" text="bind:lawNo"/>
+                      <Cell col="3" text="bind:nowHistoryCode"/>
+                      <Cell col="4" text="bind:lawName"/>
+                      <Cell col="5" text="bind:createDate"/>
+                      <Cell col="6" text="bind:createNo"/>
+                      <Cell col="7" text="bind:isModify"/>
+                      <Cell col="8" text="bind:careDept"/>
+                      <Cell col="9" text="bind:lawClassName"/>
+                      <Cell col="10" text="bind:actDate"/>
+                      <Cell col="11" text="bind:isSelf"/>
+                      <Cell col="12" text="bind:detailLink"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="Button01" taborder="26" text="저장" onclick="div_contents_Button01_onclick" left="88.55%" top="6" right="4.19%" height="26" style="background:#2c4898ff;border:0 solid #808080 ;color:white;"/>
+              <Static id="Static10" taborder="27" text="* A2셀부터 데이터를 넣어주세요" onclick="div_contents_Static10_onclick" left="4.09%" top="24" right="3.99%" height="22" style="color:red;font:12 Dotum;"/>
+              <Static id="Static00" taborder="29" text="* A1 ~ L1 번까지 순서대로 위 그림과 같이 컬럼명을 넣어주세요." left="3.27%" top="326" right="45.09%" height="61" style="font:bold 10 arial;"/>
+              <Static id="Static01" taborder="30" text="예시" left="1.53%" top="275" right="92.64%" height="25" style="align:center;font:bold 10 arial;"/>
+              <ImageViewer id="ImageViewer00" taborder="31" stretch="fixaspectratio" left="2.76%" top="296" right="3.48%" height="51" style="border:0 solid #808080 ;" image="URL('img::lawlistsample.png')"/>
+              <Static id="Static02" taborder="32" text="법령ID : LAWID" left="2.97%" top="370" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static04" taborder="33" text="법령일련번호 : LAWNO" left="2.97%" top="388" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static05" taborder="34" text="현행연혁코드 : NOWHISTORYCODE" left="2.97%" top="406" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static06" taborder="35" text="법령명 : LAWNAME" left="2.97%" top="424" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static03" taborder="36" text="공포일자 : CREATEDATE" onclick="Static00_onclick" left="2.97%" top="442" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static11" taborder="37" text="공포번호 : CREATENO" left="2.97%" top="460" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static07" taborder="38" text="제개정구분 : ISMODIFY" left="29.96%" top="370" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static12" taborder="39" text="소관부처 : CAREDEPT" left="29.96%" top="388" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static08" taborder="40" text="법령구분 : LAWCLASSNAME" left="29.96%" top="406" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static09" taborder="41" text="시행일자 : ACTDATE" left="29.96%" top="424" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static13" taborder="42" text="자법타법여부 : ISSELF" left="29.96%" top="442" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static14" taborder="43" text="법령상세링크 : DETAILLINK" left="29.96%" top="460" width="250" height="20" style="font:bold 10 arial;"/>
+              <Button id="btn_close" taborder="44" text="닫기" onclick="btn_close_onclick" left="91.31%" top="516" right="3.17%" height="25" style="bordertype:normal 0 0 ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <InitValue width="800" height="600"/>
+    <Objects>
+      <Dataset id="ds_lawList_Import">
+        <ColumnInfo>
+          <Column id="lawId" type="STRING" size="50"/>
+          <Column id="lawNo" type="STRING" size="50"/>
+          <Column id="nowHistoryCode" type="STRING" size="50"/>
+          <Column id="lawName" type="STRING" size="200"/>
+          <Column id="createDate" type="STRING" size="50"/>
+          <Column id="createNo" type="STRING" size="50"/>
+          <Column id="isModify" type="STRING" size="50"/>
+          <Column id="careDept" type="STRING" size="100"/>
+          <Column id="lawClassName" type="STRING" size="50"/>
+          <Column id="actDate" type="STRING" size="50"/>
+          <Column id="isSelf" type="STRING" size="50"/>
+          <Column id="detailLink" type="STRING" size="200"/>
+          <Column id="userId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_lawList_Output">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="lawId" type="STRING" size="50"/>
+          <Column id="lawNo" type="STRING" size="50"/>
+          <Column id="nowHistoryCode" type="STRING" size="50"/>
+          <Column id="lawName" type="STRING" size="200"/>
+          <Column id="createDate" type="STRING" size="50"/>
+          <Column id="createNo" type="STRING" size="50"/>
+          <Column id="isModify" type="STRING" size="50"/>
+          <Column id="careDept" type="STRING" size="100"/>
+          <Column id="lawClassName" type="STRING" size="50"/>
+          <Column id="actDate" type="STRING" size="50"/>
+          <Column id="isSelf" type="STRING" size="50"/>
+          <Column id="detailLink" type="STRING" size="200"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.0"><![CDATA[
+include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+
+}
+
+//파일 추가 누르면 자동으로 그리드에 출력
+this.addFile = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	trace("@@@@@@@@@@@@@@@@@@@");
+	var value = obj.value;
+	var fileEx = value.slice(value.lastIndexOf(".")+1).toLowerCase();
+	trace(fileEx);
+	if(fileEx!="xls" && fileEx!="xlsx"){
+		alert("xls 또는 xlsx 파일양식만 가능합니다.");
+		obj.deleteItem(0);
+		obj.appendItem();
+		return false;
+	}
+	
+	var itemCount=this.div_contents.FileUpload00.getItemCount(true);
+	if(itemCount==0){
+		alert("파일을 첨부해주세요.");
+		return false;
+	}
+	
+	var url= "http://localhost:8080/nexacro-egov/lawListExcelUpload.do";
+	this.div_contents.FileUpload00.upload(url);
+}
+
+this.upload_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	alert("통신오류");
+}
+
+this.upload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{	
+	if(e.errorcode<0){
+		alert("오류 : "+e.errormsg);
+	}
+	trace("onsuccess errorcode=" + e.errorcode + ", errormsg=" + e.errormsg   + ", datasets=" + e.datasets + ", url=" + e.url);
+	
+	//Only Runtime
+		if(nexacro.Browser == "Runtime" && e.datasets)
+		{
+			var outputDatasets = e.datasets;
+			
+			var outDs = outputDatasets[0];
+			var ds = this.ds_lawList_Output;
+			ds.assign(outDs); 
+			trace(outDs.saveXML());
+			
+			//this.ds_out.copyData(outputDatasets[0]);
+		} 
+}
+
+// 파일 저장시
+this.div_contents_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.fn_import()){
+		this.fn_save();
+	}
+}
+
+this.fn_import = function(){
+	var ds = this.ds_lawList_Import;
+	var outds = this.ds_lawList_Output;
+	var cnt=0;
+	ds.clearData();
+	for(var i=0; i<outds.rowcount;i++){
+		var chkCol = outds.getColumn(i,"chk");
+		if(chkCol != undefined && chkCol != 0){
+			ds.addRow();
+			ds.copyRow(ds.getRowCount()-1,outds,i);
+			cnt++;	
+		}
+		
+	}
+	if(cnt==0){
+		alert("1개 이상의 행을 선택해주세요.");
+		return false;
+	}
+	return true;
+}
+
+this.fn_save = function(){
+
+	var userId = application.gds_userInfo.getColumn(0,"userid");
+	this.ds_lawList_Import.setColumn(0,"userId", userId);
+
+//odatas 정의
+	var oDatas = {
+		svcid : "insert",
+		sController : "lawListInsert.do",
+		inds : ["ds_lawList_Import = ds_lawList_Import"],
+		outds : [],
+		args : [],
+		bAsync : false,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	 var save=confirm("데이터를 입력하시겠습니까?");
+	if(save){
+		//공통 transaction 함수 호출(콜백함수)
+		Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+			   Iject.alert(this.errormsg);
+			   return false;
+			}
+		else{
+			var pThis = this.fobj;
+			trace("this.ds_lawList_Output : " + pThis.ds_lawList_Output.saveXML());
+			alert("저장 완료");
+		}
+		});	
+	}else{
+		alert("저장을 취소하였습니다.");
+	}
+}
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close("OK");
+}
+]]></Script>
+  </Form>
+</FDL>

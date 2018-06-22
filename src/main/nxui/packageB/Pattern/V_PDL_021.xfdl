@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_PDL_021" classname="V_PDL_021" left="0" top="0" width="1000" height="600" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="법률자문회신" left="0.9%" top="8" width="98.2%" height="35" style="align:left top;padding:10 0 0 10;">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="1" left="0.9%" top="44" width="98.2%" height="44" style="background:lavenderblush;border:1 solid #c8c8c8ff ;">
+          <Layouts>
+            <Layout>
+              <Div id="Div00" taborder="0" left="8.47%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" width="15.73%" height="25" style="selectbackground:blue;"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div01" taborder="6" text="법률자문의뢰번호" left="0.51%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;font:9 Dotum;"/>
+              <Button id="Button00" taborder="2" text="검색" left="28.06%" top="9" width="8.47%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');" onclick="Div01_Button00_onclick"/>
+              <Button id="Button01" taborder="3" text="초기화" left="90.41%" top="9" width="8.47%" height="26" style="image:URL('img::btn_MF_Refresh_O.png');"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" left="0.9%" top="124" width="98.2%" height="44" style="background:lavenderblush;border:1 solid #c8c8c8ff ;">
+          <Layouts>
+            <Layout width="982" height="74">
+              <Div id="Div00" taborder="6" left="8.47%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="885" height="35">
+                    <Edit id="Edit00" taborder="4" left="4.61%" top="4" width="15.73%" height="25" style="selectbackground:blue;"/>
+                    <Calendar id="Calendar00" taborder="5" left="34.27%" top="4" width="15.73%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div01" taborder="7" text="의뢰번호" left="0.51%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;font:9 Dotum;"/>
+              <Div id="Div02" taborder="8" text="의뢰일자" left="27.45%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div03" taborder="3" text="회신정보" left="0.9%" top="102" width="982" height="15" style="align:left middle;padding:0 0 0 10;">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="Div04" taborder="4" text="법률자문의뢰사항" left="0.9%" top="178" width="982" height="15" style="align:left middle;padding:0 0 0 10;">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="Div05" taborder="5" left="0.9%" top="202" width="98.2%" height="162" style="align:left top;background:lavenderblush;border:1 solid #c8c8c8ff ;padding:0 0 0 10;">
+          <Layouts>
+            <Layout width="982" height="255">
+              <Div id="Div09" taborder="14" text="Div09" left="8.47%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" enable="true" left="4.61%" top="4" width="94.94%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div10" taborder="15" text="Div10" left="8.47%" top="38" width="91.02%" height="60" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" enable="true" left="4.61%" top="4" width="94.94%" height="51"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div11" taborder="16" text="Div11" left="8.47%" top="97" width="91.02%" height="60" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" enable="true" left="4.61%" top="4" width="94.94%" height="51"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div04" taborder="22" text="회신제목" left="0.51%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div05" taborder="23" text="회신내용" left="0.51%" top="38" width="11.73%" height="60" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div06" taborder="24" text="기타회신사항" left="0.51%" top="97" width="11.73%" height="60" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div06" taborder="6" text="법률자문의뢰사항" left="0.9%" top="374" width="982" height="15" style="align:left middle;padding:0 0 0 10;">
+          <Layouts>
+            <Layout width="982" height="15"/>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="7" useinputpanel="false" left="0.9%" top="396" height="165" width="98.2%" binddataset="ds_cost" autofittype="none">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="52"/>
+                <Column size="207"/>
+                <Column size="145"/>
+                <Column size="110"/>
+                <Column size="162"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No."/>
+                <Cell col="1" text="회신내용"/>
+                <Cell col="2" text="자문수수료"/>
+                <Cell col="3" text="부가세"/>
+                <Cell col="4" text="청구합계금액"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow+1"/>
+                <Cell col="1" displaytype="expr:comp.parent.iCurrow==currow?'text':'normal'" edittype="normal" editfilter="none" text="bind:legaladvCostRepCont" editautoselect="true" editdisplay="edit" combodisplay="edit"/>
+                <Cell col="2" displaytype="number" edittype="normal" text="bind:legaladvCostReqCost"/>
+                <Cell col="3" displaytype="number" edittype="normal" text="bind:legaladvCostStax"/>
+                <Cell col="4" displaytype="number" edittype="normal" text="bind:legaladvCostClamsumChg" expr="nexacro.toNumber(legaladvCostReqCost, (Number.NaN, 0))+nexacro.toNumber(legaladvCostStax, (Number.NaN, 0))"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="4">
+                  <Cell/>
+                  <Cell col="1" text="총"/>
+                  <Cell col="2" text="계"/>
+                  <Cell col="3"/>
+                </Cell>
+                <Cell col="4" displaytype="number" edittype="normal" expr="dataset.getSum('nexacro.toNumber(legaladvCostReqCost, (Number.NaN, 0))+nexacro.toNumber(legaladvCostStax, (Number.NaN, 0))')"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button03" taborder="11" text="추가" left="81.9%" top="367" width="8.5%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');" onclick="Button03_onclick"/>
+        <Button id="Button00" taborder="12" text="삭제" left="90.7%" top="367" width="8.5%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+        <Button id="Button01" taborder="13" text="검색" left="90.7%" top="566" width="8.5%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_cost">
+        <ColumnInfo>
+          <Column id="legaladvCostLawadvReqno" type="STRING" size="256"/>
+          <Column id="legaladvCostLawadvSeq" type="STRING" size="256"/>
+          <Column id="legaladvCostReqCost" type="INT" size="256"/>
+          <Column id="legaladvCostStax" type="INT" size="256"/>
+          <Column id="legaladvCostClamsumChg" type="INT" size="256"/>
+          <Column id="legaladvCostRepCont" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+this.Button03_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+
+	this.ds_cost.insertRow(0);
+	this.Grid00.setCellPos(1);
+}
+
+this.Div01_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var objChildFrame = new ChildFrame("popup_1", "absolute", 30, 30, 30, 30, null, null, "Pattern::V_PDL_022.xfdl");
+	objChildFrame.showModal("popup_1");
+}
+
+]]></Script>
+  </Form>
+</FDL>

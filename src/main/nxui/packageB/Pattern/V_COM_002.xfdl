@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_COM_002" classname="V_COM_002" left="0" top="0" width="658" height="325" titletext="New Form" onload="V_COM_002_onload" style="background:URL('img::btn_LF_Menu_D.png') stretch;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="◈  아 이 디 찾 기" left="15.81%" top="48" right="69.3%" height="42" style="color:whitesmoke;font:bold 9 arial;"/>
+        <Static id="Static01" taborder="1" text="* 성 명" left="4.13%" top="104" right="86.83%" height="31" style="color:whitesmoke;"/>
+        <Static id="Static02" taborder="2" text="* 생 년 월 일" left="4.1%" top="161" right="82.98%" height="33" style="color:whitesmoke;"/>
+        <Edit id="ed_name" taborder="3" left="17.78%" top="104" right="58.81%" height="32" style="background:antiquewhite;"/>
+        <Edit id="ed_birth01" taborder="4" left="17.78%" top="161" right="58.81%" height="28" style="background:antiquewhite;" onkeyup="ed_birth01_onkeyup"/>
+        <Button id="btn_id" taborder="5" text="아이디 찾기" left="13.94%" top="235" right="62.94%" height="33" style="background:black;color:white;" onclick="Buttonid_onclick"/>
+        <Static id="Static03" taborder="6" text="◈  비 밀 번 호 찾 기" left="57.14%" top="50" right="20.67%" height="40" style="color:whitesmoke;font:bold 9 arial;"/>
+        <Static id="Static04" taborder="7" text="* 아 이 디" left="43.92%" top="102" right="46.35%" height="32" style="color:whitesmoke;"/>
+        <Static id="Static05" taborder="8" text="* 생 년 월 일" left="43.92%" top="157" right="44.07%" height="31" style="color:whitesmoke;"/>
+        <Edit id="ed_id" taborder="9" left="58.05%" top="103" right="16.72%" height="32" style="background:antiquewhite;"/>
+        <Edit id="ed_birth02" taborder="10" left="58.05%" top="160" right="16.72%" height="31" style="background:antiquewhite;" onkeyup="ed_birth02_onkeyup"/>
+        <Button id="btn_pass" taborder="11" text="비밀번호 찾기" onclick="Buttonpass_onclick" left="55.59%" top="235" right="19.14%" height="31" style="background:black;color:white;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_searchid">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_user">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engname" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[this.V_COM_002_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();	
+    this.ds_searchid.addRow();
+}
+
+this.Buttonid_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var name = this.ed_name.value;
+	var birth =  this.ed_birth01.value;
+	this.ds_searchid.setColumn(0, "name", name);
+	this.ds_searchid.setColumn(0, "birth", birth);
+	
+   var oDatas =  {
+			  svcid : "search",
+			  sController : "userfindID.do",			 
+			  inds :["input1=ds_searchid"],
+			  outds :[
+				 "ds_user=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : false,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //		
+			}; 
+	
+	 //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/    
+	
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg);			
+		   alert("해당정보가 없습니다.");
+		   return;
+		} 
+	       var pThis = this.fobj;   //form object	      
+	});	
+	if(this.ds_user.getRowCount()<=0){
+	alert("해당정보가 없습니다.");
+	}else{
+	alert("\""+name+"\""+"님의 아이디는"+"'"+this.ds_user.getColumn(0,14)+"'"+"입니다.");
+	}
+}
+
+this.Buttonpass_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var userid = this.ed_id.value;
+	var birth =  this.ed_birth02.value;
+	this.ds_searchid.setColumn(0, "userid", userid);
+	this.ds_searchid.setColumn(0, "birth", birth);
+	
+    var oDatas =  {
+			  svcid : "search",
+			  sController : "userfindPASS.do",			 
+			  inds :["input2=ds_searchid"],
+			  outds :[
+				 "ds_user=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : false,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //		
+			}; 
+	
+	 //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/    
+	
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg);			
+		   alert("해당정보가 없습니다.");
+		   return;
+		} 
+	       var pThis = this.fobj;   //form object	      
+	});	
+	if(this.ds_user.getRowCount()<=0){
+	alert("해당정보가 없습니다.");
+	}else{
+	alert("이메일주소로 임시비밀번호를 발송하였습니다.");
+	}
+}
+
+this.autoHypenbirth = function(str){
+var tmp = '';
+  if(str.length < 1){
+    return str;
+  }else if(str.length < 4){
+	tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2);
+    this.ed_birth.value.trim();
+    return tmp;
+  }
+ 
+  else if(str.length < 6){
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth.value.trim();
+    return tmp;
+  }else{        
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth01.value.trim();
+    this.ed_birth01.set_value(tmp);
+    return tmp;
+  }
+  }
+
+this.ed_birth01_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	var str = this.ed_birth01.value;
+	this.ed_birth01.set_maxlength(6);
+	this.autoHypenbirth(str);
+}
+
+this.autoHypenbirth = function(str){
+var tmp = '';
+  if(str.length < 1){
+    return str;
+  }else if(str.length < 4){
+	tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2);
+    this.ed_birth01.value.trim();
+    return tmp;
+  }
+ 
+  else if(str.length < 6){
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth01.value.trim();
+    return tmp;
+  }else{        
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth01.value.trim();
+    this.ed_birth01.set_value(tmp);
+    return tmp;
+  }
+  }
+
+this.ed_birth02_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	var str = this.ed_birth02.value;
+	this.ed_birth02.set_maxlength(6);
+	this.autoHypenbirth2(str);
+}
+
+this.autoHypenbirth2 = function(str){
+var tmp = '';
+  if(str.length < 1){
+    return str;
+  }else if(str.length < 4){
+	tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2);
+    this.ed_birth02.value.trim();
+    return tmp;
+  }
+ 
+  else if(str.length < 6){
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth02.value.trim();
+    return tmp;
+  }else{        
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth02.value.trim();
+    this.ed_birth02.set_value(tmp);
+    return tmp;
+  }
+  }]]></Script>
+  </Form>
+</FDL>

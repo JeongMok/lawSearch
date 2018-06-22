@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_BOD_002" classname="V_BOD_002" left="0" top="0" width="1000" height="726" titletext="New Form" onload="V_BOD_002_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="새글 작성" left="4.3%" top="31" right="65.9%" height="25" style="padding:0 0 0 10;font:bold 16 arial;"/>
+        <Static id="Static01" taborder="1" text="* 는 필수 입력사항입니다." left="4.5%" top="138" right="78%" height="14" style="color:red;"/>
+        <Div id="div_newInsert" taborder="2" left="4.3%" top="160" right="3.4%" height="489" style="border:1 solid darkgray ;">
+          <Layouts>
+            <Layout width="923" height="489">
+              <Static id="Static02" taborder="2" text="* 제목" left="2.82%" top="72" right="82.19%" height="33" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="Static03" taborder="3" left="2.82%" top="120" right="82.19%" height="33" style="border:1 solid #edededff ;align:center middle;" text="* 내용"/>
+              <Edit id="eidt_title" taborder="6" left="19.65%" top="73" right="2.93%" height="30" style="padding:0 3 0 10;" displaynulltext="제목을 입력하세요."/>
+              <TextArea id="txt_body" taborder="7" left="19.54%" top="121" right="2.93%" height="336" style="padding:10 10 0 10;" displaynulltext="문의 내용을 입력하세요." oneditclick="div_newInsert_txt_body_oneditclick"/>
+              <Edit id="edit_password" taborder="9" displaynulltext="비밀번호를 입력하세요." left="66.45%" top="25" right="3.04%" height="30" style="padding:0 3 0 10;"/>
+              <Static id="Static01" taborder="10" text="* 비밀번호" left="50.49%" top="24" right="34.53%" height="33" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="Static00" taborder="11" text="작성자" left="2.93%" top="24" right="82.08%" height="33" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="Static04" taborder="12" left="19.65%" top="24" right="51.47%" height="33" style="border:0 solid #edededff ;align:left middle;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_list" taborder="3" text="목록 으로" left="89%" top="665" right="3.7%" height="31" style="background:#444444ff;border:1 solid #444444ff ;color:#ffffffff;bordertype:round 0 0 ;cursor:pointer;" onclick="Button00_onclick"/>
+        <Button id="btn_newlnsert" taborder="4" text="등록 하기" left="80.5%" top="665" right="12.2%" height="31" style="background:#444444ff;border:1 solid #444444ff ;color:#ffffffff;bordertype:round 0 0 ;cursor:pointer;" onclick="btn_newlnsert_onclick"/>
+        <Static id="Static02" taborder="5" left="4.3%" top="72" right="3.4%" height="48" wordwrap="none" style="background:#f8f8f8ff;border:1 solid darkgray ;color:darkgray;padding:0 0 0 10;font:bold 9 arial;" text="※ 문의하시기전에 질문하고자 하는 내용이 있는지 확인해주세요."/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="string" size="32"/>
+          <Column id="MENU_SEQ" type="int" size="4"/>
+          <Column id="MENU_OPTP" type="string" size="32"/>
+          <Column id="PAGE_URL" type="string" size="32"/>
+          <Column id="MENU_TOP" type="string" size="32"/>
+          <Column id="MENU_ID" type="string" size="32"/>
+          <Column id="MENU_GRP" type="string" size="32"/>
+          <Column id="CREATE_DT" type="string" size="32"/>
+          <Column id="MENU_LEVEL" type="int" size="4"/>
+          <Column id="PAGE_ID" type="string" size="32"/>
+          <Column id="PAGE_NAME" type="string" size="32"/>
+          <Column id="MENU_ARGS" type="string" size="32"/>
+          <Column id="MENU_STAT" type="string" size="32"/>
+          <Column id="CREATE_USER" type="string" size="32"/>
+          <Column id="UPDATE_DT" type="string" size="32"/>
+          <Column id="UPDATE_USER" type="string" size="32"/>
+          <Column id="MENU_DESC" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_board">
+        <ColumnInfo>
+          <Column id="bNo" type="INT" size="50" description="NO"/>
+          <Column id="userId" type="STRING" size="50" description="사용자ID"/>
+          <Column id="writerName" type="STRING" size="50" description="작성자이름"/>
+          <Column id="title" type="STRING" size="200" description="제목"/>
+          <Column id="body" type="STRING" size="4000" description="본문"/>
+          <Column id="wDate" type="STRING" size="200" description="작성일"/>
+          <Column id="password" type="STRING" size="50" description="패스워드"/>
+          <Column id="bGroup" type="INT" size="5" description="그룹"/>
+          <Column id="bOrder" type="INT" size="5" description="정렬순서"/>
+          <Column id="step" type="INT" size="5" description="스텝"/>
+          <Column id="isshow" type="STRING" size="1" description="화면표시여부"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div_newInsert.edit_password" propid="value" datasetid="ds_board" columnid="password"/>
+      <BindItem id="item1" compid="div_newInsert.eidt_title" propid="value" datasetid="ds_board" columnid="title"/>
+      <BindItem id="item2" compid="div_newInsert.txt_body" propid="value" datasetid="ds_board" columnid="body"/>
+      <BindItem id="item3" compid="div_newInsert.Static04" propid="text" datasetid="gds_userInfo" columnid="userid"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+
+this.V_BOD_002_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	Iject.formOnload(obj);
+	this.ds_board.clearData();
+	this.ds_board.addRow();
+	this.ds_menu.assign(application.gds_hiddenMenu);
+}
+
+//목록 으로
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	
+	var precMenuId = application.gds_openMenu.findRow("MENU_ID","1007");
+	var precWinId = application.gds_openMenu.getColumn(precMenuId,"WIN_ID");
+	application.all["mainframe"].all["VFrameSet"].all["HFrameSet"].all["VFrameSet1"].all["WorkFrame"].all[precWinId];
+	
+	this.fn_goPage(3);
+}
+
+
+//화면전환
+this.fn_goPage = function(page)
+{
+	application.mainframe.VFrameSet.HFrameSet.VFrameSet1.WorkFrame.MainForm.form.fn_chk_f();
+	var oObj = {
+          ds    : this.ds_menu,    // 메뉴 dataset 
+          nRow  : page,              // 선택된 
+          oArgs : []               // 넘길 argument
+    };
+    
+    Iject.Mdi.call(this,oObj);
+    //trace("이동 체크 :"+oObj.nRow);
+}
+
+//새글 등록
+this.btn_newlnsert_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	
+
+	var title=this.div_newInsert.eidt_title.value;
+	var body=this.div_newInsert.txt_body.value;
+	var password =this.div_newInsert.edit_password.value;
+	
+	if(title == null){
+		alert("제목을 입력해 주세요");
+		return;
+	}else if(body == null){
+		alert("내용을 입력해 주세요");
+		return;
+	}else if(password == null){
+		alert("비밀번호를 입력해 주세요");
+		return;
+	}
+	
+	
+	var loginId = application.gds_userInfo.getColumn(0,"userid");
+	trace(loginId);
+	
+	this.ds_board.setColumn(0,"userId",loginId);
+	this.ds_board.setColumn(0,"writerName",loginId);
+	this.ds_board.setColumn(0,"isshow",'Y');
+	this.ds_board.setColumn(0,"step",0);
+	this.ds_board.setColumn(0,"bOrder",0);
+	
+	var oDate = {
+		svcid : "insert",
+		sController : "boardInsert.do",
+		inds:["ds_board=ds_board:U"],
+		outds:[],
+		args:[],
+		bAsync: false, // 비동기여부 (true : async  false: sync)
+		nDataType : 0, // (0: XML타입)
+		bCompress : false,			
+	};
+	//trace(" this.ds_board : " + this.ds_board.saveXML());
+	
+	var save = confirm("저장하시겠습니까 ?");
+	
+	if(save){
+		Iject.transaction(this,oDate,function(){
+		
+			if(this.errorcode < 0)
+			{
+				alert("저장 완료");
+				//this.opener.fn_search(1);
+				//Iject.alert(this.errorMsg,"알림")				
+				
+				return;
+			}
+		});
+	}else{
+		alert("취소 되었습니다.");
+	}
+	
+	var precMenuId = application.gds_openMenu.findRow("MENU_ID","1007");
+	var precWinId = application.gds_openMenu.getColumn(precMenuId,"WIN_ID");
+	application.all["mainframe"].all["VFrameSet"].all["HFrameSet"].all["VFrameSet1"].all["WorkFrame"].all[precWinId];
+	
+	application.gds_search.clearData();
+	
+	this.V_BOD_002_onload();
+	this.fn_goPage(3);
+}
+
+]]></Script>
+  </Form>
+</FDL>

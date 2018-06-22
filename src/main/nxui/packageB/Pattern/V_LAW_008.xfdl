@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_008" classname="V_LAW_002_1" left="0" top="0" width="405" height="579" onload="form_onload" titletext="법령해석례 본문" style="background:floralwhite;">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="Div00" left="0%" top="49" right="15.06%" height="515">
+          <Layouts>
+            <Layout>
+              <TextArea id="questext" taborder="0" left="7.27%" top="25" right="0.87%" height="182" wordwrap="char" style="background:transparent;border:0 solid #808080ff ;" readonly="true"/>
+              <Static id="Static00" taborder="1" text="질의요지" left="6.45%" top="-2" height="27" style="align:center;font:bold 12 arial;" width="80"/>
+              <Static id="Static01" taborder="2" text="회답" left="6.1%" top="214" height="38" style="align:center;font:bold 12 arial;" width="80"/>
+              <TextArea id="repltext" taborder="3" left="7.27%" top="247" right="0.87%" height="195" wordwrap="char" style="background:transparent;border:0 solid #808080ff ;" readonly="true"/>
+              <Button id="Button00" taborder="4" left="26.45%" top="457" right="53.49%" height="37" style="image:URL('img::bnt_print.png');background:transparent;border:0 solid #808080ff ;" onclick="Div00_Button00_onclick"/>
+              <Button id="Button01" taborder="5" text="닫기" left="51.45%" top="457" right="23.55%" height="37" style="background:transparent;border:0 solid #808080ff ;font:12 Dotum;" onclick="Div00_Button01_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" text="Div02" left="0%" top="0" right="0.2%" height="47">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="해석일자" left="6.27%" top="17" height="23" style="align:center;font:bold 12 arial;" width="80"/>
+              <Edit id="Edit00" taborder="1" left="26.98%" top="17" right="59.9%" height="24" readonly="true" style="background:transparent;border:0 solid #808080ff ;align:left;"/>
+              <Static id="Static01" taborder="3" text="일련번호" left="43.07%" top="17" height="23" style="align:center;font:bold 12 arial;" width="80"/>
+              <Edit id="Edit01" taborder="4" left="62.87%" top="17" right="25.74%" height="24" readonly="true" style="background:transparent;border:0 solid #808080ff ;align:left;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_ref">
+        <ColumnInfo>
+          <Column id="참조판례" type="STRING" size="256"/>
+          <Column id="참조조문" type="STRING" size="256"/>
+          <Column id="본문참조" type="STRING" size="256"/>
+          <Column id="본문참조조문" type="STRING" size="256"/>
+          <Column id="원심판결" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_refs">
+        <ColumnInfo>
+          <Column id="label" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="label">참조판례</Col>
+          </Row>
+          <Row/>
+          <Row>
+            <Col id="label">참조조문</Col>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_VLAW008_list">
+        <ColumnInfo>
+          <Column id="번호" type="STRING" size="256"/>
+          <Column id="제목" type="STRING" size="256"/>
+          <Column id="판결일자" type="STRING" size="256"/>
+          <Column id="사건번호" type="STRING" size="256"/>
+          <Column id="조회수" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="번호">1</Col>
+            <Col id="제목">더미</Col>
+            <Col id="판결일자">2010.10.10</Col>
+            <Col id="사건번호">10마1010</Col>
+            <Col id="조회수">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_expctext">
+        <ColumnInfo>
+          <Column id="analyzedate" type="STRING" size="256"/>
+          <Column id="expcno" type="STRING" size="256"/>
+          <Column id="questext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_selectlist">
+        <ColumnInfo>
+          <Column id="expcno" type="STRING" size="256"/>
+          <Column id="itemname" type="STRING" size="256"/>
+          <Column id="itemno" type="STRING" size="256"/>
+          <Column id="quesorgcode" type="STRING" size="256"/>
+          <Column id="quesorgname" type="STRING" size="256"/>
+          <Column id="replorgcode" type="STRING" size="256"/>
+          <Column id="replorgname" type="STRING" size="256"/>
+          <Column id="replydate" type="STRING" size="256"/>
+          <Column id="classname" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div02.Edit00" propid="value" datasetid="ds_expctext" columnid="analyzedate"/>
+      <BindItem id="item1" compid="Div02.Edit01" propid="value" datasetid="ds_expctext" columnid="expcno"/>
+      <BindItem id="item2" compid="Div00.questext" propid="value" datasetid="ds_expctext" columnid="questext"/>
+      <BindItem id="item3" compid="Div00.repltext" propid="value" datasetid="ds_expctext" columnid="repltext"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.ds_expctext.copyData(this.parent.ds_expctext);
+	this.ds_selectlist.copyData(this.parent.ds_selectlist);
+
+} 
+
+//인쇄 클릭시
+this.Div00_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	system.print(this.Div00,false,"left", false);
+}
+
+//닫기 클릭시
+this.Div00_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

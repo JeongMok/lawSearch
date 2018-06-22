@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_012" classname="LawList_Article" left="0" top="0" width="900" height="700" titletext="법령조문본문" style="border:1 solid #808080ff ;" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_lawArticle" taborder="0" left="0%" top="40" right="2%" height="249" style="border:0 none #808080ff ;" dragscrolltype="none">
+          <Layouts>
+            <Layout>
+              <Grid id="grd_lawArticle" taborder="0" useinputpanel="false" left="1.7%" top="0" right="0.11%" height="209" binddataset="ds_lawArticle" autofittype="col" oncelldblclick="fn_listClick" fillareatype="linerow">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="49"/>
+                      <Column size="443"/>
+                      <Column size="113"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="조문번호"/>
+                      <Cell col="1" text="조문제목"/>
+                      <Cell col="2" text="조문시행일자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:articleNo"/>
+                      <Cell col="1" text="bind:name"/>
+                      <Cell col="2" text="bind:actDate"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Div id="div_paging" taborder="1" left="20" top="211" height="32" width="97.05%">
+                <Layouts>
+                  <Layout/>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_contents" taborder="1" left="1%" top="280" right="0.89%" height="372" style="border:0 none #808080ff ;color:ivory;" enableevent="true" enable="true">
+          <Layouts>
+            <Layout width="554" height="610">
+              <Static id="sta_mainText" taborder="16" text="조문 내용" left="0.91%" top="11" right="88.9%" height="29" style="border:1 solid #edededff ;align:center middle;"/>
+              <TextArea id="txa_mainText" taborder="17" left="0.68%" top="48" right="1.13%" height="319" readonly="true" style="border:1 solid gray ;" wordwrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_title" taborder="2" text="법령 조문 보기" left="0.44%" top="7" right="80%" height="25" style="padding:0 0 0 10;font:bold 16 arial;"/>
+        <Button id="btn_close" taborder="3" text="닫기" left="93.11%" top="664" right="1.33%" height="25" onclick="btn_close_onclick"/>
+        <Button id="btn_articleAll" taborder="4" text="조문 전체보기" left="83.33%" top="296" right="4.89%" height="25" onclick="btn_articleAll_onclick" style="background:transparent;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_lawArticle">
+        <ColumnInfo>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+          <Column id="articleNo" type="STRING" size="50" description="조문번호"/>
+          <Column id="name" type="STRING" size="200" description="조문제목"/>
+          <Column id="actDate" type="STRING" size="50" description="조문시행일자"/>
+          <Column id="beforeMove" type="STRING" size="50" description="조문이동이전"/>
+          <Column id="afterMove" type="STRING" size="50" description="조문이동이후"/>
+          <Column id="isModify" type="STRING" size="50" description="조문변경여부"/>
+          <Column id="mainText" type="STRING" size="4000" description="조문내용"/>
+          <Column id="firstIndex" type="STRING" size="256"/>
+          <Column id="lastIndex" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_lawItem">
+        <ColumnInfo>
+          <Column id="cate" type="STRING" size="5" description="항,호,목 구분"/>
+          <Column id="itemNo" type="STRING" size="50" description="번호"/>
+          <Column id="itemText" type="STRING" size="4000" description="내용"/>
+          <Column id="higherItemNo" type="STRING" size="50" description="상위아이템번호"/>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_chooseLaw">
+        <ColumnInfo>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+          <Column id="articleNo" type="STRING" size="50" description="조문번호"/>
+          <Column id="name" type="STRING" size="200" description="조문제목"/>
+          <Column id="actDate" type="STRING" size="50" description="조문시행일자"/>
+          <Column id="beforeMove" type="STRING" size="50" description="조문이동이전"/>
+          <Column id="afterMove" type="STRING" size="50" description="조문이동이후"/>
+          <Column id="isModify" type="STRING" size="50" description="조문변경여부"/>
+          <Column id="mainText" type="STRING" size="4000" description="조문내용"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="50" description="검색구분"/>
+          <Column id="searchLawClassName" type="STRING" size="256" description="법령구분"/>
+          <Column id="searchKeyword" type="STRING" size="256" description="검색어"/>
+          <Column id="pageIndex" type="INT" size="256" description="요청 페이지 번호"/>
+          <Column id="pageUnit" type="INT" size="256" description="페이지 당 조회 수"/>
+          <Column id="pageSize" type="INT" size="256" description="페이지 최대 수"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="searchCondition"/>
+            <Col id="searchLawClassName"/>
+            <Col id="searchKeyword"/>
+            <Col id="pageIndex">1</Col>
+            <Col id="pageUnit">10</Col>
+            <Col id="pageSize">10</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_paging" onload="fn_paging">
+        <ColumnInfo>
+          <Column id="currentPageNo" type="INT" size="256" description="현재 페이지 번호"/>
+          <Column id="pageSize" type="INT" size="256" description="페이지 사이즈"/>
+          <Column id="recordCountPerPage" type="INT" size="256" description="게시글 보기 수"/>
+          <Column id="totalPageCount" type="INT" size="256" description="페이지 전체 수"/>
+          <Column id="totalRecordCount" type="INT" size="256" description="게시글 전체 수"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="articleMainText" compid="div_contents.txa_mainText" propid="value" datasetid="ds_chooseLaw" columnid="mainText"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close("OK");
+}
+
+
+// 폼 로드
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);
+	
+	// 조회
+	var lawId = this.parent.ds_chooseLaw.getColumn(0,"lawId");
+	this.ds_search.setColumn(0,"searchKeyword",lawId);
+	
+	this.fn_search();
+}
+
+this.fn_search = function(buttonText)
+{
+	// 폼이 로드 될때 1번만 법령검색을 위한 정보를 가져와서 셋팅함.
+	var oDatas =  {
+		  svcid : "searchLawArticle",
+		  sController : "searchLawArticleList.do", 
+		  inds :["ds_search = ds_search"],
+		  outds :[
+			"ds_lawArticle = articleList, ds_paging = pagingOutput"
+			 ],			     
+		  args  : [				
+		  ],
+		  bAsync : true,    // 비동기여부 (true : async  false: sync)
+		  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+		  bCompress :false,	 //			  
+		}; 
+		
+		
+			 
+	//공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+			/*  
+			*   callback argument
+			*   @param : {string}    this.svcid      : 서비스 ID
+			*   @param : {object}    this.fobj       : 현재 form object
+			*   @param : {number}    this.errorcode  : 서비스 에러 코드
+			*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+			*/   
+				
+		if(this.errorcode < 0)
+		{		
+			Iject.alert(this.errorMsg);			
+			return;
+			
+		} 
+			  
+		var pThis = this.fobj;   //form object	      
+		   
+	});
+}
+
+this.fn_paging = function()
+{
+	this.div_lawArticle.div_paging.destroy();
+	var objDiv = new Div("div_paging","absolute",20,211,"97%",32,null,null);
+	this.div_lawArticle.addChild("div_paging",objDiv);
+	objDiv.show();
+	
+	//////////////
+	var startPage = this.ds_lawArticle.getColumn(0,"firstIndex");
+    var endPage = this.ds_lawArticle.getColumn(0,"lastIndex");
+    var totalPage = this.ds_paging.getColumn(0,"totalPageCount");
+    var page = this.ds_paging.getColumn(0,"currentPageNo");
+    var countPage = this.ds_paging.getColumn(0,"pageSize");
+    
+    var position = (10-endPage%10);
+    
+    if(position == 10)
+    {
+		position = 0;
+    }
+    
+    var btnLeft = 182+position*15.25;
+    var btnTop = 3;
+    var btnHeight = 27;
+    var btnWidth = 45;
+    var i = startPage;
+    var j = endPage;
+    
+    	
+	// 처음으로버튼 생성
+    if(page != 1 && totalPage > 1){
+		var objBtnId    = "paging_btn_First";
+		var objButton = new Button(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		this.div_lawArticle.div_paging.addChild(objBtnId, objButton);
+		this.div_lawArticle.div_paging.paging_btn_First.set_text("<<");
+		this.div_lawArticle.div_paging.paging_btn_First.set_enable(true);
+		this.div_lawArticle.div_paging.paging_btn_First.style.set_border("0px solid white");
+		this.div_lawArticle.div_paging.paging_btn_First.style.set_background("transparent");
+		this.div_lawArticle.div_paging.paging_btn_First.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		objButton.show();
+    }
+    btnLeft = btnLeft + 40;
+    
+    // 이전버튼 생성
+    if(page > 10){
+		var prevButton = new Button();
+		var prevBtnId    = "paging_btn_Prev";
+		prevButton.init(prevBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+		prevButton.set_text("<");
+		prevButton.set_enable(true);
+		prevButton.style.set_border("0px solid white");
+		prevButton.style.set_background("transparent");
+		prevButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_lawArticle.div_paging.addChild(prevBtnId,prevButton);
+		prevButton.show();
+    }
+    btnLeft = btnLeft + 45;
+    
+    // 페이지 번호 생성
+    if(totalPage > 1){
+		for(i ; i <= j; i++) {
+			var objButton = new Button();
+			var objBtnId    = "paging_btn_"+i;
+			objButton.init(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,0);       
+			objButton.set_text(i);
+			if(page == i ){
+				objButton.set_enable(false);
+			}else{
+				objButton.set_enable(true);
+			}
+			objButton.addEventHandler("onclick",this.div_pagingNumber_onclick , this);
+			objButton.style.set_border("0px solid white");
+			objButton.style.set_background("transparent");
+			this.div_lawArticle.div_paging.addChild(objBtnId,objButton);
+			objButton.show();
+			
+			btnLeft = btnLeft + 30;
+		}
+	}
+    
+    btnWidth = 25;
+    if(totalPage > 1){
+		for(i ; i <= j; i++) {
+			var objButton = new Button();
+			var objBtnId    = "paging_btn_"+i;
+			objButton.init(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+			objButton.set_text(i);
+			if(page == i ){
+				objButton.set_enable(false);
+			}else{
+				objButton.set_enable(true);
+			}
+			objButton.addEventHandler("onclick",this.div_pagingNumber_onclick , this);
+			objButton.style.set_border("0px solid white");
+			objButton.style.set_background("transparent");
+			this.div_lawArticle.div_paging.addChild(objBtnId,objButton);
+			objButton.show();
+			
+			btnLeft = btnLeft + 35;
+		}
+	}
+    btnWidth = 45;
+    btnLeft = btnLeft + 10;
+    
+    // 다음버튼 생성
+    if(endPage != totalPage){
+		var nextButton = new Button();
+		var nextBtnId    = "paging_btn_Next";
+		nextButton.init(nextBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+		nextButton.set_text(">");
+		nextButton.set_enable(true);
+		nextButton.style.set_border("0px solid white");
+		nextButton.style.set_background("transparent");
+		nextButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_lawArticle.div_paging.addChild(nextBtnId,nextButton);
+		nextButton.show();
+    }
+    btnLeft = btnLeft + 40;
+    
+    // 마지막으로버튼 생성
+	if(page < totalPage && totalPage > 1){
+		var lastButton = new Button();
+		var lastBtnId    = "paging_btn_Last";
+		lastButton.init(lastBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+		lastButton.set_text(">>");
+		lastButton.set_enable(true);
+		lastButton.style.set_border("0px solid white");
+		lastButton.style.set_background("transparent");
+		lastButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_lawArticle.div_paging.addChild(lastBtnId,lastButton);
+		lastButton.show();
+	}
+}
+
+//페이징 처리
+this.div_pagingButton_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+    var objName = obj.name.split('paging_btn_');
+    this.fn_page (objName[1]);
+}
+
+this.div_pagingNumber_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+    this.fn_page (obj.text);
+}
+
+//버튼 클릭 후
+this.fn_page = function (btnText){
+    var objNum = 1;
+    if(btnText=='First'){
+        objNum = 1;
+    }else if(btnText=='Prev'){
+        objNum = this.ds_lawArticle.getColumn(0,"firstIndex")-1;
+    }else if(btnText=='Last'){
+        objNum = this.ds_paging.getColumn(0,"totalPageCount");
+    }else if(btnText=='Next'){
+        objNum = this.ds_lawArticle.getColumn(0,"lastIndex")+1;
+    }else{
+		objNum = btnText;
+    }
+    this.page_click(objNum);
+}
+
+//page버튼 클릭시 동작
+this.page_click = function(pagenum){
+	//page정보 갱신
+	var pnum = 0;
+	pnum = pagenum;
+	this.ds_search.setColumn(0,"pageIndex",pnum);
+	this.fn_search("button");
+}
+
+//grid내의 select list의 one row클릭 시 동작
+this.fn_listClick = function(obj:Grid, e:nexacro.GridClickEventInfo){
+	this.ds_lawItem.clearData();
+	this.ds_lawItem.addRow();
+	var nToRow = 0;
+	var nFromRow = e.row;	//복사할 row의 Position, int값
+	
+	this.ds_chooseLaw.copyRow(nToRow, this.ds_lawArticle, nFromRow);
+	
+	
+	// 조문 항호목 조회
+	var oDatas =  {
+		  svcid : "searchLawItem",
+		  sController : "searchLawItem.do", 
+		  inds :["ds_search = ds_chooseLaw"],
+		  outds :[
+			"ds_lawItem = articleDetail"
+			 ],			     
+		  args  : [				
+		  ],
+		  bAsync : true,    // 비동기여부 (true : async  false: sync)
+		  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+		  bCompress :false,	 //			  
+		}; 
+		
+	//공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+			/*  
+			*   callback argument
+			*   @param : {string}    this.svcid      : 서비스 ID
+			*   @param : {object}    this.fobj       : 현재 form object
+			*   @param : {number}    this.errorcode  : 서비스 에러 코드
+			*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+			*/   
+				
+		if(this.errorcode < 0)
+		{		
+			Iject.alert(this.errorMsg);			
+			return;
+		} 
+			  
+		var pThis = this.fobj;   //form object	      
+		//alert(pThis.ds_lawItem.getColumn(0,"itemText"));
+		
+		if(pThis.ds_lawItem.getColumn(0,"itemText") != undefined)
+		{
+			var mainText = pThis.ds_chooseLaw.getColumn(0,"mainText");
+			mainText = mainText + "\r\n" + pThis.ds_lawItem.getColumn(0,"itemText");
+			pThis.ds_chooseLaw.setColumn(0,"mainText", mainText);
+		}
+		
+	});
+	
+	
+	
+	
+}
+
+this.btn_articleAll_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.open("modeless_lawItemAll","Pattern::V_LAW_013.xfdl",this.getOwnerFrame(), 
+		{mode:'modeless',ds_chooseLaw:this.ds_chooseLaw,ds_lawItem:this.ds_lawItem}, "showtitlebar=false", 300, 20, 900, 700);
+}]]></Script>
+  </Form>
+</FDL>

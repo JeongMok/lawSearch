@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_004" classname="V_LAW_004" onload="V_LAW_004_onload" left="0" top="0" width="1000" height="725">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="Div00" left="0%" top="43" right="76.3%" height="678">
+          <Layouts>
+            <Layout>
+              <Tab id="Tab00" taborder="0" left="3.38%" top="5" right="2.53%" height="165" tabindex="0" scrollbars="autoboth">
+                <Tabpages>
+                  <Tabpage id="tabpage1" text="참조판례">
+                    <Layouts>
+                      <Layout width="221" height="643">
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" dragscrolltype="none" left="0.9%" top="4" right="2.26%" height="128"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                  <Tabpage id="tabpage2" text="참조조문">
+                    <Layouts>
+                      <Layout>
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" usecontextmenu="false" dragscrolltype="none" left="0.9%" top="3" right="2.26%" height="130"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                </Tabpages>
+              </Tab>
+              <Tab id="Tab01" taborder="1" left="3.38%" top="181" right="3.38%" height="491" tabindex="0" scrollbars="autoboth">
+                <Tabpages>
+                  <Tabpage id="tabpage1" text="결정요지">
+                    <Layouts>
+                      <Layout width="221" height="643">
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" dragscrolltype="none" left="0.91%" top="2" right="0.46%" height="460"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                  <Tabpage id="tabpage2" text="판시사항">
+                    <Layouts>
+                      <Layout>
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" usecontextmenu="false" dragscrolltype="none" left="0.91%" top="4" right="0.46%" height="458"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                </Tabpages>
+              </Tab>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="1" text="Div01" left="23.3%" top="48" right="0.2%" height="673">
+          <Layouts>
+            <Layout>
+              <TextArea id="TextArea00" taborder="0" left="1.33%" top="23" right="1.33%" height="644" readonly="true" scrollbars="autovert" wordwrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" text="Div02" left="0%" top="0" right="0.2%" height="47">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="종국일자" left="1.1%" top="17" right="92.79%" height="23"/>
+              <Edit id="Edit00" taborder="1" left="6.41%" top="13" right="71.54%" height="29" readonly="false"/>
+              <Static id="Static01" taborder="3" text="사건번호" left="30.76%" top="17" right="63.13%" height="23"/>
+              <Edit id="Edit01" taborder="4" left="37.27%" top="13" right="40.68%" height="29"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button04" taborder="3" text="목록으로" onclick="Button04_onclick" left="91.1%" top="13" right="1.2%" height="47"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_detc_context">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="256"/>
+          <Column id="caseclasscode" type="STRING" size="256"/>
+          <Column id="caseclassname" type="STRING" size="256"/>
+          <Column id="judgeclasscode" type="STRING" size="256"/>
+          <Column id="casetext" type="STRING" size="256"/>
+          <Column id="judgetext" type="STRING" size="256"/>
+          <Column id="referlaw" type="STRING" size="256"/>
+          <Column id="referjudge" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="targetlaw" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_detc_detail">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="256"/>
+          <Column id="detcdate" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="judgeclasscode" type="STRING" size="256"/>
+          <Column id="precdetaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div01.TextArea00" propid="value" datasetid="ds_detc_context" columnid="maintext"/>
+      <BindItem id="item3" compid="Div02.Edit00" propid="value" datasetid="ds_detc_detail" columnid="detcdate"/>
+      <BindItem id="item4" compid="Div02.Edit01" propid="value" datasetid="ds_detc_detail" columnid="caseno"/>
+      <BindItem id="item2" compid="Div00.Tab00.tabpage1.TextArea00" propid="value" datasetid="ds_detc_context" columnid="referjudge"/>
+      <BindItem id="item1" compid="Div00.Tab00.tabpage2.TextArea00" propid="value" datasetid="ds_detc_context" columnid="referlaw"/>
+      <BindItem id="item5" compid="Div00.Tab01.tabpage2.TextArea00" propid="value" datasetid="ds_detc_context" columnid="casetext"/>
+      <BindItem id="item6" compid="Div00.Tab01.tabpage1.TextArea00" propid="value" datasetid="ds_detc_context" columnid="judgetext"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.V_LAW_004_onload = function (obj:Form, e:LoadEventInfo){	
+	this.ds_detc_detail.copyData(this.parent.ds_detc_detail);
+	this.ds_detc_context.copyData(this.parent.ds_detc_context);
+	if(this.ds_detc_context.getColumn(0,"detcno") == null || this.ds_detc_context.getColumn(0,"detcno") == undefined){
+		this.close();
+	}else{
+		this.fn_context_fix("maintext");
+		this.fn_context_fix("referlaw");
+		this.fn_context_fix("referjudge");
+		this.fn_context_fix("casetext");
+		this.fn_context_fix("judgetext");
+	}
+}
+
+this.fn_context_fix = function(text){
+	var context	=	this.ds_detc_context.getColumn(0,text);
+	if(context != null){
+		context		=	context.replace(/<br\/>/gi,"\r\n");
+		context		=	context.replace(/     /gi,"\r\n");
+		context		=	context.replace(/【/gi,"\r\n【");
+		context		=	context.replace(/】/gi,"】\r\n");
+		context		=	context.replace(/\]/gi,"]\r\n");
+		context		=	context.replace(/\[/gi,"\r\n[");
+		context		=	context.replace("【주\r\n문】","【주     문】");
+		context		=	context.replace("【이\r\n유】","【이     유】");
+		context		=	context.replace("\r\n○\r\n","○");
+		context		=	context.replace("\n○\n","○");
+		
+		var loop	=	true;
+		while(loop){
+			var start	=	context.indexOf("<");
+			var end		=	context.indexOf(">")+1;
+			var slice	=	context.slice(start,end);
+			context		=	context.replace(slice, "");
+			if(start < 0){
+				loop	=	false;
+			}
+		}
+		this.ds_detc_context.setColumn(0,text,context);
+	}
+}
+
+this.Button04_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+
+this.Button05_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

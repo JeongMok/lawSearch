@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="constitution.lawmapper.service.dao.PrecedentMapper">
+
+    <resultMap id="precedentsCommonCodeVO" type="constitution.lawmapper.vo.PrecedentsCommonCodeVO"/>
+    <resultMap id="precedentsListVO" type="constitution.lawmapper.vo.PrecedentsListVO"/>
+    <resultMap id="precedentContextVO" type="constitution.lawmapper.vo.PrecedentContextVO">
+    	<result property="precno" column="PRECNO"/>
+    	<result property="casetext" column="CASETEXT"/>
+    	<result property="judgetext" column="JUDGETEXT"/>
+    	<result property="referlaw" column="REFERLAW"/>
+    	<result property="referjudge" column="REFERJUDGE"/>
+    	<result property="maintext" column="MAINTEXT" jdbcType="CLOB" javaType="java.lang.String"/>
+    </resultMap>
+    
+        
+    <!--setting용 리스트 간단 검색 --> 
+    
+    <select id="getJudge" resultMap="precedentsCommonCodeVO">
+    	<!-- SELECT JUDGECLASSNAME, JUDGE FROM T_precedentlist GROUP BY JUDGECLASSNAME, JUDGE
+    	ORDER BY JUDGECLASSNAME ASC  -->   
+    </select>  
+    <select id="getCourt" resultMap="precedentsCommonCodeVO">
+    	SELECT 
+    		T1.CLASS_NAME, 
+    		T2.CLASS_CODE, 
+    		T2.CODE_NO, 
+    		T2.CODE_NAME
+    	FROM 
+    		PD_LAW_CMM_CODE_DETAIL T2,
+    		(
+    		SELECT 
+    			CLASS_CODE, 
+    			CLASS_NAME 
+    		FROM 
+    			PD_LAW_TAB_CODE_MASTER
+    		WHERE 
+    			USE_YN = '1' AND 
+    			MAIN_COLUMN = 'COURTCLASSCODE'
+    		) T1
+    	WHERE 
+    		T2.CLASS_CODE = T1.CLASS_CODE AND 
+    		T2.USE_YN = '1'
+    </select>
+    <select id="getCase" resultMap="precedentsCommonCodeVO">
+    	SELECT 
+    		T1.CLASS_NAME, 
+    		T2.CLASS_CODE, 
+    		T2.CODE_NO AS, 
+    		T2.CODE_NAME
+    	FROM 
+    		PD_LAW_CMM_CODE_DETAIL T2,
+    		(
+    		SELECT 
+    			CLASS_CODE, 
+   		 		CLASS_NAME 
+    		FROM 
+    			PD_LAW_TAB_CODE_MASTER
+    		WHERE 
+    			USE_YN = '1' AND 
+    			MAIN_COLUMN = 'CASECLASSCODE'
+    		) T1
+    	WHERE 
+    		T2.CLASS_CODE = T1.CLASS_CODE AND 
+    		T2.USE_YN = '1'    	    
+    </select>
+    
+    <!-- list 전 row갯수 가져오기 -->
+    
+    <select id="getRowCount" parameterType="constitution.lawmapper.vo.PrecedentsListVO" 
+   			resultType="constitution.lawmapper.vo.PrecedentsListVO">
+    	SELECT 
+    		COUNT(*) AS TOTALCOUNT 
+    	FROM 
+    		(
+    		<if test="fromdate_search != null and fromdate_search != ''">
+    		SELECT 
+    			T3.PRCNO, 
+    			T3.JUDDATE 
+    		FROM 
+    			(
+    			</if>
+    			SELECT 
+    				T1.PRECNO AS PRCNO, 
+    				T1.JUDGEDATE AS JUDDATE 
+    			FROM 
+    				T_PRECEDENTLIST T1
+    			<where>
+    				T1.HASTNULL = 'NO' OR HASTNULL IS NULL 
+	    			<if test="casename_search != null and casename_search != ''">
+	    		AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+	    			</if>
+	    			<if test="caseno_search != null and caseno_search != ''">
+	    		AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+	    			</if>
+	    			<if test="judgeno_search != null and judgeno_search != ''">
+	    		AND T1.JUDGENO LIKE '%' || #{judgeno_search} || '%'
+	    			</if>
+	    			<if test="judge_search != null and judge_search != ''">
+	    		AND T1.JUDGECLASSNAME LIKE '%' || #{judge_search} || '%'		
+	    			</if>
+	    			<if test="case_search != null and case_search != ''">
+	    		AND T1.CASECLASSCODE LIKE '%' || #{case_search} || '%'	
+	    			</if>
+	    			<if test="court_search != null and court_search != ''">
+	    		AND T1.COURTCLASSCODE LIKE '%' || #{court_search} || '%'	
+	    			</if>
+	    			<if test="todate_search != null and todate_search != ''">		
+	    			<![CDATA[
+	    		AND T1.JUDGEDATE <= #{todate_search}	
+	    			]]>
+	    			</if>
+	    			<if test="casetext_search != null or judgetext_search != null or 
+	    			  	referlaw_search != null or referjudge_search != null">
+	    			AND T1.PRECNO 
+	    				IN 
+	    				(
+	    				SELECT 
+	    					T2.PRECNO 
+	    				FROM 
+	    					T_PRECTEXT T2
+	    				<where>
+	    					<if test="casetext_search != null and casetext_search != ''">
+	    					T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+	    					</if>
+	    					<if test="judgetext_search != null and judgetext_search != ''">
+	    				AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+	    					</if>
+	    					<if test="referlaw_search != null and referlaw_search != ''">
+	    				AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+	    					</if>
+	    					<if test="referjudge_search != null and referjudge_search != ''">
+	    				AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+	    					</if>
+	    				</where> 
+	    				)
+	    			</if>   	
+    			</where>
+    			<if test="fromdate_search != null and fromdate_search != ''">
+    			<![CDATA[
+    			) T3 
+    		WHERE 
+    			JUDDATE >= #{fromdate_search}
+    			]]>
+    		</if>
+	    	)
+    </select>    
+		
+		<!-- 리스트 간단 검색  -->
+    
+    <select id="getSimpleList" parameterType="constitution.lawmapper.vo.PrecedentsListVO"
+     resultMap="precedentsListVO">
+    	SELECT 
+    		* 
+    	FROM
+    		(
+    		SELECT 
+    			JUDGEDATE, 
+    			PRECNO, 
+    			CASENAME, 
+    			CASENO 
+    		FROM T_PRECEDENTLIST
+    		WHERE 
+    			HASTNULL = 'NO' OR HASTNULL IS NULL 
+    			AND JUDGEDATE IS NOT NULL 
+    		ORDER BY 
+    			JUDGEDATE DESC
+    		)
+    	<![CDATA[
+    	WHERE 
+    		ROWNUM <= #{endCount}
+	    ]]>
+    </select>
+
+		<!-- 리스트 상세 검색 -->
+    
+    <select id="getList" parameterType="constitution.lawmapper.vo.PrecedentsListVO"
+     resultMap="precedentsListVO">
+     SELECT 
+     	T5.RNUM, 
+     	T5.JUDGEDATE, 
+     	T5.JUDGENO, 
+     	T5.PRECNO, 
+     	T5.CASENAME, 
+     	T5.CASENO, 
+     	T5.COURTNAME,
+     	T5.CASECLASSNAME, 
+     	T5.JUDGECLASSNAME 
+     FROM
+     	( 
+     	SELECT 
+     		ROWNUM AS RNUM, 
+     		T4.JUDGEDATE, 
+     		T4.JUDGENO, 
+     		T4.PRECNO, 
+     		T4.CASENAME, 
+     		T4.CASENO, 
+     		T4.COURTNAME, 
+     		T4.CASECLASSNAME, 
+     		T4.JUDGECLASSNAME 
+     	FROM
+     		(
+	 		<if test="fromdate_search != null and fromdate_search != ''">
+	 		SELECT 
+	 			T3.JUDGEDATE, 
+	 			T3.JUDGENO, 
+	 			T3.PRECNO, 
+	 			T3.CASENAME, 
+	 			T3.CASENO, 
+	 			T3.COURTNAME,
+		    	T3.CASECLASSNAME, 
+		    	T3.JUDGECLASSNAME 
+		    FROM 
+		    	(
+	    		</if>
+		    	SELECT 
+		    		T1.JUDGEDATE, 
+		    		T1.JUDGENO, 
+		    		T1.PRECNO, 
+		    		T1.CASENAME, 
+		    		T1.CASENO, 
+		    		T1.COURTNAME, 
+		    		T1.CASECLASSNAME, 
+		    		T1.JUDGECLASSNAME 
+		    	FROM 
+		    		T_PRECEDENTLIST T1
+		    	<where>	
+		    		T1.HASTNULL = 'NO' OR HASTNULL IS NULL 
+			    	<if test="casename_search != null and casename_search != ''">
+			    AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+			    	</if>
+			    	<if test="caseno_search != null and caseno_search != ''">
+			    AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+			    	</if>
+			    	<if test="judgeno_search != null and judgeno_search != ''">
+			    AND T1.JUDGENO LIKE '%' || #{judgeno_search} || '%'
+			    	</if>
+			    	<if test="judge_search != null and judge_search != ''">
+			    AND T1.JUDGECLASSNAME LIKE '%' || #{judge_search} || '%'		
+			    	</if>
+			    	<if test="case_search != null and case_search != ''">
+			    AND T1.CASECLASSCODE LIKE '%' || #{case_search} || '%'	
+			    	</if>
+			    	<if test="court_search != null and court_search != ''">
+			    AND T1.COURTCLASSCODE LIKE '%' || #{court_search} || '%'	
+			    	</if>
+			    	<if test="todate_search != null and todate_search != ''">
+			    	<![CDATA[
+			    AND T1.JUDGEDATE <= #{todate_search}	
+			    	]]>
+			    	</if>
+			    	<if test="casetext_search != null or judgetext_search != null or 
+			    			  referlaw_search != null or referjudge_search != null">
+			    	AND T1.PRECNO 
+			    		IN 
+			    		(
+			    		SELECT 
+			    			T2.PRECNO 
+			    		FROM 
+			    			T_PRECTEXT T2
+			    		<where>
+			    			<if test="casetext_search != null and casetext_search != ''">
+			    			T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+			    			</if>
+			    			<if test="judgetext_search != null and judgetext_search != ''">
+			    		AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+			    			</if>
+			    			<if test="referlaw_search != null and referlaw_search != ''">
+			    		AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+			    			</if>
+			    			<if test="referjudge_search != null and referjudge_search != ''">
+			    		AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+			    			</if>
+			    		</where> 
+			    		)
+			    	</if>   	
+		    	</where>
+		    		<if test="orderby == 'asc'">
+		    		ORDER BY 
+		    			JUDGEDATE ASC
+		    		</if>
+		    		<if test="orderby == 'desc'">
+		    		ORDER BY 
+		    			JUDGEDATE DESC
+		    		</if>
+		    	<if test="fromdate_search != null and fromdate_search != ''">
+	    		<![CDATA[
+	    		) T3 
+	    	WHERE 
+	    		JUDGEDATE >= #{fromdate_search}
+	    		]]>
+	    		</if>
+	    	<![CDATA[		    		
+			) T4 
+		WHERE 
+			ROWNUM <= #{endCount}
+		) T5 
+	WHERE 
+		RNUM >= #{startCount} 	
+    	]]>
+    </select>
+
+		<!-- view용 내용 가져오기 -->
+    
+    <select id="getConext" parameterType="constitution.lawmapper.vo.PrecedentsListVO"
+     resultMap="precedentContextVO">
+    	SELECT 
+    		* 
+    	FROM 
+    		T_PRECTEXT 
+    	WHERE 
+    		PRECNO = #{precno}   
+    	ORDER BY
+    		JUDGEDATE DESC
+    </select>
+    
+    <select id="getSingleAll" parameterType="constitution.lawmapper.vo.PrecedentsListVO"
+     resultMap="precedentsListVO">
+    	SELECT 
+    		* 
+    	FROM 
+    		T_PRECEDENTLIST 
+    	WHERE 
+    		PRECNO = #{precno}   
+    	ORDER BY
+    		JUDGEDATE DESC
+    </select>
+    
+    
+    <select id="getSearchCourtCount" parameterType="constitution.lawmapper.vo.PrecedentsListVO"
+    		resultMap="precedentsCommonCodeVO">
+		SELECT
+			CODE_NO, 
+			CODE_NAME, 
+			CLASS_CODE
+		FROM
+			PD_LAW_CMM_CODE_DETAIL
+		WHERE
+			CODE_NO IN
+			(	    	    	
+    	    SELECT
+                 COURTCLASSCODE
+            FROM
+            	( 
+            	SELECT
+            		T3.COURTCLASSCODE
+            	FROM
+	                (
+	                SELECT 
+	                    T1.JUDGEDATE,
+	                    T1.COURTCLASSCODE
+	                FROM 
+	    				T_PRECEDENTLIST T1
+	    			<where>
+	    				T1.HASTNULL = 'NO' OR HASTNULL IS NULL 
+		    			<if test="casename_search != null and casename_search != ''">
+		    		AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+		    			</if>
+		    			<if test="caseno_search != null and caseno_search != ''">
+		    		AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+		    			</if>
+		    			<if test="judgeno_search != null and judgeno_search != ''">
+		    		AND T1.JUDGENO LIKE '%' || #{judgeno_search} || '%'
+		    			</if>
+		    			<if test="judge_search != null and judge_search != ''">
+		    		AND T1.JUDGECLASSNAME LIKE '%' || #{judge_search} || '%'		
+		    			</if>
+		    			<if test="case_search != null and case_search != ''">
+		    		AND T1.CASECLASSCODE LIKE '%' || #{case_search} || '%'	
+		    			</if>
+		    			<if test="court_search != null and court_search != ''">
+		    		AND T1.COURTCLASSCODE LIKE '%' || #{court_search} || '%'	
+		    			</if>
+		    			<if test="todate_search != null and todate_search != ''">		
+		    			<![CDATA[
+		    		AND T1.JUDGEDATE <= #{todate_search}	
+		    			]]>
+		    			</if>
+		    			<if test="casetext_search != null or judgetext_search != null or 
+		    			  	referlaw_search != null or referjudge_search != null">
+		    			AND T1.PRECNO 
+		    				IN 
+		    				(
+		    				SELECT 
+		    					T2.PRECNO 
+		    				FROM 
+		    					T_PRECTEXT T2
+		    				<where>
+		    					<if test="casetext_search != null and casetext_search != ''">
+		    					T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+		    					</if>
+		    					<if test="judgetext_search != null and judgetext_search != ''">
+		    				AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+		    					</if>
+		    					<if test="referlaw_search != null and referlaw_search != ''">
+		    				AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+		    					</if>
+		    					<if test="referjudge_search != null and referjudge_search != ''">
+		    				AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+		    					</if>
+		    				</where> 
+		    				)
+		    			</if>   	
+	    			</where>
+	    			<if test="fromdate_search != null and fromdate_search != ''">
+	    			<![CDATA[
+	    			) T3 
+	    		WHERE 
+	    			JUDGEDATE >= #{fromdate_search}
+	    			]]>
+	    		</if>
+    			)
+            GROUP BY 
+            	COURTCLASSCODE
+            )
+    </select>
+    
+    
+    <select id="getSearchCaseCount" parameterType="constitution.lawmapper.vo.PrecedentsListVO"
+    		resultMap="precedentsCommonCodeVO">
+    	SELECT
+			CODE_NO, 
+			CODE_NAME, 
+			CLASS_CODE
+		FROM
+			PD_LAW_CMM_CODE_DETAIL
+		WHERE
+			CODE_NO IN
+			(
+    	    SELECT
+                 CASECLASSCODE
+            FROM 
+                (
+                SELECT
+                	T3.CASECLASSCODE
+                FROM
+                	(
+	                SELECT 
+	                    T1.JUDGEDATE,
+	                    T1.CASECLASSCODE 
+	                FROM 
+	    				T_PRECEDENTLIST T1
+	    			<where>
+	    				T1.HASTNULL = 'NO' OR HASTNULL IS NULL 
+		    			<if test="casename_search != null and casename_search != ''">
+		    		AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+		    			</if>
+		    			<if test="caseno_search != null and caseno_search != ''">
+		    		AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+		    			</if>
+		    			<if test="judgeno_search != null and judgeno_search != ''">
+		    		AND T1.JUDGENO LIKE '%' || #{judgeno_search} || '%'
+		    			</if>
+		    			<if test="judge_search != null and judge_search != ''">
+		    		AND T1.JUDGECLASSNAME LIKE '%' || #{judge_search} || '%'		
+		    			</if>
+		    			<if test="case_search != null and case_search != ''">
+		    		AND T1.CASECLASSCODE LIKE '%' || #{case_search} || '%'	
+		    			</if>
+		    			<if test="court_search != null and court_search != ''">
+		    		AND T1.COURTCLASSCODE LIKE '%' || #{court_search} || '%'	
+		    			</if>
+		    			<if test="todate_search != null and todate_search != ''">		
+		    			<![CDATA[
+		    		AND T1.JUDGEDATE <= #{todate_search}	
+		    			]]>
+		    			</if>
+		    			<if test="casetext_search != null or judgetext_search != null or 
+		    			  	referlaw_search != null or referjudge_search != null">
+		    			AND T1.PRECNO 
+		    				IN 
+		    				(
+		    				SELECT 
+		    					T2.PRECNO 
+		    				FROM 
+		    					T_PRECTEXT T2
+		    				<where>
+		    					<if test="casetext_search != null and casetext_search != ''">
+		    					T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+		    					</if>
+		    					<if test="judgetext_search != null and judgetext_search != ''">
+		    				AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+		    					</if>
+		    					<if test="referlaw_search != null and referlaw_search != ''">
+		    				AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+		    					</if>
+		    					<if test="referjudge_search != null and referjudge_search != ''">
+		    				AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+		    					</if>
+		    				</where> 
+		    				)
+		    			</if>   	
+	    			</where>
+	    			<if test="fromdate_search != null and fromdate_search != ''">
+	    			<![CDATA[
+	    			) T3 
+	    		WHERE 
+	    			JUDGEDATE >= #{fromdate_search}
+	    			]]>
+	    		</if>
+	    		)
+	    	GROUP BY 
+            	CASECLASSCODE
+            )
+    </select>
+    
+</mapper>

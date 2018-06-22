@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="code.lawmapper.service.mapper.GroupCodeMapper">
+
+	<resultMap type="code.lawmapper.vo.GroupCodeVO" id="GroupCodeResult"/>
+
+	<insert id="insertGroupCode">
+	 INSERT INTO PD_LAW_TAB_CODE_MASTER(
+	 		CLASS_CODE,
+	 		CLASS_NAME,
+	 		CLASS_LEN,
+	 		USE_YN,
+	 		MAIN_TABLE,
+	 		MAIN_COLUMN,
+	 		CLASS_DESC,
+	 		REGIST_TIME,
+	 		REGIST_ID,
+	 		PHONE
+	 ) VALUES (
+	 	#{class_code,jdbcType=VARCHAR},
+	 	#{class_name,jdbcType=VARCHAR},
+	 	#{class_len,jdbcType=VARCHAR},
+	 	#{use_yn,jdbcType=VARCHAR},
+	 	#{main_table,jdbcType=VARCHAR},
+	 	#{main_column,jdbcType=VARCHAR},
+	 	#{class_desc,jdbcType=VARCHAR},
+	 	sysdate,
+	 	#{regist_id,jdbcType=VARCHAR},
+	 	#{phone,jdbcType=VARCHAR}
+	 )
+	 
+	</insert>
+
+	<delete id="deleteGroupCode">
+		DELETE 
+		FROM 
+			PD_LAW_TAB_CODE_MASTER 
+		WHERE 
+			CLASS_CODE=#{class_code}
+	</delete>
+	
+	<update id="updateGroupCode">
+		UPDATE 
+			PD_LAW_TAB_CODE_MASTER 
+		SET 
+			CLASS_NAME=#{class_name,jdbcType=VARCHAR}, 
+			CLASS_LEN=#{class_len,jdbcType=VARCHAR}, 
+			USE_YN=#{use_yn,jdbcType=VARCHAR},
+			MAIN_TABLE=#{main_table,jdbcType=VARCHAR},
+			MAIN_COLUMN=#{main_column,jdbcType=VARCHAR},
+			CLASS_DESC=#{class_desc,jdbcType=VARCHAR},
+			REGIST_TIME=sysdate,
+			REGIST_ID=#{regist_id,jdbcType=VARCHAR},
+			PHONE=#{phone,jdbcType=VARCHAR}
+		WHERE 
+			CLASS_CODE=#{class_code}
+	</update>
+	
+	<select id="selectGroupCodelist" parameterType="String" resultMap="GroupCodeResult">
+		SELECT 
+			CLASS_CODE, 
+			CLASS_NAME, 
+			CLASS_LEN, 
+			USE_YN, 
+			MAIN_TABLE,
+	 		MAIN_COLUMN, 
+	 		CLASS_DESC,
+	 		REGIST_TIME, 
+	 		REGIST_ID, 
+	 		PHONE
+	 	FROM 
+	 		PD_LAW_TAB_CODE_MASTER 
+	 	WHERE 
+	 	UPPER(CLASS_CODE) LIKE '%'|| UPPER(#{class_code,jdbcType=VARCHAR}) || '%'
+	</select>
+	
+	<select id="selectGroupCodeName" parameterType="String" resultMap="GroupCodeResult">
+		SELECT 
+			CLASS_CODE, 
+			CLASS_NAME, 
+			CLASS_LEN, 
+			USE_YN, 
+			MAIN_TABLE,
+	 		MAIN_COLUMN, 
+	 		CLASS_DESC,
+	 		REGIST_TIME, 
+	 		REGIST_ID, 
+	 		PHONE
+	 	FROM 
+	 		PD_LAW_TAB_CODE_MASTER 
+	 	WHERE 
+	 	CLASS_NAME LIKE '%'|| #{class_name,jdbcType=VARCHAR} || '%'
+	</select>
+
+	<select id="AllGroupCodelist" resultMap="GroupCodeResult">
+		SELECT 
+			CLASS_CODE, 
+			CLASS_NAME, 
+			CLASS_LEN, 
+			USE_YN, 
+			MAIN_TABLE,
+	 		MAIN_COLUMN, 
+	 		CLASS_DESC, 
+	 		REGIST_TIME, 
+	 		REGIST_ID, 
+	 		PHONE
+	 	FROM 
+	 		PD_LAW_TAB_CODE_MASTER
+	</select>
+
+
+</mapper>

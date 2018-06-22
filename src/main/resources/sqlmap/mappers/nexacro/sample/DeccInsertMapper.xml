@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insertlaw.lawmapper.service.dao.DeccInsertMapper">
+	<insert id="deccList" parameterType="insertlaw.lawmapper.vo.DeccListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_DECCLIST(
+				DECCNO,
+				CASENAME,
+				CASENO,
+				DEALDATE,
+				DECIDEDATE,
+				DEALORGNAME,
+				REORGNAME,
+				RECLASSNAME,
+				RECLASSCODE,
+				DETAILLINK
+			) VALUES( 
+				#{deccno},
+				#{casename},
+				#{caseno, jdbcType=VARCHAR},
+				#{dealdate, jdbcType=VARCHAR},
+				#{decidedate, jdbcType=VARCHAR},
+				#{dealorgname, jdbcType=VARCHAR},
+				#{reorgname, jdbcType=VARCHAR},
+				#{reclassname, jdbcType=VARCHAR},
+				#{reclasscode, jdbcType=VARCHAR},
+				#{detaillink, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+	<insert id="deccText" parameterType="insertlaw.lawmapper.vo.DeccListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_DECCTEXT(
+				DECCNO,
+				MAINTEXT,
+				OPINIONTEXT,
+				REASONTEXT,
+				REPLTEXT
+			) VALUES( 
+				#{deccno},
+				#{maintext, jdbcType=VARCHAR},
+				#{opiniontext, jdbcType=VARCHAR},
+				#{reasontext, jdbcType=VARCHAR},
+				#{repltext, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+</mapper>

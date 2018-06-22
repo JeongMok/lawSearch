@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+<import resource="context-datasource.xml"/>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- define the SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:sqlmap/config/hsql/sql-mapper-config.xml" />
+		<property name="mapperLocations" value="classpath:sqlmap/mappers/**/*Mapper.xml" />
+	</bean>
+
+	<!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="nexacro.sample.service.dao.mybatis;com.nexacro.spring.dao.mybatis;management.lawmapper.service;schedule.lawmapper.service;*.lawmapper.service.dao;util.com.dao;util.com.utils;" />
+    </bean>
+	
+	 <bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="UserMapper">
+    	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    	<property name="mapperInterface" value="management.lawmapper.service.UserMapper"></property>
+    </bean>
+	
+	<bean class="management.lawmapper.service.UserDaoImpl" id="userDao">
+		<property name="userMapper" ref="UserMapper"/>
+	</bean>
+	
+	<bean class="management.lawmapper.service.UserServiceImpl" id="userService">
+		<property name="userdao" ref="userDao"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="ScheduleMapper">
+    	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    	<property name="mapperInterface" value="schedule.lawmapper.service.ScheduleMapper"></property>
+    </bean>
+	
+	<bean class="schedule.lawmapper.service.ScheduleDaoImpl" id="scheduleDao">
+		<property name="scheduleMapper" ref="ScheduleMapper"/>
+	</bean>
+	
+	<bean class="schedule.lawmapper.service.ScheduleServiceImpl" id="scheduleService">
+		<property name="scheduledao" ref="scheduleDao"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="GroupCodeMapper">
+    	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    	<property name="mapperInterface" value="code.lawmapper.service.mapper.GroupCodeMapper"></property>
+    </bean>
+	
+	<bean class="code.lawmapper.service.dao.GroupCodeDaoImpl" id="groupCodeDao">
+		<property name="groupcodeMapper" ref="GroupCodeMapper"/>
+	</bean>
+	
+	<bean class="code.lawmapper.service.service.GroupCodeServiceImpl" id="groupCodeService">
+		<property name="groupcodeDao" ref="groupCodeDao"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="CodeMapper">
+    	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    	<property name="mapperInterface" value="code.lawmapper.service.mapper.CodeMapper"></property>
+    </bean>
+	
+	<bean class="code.lawmapper.service.dao.CodeDaoImpl" id="codeDao">
+		<property name="codeMapper" ref="CodeMapper"/>
+	</bean>
+	
+	<bean class="code.lawmapper.service.service.CodeServiceImpl" id="codeService">
+		<property name="codeDao" ref="codeDao"></property>
+	</bean>
+
+	  <!-- 이메일 관련 -->
+ <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="jws891027@gmail.com" />
+    <property name="password" value="max1027!" />
+    <property name="javaMailProperties">
+        <props>
+            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtp.auth">true</prop>
+        </props>
+    </property>
+	</bean>
+	<bean id="mailService" class="management.lawmapper.service.MailServiceImpl">
+    	<property name="javaMailSender" ref="javaMailSender" />
+	</bean>
+
+</beans>

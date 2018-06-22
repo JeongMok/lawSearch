@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_SCD_003" classname="V_SCD_003" left="0" top="0" width="1024" height="768" titletext="New Form" onload="V_SCD_003_onload" onmouseenter="V_SCD_003_onmouseenter">
+    <Layouts>
+      <Layout>
+        <Grid id="Grid00" taborder="0" useinputpanel="false" left="3.91%" top="46" right="24.8%" height="224" binddataset="ds_result" oncellclick="Grid00_oncellclick" selecttype="row">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="176"/>
+                <Column size="203"/>
+                <Column size="358"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="일 시"/>
+                <Cell col="1" text="일정제목"/>
+                <Cell col="2" text="일정내용"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="none" text="bind:eventdate"/>
+                <Cell col="1" edittype="none" text="bind:eventtitle"/>
+                <Cell col="2" edittype="none" text="bind:eventmain"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="일 정 목 록" left="3.81%" top="10" right="88.18%" height="28" style="background:burlywood;color:white;align:center;"/>
+        <Static id="Static01" taborder="2" text="일 정 제 목" left="4.98%" top="338" right="88.18%" height="28" style="background:burlywood;color:white;align:center;"/>
+        <Edit id="ed_title" taborder="3" left="14.84%" top="338" right="66.41%" height="26" displaynulltext="제목을 입력해주세요." maxlength="9"/>
+        <Static id="Static02" taborder="4" text="일 정 내 용" left="4.98%" top="372" right="88.18%" height="27" style="background:burlywood;color:white;align:center;"/>
+        <TextArea id="ta_main" taborder="5" left="14.84%" top="375" right="53.03%" height="63" displaynulltext="내용을 입력해주세요." maxlength="100"/>
+        <Button id="btn_reset" taborder="7" text="리 셋" left="24.8%" top="487" right="66.41%" height="33" onclick="btn_reset_onclick"/>
+        <Button id="btn_cancel" taborder="9" text="닫 기" left="66.41%" top="11" right="24.8%" height="27" onclick="btn_cancel_onclick"/>
+        <Button id="btn_update" taborder="10" text="수 정" left="34.77%" top="487" right="56.45%" height="33" onclick="btn_update_onclick"/>
+        <Button id="btn_delete" taborder="11" text="삭 제" left="66.21%" top="280" right="25%" height="33" onclick="btn_delete_onclick"/>
+        <Button id="btn_ok" taborder="12" text="등 록" left="14.84%" top="488" right="76.37%" height="33" onclick="btn_ok_onclick"/>
+        <Static id="Static03" taborder="13" text="일 정 날 짜" left="4.98%" top="302" right="88.18%" height="28" style="background:burlywood;color:white;align:center;"/>
+        <Edit id="ed_date" taborder="14" left="14.84%" top="304" right="66.41%" height="26" oneditclick="Edit02_oneditclick"/>
+        <Edit id="ed_userid" taborder="15" left="62.4%" top="420" right="24.32%" height="24" visible="false"/>
+        <Combo id="cb_hour" taborder="16" left="36.52%" top="304" height="26" displaynulltext="시" innerdataset="@ds_hour" codecolumn="code" datacolumn="hour" width="50"/>
+        <Combo id="cb_minute" taborder="17" displaynulltext="분" innerdataset="@ds_minutes" codecolumn="code" datacolumn="minutes" left="42.09%" top="304" height="26" onitemchanged="cb_minute_onitemchanged" width="50" style="itemheight:20;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_schedulelist">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="eventdate" type="STRING" size="256"/>
+          <Column id="eventtitle" type="STRING" size="256"/>
+          <Column id="eventmain" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_hour">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="hour" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">00</Col>
+            <Col id="hour">00</Col>
+          </Row>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="hour">01</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="hour">02</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="hour">03</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="hour">04</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="hour">05</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="hour">06</Col>
+          </Row>
+          <Row>
+            <Col id="code">07</Col>
+            <Col id="hour">07</Col>
+          </Row>
+          <Row>
+            <Col id="code">08</Col>
+            <Col id="hour">08</Col>
+          </Row>
+          <Row>
+            <Col id="code">09</Col>
+            <Col id="hour">09</Col>
+          </Row>
+          <Row>
+            <Col id="code">10</Col>
+            <Col id="hour">10</Col>
+          </Row>
+          <Row>
+            <Col id="code">11</Col>
+            <Col id="hour">11</Col>
+          </Row>
+          <Row>
+            <Col id="code">12</Col>
+            <Col id="hour">12</Col>
+          </Row>
+          <Row>
+            <Col id="code">13</Col>
+            <Col id="hour">13</Col>
+          </Row>
+          <Row>
+            <Col id="code">14</Col>
+            <Col id="hour">14</Col>
+          </Row>
+          <Row>
+            <Col id="code">15</Col>
+            <Col id="hour">15</Col>
+          </Row>
+          <Row>
+            <Col id="code">16</Col>
+            <Col id="hour">16</Col>
+          </Row>
+          <Row>
+            <Col id="code">17</Col>
+            <Col id="hour">17</Col>
+          </Row>
+          <Row>
+            <Col id="code">18</Col>
+            <Col id="hour">18</Col>
+          </Row>
+          <Row>
+            <Col id="code">19</Col>
+            <Col id="hour">19</Col>
+          </Row>
+          <Row>
+            <Col id="code">20</Col>
+            <Col id="hour">20</Col>
+          </Row>
+          <Row>
+            <Col id="code">21</Col>
+            <Col id="hour">21</Col>
+          </Row>
+          <Row>
+            <Col id="code">22</Col>
+            <Col id="hour">22</Col>
+          </Row>
+          <Row>
+            <Col id="code">23</Col>
+            <Col id="hour">23</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_minutes">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="minutes" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">00</Col>
+            <Col id="minutes">00</Col>
+          </Row>
+          <Row>
+            <Col id="code">10</Col>
+            <Col id="minutes">10</Col>
+          </Row>
+          <Row>
+            <Col id="code">20</Col>
+            <Col id="minutes">20</Col>
+          </Row>
+          <Row>
+            <Col id="code">30</Col>
+            <Col id="minutes">30</Col>
+          </Row>
+          <Row>
+            <Col id="code">40</Col>
+            <Col id="minutes">40</Col>
+          </Row>
+          <Row>
+            <Col id="code">50</Col>
+            <Col id="minutes">50</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_result">
+        <ColumnInfo>
+          <Column id="eventdate" type="STRING" size="256"/>
+          <Column id="eventtitle" type="STRING" size="256"/>
+          <Column id="eventmain" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="STRING" size="32"/>
+          <Column id="MENU_SEQ" type="INT" size="4"/>
+          <Column id="MENU_OPTP" type="STRING" size="32"/>
+          <Column id="PAGE_URL" type="STRING" size="32"/>
+          <Column id="MENU_TOP" type="STRING" size="32"/>
+          <Column id="MENU_ID" type="STRING" size="32"/>
+          <Column id="MENU_GRP" type="STRING" size="32"/>
+          <Column id="CREATE_DT" type="STRING" size="32"/>
+          <Column id="MENU_LEVEL" type="INT" size="4"/>
+          <Column id="PAGE_ID" type="STRING" size="32"/>
+          <Column id="PAGE_NAME" type="STRING" size="32"/>
+          <Column id="MENU_ARGS" type="STRING" size="32"/>
+          <Column id="MENU_STAT" type="STRING" size="32"/>
+          <Column id="CREATE_USER" type="STRING" size="32"/>
+          <Column id="UPDATE_DT" type="STRING" size="32"/>
+          <Column id="UPDATE_USER" type="STRING" size="32"/>
+          <Column id="MENU_DESC" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_delete">
+        <ColumnInfo>
+          <Column id="eventdate" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="ed_userid" propid="value" datasetid="gds_userInfo" columnid="userid"/>
+      <BindItem id="item1" compid="ed_date" propid="value" datasetid="gds_date" columnid="date"/>
+      <BindItem id="item2" compid="ta_main" propid="value" datasetid="ds_schedulelist" columnid="eventmain"/>
+      <BindItem id="item3" compid="ed_title" propid="value" datasetid="ds_schedulelist" columnid="eventtitle"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.V_SCD_003_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();
+    //this.ds_result.clearData();
+
+    this.ds_schedulelist.clearData();
+    this.ds_schedulelist.addRow();
+    this.ds_schedulelist.setColumn(0,"userid",application.gds_userInfo.getColumn(0,14)); 
+    
+    var date = application.gds_date.getColumn(0,"date");
+    this.ds_schedulelist.setColumn(0,"eventdate",date);
+    
+    this.fn_search("search");	
+    
+    this.Grid00.autoFitCol();
+    
+    this.ds_menu.assign(application.gds_menu);
+    
+    this.ds_result.set_rowposition(application.gds_select.getColumn(0,"selectrow"));
+    }
+
+
+this.btn_cancel_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_goPage(0);
+}
+
+this.btn_delete_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.ed_title.value==null || this.ta_main.value==null){
+	alert("삭제하실 목록을 선택해주세요.");
+	return;
+	}
+	this.ds_delete.clearData();
+	this.ds_delete.addRow();
+	var date = this.ds_schedulelist.getColumn(0,1)+" "+this.cb_hour.value+":"+this.cb_minute.value+":"+"00";
+	this.ds_delete.setColumn(0,"eventdate",date);
+	this.ds_delete.setColumn(0,"userid",application.gds_userInfo.getColumn(0,14)); 
+	//alert(this.ds_result.getColumn(0,"eventdate"));
+	var ok = application.confirm("삭제하시겠습니까?");
+	if(ok){
+	this.fn_delete("delete");
+	//alert(this.Grid00.getSelectedRows());
+	this.ds_result.deleteRow(this.Grid00.getSelectedRows());
+	application.mainframe.VFrameSet.HFrameSet.VFrameSet1.WorkFrame.MainForm.form.fn_chk_f();
+	}else{
+	return;
+	}
+	
+}
+
+this.btn_reset_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ed_title.set_value("");
+	this.ta_main.set_value("");
+	this.cb_hour.set_value("");
+	this.cb_minute.set_value("");
+}
+
+this.btn_ok_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var date = application.gds_date.getColumn(0,0);
+	
+	var hour = this.cb_hour.value;
+	var minute = this.cb_minute.value;
+
+    var eventdate = date+" "+hour+":"+minute+":"+'00';
+    
+    
+    this.ds_schedulelist.setColumn(0,"eventdate",eventdate);
+    
+    //alert(this.ds_schedulelist.getColumn(0,1));
+	if(this.cb_hour.value==null){
+	alert("시간을 선택해주세요");
+	return;
+	}else if(this.cb_minute.value==null){
+	alert("분을 선택해주세요");
+	return;
+	}else if(this.ed_title.value==null){
+	alert("제목을 입력해주세요.");
+	return;
+	}else if(this.ta_main.value==null){
+	alert("내용을 입력해주세요.");
+	return;
+	}else{
+	this.fn_save("ok");
+	application.mainframe.VFrameSet.HFrameSet.VFrameSet1.WorkFrame.MainForm.form.fn_chk_f();
+	}
+	
+	
+	
+}
+
+this.btn_update_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	//var date = this.ds_schedulelist.getColumn(0,1)+" "+this.cb_hour.value+":"+this.cb_minute.value+":"+"00";
+	//this.ds_result.setColumn(this.Grid00.getSelectedRows(),"eventdate",date);
+	//alert(this.Grid00.getSelectedRows());
+	//alert(date);
+	//this.ds_schedulelist.clearData();
+	//this.ds_schedulelist.addRow();
+	
+	var date = this.ds_result.getColumn(this.Grid00.getSelectedRows(),"eventdate");
+
+	this.ds_schedulelist.setColumn(0,"eventdate",date);
+	this.ds_schedulelist.setColumn(0,"eventtitle",this.ed_title.value);
+	this.ds_schedulelist.setColumn(0,"eventmain",this.ta_main.value);
+	
+	this.ds_result.setColumn(this.Grid00.getSelectedRows(),"eventtitle",this.ed_title.value);
+	this.ds_result.setColumn(this.Grid00.getSelectedRows(),"eventmain",this.ta_main.value);
+	
+	this.fn_update("update");
+
+}
+
+//화면전환
+this.fn_goPage = function(page)
+{
+	var oObj = {
+          ds    : this.ds_menu,    // 메뉴 dataset 
+          nRow  : page,              // 선택된 
+          oArgs : []               // 넘길 argument
+    };
+    Iject.Mdi.call(this,oObj);
+    
+}
+
+//일정등록
+this.fn_save = function(strid)
+{
+	
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "scheduleAddVO.do",			 
+			  inds :["input1=ds_schedulelist:U"],
+			  outds :[
+				 "ds_result=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/  
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");	
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	      
+	});
+	
+    this.ds_schedulelist.addRow();
+    this.ds_schedulelist.setColumn(0,"userid",application.gds_userInfo.getColumn(0,14));
+	this.reload();
+}
+
+//일정목록조회
+this.fn_search = function(strid){
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "scheduleselectVO.do",			 
+			  inds :["input1=ds_schedulelist"],
+			  outds :[
+				 "ds_result=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/  
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");	
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	       
+});
+}
+
+//일정 삭제
+this.fn_delete = function(strid){
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "scheduledeleteVO.do",			 
+			  inds :["ds_delete=ds_delete"],
+			  outds :[
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/  
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");	
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	       
+});
+	this.reload();
+}
+
+//일정 상세보기
+this.Grid00_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var eventdate = this.ds_result.getColumn(this.Grid00.getSelectedRows(),0);
+	var eventtitle = this.ds_result.getColumn(this.Grid00.getSelectedRows(),2);
+	var eventmain = this.ds_result.getColumn(this.Grid00.getSelectedRows(),1);
+	
+	this.ds_schedulelist.setColumn(0,"eventtitle", eventtitle);
+	this.ds_schedulelist.setColumn(0,"eventmain", eventmain);
+	this.cb_hour.set_value(eventdate.substring(11,13));
+	this.cb_minute.set_value(eventdate.substring(14,16));
+	
+}
+
+//일정 수정
+this.fn_update = function(strid){
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "scheduleupdateVO.do",			 
+			  inds :["input1=ds_schedulelist"],
+			  outds :[
+				"ds_result=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/  
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");	
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	
+});
+	
+	application.gds_select.addRow();
+	
+	var selectrow = this.Grid00.getSelectedRows();
+	
+	application.gds_select.setColumn(0,"selectrow",selectrow);
+	
+	this.reload();
+}
+this.V_SCD_003_onmouseenter = function(obj:Form, e:nexacro.MouseEventInfo)
+{
+	var tdate = this.ed_date.value;
+	var rdate = this.ds_result.getColumn(0,"eventdate");
+	if(rdate==null){
+	return true;
+	}else{
+	var sdate = rdate.substring(0,10);
+	if(tdate!=sdate){
+	this.reload();
+	return true;
+	}
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

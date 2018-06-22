@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_002" classname="V_OPR_002" left="0" top="0" width="500" height="550" onload="V_OPR_002_onload" style="background:floralwhite;border:1 solid #808080ff ;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" left="9.44%" top="17" right="64.04%" height="26" text="님의 정보" style="align:right;font:13 arial;"/>
+        <Div id="info_engName" taborder="116" text="영문명" left="4.2%" top="379" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_birth" taborder="120" text="생년월일" left="2.2%" top="347" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_sex" taborder="122" text="성별" left="4.2%" top="315" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_position" taborder="124" text="직위" left="4.2%" top="283" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Edit id="edit_email" taborder="125" left="19.6%" top="219" right="9.8%" height="17" style="background:whitesmoke;"/>
+        <Edit id="edit_career" taborder="126" left="19.6%" top="251" right="9.8%" height="17" style="background:whitesmoke;"/>
+        <Edit id="edit_position" taborder="127" left="19.6%" top="283" right="9.8%" height="17" style="background:whitesmoke;"/>
+        <Edit id="edit_address" taborder="129" left="19.6%" top="155" right="9.8%" height="17" style="background:whitesmoke;"/>
+        <Edit id="edit_phone" taborder="130" left="19.6%" top="187" right="9.8%" height="17" style="background:whitesmoke;"/>
+        <Div id="info_engName00" taborder="131" text="소속" left="4.2%" top="251" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_birth00" taborder="132" text="E-MAIL" left="4.2%" top="219" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%">
+          <Layouts>
+            <Layout width="54" height="17"/>
+          </Layouts>
+        </Div>
+        <Div id="info_sex00" taborder="133" text="연락처" left="4.2%" top="187" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_position00" taborder="134" text="주소" left="4.2%" top="155" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_engName01" taborder="135" text="권한" left="4.2%" top="123" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.6%"/>
+        <Div id="info_sex01" taborder="138" text="이름" left="4.21%" top="91" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.58%"/>
+        <Div id="info_position01" taborder="139" text="ID" left="4.22%" top="59" height="17" style="align:right;background:transparent;padding:0 10 0 0;" right="81.56%"/>
+        <Div id="edit_userId" taborder="145" left="20.9%" top="59" right="11.01%" height="17" style="align:left;border:0 none #808080ff ;">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="edit_name" taborder="146" left="20.9%" top="91" right="11.01%" height="17" style="align:left;border:0 none #808080ff ;"/>
+        <Div id="edit_sex" taborder="147" left="20.8%" top="315" right="18.2%" height="17" style="align:left;border:0 none #808080ff ;">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="edit_birth" taborder="148" left="20.8%" top="347" right="18.2%" height="17" style="align:left;border:0 none #808080ff ;">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="edit_engName" taborder="149" left="20.8%" top="379" right="18.2%" height="17" style="align:left;border:0 none #808080ff ;"/>
+        <Div id="Div00" taborder="150" left="96" top="409" right="18.8%" height="63" style="textAlign:center">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" text="목록으로" left="12.26%" top="3" height="51" onclick="Button00_onclick" width="71"/>
+              <Button id="Button01" taborder="1" text="수정" left="37.74%" top="3" height="51" onclick="Button01_onclick" width="72"/>
+              <Button id="Button02" taborder="2" text="강제탈퇴" left="63.13%" top="3" height="51" onclick="Button02_onclick" width="71"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="edit_grade" taborder="151" left="21%" top="123" right="11%" height="17" style="align:left;border:0 none #808080ff ;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_userInfo">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_userDetail1" onload="V_OPR_002_onload">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="PASSWORD" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_paging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="5"/>
+          <Column id="endPage" type="INT" size="5"/>
+          <Column id="page" type="INT" size="5"/>
+          <Column id="startList" type="INT" size="5"/>
+          <Column id="startPage" type="INT" size="5"/>
+          <Column id="totalList" type="INT" size="5"/>
+          <Column id="totalpage" type="INT" size="5"/>
+          <Column id="viewListCount" type="INT" size="5"/>
+          <Column id="viewPageNum" type="INT" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_searchJoin">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="256"/>
+          <Column id="search_userId" type="STRING" size="256"/>
+          <Column id="search_career" type="STRING" size="256"/>
+          <Column id="search_name" type="STRING" size="256"/>
+          <Column id="search_address" type="STRING" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="viewListCount" type="INT" size="256"/>
+          <Column id="viewPageNum" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="viewListCount">15</Col>
+            <Col id="viewPageNum">10</Col>
+            <Col id="page">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_userDetail">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="PASSWORD" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+          <Column id="gradeName" type="STRING" size="256"/>
+          <Column id="loginId" type="STRING" size="256"/>
+          <Column id="sexName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_userList">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item4" compid="edit_address" propid="value" datasetid="ds_userDetail" columnid="address"/>
+      <BindItem id="item5" compid="edit_phone" propid="value" datasetid="ds_userDetail" columnid="phone"/>
+      <BindItem id="item6" compid="edit_email" propid="value" datasetid="ds_userDetail" columnid="email"/>
+      <BindItem id="item7" compid="edit_career" propid="value" datasetid="ds_userDetail" columnid="career"/>
+      <BindItem id="item8" compid="edit_position" propid="value" datasetid="ds_userDetail" columnid="position"/>
+      <BindItem id="item0" compid="edit_userId" propid="text" datasetid="ds_userDetail" columnid="userId"/>
+      <BindItem id="item1" compid="edit_name" propid="text" datasetid="ds_userDetail" columnid="name"/>
+      <BindItem id="item12" compid="edit_sex" propid="text" datasetid="ds_userDetail" columnid="sexName"/>
+      <BindItem id="item9" compid="edit_birth" propid="text" datasetid="ds_userDetail" columnid="birth"/>
+      <BindItem id="item10" compid="edit_engName" propid="text" datasetid="ds_userDetail" columnid="engName"/>
+      <BindItem id="item3" compid="edit_grade" propid="text" datasetid="ds_userDetail" columnid="gradeName"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[ include "Lib::Comm.xjs";
+
+ this.V_OPR_002_onload = function (obj:Form, e:LoadEventInfo){	
+
+ 	this.ds_userDetail.deleteAll();
+ 	this.ds_userDetail.copyData(this.parent.ds_userDetail);
+
+	this.Static00.set_text(this.ds_userDetail.getColumn(0, "name")+ "님의 정보");
+	
+}
+ //수정버튼 클릭 시 저장
+ this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+ 	this.fn_modify("update");
+ }
+ //수정
+ 
+ this.fn_modify = function(strid){
+	
+	
+	var newGrade = this.edit_grade.value; 
+	var newCareer = this.edit_career.value;
+	var newPosition = this.edit_position.value;	
+	var loginId = application.gds_userInfo.getColumn(0, "userid");
+	this.ds_userDetail.setColumn(0,"loginId",loginId);
+	var bUpdate = confirm("변경 하시겠습니까?");
+	
+	if(bUpdate){
+		var oDate = {
+			svcid : "update",
+			sController : "memberUpdate.do",
+			inds:["ds_userDetail=ds_userDetail:U"],
+			outds:[],
+			args:[],
+			bAsync: true, // 비동기여부 (true : async  false: sync)
+			nDataType : 0, // (0: XML타입)
+			bCompress : false,			
+		};
+				
+		Iject.transaction(this,oDate,function(){
+			if(this.errorcode < 0)
+			{
+				//Iject.alert(this.errorMsg,"알림")
+				//return;
+			}
+	
+		});
+	}else{
+		alter("취소 되었습니다.");
+	}
+	
+	this.Button00_onclick();
+ }
+//강제탈퇴 버튼 클릭 시
+this.Button02_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	this.fn_isShow("delete");
+}
+
+ 
+ //강제탈퇴버튼 클릭 시
+ this.fn_isShow = function(del){
+ 	
+ 	var rtnValue = Iject.confirm("강제탈퇴 시키시겠습니까?");
+	if(rtnValue){	
+		var oDate = {
+			svcid : "delete",
+			sController : "memberDelete.do",
+			inds:["ds_userDetail=ds_userDetail"],
+			outds:[],
+			args:[],
+			bAsync: false, // 비동기여부 (true : async  false: sync)
+			nDataType : 0, // (0: XML타입)
+			bCompress : false,			
+		};
+				
+		Iject.transaction(this,oDate,function(){
+			if(this.errorcode < 0)
+			{
+				//Iject.alert(this.errorMsg,"알림")
+				//return;
+			}
+	
+		});
+	}else{
+		alter("취소 되었습니다.");
+	}
+	this.Button00_onclick();
+ 	
+ }
+
+//목록으로
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+	this.fn_memberSearch(1);
+	this.close();
+}
+
+
+//전체 리스트 조회
+this.fn_memberSearch = function(nowPage){
+	var loninId = application.gds_userInfo.getColumn(0, "userid");
+	this.ds_userDetail.setColumn(0,"loginId", loninId);
+		if(nowPage == null || nowPage == undefined){
+			nowPage = 1;
+		}
+		
+	var page = nowPage;
+	
+	this.ds_searchJoin.setColumn(0, "page", page);
+	
+	var oDatas = {
+		svcid : "search",
+		sController : "memberSelectOne.do",
+		inds : ["ds_searchJoin = ds_searchJoin"],
+		outds : ["ds_userInfo = ds_userInfo", "ds_paging = ds_paging"],
+		args : [],
+		bAsync : false,
+		nDataType : 0,
+		bCompress : false,
+		
+	};
+	
+	//공통함수 transaction
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode < 0){
+			trace("에러");
+			Iject.alert(this.errorMsg,"알림");
+			return;
+		}
+		var pThis = this.fobj;
+		pThis.fn_memberCount();
+		
+// 		trace("ds_userInfo : " + pThis.ds_userInfo.saveXML());
+// 		trace("ds_paging : " + pThis.ds_paging.saveXML());
+	});
+
+}	
+this.fn_memberCount = function(){
+	var count = this.ds_paging.getColumn(0,"totalList");
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Login" classname="Login" left="0" top="0" width="450" height="290" onload="form_onload" style="background:transparent;" onsize="Login_onsize" titletext="Login" scrollbars="none" oninit="Login_oninit" onkeyup="div_login_btn_login_onkeyup">
+    <Layouts>
+      <Layout>
+        <Div id="div_login" taborder="0" left="0" top="0" width="450" height="291" style="background:transparent URL('img::login.png');" scrollbars="none">
+          <Layouts>
+            <Layout width="448" height="288">
+              <Button id="Button00" taborder="15" onclick="fn_close" left="88.24%" top="7" right="1.76%" height="30" style="background:transparent;border:0 none #999999ff ;"/>
+              <Edit id="ed_userid" taborder="16" left="103" top="136" width="193" height="35" displaynulltext="아이디를 입력해주세요."/>
+              <Edit id="ed_password" taborder="17" left="103" top="170" width="193" height="35" password="true"/>
+              <Button id="btn_login" taborder="19" top="136" right="90" width="60" height="69" cssclass="btn_Login_Login" onclick="btn_login_onclick" onkeyup="div_login_btn_login_onkeyup"/>
+              <Button id="btn_close" taborder="20" onclick="fn_close" visible="true" top="15" right="15" width="17" height="17" cssclass="btn_Login_Close"/>
+              <Button id="btn_join" taborder="21" text="회원가입" onclick="join_onclick" left="22.89%" top="240" right="59.33%" height="26" style="background:@gradation URL('img::BLUE.GIF') stretch;color:black;font:9 arial;"/>
+              <Button id="btn_search" taborder="22" text="아이디/비밀번호 찾기" onclick="search_onclick" left="47.56%" top="240" right="20%" height="26" style="background:@gradation URL('img::BLUE.GIF') stretch;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsLogin" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_user" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engname" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="ed_userid" propid="value" datasetid="dsLogin" columnid="userid"/>
+      <BindItem id="item1" compid="ed_password" propid="value" datasetid="dsLogin" columnid="password"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* SYSTEM      : 넥사크로플랫폼 PackageB
+* BUSINESS    : 넥사크로플랫폼 PackageB
+* FILE NAME   : Login.xfdl
+* PROGRAMMER  : 
+* DATE        : 
+* DESCRIPTION : 로그인 화면
+*------------------------------------------------------------------
+* MODIFY DATE   PROGRAMMER			DESCRIPTION
+*------------------------------------------------------------------
+* 
+*------------------------------------------------------------------
+***********************************************************************************/
+
+/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+/***********************************************************************************
+* Global/Local Variable
+***********************************************************************************/
+
+
+/***********************************************************************************
+* Form Event
+***********************************************************************************/
+/**
+ * form onload 함수
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.form_onload = function (obj:Form, e:LoadEventInfo)
+{
+
+	if(nexacro.Browser == "Runtime") this.div_login.btn_close.set_visible(true);
+
+	Iject.formOnload(obj);
+	this.form_onsize();
+}
+
+this.Login_oninit = function(obj:Form, e:nexacro.InitEventInfo)
+{
+
+	 this.dsLogin.addRow();	
+}
+/***********************************************************************************
+* User Function
+***********************************************************************************/
+
+/**
+* form onsize
+* @return 
+* @example
+* @memberOf public
+*/ 
+this.form_onsize = function()
+{
+  	if(nexacro.Browser == "Runtime") return;
+
+  	var nLeft = (application.mainframe.width / 2) - Math.round((this.div_login.getOffsetWidth()) / 2);
+  	var nTop = (application.mainframe.height / 2) - Math.round((this.div_login.getOffsetHeight()) / 2);
+
+	if(nLeft <= 0)
+	{
+		this.div_login.setOffsetLeft(0);
+	}
+	else
+	{
+    	this.div_login.setOffsetLeft(nLeft);
+		this.div_login.setOffsetTop(nTop);
+	}
+}
+
+
+/***********************************************************************************
+* Component Event
+***********************************************************************************/
+this.btn_login_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+    //application.mainframe.VFrameSet.HFrameSet.VFrameSet1.WorkFrame.MainForm.form.fn_chk_f();
+    this.fn_login();
+}
+
+var dd;
+
+//login function
+this.fn_login = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+  this.ds_user.clearData();
+  application.gds_userInfo.clearData();
+  application.gds_userInfo.addRow();
+  
+   var loginid = this.div_login.ed_userid.value;
+   var password =  this.div_login.ed_password.value;
+    
+	this.dsLogin.setColumn(0, "userid", loginid);
+	this.dsLogin.setColumn(0, "password", password);
+	
+   var oDatas =  {
+			  svcid : "search",
+			  sController : "userselectVO.do",			 
+			  inds :["dsLogin=dsLogin"],
+			  outds :[
+				 "ds_user=output1",
+				 "application.gds_userInfo=output2"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : false,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //		
+			}; 
+	
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		
+		//alert(" this.errorcode : " + this.errorcode);
+		
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid      : 서비스 ID
+		*   @param : {object}    this.fobj       : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/   
+		
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg);			
+		   alert("회원정보가 잘못되었습니다.");
+		   return;
+		} 
+		
+	      
+	       var pThis = this.fobj;   //form object	      
+	       trace(" ds_user : " + pThis.ds_user.saveXML());
+	dd = pThis.ds_user.getRowCount();    
+	});
+	if(dd>0){
+		//alert(dd);
+		alert("로그인 되었습니다.");
+		
+		var grade = application.gds_userInfo.getColumn(0,"grade");
+		if(grade==1){
+		application.gds_menu.setColumn(13,"MENU_SEQ",11);
+		}else{
+		application.gds_menu.setColumn(13,"MENU_SEQ",23);
+		}
+		var oArgs = "close";
+		application.mainframe.VFrameSet.HFrameSet.VFrameSet1.WorkFrame.MainForm.form.fn_chk_f();
+    	Iject.popClose(this,oArgs);
+	}else{
+		//alert(dd);
+		alert("회원정보가 잘못되었습니다.");
+	}
+}	
+
+/**
+* 프레임 open
+* @return 
+* @example
+* @memberOf public
+*/ 
+
+this.fn_menuOpen = function()
+{
+    gv_vFrameSet.set_separatesize("0,*,42");
+    gv_workFrame.frames["MainForm"].setFocus();
+}
+
+
+this.Login_onsize = function(obj:Form, e:nexacro.SizeEventInfo)
+{
+     this.form_onsize(e.cx, e.cy);
+}
+
+this.fn_close = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.exit();
+}
+
+this.div_login_btn_login_onkeyup = function(obj:Button, e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_login();
+	}
+}
+
+this.join_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nLeft = (application.mainframe.width / 2) - Math.round((this.div_login.getOffsetWidth()) / 4);
+  	var nTop = (application.mainframe.height / 2) - Math.round((this.div_login.getOffsetHeight()) / 2);
+	application.open("join","Pattern::V_COM_010.xfdl",this.getOwnerFrame(), 
+   {mode:'modeless',ds:this.Dataset01}, "showtitlebar=true", nLeft, nTop);
+		
+}
+
+this.search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nLeft = (application.mainframe.width / 2) - Math.round((this.div_login.getOffsetWidth()) / 14);
+  	var nTop = (application.mainframe.height / 2) - Math.round((this.div_login.getOffsetHeight()) / 14);
+	application.open("search","Pattern::V_COM_002.xfdl",this.getOwnerFrame(), 
+   {mode:'modeless',ds:this.Dataset01}, "showtitlebar=true", nLeft, nTop);
+		
+}
+
+
+this.fn_popupCallback = function(strPopupID, strReturn)
+{
+    if(strReturn == undefined){
+        return;
+    }
+
+    if(strPopupID == "chf_popup1"){
+        this.alert("Return Value: " + strReturn);
+    }
+};
+]]></Script>
+  </Form>
+</FDL>

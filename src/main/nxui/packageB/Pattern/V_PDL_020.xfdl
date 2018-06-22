@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_PDL_020" classname="V_PDL_020" left="0" top="0" width="1000" height="600" titletext="New Form" onload="v_pdl_020_onload">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="법률자문조회" left="0.9%" top="8" height="35" width="98.2%" style="align:left top;padding:10 0 0 10;"/>
+        <Div id="Div01" taborder="1" left="0.9%" top="44" height="79" width="98.2%" style="background:lavenderblush;border:1 solid #c8c8c8ff ;">
+          <Layouts>
+            <Layout width="982" height="74">
+              <Div id="Div00" taborder="4" left="8.47%" top="4" height="35" width="91.02%" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="885" height="35">
+                    <Edit id="out_no" taborder="0" left="4.61%" top="4" height="25" width="15.73%" style="selectbackground:blue;"/>
+                    <Calendar id="req_date1" taborder="1" left="42.7%" top="4" height="25" width="15.73%" onchanged="req_date1_OnChanged"/>
+                    <Div id="Div00" taborder="3" text="~" left="59.55%" top="4" height="25" width="1.69%"/>
+                    <Calendar id="req_date2" taborder="2" left="62.92%" top="4" height="25" width="15.73%" enable="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div01" taborder="0" text="의뢰번호" left="0.51%" top="4" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;font:9 Dotum;">
+                <Layouts>
+                  <Layout width="115" height="35"/>
+                </Layouts>
+              </Div>
+              <Div id="Div02" taborder="2" text="의뢰일자" left="35.1%" top="4" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div03" taborder="5" left="8.47%" top="38" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Combo id="lawAdv_code" taborder="4" left="4.61%" top="4" width="15.73%" height="25" innerdataset="@ds_combo" datacolumn="codeName" type="search" index="0" onitemchanged="Div01_Div03_lawAdv_code_onitemchanged" readonly="false" codecolumn="codeNo" text="전체"/>
+                    <Radio id="radio_Wtr" taborder="5" index="0" innerdataset="@ds_radio" codecolumn="codeNo" datacolumn="codeName" direction="vertical" left="42.7%" top="6" width="19.55%" height="25"/>
+                    <Button id="search_btn" taborder="6" text="검색" left="81.91%" top="4" width="8.43%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');" onclick="Div01_Div03_search_btn_onclick"/>
+                    <Button id="reset_btn" taborder="7" text="초기화" left="91.24%" top="4" width="8.43%" height="26" style="image:URL('img::btn_MF_Refresh_O.png');" onclick="Div01_Div03_reset_btn_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div04" taborder="1" text="법률자문구분" left="0.51%" top="38" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div05" taborder="3" text="회신여부" left="35.1%" top="38" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="2" useinputpanel="false" left="0.9%" top="129" height="180" binddataset="ds_out" width="98.2%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="352"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="의뢰번호"/>
+                <Cell col="1" text="자문구분"/>
+                <Cell col="2" text="의뢰제목"/>
+                <Cell col="3" text="회신여부"/>
+                <Cell col="4" text="의뢰일자"/>
+                <Cell col="5" text="의뢰담당자"/>
+                <Cell col="6" text="회신일자"/>
+                <Cell col="7" text="회신"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:legaladvLawAdvReqNo"/>
+                <Cell col="1" text="bind:legaladvLawAdvName"/>
+                <Cell col="2" text="bind:legaladvOutReqTit"/>
+                <Cell col="3" text="bind:legaladvRepWtr"/>
+                <Cell col="4" text="bind:legaladvOutReqDate"/>
+                <Cell col="5" text="bind:repMgrName"/>
+                <Cell col="6" text="bind:legaladvRepDate"/>
+                <Cell col="7" displaytype="button" edittype="button" style="padding:0 30 0 30;controlimage:URL('img::sta_MF_MemoMotify.png');"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="Div02" taborder="3" left="0.9%" top="338" height="257" style="align:left top;background:lavenderblush;border:1 solid #c8c8c8ff ;padding:0 0 0 10;" width="98.2%">
+          <Layouts>
+            <Layout width="982" height="255">
+              <Div id="Div08" taborder="8" text="Div08" left="8.47%" top="4" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;" width="91.02%">
+                <Layouts>
+                  <Layout>
+                    <Combo id="Combo00" taborder="0" text="Combo00" left="4.61%" top="4" height="25" width="11.24%" enable="false"/>
+                    <Edit id="Edit00" taborder="1" left="27.08%" top="4" height="25" width="15.73%" enable="false"/>
+                    <Calendar id="Calendar00" taborder="2" left="54.04%" top="4" height="25" width="15.73%" enable="false"/>
+                    <Calendar id="Calendar01" taborder="3" left="83.82%" top="4" height="25" width="15.73%" enable="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div09" taborder="9" text="Div09" left="8.47%" top="38" height="35" width="91.02%" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" height="25" width="94.94%" visible="true" readonly="false" enable="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div10" taborder="10" text="Div10" left="8.47%" top="72" height="60" width="91.02%" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" height="51" width="94.94%" enable="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div11" taborder="11" text="Div11" left="8.47%" top="131" height="60" width="91.02%" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" height="51" width="94.94%" enable="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div12" taborder="12" text="Div12" left="8.47%" top="190" height="60" width="91.02%" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" height="51" width="94.94%" enable="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div00" taborder="0" text="법률자구문구분" left="0.51%" top="4" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div01" taborder="1" text="의뢰담당자" left="23.47%" top="4" height="35" width="9.18%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div02" taborder="2" text="의뢰일자" left="47.86%" top="4" height="35" width="9.18%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div03" taborder="3" text="회신요청일자" left="72.45%" top="4" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div04" taborder="4" text="의뢰제목" left="0.51%" top="38" height="35" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div05" taborder="5" text="사실관계" left="0.51%" top="72" height="60" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div06" taborder="6" text="질의사항" left="0.51%" top="131" height="60" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div07" taborder="7" text="요청사항" left="0.51%" top="190" height="60" width="11.73%" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div03" taborder="4" text="법률자문의뢰사항" left="0.9%" top="318" height="15" width="982" style="align:left middle;padding:0 0 0 10;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_radio">
+        <ColumnInfo>
+          <Column id="codeNo" type="STRING" size="256"/>
+          <Column id="codeName" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="codeNo">ALL</Col>
+            <Col id="codeName">전체</Col>
+          </Row>
+          <Row>
+            <Col id="codeNo">Y</Col>
+            <Col id="codeName">회신</Col>
+          </Row>
+          <Row>
+            <Col id="codeNo">N</Col>
+            <Col id="codeName">미회신</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_out">
+        <ColumnInfo>
+          <Column id="legaladvLawAdvReqNo" type="STRING" size="256"/>
+          <Column id="legaladvOpenWtr" type="STRING" size="256"/>
+          <Column id="legaladvReqDeptCode" type="STRING" size="256"/>
+          <Column id="legaladvReqMgrCode" type="STRING" size="256"/>
+          <Column id="legaladvReqDate" type="STRING" size="256"/>
+          <Column id="legaladvAdvTit" type="STRING" size="256"/>
+          <Column id="legaladvFactRela" type="STRING" size="256"/>
+          <Column id="legaladvQuesIssu" type="STRING" size="256"/>
+          <Column id="legaladvEtc" type="STRING" size="256"/>
+          <Column id="legaladvLawAdvCode" type="STRING" size="256"/>
+          <Column id="legaladvOutReqWtr" type="STRING" size="256"/>
+          <Column id="legaladvReviDay" type="STRING" size="256"/>
+          <Column id="legaladvRepDeptCode" type="STRING" size="256"/>
+          <Column id="legaladvRepMgrCode" type="STRING" size="256"/>
+          <Column id="legaladvRepDate" type="STRING" size="256"/>
+          <Column id="legaladvRepCont" type="STRING" size="256"/>
+          <Column id="legaladvRepTit" type="STRING" size="256"/>
+          <Column id="legaladvRepWtr" type="STRING" size="256"/>
+          <Column id="legaladvEtcRepPoin" type="STRING" size="256"/>
+          <Column id="legaladvOutReqTit" type="STRING" size="256"/>
+          <Column id="legaladvOutReqLyrid" type="STRING" size="256"/>
+          <Column id="legaladvOutReqRepdate" type="STRING" size="256"/>
+          <Column id="legaladvOutReqDate" type="STRING" size="256"/>
+          <Column id="legaladvOutReqFact" type="STRING" size="256"/>
+          <Column id="legaladvOutReqQues" type="STRING" size="256"/>
+          <Column id="legaladvOutReqReq" type="STRING" size="256"/>
+          <Column id="reqMgrName" type="STRING" size="256"/>
+          <Column id="repMgrName" type="STRING" size="256"/>
+          <Column id="legaladvLawAdvName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="legaladvLawAdvReqNo" type="STRING" size="256"/>
+          <Column id="legaladvReqDate1" type="STRING" size="256"/>
+          <Column id="legaladvReqDate2" type="STRING" size="256"/>
+          <Column id="legaladvRepWtr" type="STRING" size="256"/>
+          <Column id="legaladvLawAdvCode" type="STRING" size="256"/>
+          <Column id="legaladvOutReqLyrid" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="legaladvLawAdvReqNo"/>
+            <Col id="legaladvReqDate1"/>
+            <Col id="legaladvReqDate2"/>
+            <Col id="legaladvRepWtr"/>
+            <Col id="legaladvLawAdvCode"/>
+            <Col id="legaladvOutReqLyrid"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_combo">
+        <ColumnInfo>
+          <Column id="codeNo" type="STRING" size="256"/>
+          <Column id="codeName" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="codeNo">O00</Col>
+            <Col id="codeName">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_code">
+        <ColumnInfo>
+          <Column id="classCode" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="classCode">O01</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[this.v_pdl_020_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	lyrid = "2013082601";
+	this.outList(lyrid);
+	this.comboSetup();
+
+}
+
+this.Div01_Div03_search_btn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+//	lyrid = SubStr(gb_Param,"4","10");
+	lyrid = "2013082601";
+	this.outList(lyrid);	
+}
+
+this.Div01_Div03_reset_btn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Div01.Div00.out_no.set_value("");
+	this.Div01.Div00.req_date1.set_value(null);
+	this.Div01.Div00.req_date2.set_value(null);
+	this.Div01.Div03.radio_Wtr.set_index(0);
+	this.Div01.Div03.lawAdv_code.set_index(0);
+}
+
+this.req_date1_OnChanged = function() {
+	if(this.Div01.Div00.req_date1.value != null){
+		this.Div01.Div00.req_date2.set_enable(true);
+		this.Div01.Div00.req_date2.dropdown();
+	}else{
+		this.Div01.Div00.req_date2.set_enable(false);
+	}
+}
+
+this.outList = function(lyrid)
+{
+	var legaladvLawAdvReqNo = this.Div01.Div00.out_no.value;
+	var legaladvReqDate1 = this.Div01.Div00.req_date1.value;
+    var legaladvReqDate2 = this.Div01.Div00.req_date2.value;
+    var legaladvRepWtr = this.Div01.Div03.radio_Wtr.value;
+	var legaladvLawAdvCode = this.Div01.Div03.lawAdv_code.value;
+   
+    if((legaladvReqDate1 != null && legaladvReqDate2 == null) || legaladvReqDate1 > legaladvReqDate2){
+		alert("날짜를 확인해 주세요.");
+		this.Div01.Div00.req_date2.set_value("");
+		this.Div01.Div00.req_date2.dropdown();
+		return;
+    }
+
+	this.ds_search.setColumn(0,"legaladvLawAdvReqNo", legaladvLawAdvReqNo);
+	this.ds_search.setColumn(0,"legaladvReqDate1", legaladvReqDate1);
+	this.ds_search.setColumn(0,"legaladvReqDate2", legaladvReqDate2);
+	this.ds_search.setColumn(0,"legaladvRepWtr", legaladvRepWtr);
+	this.ds_search.setColumn(0,"legaladvLawAdvCode", legaladvLawAdvCode);
+	this.ds_search.setColumn(0,"legaladvOutReqLyrid", lyrid);
+
+	var oDatas =  {
+			  svcid : "outList",
+			  sController : "OutList.do",
+			  inds :["ds_search=ds_search"],
+			  outds :["ds_out=ds_out"],
+			  args  : [],
+			  bAsync : true,
+			  nDataType : 0,
+			  bCompress :false,
+			};
+
+	Iject.transaction(this,oDatas,function(){
+
+ 		var pThis = this.fobj;
+ 	
+	});
+
+}
+
+this.comboSetup = function()
+{
+	var oDatas =  {
+			  svcid : "comboList",
+			  sController : "ComboList.do",
+			  inds :["ds_code=ds_code"],
+			  outds :["ds_combo=ds_combo"],
+			  args  : [],
+			  bAsync : true,
+			  nDataType : 0,
+			  bCompress :false,
+			};
+
+	Iject.transaction(this,oDatas,function(){
+
+ 		var pThis = this.fobj;
+ 	
+	});
+}
+this.Div01_Div03_lawAdv_code_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo)
+{
+	
+}
+]]></Script>
+  </Form>
+</FDL>

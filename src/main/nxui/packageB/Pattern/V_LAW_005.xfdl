@@ -1,0 +1,898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_001" classname="V_LAW_001" left="0" top="0" width="1000" height="600" titletext="New Form" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_paging" taborder="4" left="7.8%" top="287" right="10.3%" height="32" position="absolute">
+          <Layouts>
+            <Layout width="831" height="46"/>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="5" left="2.5%" top="-32" right="8.6%" height="129">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="4" text="사건번호" onclick="Div01_Static01_onclick" left="3.6%" top="35" right="89.54%" height="32"/>
+              <Edit id="Edit01" taborder="5" oneditclick="Div01_Edit01_oneditclick" left="9.67%" top="39" right="73.68%" height="25"/>
+              <Static id="Static03" taborder="10" text="재검청" left="26.77%" top="41" right="67.72%" height="20"/>
+              <Combo id="Combo00" taborder="11" value="==전체==" text="==전체==" innerdataset="@ds_combobox" codecolumn="reorgname" datacolumn="reorgname" index="0" type="filter" left="31.83%" top="39" right="54.56%" height="25"/>
+              <Static id="Static04" taborder="12" text="의결일자" left="46.34%" top="41" right="47.36%" height="20" onclick="Div01_Static04_onclick"/>
+              <Calendar id="Calendar01" taborder="13" type="normal" left="52.98%" top="39" right="31.27%" height="25"/>
+              <Calendar id="Calendar00" taborder="15" type="normal" oneditclick="Div02_Calendar00_oneditclick" left="70.98%" top="39" right="13.27%" height="25"/>
+              <Button id="Button03" taborder="16" text="X" onclick="Div01_Button00_onclick" left="87.18%" top="39" right="10.01%" height="25" style="background:transparent;border:1 none #999999ff ;"/>
+              <Button id="Button04" taborder="17" onclick="Div01_Button04_onclick" left="90.78%" top="39" height="25" style="image:URL('img::btn_MF_Search.png');" width="46"/>
+              <Static id="Static00" taborder="18" text="~" left="69.18%" top="41" right="29.13%" height="21" style="font:10 Dotum;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Edit id="Edit00" taborder="7" left="11.1%" top="327" right="74.9%" height="25" enable="false"/>
+        <Edit id="Edit01" taborder="8" left="33.6%" top="327" right="52.4%" height="25" enable="false"/>
+        <Edit id="Edit02" taborder="9" left="73.9%" top="327" right="12.1%" height="25" enable="false"/>
+        <Edit id="Edit03" taborder="10" left="53.1%" top="327" right="32.9%" height="25" enable="false"/>
+        <Static id="Static00" taborder="11" text="일련번호" left="5.6%" top="307" right="88.6%" height="61" onclick="Static00_onclick"/>
+        <Static id="Static01" taborder="12" text="사건명" onclick="Static00_onclick" left="48.7%" top="308" right="45.6%" height="61"/>
+        <Static id="Static02" taborder="13" text="재결구분명" onclick="Static00_onclick" left="26.7%" top="308" right="66%" height="61"/>
+        <Static id="Static03" taborder="14" text="의결일자" onclick="Static00_onclick" left="68%" top="307" right="24.7%" height="61"/>
+        <Static id="Static04" taborder="16" text="주문" onclick="Static00_onclick" left="6.2%" top="350" right="88%" height="61"/>
+        <Static id="Static05" taborder="17" text="청구취지" onclick="Static00_onclick" left="5.7%" top="402" right="88.5%" height="61"/>
+        <Static id="Static06" taborder="19" text="재결요지" onclick="Static00_onclick" left="5.9%" top="457" right="88.3%" height="61"/>
+        <TextArea id="TextArea00" taborder="20" left="11.1%" top="363" right="12.1%" height="40" wordwrap="char" enable="false"/>
+        <TextArea id="TextArea01" taborder="21" left="11.1%" top="411" right="12.1%" height="40" wordwrap="char" enable="false"/>
+        <TextArea id="TextArea02" taborder="22" left="11.1%" top="459" right="12.1%" height="70" wordwrap="char" enable="false"/>
+        <Button id="mody" taborder="23" text="수정" left="75.4%" top="540" right="18.6%" height="34" onclick="mody_onclick" style="background:@gradation;border:1 solid #808080ff ;"/>
+        <Button id="save" taborder="24" text="저장" left="81.9%" top="540" right="12.1%" height="34" onclick="save_onclick"/>
+        <Grid id="Grid01" taborder="26" binddataset="ds_date" useinputpanel="false" autofittype="col" left="5.9%" top="40" right="12.1%" height="243" oncelldblclick="fn_listClick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="19"/>
+                <Column size="22"/>
+                <Column size="150"/>
+                <Column size="60"/>
+                <Column size="20"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" edittype="none" text="일련번호"/>
+                <Cell col="1" text="사건번호"/>
+                <Cell col="2" text="주문"/>
+                <Cell col="3" text="재결구분명"/>
+                <Cell col="4" text="의결일자"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="none" text="bind:deccno"/>
+                <Cell col="1" text="bind:casename"/>
+                <Cell col="2" text="bind:maintext"/>
+                <Cell col="3" text="bind:reclassname"/>
+                <Cell col="4" text="bind:decidedate"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="setgrid" taborder="27" binddataset="ds_chkcopy" scrollbars="fixedhorz" useinputpanel="false" left="13.6%" top="764" right="32.8%" height="244" visible="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+                <Col size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row band="body" size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell col="0" disptype="normal" text="deccno"/>
+                <Cell col="1" disptype="normal" text="casename"/>
+                <Cell col="2" disptype="normal" text="reclassname"/>
+                <Cell col="3" disptype="normal" text="decidedate"/>
+                <Cell col="4" disptype="normal" text="caseno"/>
+                <Cell col="5" disptype="normal" text="maintext"/>
+                <Cell col="6" disptype="normal" text="opiniontext"/>
+                <Cell col="7" disptype="normal" text="reasontext"/>
+                <Cell col="8" disptype="normal" text="repltext"/>
+                <Cell col="9" disptype="normal" text="chk"/>
+              </Band>
+              <Band id="body">
+                <Cell col="0" disptype="normal" text="bind:deccno"/>
+                <Cell col="1" disptype="normal" text="bind:casename"/>
+                <Cell col="2" disptype="normal" text="bind:reclassname"/>
+                <Cell col="3" disptype="normal" text="bind:decidedate"/>
+                <Cell col="4" disptype="normal" text="bind:caseno"/>
+                <Cell col="5" disptype="normal" text="bind:maintext"/>
+                <Cell col="6" disptype="normal" text="bind:opiniontext"/>
+                <Cell col="7" disptype="normal" text="bind:reasontext"/>
+                <Cell col="8" disptype="normal" text="bind:repltext"/>
+                <Cell col="9" disptype="normal" text="bind:chk"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="upload" taborder="28" text="업로드" onclick="Div01_Button02_onclick" left="69.1%" top="540" right="25%" height="34"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_combobox">
+        <ColumnInfo>
+          <Column id="reorgname" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="reorgname">==전체==</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_date">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="reasontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search" onload="fn_initPageSet">
+        <ColumnInfo>
+          <Column id="incident" type="STRING" size="256"/>
+          <Column id="pageIndex" type="INT" size="256"/>
+          <Column id="pageUnit" type="INT" size="256"/>
+          <Column id="pageSize" type="INT" size="256"/>
+          <Column id="combotext" type="STRING" size="256"/>
+          <Column id="searchCondition" type="STRING" size="256"/>
+          <Column id="firstPageNo" type="INT" size="256"/>
+          <Column id="lastPageNo" type="INT" size="256"/>
+          <Column id="totalPageCount" type="INT" size="256"/>
+          <Column id="today_search" type="STRING" size="256"/>
+          <Column id="fromdate_search" type="STRING" size="256"/>
+          <Column id="casenumber" type="STRING" size="256"/>
+          <Column id="decision" type="STRING" size="256"/>
+          <Column id="claim" type="STRING" size="256"/>
+          <Column id="request" type="STRING" size="256"/>
+          <Column id="reason" type="STRING" size="256"/>
+          <Column id="authorities" type="STRING" size="256"/>
+          <Column id="legislation" type="STRING" size="256"/>
+          <Column id="provisionnumber" type="STRING" size="256"/>
+          <Column id="orderby" type="STRING" size="256"/>
+          <Column id="tmp" type="STRING" size="256"/>
+          <Column id="todaytmp" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="pageIndex">1</Col>
+            <Col id="pageUnit">10</Col>
+            <Col id="pageSize">10</Col>
+            <Col id="searchCondition"/>
+            <Col id="combotext"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_selectlist">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="seq" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_decctext">
+        <ColumnInfo>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_chkcopy">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="reasontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+          <Column id="chk" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="test">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item6" compid="Edit02" propid="value" datasetid="ds_date" columnid="decidedate"/>
+      <BindItem id="item5" compid="Edit03" propid="value" datasetid="ds_date" columnid="casename"/>
+      <BindItem id="item4" compid="Edit01" propid="value" datasetid="ds_date" columnid="reclassname"/>
+      <BindItem id="item3" compid="Edit00" propid="value" datasetid="ds_date" columnid="deccno"/>
+      <BindItem id="item2" compid="TextArea00" propid="value" datasetid="ds_date" columnid="maintext"/>
+      <BindItem id="item8" compid="TextArea01" propid="value" datasetid="ds_date" columnid="opiniontext"/>
+      <BindItem id="item10" compid="TextArea02" propid="value" datasetid="ds_date" columnid="repltext"/>
+      <BindItem id="item0" compid="Div01.Calendar01" propid="value" datasetid="ds_search" columnid="tmp"/>
+      <BindItem id="item1" compid="Div01.Calendar00" propid="value" datasetid="ds_search" columnid="todaytmp"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+var gDetcno = application.gds_detcno.getColumn(0,"deccno");
+var grade = application.gds_userInfo.getColumn(0,"grade");
+var userid = application.gds_userInfo.getColumn(0,"userid");
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	if(gDetcno == null || gDetcno == undefined){
+		this.fn_DB_search();
+	}
+	
+
+	Iject.formOnload(obj);  //form onload
+		
+		var oDatas = {
+				svcid : "reorgname",
+				sController : "selectReo.do",
+				inds : [],
+				outds : [ "ds_combobox = output1"],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false, 
+	};
+	
+	Iject.transaction(this,oDatas,function(){
+ 		if(this.errorcode < 0){
+ 		   Iject.alert(this.errorMsg);			
+ 		   return;
+		}	      
+ 	       var pThis = this.fobj;   //form object
+ 	       
+	});
+	if(  gDetcno != null || gDetcno != undefined ){
+		 
+		var no = gDetcno;
+		gDetcno=null;
+		application.gds_detcno.clearData();
+	  
+	   this.fn_histoy(no);
+	  
+	}
+       
+	
+     
+     
+     
+     if(grade != "0"){
+        this.mody.set_enable(false);
+        this.mody.set_visible(false);
+        this.save.set_enable(false);
+        this.save.set_visible(false);
+        this.upload.set_enable(false);
+        this.upload.set_visible(false);
+        this.Div01.Button01.set_enable(false);
+        this.Div01.Button01.set_visible(false);
+        this.Div01.Button02.set_enable(false);
+        this.Div01.Button02.set_visible(false);
+  
+      }else{
+        this.mody.set_enable(true);
+        this.mody.set_visible(true);
+        this.upload.set_enable(true);
+        this.upload.set_visible(true);
+        this.save.set_enable(true);
+        this.save.set_visible(true);
+        this.Div01.Button01.set_enable(true);
+        this.Div01.Button01.set_visible(true);
+        this.Div01.Button02.set_enable(true);
+        this.Div01.Button02.set_visible(true);
+     }
+}
+
+	
+
+//최신 판례 클릭시 들어옴
+this.fn_histoy = function(no)
+{
+	
+	this.ds_date.addRow();
+	this.ds_selectlist.setColumn(0,"deccno",no);
+	var oDatas = {
+				svcid : "histoylist",
+				sController : "historyselectlist.do",
+				inds : ["ds_selectlist = ds_selectlist"],
+				outds : [ "ds_selectlist =ds_selectlist, ds_decctext = ds_decctext"],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false, 
+	};
+	
+	Iject.transaction(this,oDatas,function(){
+ 		if(this.errorcode < 0){
+ 		   Iject.alert(this.errorMsg);			
+ 		   return;
+		}	      
+ 	       var pThis = this.fobj;   //form object
+
+		
+	});
+	this.ds_date.copyRow(0,this.ds_selectlist,0);
+	this.fn_setting();
+}
+
+
+this.fn_setting =function(){
+var strName = "V_LAW_006_open_modeless";
+ 	var strFormURL = "Pattern::V_LAW_006.xfdl";
+ 	var objParentFrame = this.getOwnerFrame();
+ 	var objParam	={ds_selectlist:this.ds_selectlist,ds_decctext:this.ds_decctext};
+ 	//var objArgumentList = ;
+ 	var strOpenStyle = "showtitlebar=true";
+ 	var nLeft = 300;
+	var nTop = 100;
+ 	var nWidth = 600;
+ 	var nHeight = 600;
+ 	application.open(strName,strFormURL,objParentFrame,{ds_selectlist:this.ds_selectlist,ds_decctext:this.ds_decctext},strOpenStyle, nLeft, nTop);
+}
+
+ this.fn_listClick = function(obj:Button,  e:nexacro.ClickEventInfo)
+ {
+ 	
+ 	
+ 	//Grid내의 선택한 row의 위치 가져오기 
+	var nToRow = 0;
+	var nFromRow = e.row;	//복사할 row의 Position, int값
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	//this.test.copyRow(nToRow, this.ds_date, nFromRow);
+	
+	this.ds_selectlist.copyRow(nToRow, this.ds_date, nFromRow);
+	var userid = application.gds_userInfo.getColumn(0,"userid");
+	var seq = application.gds_menu.getColumn(4,"MENU_SEQ");
+	this.ds_selectlist.setColumn(0,"userid",userid);
+	this.ds_selectlist.setColumn(0,"seq",seq);
+	
+	var oDatas = {
+				svcid : "selectlist",
+				sController : "selectlist.do",
+				inds : ["ds_selectlist = ds_selectlist"],
+				outds : [ "ds_decctext = output1"],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false, 
+	};
+	
+	Iject.transaction(this,oDatas,function(){
+ 		if(this.errorcode < 0){
+ 		   Iject.alert(this.errorMsg);			
+ 		   return;
+		}	      
+ 	       var pThis = this.fobj;   //form object
+	       
+	});
+ 	
+	this.fn_setting();
+
+}
+
+this.edittext = function(){
+
+	var incident = 	 this.Div01.Edit01.value;
+	var searchCondition = this.Div01.Combo00.value;
+
+	this.ds_search.setColumn(0,"incident",incident);
+	this.ds_search.setColumn(0,"searchCondition",searchCondition);
+	
+}
+
+
+
+//검색버튼 클릭시
+this.Div01_Button04_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+// 	var fromdate_search = this.Div02.Calendar01.value+"";
+// 	var todate_search = this.Div02.Calendar00.value+"";
+// 	
+// 	this.ds_search.setColumn(0,"fromdate_search",fromdate_search);
+// 	this.ds_search.setColumn(0,"today_search",todate_search);
+	this.ds_search.setColumn(0,"pageIndex","1");
+	this.fn_DB_search();
+	
+}
+
+//디비 데이터 출력
+this.fn_DB_search = function(){
+  
+	var tmp = this.Div01.Calendar01.value;
+	this.ds_search.setColumn(0,"tmp",tmp);
+	       
+	var todaytmp = this.Div01.Calendar00.value;
+	this.ds_search.setColumn(0,"todaytmp",todaytmp);
+	var month = this.Div01.Calendar00.getMonth();
+	var day	 = this.Div01.Calendar00.getDay();
+	var year = this.Div01.Calendar00.getYear();
+
+	if(month.toString().length  ==1)
+	{
+		month = "0" + month;
+	}
+	if(day.toString().length  ==1)
+	{
+		day	 = "0" + day	;
+	}
+	var today = year + "."+ month + "." + day;
+
+	var month1 = this.Div01.Calendar01.getMonth();
+	var day1	 = this.Div01.Calendar01.getDay();
+	var year1 = this.Div01.Calendar01.getYear();
+
+	if(month1.toString().length  == 1)
+	{
+		month1 = "0" + month1;
+	}
+	if(day1.toString().length  == 1)
+	{
+		day1	 = "0" + day1;
+	}
+
+	var fromdate = year1 + "." + month1 + "." + day1	 ;
+
+	
+	this.ds_search.setColumn(0,"fromdate_search",fromdate);
+	this.ds_search.setColumn(0,"today_search",today);
+	this.edittext();
+   
+
+	var oDatas = {
+				svcid : "selectList",
+				sController : "paging.do",
+				inds : ["ds_search = ds_search"],
+				outds : ["ds_search = ds_serch", "ds_date = dslist"
+					   ],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false, 
+	};
+
+
+
+	Iject.transaction(this,oDatas,function(){
+ 		if(this.errorcode < 0){
+ 		   Iject.alert(this.errorMsg);			
+ 		   return;
+		}	      
+ 	       var pThis = this.fobj;   //form object
+		  trace("pThis.ds_date : " + pThis.ds_date.saveXML());
+	});
+	
+	
+}
+
+
+
+
+//page버튼 클릭시 동작
+ this.page_click = function(pagenum){
+ 	//page정보 갱신
+ 	var pnum = 0;
+	pnum = pagenum;
+	this.ds_search.setColumn(0,"pageIndex",pnum);
+ 	this.fn_DB_search();	
+ }
+
+/**
+ * 조회 후처리
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+
+// this.btn_index_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+// {
+// 	var pageIndex = obj.text;
+// 	this.ds_search.setColumn(0, "pageIndex", pageIndex);
+// 	this.fn_DB_search();
+// }
+// 
+
+//페이징 처리
+this.div_pagingButton_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+    var objName = obj.name.split('paging_btn_');
+    this.fn_page (objName[1]);  
+};
+
+this.div_pagingNumber_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+    this.fn_page (obj.text);
+};
+
+//버튼 셋팅
+this.fn_initPageSet = function(){
+
+	this.div_paging.destroy();
+	var objDiv = new Div("div_paging","absolute","7.60%",287,null,32,"10.50%",null);
+	this.addChild("div_paging",objDiv);
+	objDiv.show(); 
+	this.initPageSet(this.ds_search);
+	 
+}
+this.initPageSet = function (objDs){	
+	var firstPageNo = objDs.getColumn(0,"firstPageNo");
+    var lastPageNo = objDs.getColumn(0,"lastPageNo");
+    var totalPageCount = objDs.getColumn(0,"totalPageCount");
+    var pageIndex = objDs.getColumn(0,"pageIndex");
+    var pageSize = objDs.getColumn(0,"pageSize");
+    
+    
+
+	
+    //현재 width 값 가져오기
+    var fWidth = 925;
+    var gWidth = fWidth*(0.99-0.26);
+    //(button width = 35, button space = 5, page button start = 20, page button space = 10)
+    var sDivPagingWidth = (45*4+5+5)+(20+20)+((lastPageNo-firstPageNo + 1)*25)+((lastPageNo-firstPageNo)*10);
+    this.div_paging.setOffsetWidth(sDivPagingWidth);
+    var center = fWidth-(gWidth/2);
+    //this.div_paging.setOffsetLeft(parseInt((fWidth-sDivPagingWidth)/3)*2);
+    this.div_paging.setOffsetLeft(center-(sDivPagingWidth/20*11));
+    
+    //페이징처리 버튼 생성
+    var btnLeft = 0;
+    var btnTop = 5;
+    var btnWidth = 20;
+    var btnHeight = 21;    
+    var i = firstPageNo;
+    var j = lastPageNo;
+    
+    // 처음으로버튼 생성
+    if(pageIndex != 1 && totalPageCount > 1){
+		var objBtnId    = "paging_btn_First";
+		var objButton = new Button(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		this.div_paging.addChild(objBtnId, objButton);
+		this.div_paging.paging_btn_First.style.set_background_color("transparent");
+		this.div_paging.paging_btn_First.style.set_border_style("none");
+		this.div_paging.paging_btn_First.style.set_border_width("0px");
+		this.div_paging.paging_btn_First.set_text("<<");
+		this.div_paging.paging_btn_First.set_enable(true);
+		this.div_paging.paging_btn_First.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.paging_btn_First.show();
+    }
+    btnLeft = btnLeft + 20;
+  
+    // 이전버튼 생성
+    if(pageIndex > 10){
+	
+		var prevButton = new Button();
+		var prevBtnId    = "paging_btn_Prev";
+		prevButton.init(prevBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null); 
+		prevButton.style.set_background_color("transparent");
+		prevButton.style.set_border_style("none");
+		prevButton.style.set_border_width("0px");
+		prevButton.set_text("<");
+		prevButton.set_enable(true);
+		prevButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(prevBtnId,prevButton);
+		prevButton.show();
+    }
+    btnLeft = btnLeft + 20+20;
+    btnWidth = 25;
+      
+    if(totalPageCount > 1){
+
+		for(i ; i <= j; i++) {
+			
+			var objButton = new Button();
+			var objBtnId    = "paging_btn_"+i;
+			objButton.init(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+			objButton.style.set_background_color("transparent");
+			objButton.style.set_border_style("none");
+			objButton.style.set_border_width("0px");      
+			objButton.set_text(i);
+			if(pageIndex == i ){
+				objButton.set_enable(false);
+			}else{
+				
+				objButton.set_enable(true);
+			}
+			objButton.addEventHandler("onclick",this.div_pagingNumber_onclick , this);
+			
+			this.div_paging.addChild(objBtnId,objButton);
+			objButton.show();
+			
+			btnLeft = btnLeft + 30;
+		}
+		
+	}
+    btnWidth = 25;
+    btnLeft = btnLeft + 10;
+    
+    // 다음버튼 생성
+    if(lastPageNo != totalPageCount){
+		var nextButton = new Button();
+		var nextBtnId    = "paging_btn_Next";
+		nextButton.init(nextBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+	    nextButton.style.set_background_color("transparent");
+		nextButton.style.set_border_style("none");
+		nextButton.style.set_border_width("0px");
+		nextButton.set_text(">");
+		nextButton.set_enable(true);
+		nextButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(nextBtnId,nextButton);
+		nextButton.show();
+    }
+    btnLeft = btnLeft + 20+5;
+    
+    // 마지막으로버튼 생성
+	if(pageIndex < totalPageCount && totalPageCount > 1){
+		var lastButton = new Button();
+		var lastBtnId    = "paging_btn_Last";
+		lastButton.init(lastBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null); 
+	    lastButton.style.set_background_color("transparent");
+		lastButton.style.set_border_style("none");
+		lastButton.style.set_border_width("0px");
+		lastButton.set_text(">>");
+		lastButton.set_enable(true);
+		lastButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(lastBtnId,lastButton);
+		lastButton.show();
+	}
+};
+
+//버튼 클릭 후
+this.fn_page = function (btnText){
+    var objNum = 1;
+   
+    if(btnText=='First'){
+        objNum = 1;
+    }else if(btnText=='Prev'){
+        objNum = this.ds_search.getColumn(0,"firstPageNo")-1;
+    }else if(btnText=='Last'){
+        objNum = this.ds_search.getColumn(0,"totalPageCount");
+    }else if(btnText=='Next'){
+        objNum = this.ds_search.getColumn(0,"lastPageNo")+1;
+    }else{
+		objNum = btnText;
+    }
+    
+    this.page_click(objNum);
+};
+
+
+this.frm_onsize = function(obj:Form, e:nexacro.SizeEventInfo){
+	this.on_size();
+}
+this.on_size = function(){
+	var fWidth = this.parent.width;
+	//trace("프레임 조정 확인 "+fWidth);
+	var firstPageNo = this.ds_search.getColumn(0,"firstPageNo");
+    var lastPageNo = this.ds_search.getColumn(0,"lastPageNo");
+    var gWidth = fWidth*(0.99-0.26);
+    var sDivPagingWidth = (45*4+5+5)+(20+20)+((lastPageNo-firstPageNo + 1)*25)+((lastPageNo-firstPageNo)*10);
+    this.div_paging.setOffsetWidth(sDivPagingWidth);
+    var center = fWidth-(gWidth/2);
+    this.div_paging.setOffsetLeft(center-(sDivPagingWidth/20*11));
+}
+
+
+
+this.Div03_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.ds_date.getRowCount() > 1){
+		this.ds_search.setColumn(0,"orderby","desc");
+		this.page_click(1);
+	}
+}
+
+
+this.Div01_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ds_search.setColumn(0,"tmp","");
+	this.ds_search.setColumn(0,"todaytmp","")
+}
+
+// 
+// this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+// {
+// 	  /*
+//    * 1.heead = 시트명  뿌릴 해드값 A1 ~ G1 
+//    * 2. body = 그리드 body에 뿌릴 excel sheet 번호 
+//    */
+//     var sSheet = "head=sheet1!A1:G1;body=sheet1!A2;";  
+//    
+//    /*
+//    * 출력할 dataset 명
+//    */
+// 	var ds = "ds_date";
+// 	Iject.importExcel(this,sSheet,ds);
+// 
+// }
+// 
+
+
+this.mody_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.ds_date.getColumn(0,"deccno") == undefined){
+	alert("먼저 검색하세요");
+	
+	return false;
+	}
+	 
+	this.Edit01.set_enable(true);
+	this.Edit02.set_enable(true);
+	this.Edit03.set_enable(true);
+	this.TextArea00.set_enable(true);
+	this.TextArea01.set_enable(true);
+	this.TextArea02.set_enable(true);
+}
+
+
+this.save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ds_date.setColumn(0,"userid",userid);
+	if(this.ds_date.getColumn(0,"deccno") == undefined){
+	alert("먼저 검색하세요");
+	
+	return false;
+	}
+	 
+	 var oDatas =  {
+			  svcid : "strid",
+			  sController : "ModifyVO.do",			 
+			  inds :["input=ds_date:U"],
+			  outds :[],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+     var save=confirm("데이터를 입력하시겠습니까?");
+   if(save){
+	Iject.transaction(this,oDatas,function(){   
+		
+		Iject.alert("저장완료");
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/    
+		if(this.errorcode < 0)
+		{
+		   Iject.alert(this.errorMsg,"알림");			
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      
+			pThis.fn_DB_search();
+	});
+ 
+	
+  	this.Edit01.set_enable(false);
+	this.Edit02.set_enable(false);
+	this.Edit03.set_enable(false);
+	this.TextArea00.set_enable(false);
+	this.TextArea01.set_enable(false);
+	this.TextArea02.set_enable(false);
+	
+}else {
+	this.fn_DB_search();
+	this.Edit01.set_enable(false);
+	this.Edit02.set_enable(false);
+	this.Edit03.set_enable(false);
+	this.TextArea00.set_enable(false);
+	this.TextArea01.set_enable(false);
+	this.TextArea02.set_enable(false);
+}
+
+}
+
+// this.Div01_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+// {
+// 	
+// 	
+// 		if(this.fn_export()){
+// 			this.exportExcel();
+// 		}
+// }
+// 
+// this.fn_export = function(){
+// 
+// 	var ds_chkcopy=this.ds_chkcopy;
+// 	var oGrid = this.setgrid;
+// 	var dToday = new Date();
+// 	var cnt=0;
+// 	ds_chkcopy.clearData();
+// 	for(var i=0; i<this.ds_date.rowcount; i++){									
+// 		if(this.ds_date.getColumn(i,"chk")!=undefined && this.ds_date.getColumn(i,"chk")!=0){
+// 			trace("체크값");
+// 			 ds_chkcopy.addRow();
+// 			
+// 			ds_chkcopy.copyRow(ds_chkcopy.getRowCount()-1,this.ds_date,i);
+// 			cnt++;
+// 		}
+// 	}
+// 	if(cnt==0){
+// 		alert("1개 이상의 행을 선택해주세요.");
+// 		return false;
+// 	}	
+// 
+// 	return true;
+// }
+
+// this.exportExcel = function()
+// {
+// 	//var oGrid = this.grd_list;
+// 	
+// 	
+// 	var oGrid = this.setgrid;
+// 	var dToday = new Date();
+// 	var sSvcUrl = application.services["svcurl"].url+"XExportImport.do";
+// 	var strSheet = "sheet";
+// 	var strExportFileName =   dToday.getTime() + "_" + this.name;
+// 
+// 	var exportObj = new ExcelExportObject();			
+// 	//this.filterGrid.setBindDataset(this.filter);
+// 
+// 	exportObj.clear();
+// 	exportObj.addEventHandler("onsuccess", this.exportEnd,  this);
+// 	exportObj.addEventHandler("onerror", this.exportEnd,  this);
+// 	exportObj.set_exporttype(nexacro.ExportTypes.EXCEL2007);
+// 	exportObj.set_exportuitype("exportprogress") // set
+// 	exportObj.set_exporturl(sSvcUrl);
+// 	exportObj.set_exportfilename(strExportFileName);
+// 					
+// 		oGrid = oGrid;
+// 		sSheetName = strSheet+"1";
+// 		exportObj.addExportItem(nexacro.ExportItemTypes.GRID, oGrid,  sSheetName + "!A1","allband","allrecord","suppress","allstyle","background","font", "both");
+// 		
+// 	
+// 
+// 	exportObj.exportData();
+// 
+// }
+
+this.Div01_Button02_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		application.open("modeless_lawSub","Pattern::V_LAW_042.xfdl",this.getOwnerFrame(),{mode:'modeless'}, "showtitlebar=true", 300, 20, 900, 700);
+}
+
+this.Div01_Static04_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	
+}
+]]></Script>
+  </Form>
+</FDL>

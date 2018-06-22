@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_COM_010" classname="V_COM_010" left="0" top="0" width="525" height="775" titletext="New Form" onload="form_onload" oninit="V_COM_010_oninit">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="아 이 디" left="8.95%" top="56" right="81.71%" height="30"/>
+        <Static id="Static01" taborder="1" text="비 밀 번 호" left="9.14%" top="215" right="77.33%" height="33" onclick="Static01_onclick"/>
+        <Static id="Static02" taborder="2" text="비 밀 번 호 확인" left="9.14%" top="256" right="72.57%" height="38"/>
+        <Static id="Static03" taborder="3" text="상 세 주 소" left="9.14%" top="350" right="73.52%" height="30" onclick="Static03_onclick"/>
+        <Static id="Static04" taborder="4" text="핸 드 폰 번 호" onclick="Static03_onclick" left="8.76%" top="395" right="75.05%" height="30"/>
+        <Static id="Static05" taborder="5" text="이 메 일" onclick="Static03_onclick" left="8.76%" top="540" right="81.52%" height="30"/>
+        <Static id="Static06" taborder="6" text="성 별" onclick="Static03_onclick" left="8.76%" top="591" right="81.52%" height="30"/>
+        <Static id="Static07" taborder="7" text="생 년 월 일" onclick="Static03_onclick" left="8.57%" top="637" right="77.52%" height="30"/>
+        <Static id="Static08" taborder="8" text="이 름" onclick="Static03_onclick" left="8.95%" top="112" right="81.71%" height="30"/>
+        <Static id="Static09" taborder="9" text="영 문 이 름" onclick="Static03_onclick" left="9.14%" top="158" right="74.86%" height="32"/>
+        <Edit id="ed_id" taborder="10" left="31.81%" top="56" right="37.33%" height="24"/>
+        <Edit id="ed_name" taborder="11" left="31.81%" top="110" right="37.33%" height="24"/>
+        <Edit id="ed_ename" taborder="12" left="31.81%" top="158" right="37.33%" height="24"/>
+        <Edit id="ed_password" taborder="13" left="31.81%" top="215" right="37.33%" height="24" password="true"/>
+        <Edit id="ed_passwordchk" taborder="14" left="31.81%" top="272" right="37.33%" height="24" password="true"/>
+        <Edit id="ed_address" taborder="15" left="31.81%" top="312" right="52.38%" height="24"/>
+        <Edit id="ed_phone" taborder="16" left="31.62%" top="395" right="37.52%" height="24" onkeyup="ed_phone_onkeyup" maxlength="11" imemode="none" inputtype="number"/>
+        <Button id="btn_join" taborder="20" text="가 입" left="12.95%" top="721" right="73.9%" height="31" style="background:#444444ff;color:white;" onclick="btn_join_onclick"/>
+        <Button id="btn_cancel" taborder="21" text="취 소" left="50.29%" top="721" right="37.14%" height="31" style="background:#444444ff;color:white;" onclick="btn_cancel_onclick"/>
+        <Button id="btn_check" taborder="22" text="중복검사" left="64.38%" top="56" right="18.67%" height="25" style="background:#444444ff URL('img::btn_MF_Search.png');color:white;" onclick="btn_check_onclick"/>
+        <Button id="btn_reset" taborder="23" text="리 셋" left="32.19%" top="721" right="55.62%" height="31" style="background:#444444ff;color:white;" onclick="btn_reset_onclick"/>
+        <Static id="Static10" taborder="26" text="*4~10자리 영문과 숫자만 가능" left="31.62%" top="80" right="30.1%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static11" taborder="27" text="*이름은 2글자 이상 한글로만 입력가능" left="31.62%" top="134" right="30.1%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static12" taborder="28" text="*영문이름은 영어만 입력가능" left="31.62%" top="184" right="30.1%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static13" taborder="29" text="*6글자 이상 영문,숫자,특수기호 사용가능" left="31.62%" top="238" right="26.48%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static14" taborder="30" text="*이메일 형식으로 등록 ex)xxx@xxx.com" left="31.62%" top="564" right="26.67%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static15" taborder="31" text="*핸드폰 번호는 10자리 이상 숫자만 등록 가능" left="31.43%" top="421" right="22.1%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static16" taborder="32" text="*표시는 필수 입력사항 입니다." left="32.19%" top="24" right="33.33%" height="16" style="color:red;"/>
+        <Static id="Static17" taborder="33" text="직 장" onclick="Static03_onclick" left="8.95%" top="454" right="81.33%" height="30"/>
+        <Static id="Static18" taborder="34" text="직 급" onclick="Static03_onclick" left="8.76%" top="492" right="81.52%" height="30"/>
+        <Edit id="ed_career" taborder="35" left="31.62%" top="454" right="37.52%" height="24"/>
+        <Combo id="cb_position" taborder="36" left="31.62%" top="495" right="37.52%" height="27" innerdataset="@ds_position" codecolumn="code_name" datacolumn="code_name"/>
+        <Edit id="ed_email" taborder="17" left="31.81%" top="540" right="37.52%" height="24"/>
+        <Edit id="ed_birth" taborder="18" left="31.43%" top="643" right="37.71%" height="24" inputtype="number" onkeyup="ed_birth_onkeyup"/>
+        <Static id="Static20" taborder="38" text="*생년월일 6자리 숫자로 기입" left="31.43%" top="667" right="26.86%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Radio id="rd_sex" taborder="39" left="31.81%" top="593" right="37.71%" height="28" innerdataset="@ds_sex" codecolumn="code_name" datacolumn="code_name2" direction="vertical"/>
+        <Button id="Button00" taborder="40" text="주소검색" left="50.29%" top="312" right="37.33%" height="22" onclick="Button00_onclick"/>
+        <Edit id="ed_address01" taborder="41" left="31.81%" top="356" right="37.33%" height="24"/>
+        <Static id="Static19" taborder="42" text="우 편 번 호" left="8.76%" top="315" right="72.95%" height="18"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_position">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_user">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="engname" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_useridchk">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_result">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="engname" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_sex">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+          <Column id="code_name2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_useid">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="engname" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="address01" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="ed_id" propid="value" datasetid="ds_user" columnid="userid"/>
+      <BindItem id="item1" compid="ed_name" propid="value" datasetid="ds_user" columnid="name"/>
+      <BindItem id="item2" compid="ed_ename" propid="value" datasetid="ds_user" columnid="engname"/>
+      <BindItem id="item3" compid="ed_password" propid="value" datasetid="ds_user" columnid="password"/>
+      <BindItem id="item4" compid="ed_address" propid="value" datasetid="gds_address" columnid="code"/>
+      <BindItem id="item5" compid="ed_phone" propid="value" datasetid="ds_user" columnid="phone"/>
+      <BindItem id="item6" compid="ed_career" propid="value" datasetid="ds_user" columnid="career"/>
+      <BindItem id="item7" compid="cb_position" propid="value" datasetid="ds_user" columnid="position"/>
+      <BindItem id="item8" compid="ed_email" propid="value" datasetid="ds_user" columnid="email"/>
+      <BindItem id="item10" compid="ed_birth" propid="value" datasetid="ds_user" columnid="birth"/>
+      <BindItem id="item11" compid="rd_sex" propid="value" datasetid="ds_user" columnid="sex"/>
+      <BindItem id="item9" compid="ed_address01" propid="value" datasetid="gds_address" columnid="road"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	application.gds_address.clearData();
+	application.gds_address.addRow();
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();
+     this.ds_user.addRow();	
+     //this.fn_start();
+     this.ds_sex.clearData();
+     this.ds_sex.addRow();
+     this.ds_position.clearData();
+     this.ds_position.addRow();
+	 this.fn_start();	
+	 this.fn_start_position();
+} 
+
+this.btn_cancel_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		this.close();
+}
+
+this.btn_reset_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ed_id.set_value("");
+	this.ed_name.set_value("");
+	this.ed_ename.set_value("");
+	this.ed_password.set_value("");
+	this.ed_passwordchk.set_value("");
+	this.ed_address.set_value("");
+	this.ed_phone.set_value("");
+	this.ed_career.set_value("");
+	this.cb_position.set_value("");
+	this.ed_email.set_value("");
+	this.rd_sex.set_value("");
+	this.ed_birth.set_value("");
+	
+}
+
+this.fn_save = function(strid)
+{
+	
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "userModifyVO.do",			 
+			  inds :["input1=ds_user:U"],
+			  outds :[
+				 "ds_result=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/  
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");	
+		   alert("아이디 중복 체크 해주세요");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	});
+	
+	//this.fn_idchk("check");
+	
+	//alert("데이터셋"+this.ds_user.getRowCount());
+	//alert("검색"+this.ds_useridchk.getRowCount());
+	application.confirm("가입하시겠습니까?");
+	
+	if(this.ds_useridchk.getRowCount()>0){
+	 alert("가입 실패");
+	}
+	if(this.ds_useridchk.getRowCount()<=0){
+	if(this.ds_result.getRowCount()>0){
+	//alert(this.ds_result.getRowCount())
+	alert("가입 성공");
+	this.close();
+	}
+	}
+}
+
+this.fn_idchk = function(strid)
+{
+for(var i=0; i<this.ed_id.value.length; i++){
+if(!(this.ed_id.value.charAt(i)>=0 && this.ed_id.value.charAt(i)<=9) && 
+	!(this.ed_id.value.charAt(i)>='a'&&this.ed_id.value.charAt(i)<='z') &&
+	 !(this.ed_id.value.charAt(i)>='A'&&this.ed_id.value.charAt(i)<='Z'))
+	{
+	alert("아이디는 4~10자리 영문과 숫자만 가능합니다.");
+	return;
+}
+}
+if(this.ed_id.value==null || this.ed_id.value.length<4 || this.ed_id.value.length>11){
+	alert("아이디는 4~10자리 영문과 숫자만 가능합니다.");
+	return;
+	}
+	this.ds_useid.addRow();
+	this.ds_useid.setColumn(0,"userid",this.ed_id.value);
+	this.ds_useid.setColumn(0,"name",this.ed_name.value);
+	this.ds_useid.setColumn(0,"engname",this.ed_ename.value);
+	this.ds_useid.setColumn(0,"password",this.ed_password.value);
+	this.ds_useid.setColumn(0,"address",this.ed_address.value);
+	this.ds_useid.setColumn(0,"address01",this.ed_address01.value);
+	this.ds_useid.setColumn(0,"phone",this.ed_phone.value);
+	this.ds_useid.setColumn(0,"email",this.ed_email.value);
+	this.ds_useid.setColumn(0,"career",this.ed_career.value);
+	this.ds_useid.setColumn(0,"position",this.cb_position.value);
+	this.ds_useid.setColumn(0,"sex",this.rd_sex.value);
+	this.ds_useid.setColumn(0,"birth",this.ed_birth.value);
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "useridcheck.do",			 
+			  inds :["input2=ds_user"],
+			  outds :[
+				 "ds_useridchk=output2"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : false,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/    
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	       
+	});
+		//this.ds_useridchk.clearData();
+		this.ds_user.clearData();
+		this.ds_user.addRow();
+		
+	//alert("ds_user몇개="+this.ds_user.getRowCount());
+	//alert(this.ds_useridchk.getRowCount());
+	if(this.ds_useridchk.getRowCount()>0){
+	alert("중복된 아이디 입니다.");
+	this.ds_useridchk.clearData();
+	this.ed_id.set_value(this.ds_useid.getColumn(0,"userid"));
+	this.ed_name.set_value(this.ds_useid.getColumn(0,"name"));
+	this.ed_ename.set_value(this.ds_useid.getColumn(0,"engname"));
+	this.ed_password.set_value(this.ds_useid.getColumn(0,"password"));
+	this.ed_address.set_value(this.ds_useid.getColumn(0,"address"));
+	this.ed_address01.set_value(this.ds_useid.getColumn(0,"address01"));
+	this.ed_phone.set_value(this.ds_useid.getColumn(0,"phone"));
+	this.ed_email.set_value(this.ds_useid.getColumn(0,"email"));
+	this.ed_career.set_value(this.ds_useid.getColumn(0,"career"));
+	this.cb_position.set_value(this.ds_useid.getColumn(0,"position"));
+	this.rd_sex.set_value(this.ds_useid.getColumn(0,"sex"));
+	this.ed_birth.set_value(this.ds_useid.getColumn(0,"birth"));
+	//this.ds_user.clearData();
+	//this.ds_user.addRow();
+	}else{	
+	alert("사용 할 수 있는 아이디입니다.");
+	this.ds_useridchk.clearData();
+	this.ed_id.set_value(this.ds_useid.getColumn(0,"userid"));
+	this.ed_name.set_value(this.ds_useid.getColumn(0,"name"));
+	this.ed_ename.set_value(this.ds_useid.getColumn(0,"engname"));
+	this.ed_password.set_value(this.ds_useid.getColumn(0,"password"));
+	this.ed_address.set_value(this.ds_useid.getColumn(0,"address"));
+	this.ed_address01.set_value(this.ds_useid.getColumn(0,"address01"));
+	this.ed_phone.set_value(this.ds_useid.getColumn(0,"phone"));
+	this.ed_email.set_value(this.ds_useid.getColumn(0,"email"));
+	this.ed_career.set_value(this.ds_useid.getColumn(0,"career"));
+	this.cb_position.set_value(this.ds_useid.getColumn(0,"position"));
+	this.rd_sex.set_value(this.ds_useid.getColumn(0,"sex"));
+	this.ed_birth.set_value(this.ds_useid.getColumn(0,"birth"));
+	//this.ds_user.clearData();
+	//this.ds_user.addRow();
+}
+}
+//유효성 검사
+this.fn_chk = function(){
+//아이디 유효성 검사
+for(var i=0; i<this.ed_id.value.length; i++){
+if(!(this.ed_id.value.charAt(i)>=0 && this.ed_id.value.charAt(i)<=9) && 
+	!(this.ed_id.value.charAt(i)>='a'&&this.ed_id.value.charAt(i)<='z') &&
+	 !(this.ed_id.value.charAt(i)>='A'&&this.ed_id.value.charAt(i)<='Z'))
+	{
+	alert("아이디는 4~10자리 영문과 숫자만 가능합니다.");
+	return;
+}
+}
+if(this.ed_id.value==null|| this.ed_id.value=="" || this.ed_id.value.length<4 || this.ed_id.value.length>11){
+	alert("아이디는 4~10자리 영문과 숫자만 가능합니다.");
+	return;
+}
+
+//비밀번호 유효성 검사
+if(this.ed_password.value==null|| this.ed_password.value=="" || this.ed_passwordchk.value==null 
+	|| this.ed_passwordchk.value=="" ||this.ed_password.value!=this.ed_passwordchk.value || 
+	this.ed_password.value<6 || this.ed_passwordchk.value<6){
+	alert("비밀번호를 확인해주세요.");
+	return;
+}
+
+//이름 유효성 검사
+if(this.ed_name.value==null || this.ed_name.value==""){
+	alert("이름을 입력해주세요.");
+	return;
+	}
+	var pattern = /[^가-힣]/gi;
+for(var i=0; i<this.ed_name.value.length; i++){
+if(this.ed_name.value.length<2 || this.ed_name.value.length>6 ||this.ed_name.value.charAt(i).match(pattern))
+{
+alert("이름은 두 글자 이상 한글만 사용 가능합니다.");
+	return;
+}
+}
+
+//영문이름 유효성 검사
+if(this.ed_ename.value==null || this.ed_ename.value=="" || this.ed_ename.value.length<3 || this.ed_ename.value.length>20){
+	alert("세 글자 이상 영문이름을 입력해주세요.");
+	return;
+	}
+	//var kpattern = /[^가-힣ㄱ-ㅎㅏ-ㅣ0-9]/gi;
+	var epattern = /[^a-zA-Z]/gi;
+	//alert(this.ed_ename.value.length);
+for(var i=0; i<this.ed_ename.value.length; i++){
+if(this.ed_ename.value.charAt(i).match(epattern))
+{
+alert("영문이름은 영문만 사용 가능합니다.");
+	return;
+}
+}
+//주소 유효성
+if(this.ed_address.value==null || this.ed_address==""
+	|| this.ed_address.value.length < 5 || this.ed_address.value.length >30){
+alert("주소를 정확히 입력해주세요.");
+return;
+}
+//핸드폰 유효성검사
+if(this.ed_phone.value==null || this.ed_phone==""
+	|| this.ed_phone.value.length < 12 || this.ed_phone.value.length >16){
+alert("핸드폰번호를 정확히 입력해주세요.");
+return;
+}
+
+//직장 유효성 검사
+if(this.ed_career.value==null || this.ed_career.value=="")
+{
+alert("직장을 입력해주세요.");
+return;
+}
+//직급 유효성 검사
+if(this.cb_position.value==null || this.cb_position.value=="")
+{
+alert("직급을 선택해주세요.");
+return;
+}
+
+//이메일 유효성 검사
+if(this.ed_email.value==null || this.ed_email.value=="")
+{
+alert("이메일을 입력해주세요.");
+return;
+}
+
+var epattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+if(this.ed_email.value.match(epattern)!=null){
+}else{
+alert("이메일 형식이 잘못되었습니다.");
+	return;
+}
+//성별 유효성 검사
+if(this.rd_sex.value==null || this.rd_sex.value=="")
+{
+alert("성별을 선택해주세요.");
+return;
+}
+//생년월일 유효성 검사
+if(this.ed_birth.value==null || this.ed_birth.value=="")
+{
+alert("생년월일을 입력해주세요.");
+return;
+}
+
+
+this.fn_save("save");
+}
+
+/**********************************************************************
+* User Function
+***********************************************************************/
+
+
+//저장버튼 클릭시 
+this.btn_join_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var address = "["+this.ed_address.value+"]"+this.ed_address01.value;
+	this.ds_user.setColumn(0,"address",address);
+	this.fn_chk();
+}
+
+this.btn_check_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_idchk("check");
+	
+}
+this.ed_phone_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	var str = this.ed_phone.value;
+	this.ed_phone.set_maxlength(13);
+	this.autoHypenPhone(str);
+}
+
+this.autoHypenPhone = function(str){
+var tmp = '';
+  if(str.length < 4){
+    return str;
+  }else if(str.length < 7){
+	tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3);
+    this.ed_phone.value.trim();
+    return tmp;
+  }else if(str.length < 11){
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3, 3);
+    tmp += '-';
+    tmp += str.substr(6);
+    this.ed_phone.value.trim();
+    return tmp;
+  }else{        
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3, 4);
+    tmp += '-';
+    tmp += str.substr(7);
+    this.ed_phone.value.trim();
+    this.ed_phone.set_value(tmp);
+    return tmp;
+  }
+  }
+this.ed_birth_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	var str = this.ed_birth.value;
+	this.ed_birth.set_maxlength(6);
+	this.autoHypenbirth(str);
+}
+
+this.autoHypenbirth = function(str){
+var tmp = '';
+  if(str.length < 1){
+    return str;
+  }else if(str.length < 4){
+	tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2);
+    this.ed_birth.value.trim();
+    return tmp;
+  }
+ 
+  else if(str.length < 6){
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth.value.trim();
+    return tmp;
+  }else{        
+    tmp += str.substr(0, 2);
+    tmp += '-';
+    tmp += str.substr(2, 2);
+    tmp += '-';
+    tmp += str.substr(4);
+    this.ed_birth.value.trim();
+    this.ed_birth.set_value(tmp);
+    return tmp;
+  }
+  }
+  
+this.fn_start = function(){
+	
+	var oDatas = {
+				svcid : "setting",
+				sController : "usersexdata.do",
+				inds : [],
+				outds :[
+				 "ds_sex=ds_sex"
+			     ],	
+				args  : [],
+				bAsync : false, 
+				nDataType : 0, 
+				bCompress :false,
+	};
+	
+	trace(" this.ds_sex : " + this.ds_sex.saveXML());
+	Iject.transaction(this,oDatas,function(){
+	});
+}
+
+this.fn_start_position = function(){
+	
+	var oDatas = {
+				svcid : "setting",
+				sController : "userpositiondata.do",
+				inds : [],
+				outds :[
+				 "ds_position=ds_position"
+			     ],	
+				args  : [],
+				bAsync : false, 
+				nDataType : 0, 
+				bCompress :false,
+	};
+	
+	Iject.transaction(this,oDatas,function(){
+	});
+}
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nLeft = (application.mainframe.width / 2); - Math.round((this.getOffsetWidth()) / 4);
+  	var nTop = (application.mainframe.height / 2); - Math.round((this.getOffsetHeight()) / 2);
+	application.open("search","Pattern::V_COM_012.xfdl",this.getOwnerFrame(), 
+   {mode:'modeless',ds:this.Dataset01}, "showtitlebar=true", nLeft, nTop);
+}
+]]></Script>
+  </Form>
+</FDL>

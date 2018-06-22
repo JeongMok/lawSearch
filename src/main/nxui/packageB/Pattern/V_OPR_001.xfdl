@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_001" classname="V_OPR_001" left="0" top="0" width="1000" height="600" titletext="New Form" onload="V_OPR_001_onload">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" left="0%" top="-80" right="0%" height="534">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="join_list" taborder="2" left="0.1%" top="-4" height="516" width="950">
+          <Layouts>
+            <Layout>
+              <Div id="memer_count_result" taborder="0" text="총 :  0명" left="2.42%" top="24" right="90.11%" height="14" style="font:8 Dotum;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="3" left="1.9%" top="39" height="80%" width="95%">
+          <Layouts>
+            <Layout width="950" height="504">
+              <Grid id="member_List" taborder="0" useinputpanel="false" left="0.63%" top="8" height="451" binddataset="ds_userInfo" oncelldblclick="fn_memberDetail" autofittype="col" width="98%" fillareatype="allrow">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="30"/>
+                      <Column size="40"/>
+                      <Column size="80"/>
+                      <Column size="40"/>
+                      <Column size="40"/>
+                      <Column size="20"/>
+                      <Column size="40"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="28" band="head"/>
+                      <Row size="28"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell style="font:8 arial;" text="ID"/>
+                      <Cell col="1" style="font:8 arial;" text="이름"/>
+                      <Cell col="2" style="font:8 arial;" text="연락처"/>
+                      <Cell col="3" style="font:8 arial;" text="Email"/>
+                      <Cell col="4" style="font:8 arial;" text="소속"/>
+                      <Cell col="5" style="font:8 arial;" text="직위"/>
+                      <Cell col="6" style="font:8 arial;" text="성별"/>
+                      <Cell col="7" style="font:8 arial;" text="권한"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell style="gradation:linear 0,0 lightskyblue 100,100 white;" text="bind:userId" expandshow="show"/>
+                      <Cell col="1" text="bind:name"/>
+                      <Cell col="2" text="bind:phone"/>
+                      <Cell col="3" text="bind:email"/>
+                      <Cell col="4" text="bind:career"/>
+                      <Cell col="5" text="bind:position"/>
+                      <Cell col="6" text="bind:sexName"/>
+                      <Cell col="7" text="bind:gradeName"/>
+                    </Band>
+                  </Format>
+                  <Format id="format_copy"/>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="search_join" taborder="4" left="0%" top="-9" right="0.8%" height="54">
+          <Layouts>
+            <Layout width="1000" height="88">
+              <Button id="search_info" taborder="8" onclick="search_join_Button00_onclick" left="91.73%" top="21" height="44.44%" style="image:URL('img::btn_MF_Search.png');imagealign:center;align:right;cursor:hand;" tooltiptext="검색버튼" width="46"/>
+              <Edit id="search_userid00" taborder="12" oneditclick="search_join_search_Keyword_oneditclick" left="75.91%" top="21" height="44.44%" width="150" displaynulltext="이름입력"/>
+              <Static id="search_name" taborder="13" text="이름" left="72.58%" top="22" height="44.44%" style="align:right;" width="28"/>
+              <Static id="Static00" taborder="14" text="ID" left="54.03%" top="22" height="44.44%" style="align:right;" width="20"/>
+              <Edit id="search_userid" taborder="15" oneditclick="search_join_search_Keyword_oneditclick" left="56.75%" top="21" height="44.44%" width="150" displaynulltext="아이디입력"/>
+              <Static id="Static01" taborder="16" text="소속" left="34.38%" top="22" height="44.44%" style="align:right;" width="32"/>
+              <Edit id="search_career" taborder="17" oneditclick="search_join_search_Keyword_oneditclick" left="38.21%" top="21" width="150" height="44.44%" displaynulltext="소속입력"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="5" text="Div02" left="28.2%" top="504" right="25.7%" height="39">
+          <Layouts>
+            <Layout width="447" height="31">
+              <Static id="stc_No2" taborder="0" text="3" onclick="div_paging_onclick" left="25.81%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No9" taborder="1" text="10" onclick="div_paging_onclick" left="50.33%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_Next" taborder="2" text="&gt;&gt;" onclick="div_paging_next_onclick" left="56.15%" top="12" width="18" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No8" taborder="3" text="9" onclick="div_paging_onclick" left="46.64%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No7" taborder="4" text="8" onclick="div_paging_onclick" left="43.17%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No6" taborder="5" text="7" onclick="div_paging_onclick" left="39.91%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No5" taborder="6" text="6" onclick="div_paging_onclick" left="36.44%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No4" taborder="7" text="5" onclick="div_paging_onclick" left="32.75%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No3" taborder="8" text="4" onclick="div_paging_onclick" left="29.07%" top="12" width="15" height="24" style="background:transparent;border:0 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No1" taborder="9" text="2" onclick="div_paging_onclick" left="22.56%" top="12" width="15" height="24" style="background:transparent;border:0 solid #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_No0" taborder="10" text="1" onclick="div_paging_onclick" left="18.66%" top="12" width="15" height="24" style="background:transparent;border:1 none #b1c0cfff ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+              <Static id="stc_Prev" taborder="11" text="&lt;&lt;" onclick="div_paging_prev_onclick" left="15.18%" top="12" width="17" height="24" style="background:transparent;border:0 none transparent ;color:navy;align:center middle;font:11 arial;cursor:hand;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_searchJoin">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="256"/>
+          <Column id="search_userId" type="STRING" size="256"/>
+          <Column id="search_name" type="STRING" size="256"/>
+          <Column id="search_career" type="STRING" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="viewListCount" type="INT" size="256"/>
+          <Column id="viewPageNum" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="viewListCount">15</Col>
+            <Col id="viewPageNum">10</Col>
+            <Col id="page">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="string" size="32"/>
+          <Column id="MENU_SEQ" type="int" size="4"/>
+          <Column id="MENU_OPTP" type="string" size="32"/>
+          <Column id="PAGE_URL" type="string" size="32"/>
+          <Column id="MENU_TOP" type="string" size="32"/>
+          <Column id="MENU_ID" type="string" size="32"/>
+          <Column id="MENU_GRP" type="string" size="32"/>
+          <Column id="CREATE_DT" type="string" size="32"/>
+          <Column id="MENU_LEVEL" type="int" size="4"/>
+          <Column id="PAGE_ID" type="string" size="32"/>
+          <Column id="PAGE_NAME" type="string" size="32"/>
+          <Column id="MENU_ARGS" type="string" size="32"/>
+          <Column id="MENU_STAT" type="string" size="32"/>
+          <Column id="CREATE_USER" type="string" size="32"/>
+          <Column id="UPDATE_DT" type="string" size="32"/>
+          <Column id="UPDATE_USER" type="string" size="32"/>
+          <Column id="MENU_DESC" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_userList">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_paging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="5"/>
+          <Column id="endPage" type="INT" size="5"/>
+          <Column id="page" type="INT" size="5"/>
+          <Column id="startList" type="INT" size="5"/>
+          <Column id="startPage" type="INT" size="5"/>
+          <Column id="totalList" type="INT" size="5"/>
+          <Column id="totalpage" type="INT" size="5"/>
+          <Column id="viewListCount" type="INT" size="5"/>
+          <Column id="viewPageNum" type="INT" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_userInfo" oncolumnchanged="search_join_Button00_onclick">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+          <Column id="gradeName" type="STRING" size="256"/>
+          <Column id="sexName" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_userDetail">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="password" type="PASSWORD" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="career" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="sex" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="engName" type="STRING" size="256"/>
+          <Column id="gradeName" type="STRING" size="256"/>
+          <Column id="loginId" type="STRING" size="256"/>
+          <Column id="sexName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.member_iStartPageNo = 0;
+this.member_iMaxPageNo = 10;
+
+//실행 시 바로 조회
+
+this.V_OPR_001_onload = function(obj:Form, e:nexacro.LoadEventInfo){
+	Iject.formOnload(obj);
+	this.fn_memberSearch(1);
+
+	
+}
+
+//전체 리스트 조회
+this.fn_memberSearch = function(nowPage){
+	  this.ds_userList.clearData();       
+      var search_Condition =  "USERID";
+
+      var search_userId = this.search_join.search_userid.value;          
+      var search_name = this.search_join.search_userid00.value;
+	  var search_career = this.search_join.search_career.value;
+	  
+
+		this.ds_searchJoin.setColumn(0, "search_Condition", "USERID");
+		this.ds_searchJoin.setColumn(0, "search_career", search_career);
+		this.ds_searchJoin.setColumn(0, "search_userId", search_userId);
+ 		this.ds_searchJoin.setColumn(0, "search_name", search_name);
+
+		
+		if(nowPage == null || nowPage == undefined){
+			nowPage = 1;
+		}
+		
+	var page = nowPage;
+	
+	this.ds_searchJoin.setColumn(0, "page", page);
+	
+	var oDatas = {
+		svcid : "search",
+		sController : "memberSelectOne.do",
+		inds : ["ds_searchJoin = ds_searchJoin"],
+		outds : ["ds_userInfo = ds_userInfo", "ds_paging = ds_paging"],
+		args : [],
+		bAsync : false,
+		nDataType : 0,
+		bCompress : false,
+		
+	};
+	
+	//공통함수 transaction
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode < 0){
+			trace("에러");
+			Iject.alert(this.errorMsg,"알림");
+			return;
+		}
+		var pThis = this.fobj;
+		pThis.fn_memberCount();
+		
+// 		trace("ds_userInfo : " + pThis.ds_userInfo.saveXML());
+// 		trace("ds_paging : " + pThis.ds_paging.saveXML());
+	});
+	if(this.ds_userList == null || this.ds_userList == undefined){
+		this.fn_receive_data();
+		return;
+		}
+	this.fn_member_setPageNo();
+	
+}
+ //조건검색
+  this.search_join_Button00_onclick = function(){
+  
+  	this.fn_memberSearch();
+  }
+
+
+//회원 총 인원
+this.fn_memberCount = function(){
+	var count = this.ds_paging.getColumn(0,"totalList");
+	this.join_list.memer_count_result.set_text("총 : " + count + "명");
+}
+
+//상세보기
+this.fn_memberDetail = function(obj:Grid, e:nexacro.GridClickEventInfo){
+	
+	this.ds_userDetail.deleteAll();
+	this.ds_userDetail.addRow();
+	var nToRow = 0;			//현재 dataSet에 복사되어 변경될 행의 위치
+	var objDataset = this.ds_userInfo;
+	var nFromRow = e.row;	//복사할 row의 Position, int값
+	
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	this.ds_userDetail.copyRow(nToRow, objDataset, nFromRow);
+	
+	this.fn_popup_setting();
+}
+//popup창 띄워서 상세정보 확인하기
+
+this.fn_popup_setting = function(){
+	var strName = "V_OPR_002_open_modeless";
+	var strFormURL = "Pattern::V_OPR_002.xfdl";
+	var objParam = {ds_userDetail : this.ds_userDetail};
+	var strOpenStyle = "dragmovetype=all showtitlebar=true"
+						+"showstatusbar=false autosize=false resizable=false titletext=MemberDetail";
+	var nLeft = 380;
+	var nTop = 50;
+	var nWidth = 500;
+	var nHeight = 550;					
+	trace("ds_userDetail : "+ this.ds_userDetail.saveXML());
+	application.open(strName, strFormURL, this.getOwnerFrame(), objParam, strOpenStyle, nLeft, nTop, nWidth, nHeight);					
+	
+}
+this.fn_grade = function(){
+	var grade =this.ds_userInfo.getColumn(0,"grade");
+	var chGrade="";
+	if(grade == '0'){
+		chGrade="관리자";
+	}else{
+		chGrade="일반회원";
+	}
+}
+
+//번호클릭
+this.div_paging_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	var viewPageNum = this.ds_paging.getColumn(0,"viewPageNum"); //보여줄 페이지 번호 갯수
+	
+	var iNo = new Number(obj.text);
+	var iFirstNum = (iNo-1) * viewPageNum + 1;
+	var iLastNum = iFirstNum + viewPageNum;
+	this.fn_memberSearch(iNo);
+	
+}
+
+
+//prev  클릭
+this.div_paging_prev_onclick = function(obj:Static,  e:nexacro.ClickEventInfo){
+		
+		this.member_iStartPageNo = this.member_iStartPageNo - 1;
+		// Transaction()코딩 할 부분
+			
+		this.fn_memberSearch((this.member_iStartPageNo*10)+1);
+		
+	}
+
+
+//next 클릭
+this.div_paging_next_onclick = function(obj:Static,  e:nexacro.ClickEventInfo){
+		
+		this.member_iStartPageNo = this.member_iStartPageNo + 1;
+		// Transaction()코딩 할 부분
+		
+		this.fn_memberSearch((this.member_iStartPageNo*10)+1);
+		
+	}
+	
+//페이지 셋팅
+this.fn_member_setPageNo = function(){
+
+		var endList = this.ds_paging.getColumn(0,"endList"); //끝 게시물 번호
+		var endPage = this.ds_paging.getColumn(0,"endPage"); //끝페이지 번호
+		var page = this.ds_paging.getColumn(0,"page"); //선택페이지
+		var startList = this.ds_paging.getColumn(0,"startList"); //시작게시물번호
+		var startPage = this.ds_paging.getColumn(0,"startPage"); // 시작페이지번호
+		var totalList = this.ds_paging.getColumn(0,"totalList"); //게시물 총수 
+		var totalPage = this.ds_paging.getColumn(0,"totalPage"); //총 페이지수
+		var viewListCount = this.ds_paging.getColumn(0,"viewListCount"); //보여질 게시물수
+		var viewPageNum = this.ds_paging.getColumn(0,"viewPageNum"); //보여줄 페이지 번호 갯수
+
+				
+		var sPage = this.member_iStartPageNo * viewPageNum;
+
+		// Prev 버튼 처리
+		if (this.member_iStartPageNo < 1)
+		{
+			this.Div02.stc_Prev.set_visible(false);
+		} 
+		else 
+		{
+			this.Div02.stc_Prev.set_visible(true);
+		}
+	   
+		// Next 버튼 처리
+		if (sPage+10 > totalPage)
+		{
+			this.Div02.stc_Next.set_visible(false);
+		}
+		else
+		{
+			this.Div02.stc_Next.set_visible(true);
+		}
+		
+		var position;
+		
+		// 인덱스 번호 처리
+			for (var i = 0; i < 10; i++) //화면에 보여줄 페이지 갯수
+		{
+		
+			this.Div02.components["stc_No"+i].set_visible(true);
+			this.Div02.components["stc_No"+i].set_text(sPage+i+1);
+	 
+			if ( sPage+i+1 > totalPage)
+			{
+				this.Div02.components["stc_No"+i].set_visible(false);
+				position = i;
+			} 
+			else 
+			{
+				this.Div02.components["stc_No"+i].set_visible(true);
+
+			}
+			
+			
+		}
+
+		var test = 28.8+position*0.8+"%";
+		this.Div02.set_left(test);	
+	}
+
+
+
+]]></Script>
+  </Form>
+</FDL>

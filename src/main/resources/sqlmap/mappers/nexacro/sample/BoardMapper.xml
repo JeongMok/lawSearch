@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.lawmapper.service.dao.BoardMapper">
+	<insert id="boardInsert" >
+	<![CDATA[	 
+		 INSERT INTO
+				T_BOARD(
+				BNO,
+				USERID,
+				TITLE,
+				BODY,
+				WDATE,
+				PASSWORD,
+				BGROUP,
+				BORDER,
+				STEP,
+				WRITERNAME,
+				ISSHOW
+			) VALUES(
+				board_seq.nextval,
+				#{userId, jdbcType=VARCHAR},
+				#{title, jdbcType=VARCHAR},
+				#{body, jdbcType=VARCHAR},
+				sysdate,
+				#{password, jdbcType=VARCHAR},
+				board_seq.currval,
+				#{bOrder, jdbcType=INTEGER},
+				#{step, jdbcType=INTEGER},
+				#{writerName, jdbcType=VARCHAR},
+				#{isshow, jdbcType=CHAR}
+			)
+	]]>				
+	</insert>
+	
+	<select id="boardSearch" resultType="board.lawmapper.vo.BoardVo" parameterType="board.lawmapper.vo.BoardVo">
+		
+		SELECT
+			X.RNUM, 
+			BNO AS bNo,
+			USERID AS userId,
+			LPAD('└─ ',4*(STEP),'   ') || TITLE AS title,
+			BODY AS body,
+			WDATE AS wDate,
+			PASSWORD AS password,
+			BGROUP AS bGroup,
+			BORDER AS bOrder,
+			STEP AS step,
+			WRITERNAME AS writerName,
+			ISSHOW AS isshow
+		FROM(	
+			SELECT
+				ROWNUM AS RNUM,
+				A.BNO,
+				A.USERID,
+				A.TITLE,
+				A.BODY,
+				A.WDATE,
+				A.PASSWORD,
+				A.BGROUP,
+				A.BORDER,
+				A.STEP,
+				A.WRITERNAME,
+				A.ISSHOW		
+			FROM(		
+				SELECT
+					ROWNUM AS RNUM,
+					BNO,
+					USERID,
+					TITLE,
+					BODY,
+					WDATE,
+					PASSWORD,
+					BGROUP,
+					BORDER,
+					STEP,
+					WRITERNAME,
+					ISSHOW
+				FROM
+					T_BOARD
+				WHERE
+					ISSHOW = #{isshow, jdbcType=CHAR}
+					<if test="userId != null">
+						AND
+						USERID LIKE '%'||#{userId, jdbcType=VARCHAR}||'%'
+					</if>
+					<if test="title != null">
+						AND
+						TITLE LIKE '%'||#{title, jdbcType=VARCHAR}||'%'		
+					</if>
+					<if test="body != null">
+						AND
+						BODY LIKE '%'||#{body, jdbcType=VARCHAR}||'%'		
+					</if>	
+				ORDER BY
+					BGROUP DESC,
+					BORDER) A
+			WHERE
+				<![CDATA[
+				ROWNUM <= #{endList, jdbcType=INTEGER}) X
+				]]>
+		WHERE
+			X.RNUM >= #{startList, jdbcType=INTEGER}
+	</select>
+
+	<update id="ReplyPlus" parameterType="board.lawmapper.vo.BoardVo">
+		UPDATE
+			T_BOARD 
+		SET
+			<![CDATA[
+			BORDER = BORDER+1
+			]]>
+		WHERE
+			BGROUP = #{bGroup, jdbcType=INTEGER}
+			AND
+			<![CDATA[
+			BORDER >= #{bOrder, jdbcType=INTEGER}
+			]]>
+	</update>
+	
+	<insert id="boardReply">
+		INSERT INTO
+			T_BOARD(
+			BNO,
+			USERID,
+			TITLE,
+			BODY,
+			WDATE,
+			PASSWORD,
+			BGROUP,
+			BORDER,
+			STEP,
+			WRITERNAME,
+			ISSHOW
+		) VALUES(
+			board_seq.nextval,
+			#{userId, jdbcType=VARCHAR},
+			#{title, jdbcType=VARCHAR},
+			#{body, jdbcType=VARCHAR},
+			sysdate,
+			#{password, jdbcType=VARCHAR},
+			#{bGroup, jdbcType=INTEGER},
+			#{bOrder, jdbcType=INTEGER},
+			#{step, jdbcType=INTEGER},
+			#{writerName, jdbcType=VARCHAR},
+			#{isshow, jdbcType=CHAR}
+		)
+	</insert>
+	
+	<update id="boardDelete" parameterType="board.lawmapper.vo.BoardVo">
+		UPDATE 
+			T_BOARD
+	    SET
+	    	ISSHOW=#{isshow}
+	    WHERE 
+	    	BNO=#{bNo}
+	</update>
+	
+	<select id="boardCount" resultType="integer" parameterType="board.lawmapper.vo.BoardVo">
+		SELECT
+			COUNT(*)
+		FROM
+			T_BOARD
+		WHERE
+			ISSHOW='Y'
+			<if test="userId != null">
+				AND
+				USERID LIKE '%'||#{userId, jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="title != null">
+				AND
+				TITLE LIKE '%'||#{title, jdbcType=VARCHAR}||'%'		
+			</if>
+			<if test="body != null">
+				AND
+				BODY LIKE '%'||#{body, jdbcType=VARCHAR}||'%'		
+			</if>
+	</select>
+	
+	<update id="boardUpdate" parameterType="board.lawmapper.vo.BoardVo">
+		UPDATE
+			T_BOARD
+		SET
+			BODY = #{body, jdbcType=VARCHAR},
+			TITLE = #{title, jdbcType=VARCHAR}
+		WHERE
+			BNO = #{bNo, jdbcType=INTEGER} 
+	</update>
+	
+</mapper>

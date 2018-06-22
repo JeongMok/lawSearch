@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Login" classname="Login" left="0" top="0" width="519" height="759" onload="form_onload" style="background:transparent;" onsize="Login_onsize" titletext="Login" scrollbars="none">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="아 이 디" left="9.25%" top="90" right="81.31%" height="30"/>
+        <Static id="Static01" taborder="1" text="비 밀 번 호" onclick="Static01_onclick" left="9.44%" top="249" right="76.88%" height="33"/>
+        <Static id="Static02" taborder="2" text="비 밀 번 호 확인" left="9.44%" top="290" right="72.25%" height="38"/>
+        <Static id="Static03" taborder="3" text="주 소" onclick="Static03_onclick" left="9.25%" top="345" right="81.31%" height="30"/>
+        <Static id="Static04" taborder="4" text="핸 드 폰 번 호" onclick="Static03_onclick" left="9.25%" top="384" right="74.57%" height="30"/>
+        <Static id="Static05" taborder="5" text="이 메 일" onclick="Static03_onclick" left="9.25%" top="440" right="81.31%" height="30"/>
+        <Static id="Static06" taborder="6" text="성 별" onclick="Static03_onclick" left="9.44%" top="490" right="81.12%" height="30"/>
+        <Static id="Static07" taborder="7" text="생 년 월 일" onclick="Static03_onclick" left="9.44%" top="530" right="76.88%" height="30"/>
+        <Static id="Static08" taborder="8" text="이 름" onclick="Static03_onclick" left="9.25%" top="146" right="81.31%" height="30"/>
+        <Static id="Static09" taborder="9" text="영 문 이 름" onclick="Static03_onclick" left="9.44%" top="192" right="74.57%" height="32"/>
+        <Edit id="ed_id" taborder="10" left="32.18%" top="90" right="36.99%" height="24"/>
+        <Edit id="ed_name" taborder="11" left="32.18%" top="144" right="36.99%" height="24"/>
+        <Edit id="ed_ename" taborder="12" left="32.18%" top="192" right="36.99%" height="24"/>
+        <Edit id="ed_password" taborder="13" left="32.18%" top="249" right="36.99%" height="24"/>
+        <Edit id="ed_passwordchk" taborder="14" left="32.18%" top="306" right="36.99%" height="24"/>
+        <Edit id="ed_address" taborder="15" left="32.18%" top="345" right="36.99%" height="24"/>
+        <Edit id="ed_phone" taborder="16" left="32.18%" top="384" right="36.99%" height="24"/>
+        <Edit id="ed_email" taborder="17" left="32.18%" top="440" right="36.99%" height="24"/>
+        <Edit id="ed_birth" taborder="18" left="32.18%" top="536" right="36.99%" height="24"/>
+        <Radio id="rd_sex" taborder="19" innerdataset="@gds_sex" codecolumn="CD" datacolumn="CDNM" direction="vertical" left="21.97%" top="493" right="53.37%" height="21"/>
+        <Button id="btn_join" taborder="20" text="가 입" left="13.29%" top="580" right="73.8%" height="31"/>
+        <Button id="btn_cancel" taborder="21" text="취 소" left="50.67%" top="580" right="36.99%" height="31"/>
+        <Button id="btn_check" taborder="22" text="중복검사" left="64.74%" top="90" right="21.58%" height="25"/>
+        <Button id="btn_reset" taborder="23" text="리 셋" left="32.37%" top="580" right="55.3%" height="31"/>
+        <Button id="btn_search" taborder="24" text="아이디/비밀번호 찾기" left="63.2%" top="19" right="8.86%" height="29"/>
+        <Button id="btn_login" taborder="25" text="로 그 인" left="47.98%" top="19" right="38.92%" height="29"/>
+        <Static id="Static10" taborder="26" text="*4~10자리 영문과 숫자만 가능" left="31.98%" top="114" right="29.67%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static11" taborder="27" text="*2글자 이상 한글로만 입력가능" left="31.98%" top="168" right="29.67%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static12" taborder="28" text="*영어만 입력가능" left="31.98%" top="218" right="29.67%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static13" taborder="29" text="*6글자 이상 영문,숫자,특수기호 사용가능" left="31.98%" top="272" right="26.01%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static14" taborder="30" text="*이메일 형식으로 등록 ex)xxx@xxx.com" left="31.98%" top="464" right="26.01%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static15" taborder="31" text="*10자리 이상 숫자만 등록 가능" left="31.98%" top="410" right="26.01%" height="30" style="color:tomato;font:8 Dotum;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* SYSTEM      : 넥사크로플랫폼 PackageB
+* BUSINESS    : 넥사크로플랫폼 PackageB
+* FILE NAME   : Login.xfdl
+* PROGRAMMER  : 
+* DATE        : 
+* DESCRIPTION : 로그인 화면
+*------------------------------------------------------------------
+* MODIFY DATE   PROGRAMMER			DESCRIPTION
+*------------------------------------------------------------------
+* 
+*------------------------------------------------------------------
+***********************************************************************************/
+
+/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+/***********************************************************************************
+* Global/Local Variable
+***********************************************************************************/
+
+
+/***********************************************************************************
+* Form Event
+***********************************************************************************/
+/**
+ * form onload 함수
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+
+
+ 
+/***********************************************************************************
+* User Function
+***********************************************************************************/
+
+/**
+* form onsize
+* @return 
+* @example
+* @memberOf public
+*/ 
+
+
+/***********************************************************************************
+* Component Event
+***********************************************************************************/
+
+/**
+* 프레임 open
+* @return 
+* @example
+* @memberOf public
+*/ 
+]]></Script>
+  </Form>
+</FDL>

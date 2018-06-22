@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_33" classname="V_LAW_33" left="0" top="0" width="800" height="579" titletext="New Form" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Button id="Button00" taborder="10" onclick="Button00_onclick" left="46.5%" top="529" right="33.5%" height="37" style="image:URL('img::bnt_print.png');background:transparent;border:0 solid #808080ff ;"/>
+        <Button id="Button01" taborder="11" text="닫기" onclick="Button01_onclick" left="71.33%" top="529" right="3.67%" height="37" style="background:transparent;border:0 solid #808080ff ;font:12 Dotum;"/>
+        <Div id="Div00" taborder="12" left="0%" top="0" right="0%" height="529">
+          <Layouts>
+            <Layout width="800" height="529">
+              <Static id="Static02" taborder="0" text="법률 용어명" left="3.25%" top="14" right="73.13%" height="23" style="font:bold 12 arial;"/>
+              <TextArea id="dictword" taborder="1" wordwrap="char" oneditclick="Div01_TextArea02_oneditclick" enable="false" left="3.25%" top="44" right="0.25%" height="28" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:9 Dotum;}"/>
+              <Static id="Static00" taborder="2" text="법률사전" left="3%" top="70" right="76.25%" height="42" style="font:bold 12 arial;"/>
+              <TextArea id="code" taborder="3" wordwrap="char" oneditclick="Div01_TextArea02_oneditclick" enable="false" left="3.25%" top="108" right="0.75%" height="28" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:9 Dotum;}"/>
+              <Static id="Static03" taborder="4" text="출처" left="3.25%" top="142" right="73.13%" height="23" style="font:bold 12 arial;"/>
+              <TextArea id="source" taborder="5" wordwrap="char" oneditclick="Div01_TextArea02_oneditclick" enable="false" left="3.25%" top="172" right="0.75%" height="44" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:9 Dotum;}"/>
+              <Static id="Static01" taborder="6" text="법률 정의" left="3.25%" top="216" right="76%" height="42" style="font:bold 12 arial;"/>
+              <TextArea id="text" taborder="7" wordwrap="char" enable="false" left="3.13%" top="261" right="0.38%" height="267" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:10 Dotum;}"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dict_list">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item3" compid="Div00.dictword" propid="value" datasetid="ds_dict_list" columnid="dictword"/>
+      <BindItem id="item2" compid="Div00.code" propid="value" datasetid="ds_dict_list" columnid="dictwordCodename"/>
+      <BindItem id="item4" compid="Div00.code" propid="" datasetid="ds_dict_list" columnid=""/>
+      <BindItem id="item1" compid="Div00.source" propid="value" datasetid="ds_dict_list" columnid="dictwordSource"/>
+      <BindItem id="item0" compid="Div00.text" propid="value" datasetid="ds_dict_list" columnid="mainText"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.ds_dict_list.deleteAll();
+	this.ds_dict_list.copyData(this.parent.ds_dict_list);
+} 
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	system.print(this.Div00,false,"left", false);
+}
+
+this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

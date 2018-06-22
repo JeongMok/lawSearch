@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_PDL_026" classname="V_PDL_026" left="0" top="0" width="600" height="400" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="소송관리번호 조회" left="1%" top="8" width="98.33%" height="35" style="align:center top;padding:10 0 0 10;"/>
+        <Div id="Div01" taborder="1" left="0.83%" top="44" width="98.17%" height="44" style="background:lavenderblush;border:1 solid #c8c8c8ff ;">
+          <Layouts>
+            <Layout>
+              <Div id="Div00" taborder="7" left="0.51%" top="4" width="98.98%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="37.31%" top="4" width="38%" height="25" style="selectbackground:blue;"/>
+                    <Combo id="Combo00" taborder="1" text="Combo00" left="13.82%" top="4" height="25" width="22.45%"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Button id="Button00" taborder="9" text="검색" left="75.64%" top="9" width="8.52%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="2" useinputpanel="false" left="0.83%" top="95" height="296" width="98.17%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="소송관리번호"/>
+                <Cell col="1" text="심급"/>
+                <Cell col="2" text="심급명"/>
+                <Cell col="3" text="원피고구분"/>
+                <Cell col="4" text="원피고명"/>
+                <Cell col="5" text="소송담당자명"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

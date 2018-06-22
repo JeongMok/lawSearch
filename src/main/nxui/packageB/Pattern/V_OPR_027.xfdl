@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_027" classname="V_OPR_027" left="0" top="0" width="600" height="450" titletext="New Form" style="background:teal;">
+    <Layouts>
+      <Layout>
+        <Div id="div1" taborder="0" left="-0.17%" top="24" right="0%" height="426" style="background:white;border:0 none #808080ff ;">
+          <Layouts>
+            <Layout width="1267" height="700">
+              <Static id="Static02" taborder="0" text="법령 부칙 등록" onclick="div_contents_Static01_onclick" left="1.68%" top="6" right="59.93%" height="50" style="align:middle;font:24 Dotum;"/>
+              <Static id="sta_lawId01" taborder="1" text="법령 ID" left="1.01%" top="59" right="83.5%" height="26" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="sta_showDate" taborder="2" text="부칙 공포 일자" onclick="div_contents_stc_02_onclick" left="1.01%" top="94" right="83.5%" height="33" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="sta_subKey" taborder="3" text="부칙키" left="1.01%" top="141" right="83.5%" height="27" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="sta_showNo" taborder="4" text="부칙 공포 번호" left="1.01%" top="186" right="83.5%" height="27" style="border:1 solid #edededff ;align:center middle;"/>
+              <Edit id="edt_lawId" taborder="5" left="18%" top="62" right="58.67%" height="21" style="border:1 solid gray ;" displaynulltext="ID를 입력하세요."/>
+              <Edit id="edt_subKey" taborder="6" displaynulltext="부칙키를 입력하세요." left="18.01%" top="143" right="58.59%" height="21" style="border:1 solid gray ;"/>
+              <Edit id="edt_showDate" taborder="7" left="18.01%" top="100" right="58.59%" height="21" style="border:1 solid gray ;"/>
+              <Edit id="edt_showNo" taborder="8" left="18%" top="190" right="58.67%" height="21" style="border:1 solid gray ;" oneditclick="div1_edt_lawId01_oneditclick"/>
+              <Static id="sta_mainText00" taborder="9" text="부칙 내용" left="44.61%" top="56" right="41.08%" height="27" style="border:1 solid #edededff ;align:center middle;"/>
+              <TextArea id="txa_mainText" taborder="10" wordwrap="char" left="44.61%" top="90" right="3.37%" height="272" style="border:1 solid gray ;"/>
+              <Button id="Button00" taborder="11" text="법령 부칙 등록" left="79.97%" top="29" right="3.37%" height="33" onclick="div1_Button00_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_close" taborder="2" text="닫기" left="86.33%" top="407" right="3.5%" height="28" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="div1.edt_lawId" propid="value" datasetid="ds_lawsubtext" columnid="lawid"/>
+      <BindItem id="item1" compid="div1.edt_subKey" propid="value" datasetid="ds_lawsubtext" columnid="subkey"/>
+      <BindItem id="item2" compid="div1.edt_showDate" propid="value" datasetid="ds_lawsubtext" columnid="showdate"/>
+      <BindItem id="item4" compid="div1.edt_showNo" propid="value" datasetid="ds_lawsubtext" columnid="showno"/>
+      <BindItem id="item3" compid="div1.txa_mainText" propid="value" datasetid="ds_lawsubtext" columnid="maintext"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_lawsubtext">
+        <ColumnInfo>
+          <Column id="lawid" type="STRING" size="50"/>
+          <Column id="subkey" type="STRING" size="50"/>
+          <Column id="showdate" type="STRING" size="50"/>
+          <Column id="showno" type="STRING" size="50"/>
+          <Column id="maintext" type="STRING" size="4000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();
+   
+} 
+//저장버튼 클릭시
+this.div1_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_save("save");
+}
+//저장
+this.fn_save = function(strid)
+{
+	var lawId = this.div1.edt_lawId.value;
+			if(lawId == null){
+				alert("법령 ID를 입력하세요");
+				return;
+			}
+			
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "lawSubtext.do",			 
+			  inds :["ds_lawsubtext = ds_lawsubtext"],
+			  outds :[
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    var save = confirm("저장하시겠습니까 ?");
+	
+	if(save){
+		Iject.transaction(this,oDatas,function(){
+		
+			if(this.errorcode < 0)
+			{
+				alert("법령 ID가 중복 되었습니다.");
+				//this.opener.fn_search(1);
+				//Iject.alert(this.errorMsg,"알림")				
+				return;
+			}
+			alert("저장 완료");
+		});
+	}else{
+		alert("취소 되었습니다.");
+	}
+}
+
+//닫기 클릭
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

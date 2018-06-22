@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="code.lawmapper.service.mapper.CodeMapper">
+
+	<resultMap type="code.lawmapper.vo.CodeVO" id="CodeVoResult"></resultMap>
+
+	<insert id="insertCode">
+		INSERT 
+			INTO PD_LAW_CMM_CODE_DETAIL 
+				(CLASS_CODE, 
+				 CODE_NO, 
+				 CODE_NAME, 
+				 CODE_NAME2, 
+				 CODE_ENG_NAME,
+				 ETC_CODE1, 
+				 ETC_CODE2, 
+				 CODE_DESC, 
+				 USE_YN, SORT_SEQ, 
+				 REGIST_TIME, 
+				 REGIST_ID,
+			 	 UPDATE_TIME, 
+			 	 UPDATE_ID, 
+			 	 LAST_MODY_TIME, 
+			 	 HIGHER_CLASS_CODE, 
+			 	 HIGHER_CODE_NO)
+		VALUES(
+			#{class_code,jdbcType=VARCHAR},
+			#{code_no,jdbcType=VARCHAR},
+			#{code_name,jdbcType=VARCHAR},
+			#{code_name2,jdbcType=VARCHAR},
+			#{code_eng_name,jdbcType=VARCHAR},
+			#{etc_code1,jdbcType=VARCHAR},
+			#{etc_code2,jdbcType=VARCHAR},
+			#{code_desc,jdbcType=VARCHAR},
+			#{use_yn,jdbcType=VARCHAR},
+			#{sort_seq,jdbcType=VARCHAR},
+			sysdate,
+			#{regist_id,jdbcType=VARCHAR},
+			sysdate,
+			#{modify_id,jdbcType=VARCHAR},
+			sysdate,
+			#{higher_class_code,jdbcType=VARCHAR},
+			#{higher_code_no,jdbcType=VARCHAR}
+			)
+	</insert>
+	
+	<delete id="deleteCode">
+		DELETE 
+		FROM 
+			PD_LAW_CMM_CODE_DETAIL 
+		WHERE 
+			CLASS_CODE=#{class_code} 
+			AND 
+			CODE_NO=#{code_no}
+	</delete>
+	
+	<update id="updateCode">
+		UPDATE 
+			PD_LAW_CMM_CODE_DETAIL 
+			SET 
+			CODE_NAME=#{code_name,jdbcType=VARCHAR}, 
+			CODE_NAME2=#{code_name2,jdbcType=VARCHAR}, 
+			CODE_ENG_NAME=#{code_eng_name,jdbcType=VARCHAR},
+			ETC_CODE1=#{etc_code1,jdbcType=VARCHAR}, 
+			ETC_CODE2=#{etc_code2,jdbcType=VARCHAR}, 
+			CODE_DESC=#{code_desc,jdbcType=VARCHAR},
+			USE_YN=#{use_yn,jdbcType=VARCHAR}, 
+			SORT_SEQ=#{sort_seq,jdbcType=VARCHAR}, 
+			UPDATE_TIME=sysdate,
+			UPDATE_ID=#{modify_id,jdbcType=VARCHAR},
+			LAST_MODY_TIME=sysdate,
+			HIGHER_CLASS_CODE=#{higher_class_code,jdbcType=VARCHAR},
+			HIGHER_CODE_NO=#{higher_code_no,jdbcType=VARCHAR} 
+		WHERE 
+			CLASS_CODE=#{class_code} 
+			AND 
+			CODE_NO=#{code_no} 
+	</update>
+	
+	<select id="selectCodelist" parameterType="String" resultMap="CodeVoResult">
+		SELECT A.CLASS_CODE, 
+			   A.CODE_NO, 
+			   A.CODE_NAME, 
+			   A.CODE_NAME2, 
+			   A.CODE_ENG_NAME,
+               A.ETC_CODE1, 
+               A.ETC_CODE2, 
+               A.CODE_DESC, 
+               A.USE_YN, 
+               A.SORT_SEQ,
+               A.REGIST_TIME, 
+               A.REGIST_ID,
+               A.UPDATE_TIME AS modify_time, 
+               A.UPDATE_ID AS modify_id, 
+               A.LAST_MODY_TIME, 
+               A.HIGHER_CLASS_CODE, 
+               A.HIGHER_CODE_NO
+          FROM PD_LAW_CMM_CODE_DETAIL A, 
+          	   PD_LAW_TAB_CODE_MASTER B
+          WHERE A.CLASS_CODE=#{class_code,jdbcType=VARCHAR} AND A.CLASS_CODE=B.CLASS_CODE
+	</select>
+	
+	<select id="AllCodelist" resultMap="CodeVoResult">
+		SELECT 
+			A.CLASS_CODE,
+			A.CODE_NO, 
+			A.CODE_NAME, 
+			A.CODE_NAME2, 
+			A.CODE_ENG_NAME,
+			A.ETC_CODE1, 
+			A.ETC_CODE2, 
+			A.CODE_DESC, 
+			A.USE_YN, 
+			A.SORT_SEQ,  
+			A.REGIST_TIME, 
+			A.REGIST_ID,
+            A.UPDATE_TIME AS modify_time, 
+            A.UPDATE_ID AS modify_id, 
+            A.LAST_MODY_TIME, 
+            A.HIGHER_CLASS_CODE, 
+            A.HIGHER_CODE_NO
+      	FROM 
+      		PD_LAW_CMM_CODE_DETAIL A, 
+      	   	PD_LAW_TAB_CODE_MASTER B
+      	WHERE 
+      		A.CLASS_CODE=B.CLASS_CODE
+	</select>
+
+</mapper>

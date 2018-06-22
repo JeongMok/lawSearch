@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_BOD_001" classname="V_LAW_020" left="0" top="0" width="1002" height="728" titletext="New Form" onload="V_BOD_001_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_search" taborder="0" left="3.09%" top="72" right="2.79%" height="41" style="border:1 solid darkgray ;font:15 Dotum;">
+          <Layouts>
+            <Layout width="1230" height="49">
+              <Static id="static_condition" taborder="0" text="검색 조건" left="0.96%" top="7" right="92.03%" height="27" style="color:dimgray;font:9 Dotum;"/>
+              <Combo id="cmb_searchCondition" taborder="1" left="9.27%" top="8" right="76.29%" height="23" style="font:9 Dotum;" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="선택하세요">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">0</Col>
+                      <Col id="datacolumn">작성자</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">1</Col>
+                      <Col id="datacolumn">제목</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">2</Col>
+                      <Col id="datacolumn">내용</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edit_searchKeyword" taborder="2" left="24.14%" top="9" right="49.68%" height="22" displaynulltext="검색내용을 입력하세요." style="color:dimgray;padding:0 0 0 10;font:9 Dotum;" oneditclick="div_search_edit_searchKeyword_oneditclick" onkeyup="div_search_edit_searchKeyword_onkeyup"/>
+              <Button id="btm_search" taborder="3" text="조 회" left="90.54%" top="9" right="1.17%" height="22" style="background:#f92929ff;border:1 solid #f92929ff ;color:#ffffffff;bordertype:round 3 3 ;font:bold 10 arial;cursor:pointer;" onclick="div_search_btm_search_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_searchList" taborder="1" left="3.09%" top="119" right="2.79%" height="577" style="border:1 solid darkgray ;">
+          <Layouts>
+            <Layout>
+              <Static id="static_result" taborder="0" text="검색 결과" left="2.31%" top="15" right="88.2%" height="28" style="color:dimgray;font:11 Dotum;"/>
+              <Grid id="grid_searchList" taborder="1" useinputpanel="false" left="1.28%" top="42" right="1.17%" height="464" style="border:2 solid #9f8f71ff,0 none #808080ff,1 solid #9f8f71ff,0 none #808080ff;" binddataset="ds_board" oncelldblclick="grid_searchList_oncellclick" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="74"/>
+                      <Column size="149"/>
+                      <Column size="502"/>
+                      <Column size="192"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="43"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="글번호"/>
+                      <Cell col="1" text="작성자"/>
+                      <Cell col="2" text="제목"/>
+                      <Cell col="3" text="작성일"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:bNo"/>
+                      <Cell col="1" text="bind:writerName"/>
+                      <Cell col="2" style="align:left;padding:0 0 0 20;" text="bind:title"/>
+                      <Cell col="3" displaytype="normal" edittype="date" text="bind:wDate" mask="yyyy-MM-dd HH:mm:ss"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="static_searchCount" taborder="2" text="총 : 0 건" left="91.82%" top="22" right="2.02%" height="17" style="color:dimgray;"/>
+              <Div id="div_page" taborder="3" text="Div00" left="23.38%" top="529" right="23.49%" height="31" style="border:0 solid #808080ff ;" onclick="div_searchList_div_page_onclick">
+                <Layouts>
+                  <Layout width="500" height="31">
+                    <Static id="stc_Prev" taborder="10" text="&lt;&lt;" left="13.86%" top="6" right="81.12%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_prev_onclick" visible="false"/>
+                    <Static id="stc_No0" taborder="0" text="1" left="20.48%" top="6" right="74.7%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No1" taborder="1" text="2" left="27.11%" top="6" right="68.27%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No2" taborder="11" text="3" left="33.73%" top="6" right="61.85%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No3" taborder="9" text="4" left="40.16%" top="6" right="55.22%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No4" taborder="8" text="5" left="46.59%" top="6" right="48.59%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No5" taborder="7" text="6" left="53.01%" top="6" right="41.97%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No6" taborder="6" text="7" left="59.64%" top="6" right="35.54%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No7" taborder="5" text="8" left="66.27%" top="6" right="28.92%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No8" taborder="4" text="9" left="72.89%" top="6" right="22.49%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_No9" taborder="3" text="10" left="79.32%" top="6" right="16.06%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_onclick" visible="true"/>
+                    <Static id="stc_next" taborder="2" text="&gt;&gt;" left="85.74%" top="6" right="9.44%" height="20" style="align:center middle;cursor:hand;" onclick="div_paging_next_onclick" visible="false"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="2" text="문의(답변) 게시판" left="3.13%" top="31" right="77.34%" height="25" style="padding:0 0 0 10;font:bold 16 arial;"/>
+        <Button id="btn_newInsert" taborder="3" text="새글 작성" left="88.72%" top="648" right="4.09%" height="31" style="background:#444444ff;border:1 solid #444444ff ;color:#ffffffff;bordertype:round 0 0 ;cursor:pointer;" onclick="btn_newInsert_onclick" position="absolute"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_board">
+        <ColumnInfo>
+          <Column id="bNo" type="INT" size="50" description="NO"/>
+          <Column id="userId" type="STRING" size="50" description="사용자ID"/>
+          <Column id="writerName" type="STRING" size="50" description="작성자이름"/>
+          <Column id="title" type="STRING" size="200" description="제목"/>
+          <Column id="body" type="STRING" size="4000" description="본문"/>
+          <Column id="wDate" type="STRING" size="200" description="작성일"/>
+          <Column id="password" type="STRING" size="50" description="패스워드"/>
+          <Column id="bGroup" type="INT" size="5" description="그룹"/>
+          <Column id="bOrder" type="INT" size="5" description="정렬순서"/>
+          <Column id="step" type="INT" size="5" description="스텝"/>
+          <Column id="isshow" type="STRING" size="1" description="화면표시여부"/>
+          <Column id="startPage" type="INT" size="5" description="페이징 시작번호"/>
+          <Column id="endPage" type="INT" size="5" description="페이징 끝번호"/>
+          <Column id="totalPage" type="INT" size="5" description="총 페이지수"/>
+          <Column id="page" type="INT" size="5" description="선택 페이지"/>
+          <Column id="viewPageNum" type="INT" size="5" description="보여줄 게시물수"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="string" size="32"/>
+          <Column id="MENU_SEQ" type="int" size="4"/>
+          <Column id="MENU_OPTP" type="string" size="32"/>
+          <Column id="PAGE_URL" type="string" size="32"/>
+          <Column id="MENU_TOP" type="string" size="32"/>
+          <Column id="MENU_ID" type="string" size="32"/>
+          <Column id="MENU_GRP" type="string" size="32"/>
+          <Column id="CREATE_DT" type="string" size="32"/>
+          <Column id="MENU_LEVEL" type="int" size="4"/>
+          <Column id="PAGE_ID" type="string" size="32"/>
+          <Column id="PAGE_NAME" type="string" size="32"/>
+          <Column id="MENU_ARGS" type="string" size="32"/>
+          <Column id="MENU_STAT" type="string" size="32"/>
+          <Column id="CREATE_USER" type="string" size="32"/>
+          <Column id="UPDATE_DT" type="string" size="32"/>
+          <Column id="UPDATE_USER" type="string" size="32"/>
+          <Column id="MENU_DESC" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <ConstColumn id="pageIndex" type="INT" size="1" value=""/>
+          <ConstColumn id="pageSize" type="INT" size="5" value=""/>
+          <ConstColumn id="pageUnit" type="INT" size="5" value=""/>
+          <Column id="writerName" type="STRING" size="100"/>
+          <Column id="title" type="STRING" size="100"/>
+          <Column id="body" type="STRING" size="256"/>
+          <Column id="page" type="INT" size="5"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="writerName"/>
+            <Col id="title"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_paging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="5"/>
+          <Column id="endPage" type="INT" size="5"/>
+          <Column id="page" type="INT" size="5"/>
+          <Column id="startList" type="INT" size="5"/>
+          <Column id="startPage" type="INT" size="5"/>
+          <Column id="totalList" type="INT" size="5"/>
+          <Column id="totalpage" type="INT" size="5"/>
+          <Column id="viewListCount" type="INT" size="5"/>
+          <Column id="viewPageNum" type="INT" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.fv_iStartPageNo = 0; // 전체 페이지 순서
+this.fv_iMaxPageNum = 10;  // 화면에 보여줄 최대 Page번호 갯수
+
+this.V_BOD_001_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.ds_menu.assign(application.gds_hiddenMenu);
+	Iject.formOnload(obj);
+	
+	var check = application.gds_search.rowcount;
+	
+	if(check > 0 ){
+
+		var savePage = application.gds_index.getColumn(0,"savePage");
+		this.fv_iStartPageNo = savePage;
+		this.fn_gdsSearch();
+		
+	}else{
+		this.fn_search(1);
+	}
+	
+	this.div_searchList.static_searchCount.value();
+}
+
+//새글작성
+this.btn_newInsert_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+	this.fn_goPage(0);
+}
+
+//상세보기
+this.grid_searchList_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	application.gds_board.clearData();
+	application.gds_board.addRow();
+	
+	var nToRow = 0;
+	var nFromRow = e.row;	//선택 row
+	
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	var test=application.gds_board.copyRow(nToRow, this.ds_board, nFromRow);
+	
+	this.fn_goPage(2);
+	
+}
+
+//화면 전환 
+this.fn_goPage = function(page)
+{
+	var oObj = {
+          ds    : this.ds_menu,    // 메뉴 dataset 
+          nRow  : page,              // 선택된 
+          oArgs : []               // 넘길 argument
+    };
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+	application.gds_index.clearData();
+	application.gds_index.addRow();
+
+	var nToRow = 0;
+	var savePage = this.fv_iStartPageNo;	//화면 페이징값 저장	
+	application.gds_index.setColumn(nToRow,"savePage",savePage)  //선택한 row위치의 값들을 검색용 ds에 복사하기
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Iject.Mdi.call(this,oObj);
+    //trace("이동 체크 :"+oObj.nRow);
+}
+
+//검색 기록 값 조회
+this.fn_gdsSearch = function(){
+
+		this.ds_search.clearData();
+		this.ds_search.addRow();
+		
+		var nToRow = 0;
+		var nFromRow = 0;	
+		
+		//선택한 row위치의 값들을 검색용 ds에 복사하기
+		var test=this.ds_search.copyRow(nToRow, application.gds_search, 0);
+		
+		var oDatas = { 
+		svcid : "search",
+		sController : "boardSearch.do",
+		inds : ["ds_search = ds_search"],
+		outds : ["ds_board = ds_board","ds_paging = ds_paging"],
+		args : [],
+		bAsync : false,
+		nDataTyep : 0, //xml 타입
+		bCompress : false,
+	}
+	
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   alert(this.errorMsg,"알림");			
+		   return;
+		}
+//	trace(" ds_t_board : " + pThis.ds_t_board.saveXML()); // 화면 출력
+	var pThis = this.fobj;   //form object
+	
+	pThis.fn_setDate(); //총 갯수
+	});
+	//this.fn_SetStyle();
+	//this.div_searchList.div_page.stc_No0.style.set_color("red");
+	this.fn_SetPageNo();
+}
+
+
+
+//검색
+this.fn_search = function(page)
+{
+	
+	this.ds_board.clearData();	
+	
+	var nowPage = page; // 선택페이지	
+	this.ds_search.setColumn(0,"page",nowPage); 
+	
+////////////////////////////////////////////////////////////////////////	
+	//검색 기록
+	application.gds_search.clearData();
+	application.gds_search.addRow();
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	application.gds_search.copyRow(0, this.ds_search, 0);
+	var test = application.gds_search.setColumn(0,"page",nowPage);
+///////////////////////////////////////////////////////////////////////	
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+	//페이징 기록  저장하기
+	application.gds_index.clearData();
+	application.gds_index.addRow();
+
+	var nToRow = 0;
+	var savePage = this.fv_iStartPageNo;	//화면 페이징값 저장	
+	application.gds_index.setColumn(nToRow,"savePage",savePage)  //선택한 row위치의 값들을 검색용 ds에 복사하기
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	var oDatas = { 
+		svcid : "search",
+		sController : "boardSearch.do",
+		inds : ["ds_search = ds_search"],
+		outds : ["ds_board = ds_board","ds_paging = ds_paging"],
+		args : [],
+		bAsync : false,
+		nDataTyep : 0, //xml 타입
+		bCompress : false,
+	}
+	
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   alert(this.errorMsg,"알림");			
+		   return;
+		}
+//	trace(" ds_t_board : " + pThis.ds_t_board.saveXML()); // 화면 출력
+	var pThis = this.fobj;   //form object
+	
+	pThis.fn_setDate(); //총 갯수
+	});
+
+	this.fn_SetPageNo();
+}
+
+//카운터 
+this.fn_setDate = function(){
+
+	var count = this.ds_paging.getColumn(0,5);
+	this.div_searchList.static_searchCount.set_text("총 : " +count+" 건");
+}
+
+//조회
+this.div_search_btm_search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fv_iStartPageNo = 0;
+	this.fn_search_key();
+}
+
+//조회 기록 남기기
+this.fn_search_key = function(){
+	
+	this.ds_search.clearData();
+	var rowIdx = this.ds_search.addRow();
+	
+    var searchKeyword = this.div_search.edit_searchKeyword.value;    	
+    
+    trace("searchCondition :"+this.div_search.cmb_searchCondition.value);
+    trace("searchKeyword : "+this.div_search.edit_searchKeyword.value);
+		
+    //콤보박스 선택에 따른 검색키워드 보내기
+    if(this.div_search.cmb_searchCondition.value == 0){
+		this.ds_search.setColumn(rowIdx,"writerName", searchKeyword);
+ 	}else if(this.div_search.cmb_searchCondition.value== 1){
+ 		this.ds_search.setColumn(rowIdx,"title", searchKeyword);
+ 	}else if(this.div_search.cmb_searchCondition.value== 2){
+ 		this.ds_search.setColumn(rowIdx,"body", searchKeyword);
+	}else if(this.div_search.cmb_searchCondition.value== null){
+		alert("검색조건을 선택해 주세요");
+	}
+	
+//////////////////////////////////////////////////////////////////////////	
+// 	application.gds_search.clearData();
+// 	application.gds_search.addRow();
+// 	var nToRow = 0;
+// 	var nFromRow = 0;	//선택 row
+// 	//선택한 row위치의 값들을 검색용 ds에 복사하기
+// 	var test=application.gds_search.copyRow(nToRow, this.ds_search, 0);
+//////////////////////////////////////////////////////////////////////////
+
+	this.fn_SetStyle();
+	this.div_searchList.div_page.stc_No0.style.set_color("red");	
+	this.fn_search(1);
+}
+
+//엔터처리
+this.div_search_edit_searchKeyword_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.fn_search_key();
+	}
+}
+
+//페이징 처리
+//번호 클릭
+this.div_paging_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	var viewPageNum = this.ds_paging.getColumn(0,8); //보여줄 페이지 번호 갯수
+	
+	var iNo = new Number(obj.text);
+	var iFirstNum = (iNo-1) * viewPageNum + 1;
+	var iLastNum = iFirstNum + viewPageNum;
+	
+	this.fn_SetStyle();
+	obj.style.set_color("red");
+	this.fn_search(iNo);
+
+}
+
+//prev 클릭
+this.div_paging_prev_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	this.fv_iStartPageNo = this.fv_iStartPageNo - 1;
+	// Transaction()코딩 할 부분
+	this.fn_SetStyle();	
+	this.fn_search((this.fv_iStartPageNo*10)+1);
+	this.div_searchList.div_page.stc_No0.style.set_color("red");
+}
+
+//next 클릭
+this.div_paging_next_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	this.fv_iStartPageNo = this.fv_iStartPageNo + 1;
+	// Transaction()코딩 할 부분
+	this.fn_SetStyle();	
+	this.fn_search((this.fv_iStartPageNo*10)+1);
+	this.div_searchList.div_page.stc_No0.style.set_color("red");
+}
+
+this.fn_SetPageNo = function()
+{
+
+	var endList = this.ds_paging.getColumn(0,0); //끝 게시물 번호
+ 	var endPage = this.ds_paging.getColumn(0,1); //끝페이지 번호
+ 	var page = this.ds_paging.getColumn(0,2); //선택페이지
+ 	var startList = this.ds_paging.getColumn(0,3); //시작게시물번호
+ 	var startPage = this.ds_paging.getColumn(0,4); // 시작페이지번호
+ 	var totalList = this.ds_paging.getColumn(0,5); //게시물 총수 
+ 	var totalPage = this.ds_paging.getColumn(0,6); //총 페이지수
+ 	var viewListCount = this.ds_paging.getColumn(0,7); //보여질 게시물수
+ 	var viewPageNum = this.ds_paging.getColumn(0,8); //보여줄 페이지 번호 갯수
+ 	
+ 	trace("totalPage:"+totalPage);
+ 	
+ 	var sPage = this.fv_iStartPageNo * viewPageNum;
+ 
+   	// Prev 버튼 처리
+   	if (this.fv_iStartPageNo < 1)
+   	{
+		trace(this.fv_iStartPageNo);
+   		this.div_searchList.div_page.stc_Prev.set_visible(false);
+   	} 
+   	else 
+   	{
+   		this.div_searchList.div_page.stc_Prev.set_visible(true);
+   	}
+   
+   	// Next 버튼 처리
+   	if (sPage+10 > totalPage)
+   	{
+		this.div_searchList.div_page.stc_next.set_visible(false);
+   	}
+   	else
+   	{
+   		this.div_searchList.div_page.stc_next.set_visible(true);
+   	}
+
+ 	// 인덱스 번호 처리
+ 	 	for (var i = 0; i < 10; i++) //화면에 보여줄 페이지 갯수
+ 	{
+	
+ 		this.div_searchList.div_page.components["stc_No"+i].set_visible(true);
+ 		this.div_searchList.div_page.components["stc_No"+i].set_text(sPage+i+1);
+ 
+ 		if ( sPage+i+1 > totalPage)
+ 		{
+ 			this.div_searchList.div_page.components["stc_No"+i].set_visible(false);			
+ 		} 
+ 		else 
+ 		{
+ 			this.div_searchList.div_page.components["stc_No"+i].set_visible(true);			
+ 		}
+ 	}	
+}
+
+//스타일
+this.fn_SetStyle = function()
+{
+	for (var i = 0; i < this.fv_iMaxPageNum; i++)
+	{
+		this.div_searchList.div_page.components["stc_No"+i].style.set_color("blue");			
+	}	
+}]]></Script>
+  </Form>
+</FDL>

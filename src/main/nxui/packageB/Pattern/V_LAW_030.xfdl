@@ -1,0 +1,683 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_030" classname="DictWordList_keyword" left="0" top="0" width="1000" height="280" titletext="법률용어 키워드 검색" onload="dict_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_keyword" taborder="0" left="0.1%" top="0" height="278" width="999">
+          <Layouts>
+            <Layout width="250" height="650">
+              <Edit id="edt_keyword" taborder="0" left="59.96%" top="11" right="10.91%" height="27" onkeyup="keyword_onkeyup"/>
+              <Button id="btn_keyword" taborder="1" left="91.69%" top="11" right="1.6%" height="27" onclick="div_keyword_btn_keyword_onclick" onkeyup="keyword_onkeyup" style="image:URL('img::btn_MF_Search.png');background:transparent;"/>
+              <Static id="Static00" taborder="10" text="검색어" left="52.25%" top="11" right="40.64%" height="27"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd_dictwordlist" taborder="1" useinputpanel="false" left="0%" top="43" height="213" binddataset="ds_dict_list" autofittype="col" width="100%" cellclickbound="control" oncellclick="dictwordlist_oncellclick" onheadclick="ckb_onheadclick" fillareatype="linerow">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="250"/>
+                <Column size="300"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="법률용어"/>
+                <Cell col="1" text="출처"/>
+                <Cell col="2" text="법률사전"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:left middle;" text="bind:dictword"/>
+                <Cell col="1" style="align:left middle;" text="bind:dictwordSource"/>
+                <Cell col="2" text="bind:dictwordCodename"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_paging" taborder="2" left="0%" top="300" right="0%" bottom="-20"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dict_list" onrowposchanged="ds_dict_list_onrowposchanged">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search" onload="fn_initPageSet">
+        <ColumnInfo>
+          <Column id="dictKeyword" type="STRING" size="256"/>
+          <Column id="dictwordCodeSearch" type="STRING" size="256"/>
+          <Column id="orderby" type="INT" size="4"/>
+          <Column id="totalPage" type="INT" size="4"/>
+          <Column id="countList" type="INT" size="4"/>
+          <Column id="countPage" type="INT" size="4"/>
+          <Column id="page" type="INT" size="4"/>
+          <Column id="startPage" type="INT" size="4"/>
+          <Column id="endPage" type="INT" size="4"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dict_content">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256" description="법령용어명"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_filter">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dict_kind">
+        <ColumnInfo>
+          <Column id="dictwordCode" type="STRING" size="100"/>
+          <Column id="dictwordCodeName" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="dictwordCode">011401</Col>
+            <Col id="dictwordCodeName">법령용어</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011402</Col>
+            <Col id="dictwordCodeName">법령정의</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011403</Col>
+            <Col id="dictwordCodeName">법령영어</Col>
+          </Row>
+          <Row>
+            <Col id="dictwordCode">011405</Col>
+            <Col id="dictwordCodeName">생활용어</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_chk">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div_keyword.edt_keyword" propid="value" datasetid="ds_search" columnid=""/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+var chkbxStr = "";
+var parents=this.parent.parent.parent;
+this.dict_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	
+	var countList=10;
+	var countPage=10;
+	var page=1;
+	this.ds_search.setColumn(0,"countList",countList);
+	this.ds_search.setColumn(0,"countPage",countPage);
+	this.ds_search.setColumn(0,"page",page);
+	
+	this.fn_keywordSetting();
+	this.fn_DB_search();
+	
+   var grade = application.gds_userInfo.getColumn(0,"grade");
+  if(grade != "0"){
+    this.div_keyword.btn_exportExcel.set_visible(false);
+	this.div_keyword.btn_importExcel.set_visible(false);
+  }else{
+	this.div_keyword.btn_exportExcel.set_visible(true);
+	this.div_keyword.btn_importExcel.set_visible(true);
+  }
+	
+	
+}
+this.div_keyword_btn_keyword_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+	this.fn_keywordSetting();
+	this.fn_DB_search();
+}
+this.fn_keywordSetting = function(){
+	keyword = this.div_keyword.edt_keyword.value;
+	if(keyword == undefined || keyword == null){
+		keyword="";
+	}
+	keyword = nexacro.trim(keyword);
+	//trace("키워드 : "+keyword);
+	
+	var nToRow = 0;
+	this.ds_search.setColumn(nToRow, "dictKeyword", keyword);
+	this.ds_search.setColumn(nToRow, "dictwordCodeSearch",chkbxStr);
+	this.ds_search.setColumn(0,"page",1);
+}
+this.fn_DB_modify = function(){
+	var oDatas = {
+		svcid: "update",
+		sController: "dicSearchUpdateVO.do",
+		inds:["ds_dict_list=ds_dict_list:U"],
+		outds:[],
+		args:[],
+		bAsync:false,
+		nDataType:0,
+		bCompress:false
+	};
+	
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode<0){
+			Iject.alert(this.errormsg);
+			return ;
+		}
+		var pThis = this.fobj;
+		trace("this.ds_dict_list : " + pThis.ds_dict_list.saveXML());
+	});
+}
+this.fn_DB_search = function(){
+	var oDatas = {
+		svcid: "select",
+		sController: "dicSearchSelectVO.do",
+		inds:["ds_search=ds_search"],
+		outds:["ds_dict_list=ds_dict_list, ds_search=ds_search"],
+		args:[],
+		bAsync:false,
+		nDataType:0,
+		bCompress:false
+	};
+	
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode<0){
+			Iject.alert(this.errormsg);
+			return ;
+		}
+		var pThis = this.fobj;
+		trace("this.ds_dict_list : " + pThis.ds_dict_list.saveXML());
+		trace("페이징 소스 값 : "+pThis.ds_search.saveXML());
+	});
+}
+
+//페이지 숫자 클릭시 페이지 이동
+this.page_click = function(pagenum){
+	var pnum = 0;
+	pnum = pagenum;
+	trace("페이지 갱신 정보 여부 : "+pnum);
+	this.ds_search.setColumn(0,"page",pnum);
+	this.fn_DB_search();
+};
+
+//페이징 처리
+this.div_pagingButton_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo){
+	var objName = obj.name.split('paging_btn_');
+	this.fn_page(objName[1]);
+};
+//페이징 숫자버튼 클릭시 이동
+this.div_pagingNumber_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo){
+	this.fn_page(obj.text);
+}
+//버튼 셋팅
+this.fn_initPageSet = function(){
+	this.div_paging.destroy();
+	var objDiv = new Div("div_paging","absolute","0%",258,null,32,"0%",null);
+	this.addChild("div_paging", objDiv);
+	objDiv.show();
+	trace("페이징 영역 생성 중");
+	this.initPageSet(this.ds_search);
+}
+this.initPageSet = function(objDs){
+	var startPage = objDs.getColumn(0,"startPage");
+	var endPage = objDs.getColumn(0,"endPage");
+	var totalPage = objDs.getColumn(0,"totalPage");
+	var page = objDs.getColumn(0,"page");
+	var countPage = objDs.getColumn(0,"countPage");
+	trace("시작 페이지 : "+startPage+", 끝 페이지 : "+endPage);
+	var fWidth = this.width;
+	var sDivPagingWidth =(45*4+10+10)+(10+10)+(countPage*50);
+	
+	//parentPage.div_paging.setOffsetWidth(sDivPagingWidth);
+	
+	var btnLeft= (fWidth-sDivPagingWidth)/2;
+	var btnTop =2;
+	var btnWidth =45;
+	var btnHeight = 21;
+	var i= startPage;
+	var j= endPage;
+	
+	//처음으로 버튼
+	if(page !=1 && totalPage >1){
+		var objBtnId = "paging_btn_First";
+		var objButton = new Button(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		objButton.style.set_border("0px none black");
+		objButton.style.set_background("none");
+		this.div_paging.addChild(objBtnId, objButton);
+		this.div_paging.paging_btn_First.set_text("처음");
+		this.div_paging.paging_btn_First.set_enable(true);
+		this.div_paging.paging_btn_First.addEventHandler("onclick",this.div_pagingButton_onclick,this);
+		this.div_paging.paging_btn_First.show();
+	}
+	btnLeft = btnLeft +45+10;
+
+	//이전버튼 생성
+	if(page > 5){
+		var prevButton = new Button();
+		var prevBtnId = "paging_btn_Prev";
+		prevButton.init(prevBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		prevButton.style.set_border("0px none black");
+		prevButton.style.set_background("none");
+		prevButton.set_text("이전");
+		prevButton.set_enable(true);
+		prevButton.addEventHandler("onclick",this.div_pagingButton_onclick,this);
+		this.div_paging.addChild(prevBtnId, prevButton);
+		prevButton.show();
+	}
+	btnLeft = btnLeft +45+10;
+	
+	if(totalPage > 1){
+		for(i; i<=j; i++){
+			var objButton = new Button();
+			var objBtnId = "paging_btn_"+i;
+			objButton.init(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+			objButton.style.set_border("0px none black");
+			objButton.style.set_background("none");
+			objButton.set_text(i);
+			if(page==i){
+				objButton.set_enable(false);
+			}else{
+				objButton.set_enable(true);
+			}
+			objButton.addEventHandler("onclick", this.div_pagingNumber_onclick, this);
+			
+			this.div_paging.addChild(objBtnId,objButton);
+			objButton.show();
+			btnLeft = btnLeft+45+5;
+		}
+	}
+	
+	btnLeft = btnLeft+10;
+	//다음버튼
+	if(endPage != totalPage){
+		var nextButton = new Button();
+		var nextBtnId = "paging_btn_Next";
+		nextButton.init(nextBtnId, "absolute", btnLeft, btnTop, btnWidth, btnHeight, null, null);
+		nextButton.style.set_border("0px none black");
+		nextButton.style.set_background("none");
+		nextButton.set_text("다음");
+		nextButton.set_enable(true);
+		nextButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(nextBtnId,nextButton);
+		nextButton.show();
+	}
+		btnLeft = btnLeft+45+10;
+	//마지막 버튼
+	if(page < totalPage && totalPage > 1){
+		var lastButton = new Button();
+		var lastBtnId = "paging_btn_Last";
+		lastButton.init(lastBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		lastButton.style.set_border("0px none black");
+		lastButton.style.set_background("none");
+		lastButton.set_text("끝");
+		lastButton.set_enable(true);
+		lastButton.addEventHandler("onclick", this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(lastBtnId,lastButton);
+		lastButton.show();
+	}
+	
+	trace("페이징 영역 버튼 생성 완료");
+}
+	this.fn_page = function (btnText){
+		var objNum = 1;
+		//trace("버튼 클릭 번호 : "+btnText);
+		if(btnText=='First'){
+			objNum = 1;
+		}else if(btnText=='Prev'){
+			objNum=this.ds_search.getColumn(0,"startPage")-1;
+		}else if(btnText=='Last'){
+			objNum=this.ds_search.getColumn(0,"totalPage");
+		}else if(btnText=='Next'){
+			objNum=this.ds_search.getColumn(0,"endPage")+1;
+		}else{
+			objNum=btnText;
+		}
+		//trace("이동할 페이지 : "+objNum);
+		this.page_click(objNum);
+	};
+
+this.ds_dict_list_onrowposchanged = function(obj:Dataset, e:nexacro.DSRowPosChangeEventInfo)
+{
+	var clickedRow = this.ds_dict_list.getColumn(e.newrow, "dictword");
+	this.ds_filter.setColumn(0,"dictword",clickedRow);
+	trace("복사된 필터 데이터  : "+this.ds_filter.getColumn(0,"dictword"));
+	var oDatas = {
+		svcid : "selectOne",
+		sController : "dicSearchSelectOneVO.do",
+		inds : ["ds_dict_list=ds_filter"],
+		outds : ["ds_dict_content=ds_dict_content"],
+		args : [],
+		bAsync : false,
+		nDataType : 0,
+		bCompress : false
+	};
+	
+	
+	Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+			Iject.alert(this.errorMsg);
+			return;
+		}
+		var pThis = this.fobj;
+		trace("this.ds_dict_content"+pThis.ds_dict_content.saveXML());		
+	});
+		
+		this.parent.parent.parent.ds_dict_content.copyRow(0,this.ds_dict_content,0);
+		trace("@@"+this.parent.parent.parent.ds_dict_content.saveXML());
+}
+
+
+
+//체크박스 전체
+this.div_keyword_CheckBox00_onclick = function(obj:CheckBox,  e:nexacro.ClickEventInfo)
+{
+	obj.enableevent = false;
+	var div_keyword_list = this.div_keyword.components;
+	var i=0;
+	var existanceChk=true;
+	
+	//전체 체크박스 선택시
+	if(obj.value == true){
+		while(existanceChk){
+			var chkbx;
+			if(i<10){
+				chkbx=div_keyword_list["CheckBox0"+i];
+			}else{
+				chkbx=div_keyword_list["CheckBox"+i];
+			}
+			
+			if(chkbx === undefined || chkbx === null){
+				existanceChk=false;
+			}else{
+				chkbx.set_value(true);
+				if(chkbx != div_keyword_list["CheckBox00"]){
+					this.fn_CheckBox_onclick(chkbx);
+				}
+			}
+			i++;
+		}	
+		
+	}else if(obj.value == false){
+		while(existanceChk){
+			var chkbx;
+			if(i<10){
+				chkbx = div_keyword_list["CheckBox0"+i];
+			}else{
+				chkbx = div_keyword_list["CheckBox"+i];
+			}
+			
+			if(chkbx === undefined || chkbx === null){
+				existanceChk = false;
+			}else{
+				chkbx.set_value(false);
+			}
+			i++;
+		}
+		chkbxStr="";
+	}
+	obj.enableevent = true;
+}
+//체크박스 선택시 온클릭
+this.fn_CheckBox_onclick = function(obj:CheckBox,  e:nexacro.ClickEventInfo)
+{
+	obj.enableevent = false;
+	var div_keyword_list = this.div_keyword.components;
+	
+	var str = this.ds_dict_kind.getColumn(this.ds_dict_kind.findRow("dictwordCodeName",obj.text),"dictwordCode");
+	trace("현재 선택한 체크박스 값 : "+str);
+	if(str == undefined || str == null){
+		str="";
+	}
+	var i=0;
+	var chkCnt=0;
+	var existanceChk = true;
+	if(obj.value == true){
+		//체크박스 개수 세기
+		chkbx = div_keyword_list["CheckBox00"];
+		if(chkbx.value){
+		chkCnt++;
+		}
+		chkbx = div_keyword_list["CheckBox01"];
+		if(chkbx.value){
+		chkCnt++;
+		}
+		chkbx = div_keyword_list["CheckBox02"];
+		if(chkbx.value){
+		chkCnt++;
+		}
+		chkbx = div_keyword_list["CheckBox03"];
+		if(chkbx.value){
+		chkCnt++;
+		}
+		chkbx = div_keyword_list["CheckBox04"];
+		if(chkbx.value){
+		chkCnt++;	
+ 		}
+// 		while(existanceChk){
+// 			var chkbx;
+// 			if(i<10){
+// 				chkbx = div_keyword_list["CheckBox0"+i];
+// 			}else{
+// 				chkbx = div_keyword_list["CheckBox"+i];
+// 			}
+// 			if(chkbx == undefined || chkbx == null){
+// 				existanceChk = false;
+// 			}else{
+// 				if(chkbx.value){
+// 					chkCnt++;
+// 				}
+// 			}
+// 			i++;
+// 		}
+
+		//체크값이 모두 true 면 전체 값 true 변경
+		if(chkCnt==4){
+			this.div_keyword.CheckBox00.set_value(true);
+			if(chkbxStr.indexOf("/"+str) == -1){chkbxStr = chkbxStr + "/"+str;}
+		}else if(chkCnt!=4 && chkbxStr.indexOf("/"+str) == -1){
+			chkbxStr = chkbxStr + "/" + str;
+		}
+		
+		
+	}else if(obj.value == false){
+		var chkCnt = 4;
+		//체크박스 개수 세기
+// 		while(existanceChk){
+// 			var chkbx;
+// 			if(i<10){
+// 				chkbx = div_keyword_list["CheckBox0"+i];
+// 			}else{
+// 				chkbx = div_keyword_list["CheckBox"+i];
+// 			}
+// 			if(chkbx == undefined || chkbx == null){
+// 				existanceChk = false;
+// 			}else{
+// 				if(!chkbx.value){
+// 					chkCnt--;
+// 				}
+// 			}
+// 			i++;
+// 		}
+
+		chkbx = div_keyword_list["CheckBox00"];
+		if(!chkbx.value){
+		chkCnt--;
+		}
+		chkbx = div_keyword_list["CheckBox01"];
+		if(!chkbx.value){
+		chkCnt--;
+		}
+		chkbx = div_keyword_list["CheckBox02"];
+		if(!chkbx.value){
+		chkCnt--;
+		}
+		chkbx = div_keyword_list["CheckBox03"];
+		if(!chkbx.value){
+		chkCnt--;
+		}
+		chkbx = div_keyword_list["CheckBox04"];
+		if(!chkbx.value){
+		chkCnt--;	
+ 		}
+
+		if(chkCnt!=4){
+			this.div_keyword.CheckBox00.set_value(false);
+			chkbxStr = chkbxStr.replace("/"+str,"");
+		};
+	}
+	
+	obj.enableevent = true;
+	trace("체크된 값 : "+chkbxStr);
+}
+
+
+
+this.div_keyword_CheckBox04_onclick = function(obj:CheckBox,  e:nexacro.ClickEventInfo)
+{
+	
+}
+
+this.fn_export = function(){
+
+	var ds=this.ds_chk;
+	var oGrid = this.div_keyword.Grid00;
+	var dToday = new Date();
+	var cnt=0;
+	ds.clearData();
+	for(var i=0; i<this.ds_dict_list.rowcount; i++){									
+		if(this.ds_dict_list.getColumn(i,"chk")!=undefined && this.ds_dict_list.getColumn(i,"chk")!=0){
+			trace("체크값");
+			ds.addRow();
+			trace(ds.getRowCount()-1);
+			ds.copyRow(ds.getRowCount()-1,this.ds_dict_list,i);
+			cnt++;
+		}
+	}
+	if(cnt==0){
+		alert("1개 이상의 행을 선택해주세요.");
+		return false;
+	}	
+
+	var oDatas = {
+			svcid: "select",
+			sController: "exportExcel.do",
+			inds:["ds_chk=ds_chk"],
+			outds:["ds_chk=ds_chk"],
+			args:[],
+			bAsync:false,
+			nDataType:0,
+			bCompress:false
+		};
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode<0){
+			Iject.alert(this.errormsg);
+			return ;
+		}
+		var pThis = this.fobj;
+		//trace("this.ds_dict_list : " + pThis.ds_dict_list.saveXML());
+		//trace("페이징 소스 값 : "+pThis.ds_search.saveXML());
+	});		
+	return true;
+}
+
+this.exportExcel = function()
+{
+	//var oGrid = this.grd_list;
+	
+	var ds=this.ds_chk;
+	var oGrid = this.div_keyword.Grid00;
+	var dToday = new Date();
+	var sSvcUrl = application.services["svcurl"].url+"XExportImport.do";
+	var strSheet = "sheet";
+	var strExportFileName =   dToday.getTime() + "_" + this.name;
+
+	var exportObj = new ExcelExportObject();			
+	//this.filterGrid.setBindDataset(this.filter);
+
+	exportObj.clear();
+	exportObj.addEventHandler("onsuccess", this.exportEnd,  this);
+	exportObj.addEventHandler("onerror", this.exportEnd,  this);
+	exportObj.set_exporttype(nexacro.ExportTypes.EXCEL2007);
+	exportObj.set_exportuitype("exportprogress") // set
+	exportObj.set_exporturl(sSvcUrl);
+	exportObj.set_exportfilename(strExportFileName);
+					
+		oGrid = oGrid;
+		sSheetName = strSheet+"1";
+		exportObj.addExportItem(nexacro.ExportItemTypes.GRID, oGrid,  sSheetName + "!A1","allband","allrecord","suppress","allstyle","background","font", "both");
+		
+	
+
+	exportObj.exportData();
+
+}
+
+this.div_keyword_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.open("modeless_lawSub","Pattern::V_OPR_025.xfdl",this.getOwnerFrame(), 
+	{mode:'modeless'}, "showtitlebar=false", 300, 20, 900, 600);
+}
+
+
+
+this.keyword_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	if ( e.keycode == 13 )
+	{
+		this.fn_keywordSetting();
+		this.fn_DB_search();
+	}
+}
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	parents.div_contents.edt_source.set_readonly(false);
+	parents.div_contents.edt_text.set_readonly(false);
+}
+
+this.save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var list = this.ds_dict_list;
+	var content = parents.ds_dict_content;
+	
+	this.ds_dict_list.copyRow(list.rowposition,content,content.rowposition);
+	this.fn_DB_modify();
+	
+	parents.div_contents.edt_source.set_readonly(true);
+	parents.div_contents.edt_text.set_readonly(true);
+}
+]]></Script>
+  </Form>
+</FDL>

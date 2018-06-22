@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="searchlaw.lawmapper.service.dao.SearchLawMapper">
+	
+	<!-- 법령 구분명 -->
+    <resultMap id="lawClassName" type="searchlaw.lawmapper.vo.LawClassNameVO">
+        <result property="lawclassname" column="LAWCLASSNAME" />
+    </resultMap>
+    
+    <!-- 법령 정보 -->
+    <resultMap id="lawInfoList" type="searchlaw.lawmapper.vo.LawInfoVO">
+    	<!-- // T_LAWLIST --> 
+    	<result property="lawId" column="LAWID" />
+    	<result property="lawNo" column="LAWNO" />
+    	<result property="nowHistoryCode" column="NOWHISTORYCODE" />
+    	<result property="lawName" column="LAWNAME" />
+    	<result property="createDate" column="CREATEDATE" />
+    	<result property="createNo" column="CREATENO" />
+    	<result property="isModify" column="ISMODIFY" />
+    	<result property="careDept" column="CAREDEPT" />
+    	<result property="lawClassName" column="LAWCLASSNAME" />
+    	<result property="actDate" column="ACTDATE" />
+    	<result property="isSelf" column="ISSELF" />
+    	<result property="detailLink" column="DETAILLINK" />
+    	
+    	<!-- // T_LAWBASEINFO  -->
+    	<result property="cateNo" column="CATENO" />
+    	<result property="isShow" column="ISSHOW" />
+    	<result property="modifyText" column="MODIFYTEXT" jdbcType="CLOB" javaType="java.lang.String"/>
+    	<result property="modifyReason" column="MODIFYREASON" jdbcType="CLOB" javaType="java.lang.String"/>
+    	
+    	<!-- T_LAWSUBTEXT -->
+    	<result property="subKey" column="SUBKEY" />
+    	<result property="showDate" column="SHOWDATE" />
+    	<result property="showNo" column="SHOWNO"/>
+    	<result property="mainText" column="MAINTEXT" jdbcType="CLOB" javaType="java.lang.String"/>
+    </resultMap>
+    
+    <resultMap id="lawArticle" type="searchlaw.lawmapper.vo.LawInfoVO">
+    	<!-- T_LAWARTICLE -->
+    	<result property="lawId" column="LAWID" />
+    	<result property="articleKey" column="ARTICLEKEY" />
+    	<result property="articleNo" column="ARTICLENO" />
+    	<result property="name" column="NAME"/>
+    	<result property="actDate" column="ACTDATE"/>
+    	<result property="beforeMove" column="BEFOREMOVE"/>
+    	<result property="afterMove" column="AFTERMOVE"/>
+    	<result property="isModify" column="ISMODIFY"/>
+    	<result property="mainText" column="MAINTEXT"/>
+    	
+    	<!-- T_LAWITEM -->
+    	<result property="cate" column="CATE" />
+    	<result property="itemNo" column="ITEMNO"/>
+    	<result property="itemText" column="ITEMTEXT"/>
+    	<result property="higherItemNo" column="HIGHERITEMNO"/>
+    </resultMap>
+    
+    <!-- 법령구분명 SELECT -->
+    <select id="selectLawClassNameVOList" resultMap="lawInfoList">
+    	SELECT CODE_NAME AS LAWCLASSNAME
+		FROM PD_LAW_CMM_CODE_DETAIL
+		WHERE CLASS_CODE='LCN'
+    	ORDER BY CODE_NAME
+    </select>
+    
+    <!-- 법령 SEARCH -->
+    <select id="selectLawInfoVOList" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawInfoList">
+    	
+    	SELECT	*
+ 		FROM 	(SELECT 
+ 						<!-- RANK()OVER : ORDER BY 를 ROWNUM 보다 먼저 실행 -->
+ 						<!-- TO_NUMBER : LAWID 형변환 -->
+		 				(RANK()OVER(ORDER BY TO_NUMBER(T1.LAWID))) RNUM,
+		 				<!-- 현행법령목록 -->
+		        		T1.LAWID,
+		                T1.LAWNO,
+		                T1.NOWHISTORYCODE,
+		                T1.LAWNAME,
+		                T1.CREATEDATE,
+		                T1.CREATENO,
+		                T1.ISMODIFY,
+		                T1.CAREDEPT,
+		                T1.LAWCLASSNAME,
+		                T1.ACTDATE,
+		                T1.ISSELF,
+		                T1.DETAILLINK,
+		                <!-- 법령기본정보 -->
+		                T2.CATENO,
+		                T2.ISSHOW,
+		                T2.MODIFYTEXT,
+		                T2.MODIFYREASON
+        		FROM    T_LAWLIST T1
+		                LEFT OUTER JOIN T_LAWBASEINFO T2
+		                ON T1.LAWID = T2.LAWID
+		        WHERE	1=1
+        		<if test="searchLawClassName!=null and !searchLawClassName.equals('')">
+						AND LAWCLASSNAME = #{searchLawClassName}
+				</if>
+				<if test="searchCondition.equals('LAWNAME')">
+					<if test="searchKeyword!=null and !searchKeyword.equals('')">
+						AND LAWNAME LIKE '%' || #{searchKeyword} || '%'
+					</if>
+				</if>
+				<choose>
+					<when test="endDate != null">
+						<if test="startDate != null">
+							AND ACTDATE BETWEEN #{startDate} AND #{endDate}							
+						</if>
+						<if test="startDate == null">
+							<![CDATA[
+								AND ACTDATE < #{endDate}
+							]]>
+						</if>
+					</when>
+					<when test="endDate == null">
+						<if test="startDate != null">
+							<![CDATA[
+								AND ACTDATE > #{startDate}							
+							]]>							
+						</if>
+					</when>
+				</choose>
+		        )
+		WHERE 	RNUM 	BETWEEN #{firstIndex}+1 AND #{lastIndex}
+		
+    </select>
+    
+    <!-- 페이징을 위한 전체 COUNT -->
+    <select id="selectSampleCount" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultType="int">
+ 
+    	SELECT	COUNT(*) AS TOTALCOUNT
+		FROM 	T_LAWLIST
+        WHERE 	1=1
+        <if test="searchLawClassName!=null and !searchLawClassName.equals('')">
+				AND LAWCLASSNAME = #{searchLawClassName}
+		</if>
+		<if test="searchCondition.equals('LAWNAME')">
+			<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				AND LAWNAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</if>
+ 
+    </select>
+    
+    <!-- 부칙 SEARCH -->
+    <!-- <select id="selectLawSubList" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawInfoList">
+ 		
+ 		SELECT 	*
+ 		FROM   (
+ 				SELECT	LAWID,
+		    			SUBKEY,
+		    			SHOWDATE,
+		    			SHOWNO,
+		    			MAINTEXT,
+		    			RANK()OVER : ORDER BY 를 ROWNUM 보다 먼저 실행
+		 				TO_NUMBER : LAWID 형변환
+				 		(RANK()OVER(ORDER BY TO_NUMBER(SUBKEY))) RNUM
+				FROM 	T_LAWSUBTEXT
+		        WHERE 	LAWID 	= 	#{searchKeyword}
+		        )
+    	WHERE 	RNUM 	BETWEEN		#{firstIndex}+1 AND #{lastIndex}
+ 
+    </select> -->
+    <select id="selectLawSubList" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawInfoList">
+ 		
+ 		SELECT	LAWID,
+    			SUBKEY,
+    			SHOWDATE,
+    			SHOWNO,
+    			MAINTEXT,
+    			<!-- RANK()OVER : ORDER BY 를 ROWNUM 보다 먼저 실행 -->
+ 				<!-- TO_NUMBER : LAWID 형변환 -->
+		 		(RANK()OVER(ORDER BY TO_NUMBER(SUBKEY))) RNUM
+		FROM 	T_LAWSUBTEXT
+        WHERE 	LAWID 	= 	#{searchKeyword}
+ 
+    </select>
+    
+    <!-- 부칙 COUNT -->
+    <select id="selectLawSubCount" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultType="int">
+ 
+    	SELECT	COUNT(*) AS TOTALCOUNT
+		FROM 	T_LAWSUBTEXT
+        WHERE 	LAWID = #{searchKeyword}
+ 
+    </select>
+    
+    <!-- 조문 SEARCH -->
+    <select id="selectLawArticleList" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawArticle">
+ 		
+ 		SELECT 	*
+ 		FROM   (
+ 				SELECT	LAWID,
+						ARTICLEKEY,
+						ARTICLENO,
+						NAME,
+						ACTDATE,
+						BEFOREMOVE,
+						AFTERMOVE,
+						ISMODIFY,
+						MAINTEXT,
+		    			<!-- RANK()OVER : ORDER BY 를 ROWNUM 보다 먼저 실행 -->
+		 				<!-- TO_NUMBER : LAWID 형변환 -->
+				 		(RANK()OVER(ORDER BY TO_NUMBER(ARTICLEKEY))) RNUM
+				FROM 	T_LAWARTICLE
+		        WHERE 	LAWID 	= 	#{searchKeyword}
+		        )
+    	WHERE 	RNUM 	BETWEEN		#{firstIndex}+1 AND #{lastIndex}
+ 
+    </select>
+    
+    <!-- 조문 COUNT -->
+    <select id="selectLawArticleCount" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultType="int">
+ 
+    	SELECT	COUNT(*) AS TOTALCOUNT
+		FROM 	T_LAWARTICLE
+        WHERE 	LAWID = #{searchKeyword}
+ 
+    </select>
+    
+    <!-- 조문 항호목 계층형 SELECT -->
+    <select id="selectLawItemList" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawArticle">
+ 
+    	SELECT 	LAWID, 
+    			ARTICLEKEY, 
+    			ITEMNO, 
+    			HIGHERITEMNO,
+    			CATE,
+    			LPAD('  ',2*(LEVEL-1))||ITEMTEXT AS ITEMTEXT
+		FROM 	(
+				 SELECT	LAWID,
+				 		ARTICLEKEY, 
+		    			ITEMNO, 
+		    			HIGHERITEMNO,
+		    			CATE,
+		    			ITEMTEXT
+		         FROM 	T_LAWITEM
+		         WHERE 	LAWID = #{lawId} 
+		           AND 	ARTICLEKEY = #{articleKey}
+		        )
+		START 	WITH 	HIGHERITEMNO IS NULL 
+				OR 		HIGHERITEMNO = '0'
+		CONNECT BY PRIOR 	ITEMNO = HIGHERITEMNO
+		ORDER SIBLINGS BY ITEMNO
+ 
+    </select>
+    
+    <!-- 조문 전체 항호목 관련 KEY -->
+    <select id="searchArticleNo" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawArticle">
+ 
+    	SELECT	LAWID, ARTICLEKEY, MAINTEXT
+		FROM 	T_LAWARTICLE
+        WHERE 	LAWID = #{lawId}
+ 
+    </select>
+    
+        <!-- 조항호목 COUNT -->
+    <select id="getLawArticleCount" parameterType="searchlaw.lawmapper.vo.LawSearchVO" resultMap="lawArticle">
+	    SELECT (SELECT	COUNT(ARTICLEKEY)
+		        FROM 	T_LAWARTICLE
+		        WHERE 	LAWID = #{lawId}) 					AS JOCOUNT,
+		       (SELECT 	COUNT(CATE)
+		        FROM 	T_LAWITEM
+		        WHERE 	LAWID = #{lawId} AND CATE = 'PARA') AS HANGCOUNT,
+		       (SELECT 	COUNT(CATE)
+		        FROM 	T_LAWITEM
+		        WHERE 	LAWID = #{lawId} AND CATE = 'SUBP') AS HOCOUNT,
+		       (SELECT 	COUNT(CATE)
+		        FROM 	T_LAWITEM
+		        WHERE 	LAWID = #{lawId} AND CATE = 'ITEM') AS MOKCOUNT,
+		       (SELECT 	COUNT(SUBKEY)
+		        FROM 	T_LAWSUBTEXT
+				WHERE	LAWID = #{lawId}) 					AS SUBCOUNT
+		        
+		FROM 	DUAL
+	</select>
+    
+	<update id="updateLawList">
+ 
+    	UPDATE	T_LAWLIST
+    	SET		LAWNO = #{lawNo, jdbcType=VARCHAR},
+				NOWHISTORYCODE = #{nowHistoryCode, jdbcType=VARCHAR},
+				LAWNAME = #{lawName, jdbcType=VARCHAR},
+				CREATEDATE = #{createDate, jdbcType=VARCHAR},
+				CREATENO = #{createNo, jdbcType=VARCHAR},
+				ISMODIFY = #{isModify, jdbcType=VARCHAR},
+				CAREDEPT = #{careDept, jdbcType=VARCHAR},
+				LAWCLASSNAME = #{lawClassName, jdbcType=VARCHAR},
+				ACTDATE = #{actDate, jdbcType=VARCHAR},
+				ISSELF = #{isSelf, jdbcType=VARCHAR},
+				DETAILLINK = #{detailLink, jdbcType=VARCHAR}
+        WHERE 	LAWID = #{lawId}
+ 
+    </update>
+    
+    <update id="updateLawBase">
+ 
+    	UPDATE	T_LAWBASEINFO
+    	SET		CATENO = #{cateNo, jdbcType=VARCHAR},
+				ISSHOW = #{isShow, jdbcType=VARCHAR},
+				MODIFYTEXT = #{modifyText, jdbcType=CLOB},
+				MODIFYREASON = #{modifyReason, jdbcType=CLOB}
+        WHERE 	LAWID = #{lawId}
+
+    </update>
+    
+	<insert id="lawListInsert">
+    	INSERT 	INTO 	T_LAWLIST
+    			(LAWID,
+				 LAWNO,
+				 NOWHISTORYCODE,
+				 LAWNAME,
+				 CREATEDATE,
+				 CREATENO,
+				 ISMODIFY,
+				 CAREDEPT,
+				 LAWCLASSNAME,
+				 ACTDATE,
+				 ISSELF,
+				 DETAILLINK)
+    	VALUES	
+    			(#{lawId, jdbcType=VARCHAR},
+    			 #{lawNo, jdbcType=VARCHAR},
+    			 #{nowHistoryCode, jdbcType=VARCHAR},
+    			 #{lawName, jdbcType=VARCHAR},
+    			 #{createDate, jdbcType=VARCHAR},
+    			 #{createNo, jdbcType=VARCHAR},
+    			 #{isModify, jdbcType=VARCHAR},
+    			 #{careDept, jdbcType=VARCHAR},
+    			 #{lawClassName, jdbcType=VARCHAR},
+    			 #{actDate, jdbcType=VARCHAR},
+				 #{isSelf, jdbcType=VARCHAR},
+				 #{detailLink, jdbcType=VARCHAR})
+    </insert>
+    
+    
+</mapper>

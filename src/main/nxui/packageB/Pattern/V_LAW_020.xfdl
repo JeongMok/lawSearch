@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_020" classname="V_LAW_020" left="0" top="0" width="1000" height="725" titletext="New Form" onload="V_LAW_020_onload" style="color:cornflowerblue;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="2" text="법령 / 행정규칙 별표서식 목록" left="3.1%" top="23" right="66.6%" height="25" style="padding:0 0 0 10;font:bold 16 arial;"/>
+        <Tab id="tab_search" taborder="3" left="3.3%" top="62" right="3.5%" height="631" tabindex="0" scrollbars="autoboth">
+          <Tabpages>
+            <Tabpage id="tab_law_search" text="법령">
+              <Layouts>
+                <Layout>
+                  <Div id="div_searchList" taborder="0" left="3.12%" top="79" right="2.04%" height="503" style="border:1 solid darkgray ;">
+                    <Layouts>
+                      <Layout>
+                        <Static id="static_law_result" taborder="4" text="검색 결과" left="2.27%" top="15" right="88.18%" height="20" style="color:dimgray;font:11 Dotum;"/>
+                        <Grid id="grid_law_searchList" taborder="5" useinputpanel="false" left="2.27%" top="47" right="0.34%" height="392" style="border:2 solid #9f8f71ff,0 none #808080ff,1 solid #9f8f71ff,0 none #808080ff;" binddataset="ds_lawrefformlist" oncelldblclick="tab_search_tab_law_search_div_searchList_grid_law_searchList_oncelldblclick" oncellclick="tab_search_tab_law_search_div_searchList_grid_law_searchList_oncellclick">
+                          <Formats>
+                            <Format id="default">
+                              <Columns>
+                                <Column size="82"/>
+                                <Column size="97"/>
+                                <Column size="76"/>
+                                <Column size="603"/>
+                                <Column size="118"/>
+                                <Column size="77"/>
+                                <Column size="66"/>
+                                <Column size="115"/>
+                                <Column size="74"/>
+                                <Column size="75"/>
+                                <Column size="105"/>
+                                <Column size="149"/>
+                                <Column size="70"/>
+                              </Columns>
+                              <Rows>
+                                <Row size="24" band="head"/>
+                                <Row size="35"/>
+                              </Rows>
+                              <Band id="head">
+                                <Cell text="별표일련번호"/>
+                                <Cell col="1" text="관련법령일련번호"/>
+                                <Cell col="2" text="관련법령ID"/>
+                                <Cell col="3" text="별표명"/>
+                                <Cell col="4" text="관련법령명"/>
+                                <Cell col="5" text="별표 번호"/>
+                                <Cell col="6" text="별표종류"/>
+                                <Cell col="7" text="소관부처"/>
+                                <Cell col="8" text="공포일자"/>
+                                <Cell col="9" text="공포번호"/>
+                                <Cell col="10" text="재개정 구분명"/>
+                                <Cell col="11" text="법령종류"/>
+                                <Cell col="12" text="파일링크"/>
+                              </Band>
+                              <Band id="body">
+                                <Cell text="bind:refFormNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="1" text="bind:refLawNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="2" text="bind:refLawId" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="3" text="bind:refFormName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="4" text="bind:refLawName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="5" text="bind:refFormSecNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="6" text="bind:refFormClassName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="7" text="bind:careOrgName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="8" text="bind:proMulDate" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="9" text="bind:proMulNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="10" text="bind:changeClassName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="11" text="bind:refLawClassName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="12" displaytype="image" style="cursor:hand;" text="img::folder16.png" tooltiptext="다운로드"/>
+                              </Band>
+                            </Format>
+                          </Formats>
+                        </Grid>
+                        <Static id="static_law_resultCount" taborder="6" text="총 : 0 개" left="89.55%" top="15" right="0.91%" height="20" style="color:dimgray;align:right middle;font:9 Dotum;"/>
+                        <Div id="div_paging" taborder="7" left="17.84%" top="445" right="20.91%" height="47" style="border:0 none #808080ff ;">
+                          <Layouts>
+                            <Layout>
+                              <Static id="stc_Prev" taborder="0" text="&lt;&lt;" left="14.53%" top="12" right="80.45%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_law_paging_prev_onclick"/>
+                              <Static id="stc_No0" taborder="1" text="1" left="21.97%" top="12" right="73%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No1" taborder="2" text="2" left="27.93%" top="12" right="67.04%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No2" taborder="3" text="3" left="33.89%" top="12" right="61.08%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No3" taborder="4" text="4" left="39.85%" top="12" right="55.12%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No4" taborder="5" text="5" left="45.81%" top="12" right="49.16%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No5" taborder="6" text="6" left="51.77%" top="12" right="43.2%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No6" taborder="7" text="7" left="57.73%" top="12" right="37.24%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No7" taborder="8" text="8" left="63.69%" top="12" right="31.28%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_Next" taborder="10" text="&gt;&gt;" left="83.05%" top="12" right="11.92%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_law_paging_next_onclick"/>
+                              <Static id="stc_No8" taborder="11" text="9" left="69.65%" top="12" right="25.33%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                              <Static id="stc_No9" taborder="12" text="10" left="75.61%" top="12" right="19.37%" height="24" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_lawpaging_onclick"/>
+                            </Layout>
+                          </Layouts>
+                        </Div>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                  <Div id="div_law_search" taborder="1" text="법령 / 행정서식 검색" left="3.05%" top="24" right="1.96%" height="41" style="border:1 solid darkgray ;font:15 Dotum;">
+                    <Layouts>
+                      <Layout width="1230" height="49">
+                        <Static id="static_law_searchCondition" taborder="8" text="별표명 검색" left="0.92%" top="7" right="91.83%" height="27" style="color:dimgray;font:9 Dotum;"/>
+                        <Edit id="edit_law_searchKeyword" taborder="10" displaynulltext="검색내용을 입력하세요." left="9.86%" top="9" right="63.95%" height="22" style="color:dimgray;font:9 Dotum;" onkeyup="tab_search_tab_law_search_div_law_search_edit_law_searchKeyword_onkeyup"/>
+                        <Button id="but_law_search" taborder="11" text="조 회" left="91.5%" top="9" right="1.25%" height="22" style="background:#f92929ff;border:1 solid #f92929ff ;color:#ffffffff;bordertype:round 3 3 ;font:bold 10 arial;cursor:pointer;" onclick="tab_search_tab_law_search_div_law_search_but_law_search_onclick"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tab_govr_search" text="행정규칙">
+              <Layouts>
+                <Layout width="930" height="607">
+                  <Div id="div_govr_searchList" taborder="0" left="3.12%" top="79" right="2.04%" height="503" style="border:1 solid darkgray ;">
+                    <Layouts>
+                      <Layout>
+                        <Static id="static_govr_result" taborder="4" text="검색 결과" left="2.27%" top="15" right="88.18%" height="20" style="color:dimgray;font:11 Dotum;"/>
+                        <Grid id="grid_govr_searchList" taborder="5" useinputpanel="false" left="2.27%" top="47" right="0.34%" height="392" style="border:2 solid #9f8f71ff,0 none #808080ff,1 solid #9f8f71ff,0 none #808080ff;" binddataset="ds_govrefformlist" oncellclick="tab_search_tab_govr_search_div_govr_searchList_grid_govr_searchList_oncellclick" oncelldblclick="tab_search_tab_govr_search_div_govr_searchList_grid_govr_searchList_oncelldblclick">
+                          <Formats>
+                            <Format id="default">
+                              <Columns>
+                                <Column size="100"/>
+                                <Column size="161"/>
+                                <Column size="392"/>
+                                <Column size="103"/>
+                                <Column size="102"/>
+                                <Column size="141"/>
+                                <Column size="116"/>
+                                <Column size="115"/>
+                                <Column size="52"/>
+                              </Columns>
+                              <Rows>
+                                <Row size="24" band="head"/>
+                                <Row size="35"/>
+                              </Rows>
+                              <Band id="head">
+                                <Cell text="별표일련번호"/>
+                                <Cell col="1" text="관련행정규칙 일련번호"/>
+                                <Cell col="2" text="별표명"/>
+                                <Cell col="3" text="별표번호"/>
+                                <Cell col="4" text="별표종류"/>
+                                <Cell col="5" text="소관부처명"/>
+                                <Cell col="6" text="발행일자"/>
+                                <Cell col="7" text="행정규칙종류"/>
+                                <Cell col="8" text="파일링크"/>
+                              </Band>
+                              <Band id="body">
+                                <Cell text="bind:refFormNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="1" text="bind:refRuleNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="2" text="bind:refFormName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="3" text="bind:refFormSecNo" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="4" text="bind:refFormClassName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="5" text="bind:careOrgName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="6" text="bind:proMulDate" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="7" text="bind:refRuleClassName" tooltiptext="더블 클릭 하면 다운로드 가능합니다."/>
+                                <Cell col="8" displaytype="image" style="cursor:hand;" text="img::folder16.png" tooltiptext="다운로드"/>
+                              </Band>
+                            </Format>
+                          </Formats>
+                        </Grid>
+                        <Static id="static_govr_searchCount" taborder="6" text="총 : 0 개" left="88.64%" top="15" right="1.82%" height="20" style="color:dimgray;align:right middle;font:9 Dotum;"/>
+                        <Static id="div_paging" taborder="7" left="19.43%" top="447" right="19.32%" height="47" style="border:0 none #808080ff ;align:center middle;"/>
+                        <Static id="stc_Prev" taborder="8" text="&lt;&lt;" left="26.59%" top="458" right="70%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" visible="true" wordwrap="none" onclick="div_govr_paging_prev_onclick"/>
+                        <Static id="stc_No0" taborder="9" text="1" wordwrap="none" left="31.59%" top="458" right="65.57%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No1" taborder="10" text="2" left="35.23%" top="458" right="61.93%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No2" taborder="11" text="3" left="38.86%" top="458" right="58.3%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No3" taborder="12" text="4" left="42.5%" top="458" right="54.66%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No4" taborder="13" text="5" left="46.02%" top="458" right="51.14%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No5" taborder="14" text="6" left="49.55%" top="458" right="47.61%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No6" taborder="15" text="7" left="53.07%" top="458" right="44.09%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No7" taborder="16" text="8" left="56.59%" top="458" right="40.57%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No8" taborder="17" text="9" left="60.11%" top="458" right="37.05%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_No9" taborder="18" text="10" left="63.64%" top="458" right="33.52%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govrpaging_onclick"/>
+                        <Static id="stc_Next" taborder="19" text="&gt;&gt;" left="67.84%" top="458" right="28.75%" height="23" style="border:1 solid #b1c0cfff ;color:navy;align:center middle;cursor:hand;" onclick="div_govr_paging_next_onclick"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                  <Div id="div_govr_search" taborder="1" text="법령 / 행정서식 검색" left="3.05%" top="24" right="1.96%" height="41" style="border:1 solid darkgray ;font:15 Dotum;">
+                    <Layouts>
+                      <Layout width="1230" height="49">
+                        <Static id="static_govr_searchCondition" taborder="8" text="별표명 검색" left="0.92%" top="7" right="91.83%" height="27" style="color:dimgray;font:9 Dotum;"/>
+                        <Edit id="edit_govr_searchKeyword" taborder="10" displaynulltext="검색내용을 입력하세요." left="9.86%" top="9" right="63.95%" height="22" style="color:dimgray;font:9 Dotum;" onkeyup="tab_search_tab_govr_search_div_govr_search_edit_govr_searchKeyword_onkeyup"/>
+                        <Button id="btn_govr_search" taborder="11" text="조 회" left="91.5%" top="9" right="1.25%" height="22" style="background:#f92929ff;border:1 solid #f92929ff ;color:#ffffffff;bordertype:round 3 3 ;font:bold 10 arial;cursor:pointer;" onclick="tab_search_tab_govr_search_div_govr_search_btn_govr_search_onclick"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_govrefformlist">
+        <ColumnInfo>
+          <Column id="refFormNo" type="STRING" size="100" description="별표일련번호"/>
+          <Column id="refRuleNo" type="STRING" size="100" description="관련행정규칙일련번호"/>
+          <Column id="refRuleID" type="STRING" size="100" description="관련법령ID"/>
+          <Column id="refFormName" type="STRING" size="1000" description="별표명"/>
+          <Column id="refRuleName" type="STRING" size="1000" description="관련법령명"/>
+          <Column id="refFormSecNo" type="STRING" size="100" description="별표번호"/>
+          <Column id="refFormClassName" type="STRING" size="200" description="별표종류"/>
+          <Column id="careOrgName" type="STRING" size="200" description="소관부처명"/>
+          <Column id="proMulDate" type="STRING" size="100" description="발행일자"/>
+          <Column id="proMulNo" type="STRING" size="100" description="발행번호"/>
+          <Column id="refRuleClassName" type="STRING" size="200" description="행정규칙종류"/>
+          <Column id="refFormLink" type="STRING" size="1000" description="파일링크"/>
+          <Column id="detailLink" type="STRING" size="1000" description="상세링크"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_lawrefformlist">
+        <ColumnInfo>
+          <Column id="refFormNo" type="STRING" size="100" description="별표일련번호"/>
+          <Column id="refLawNo" type="STRING" size="100" description="관련법령일련번호"/>
+          <Column id="refLawId" type="STRING" size="100" description="관련법령ID"/>
+          <Column id="refFormName" type="STRING" size="1000" description="별표명"/>
+          <Column id="refLawName" type="STRING" size="2000" description="관련법령명"/>
+          <Column id="refFormSecNo" type="STRING" size="200" description="별표번호"/>
+          <Column id="refFormClassName" type="STRING" size="200" description="별표종류"/>
+          <Column id="careOrgName" type="STRING" size="200" description="소관부처"/>
+          <Column id="proMulDate" type="STRING" size="100" description="공포일자"/>
+          <Column id="proMulNo" type="STRING" size="100" description="공포번호"/>
+          <Column id="changeClassName" type="STRING" size="100" description="제개정 구분명"/>
+          <Column id="refLawClassName" type="STRING" size="100" description="법령종류"/>
+          <Column id="refFormLink" type="STRING" size="500" description="파일링크"/>
+          <Column id="refFormPDFLink" type="STRING" size="500" description="PDF링크"/>
+          <Column id="detailLink" type="STRING" size="500" description="상세링크"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_LawSearch">
+        <ColumnInfo>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="page" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_GovrSearch">
+        <ColumnInfo>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="page" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_LawPaging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="5"/>
+          <Column id="endPage" type="INT" size="5"/>
+          <Column id="page" type="INT" size="5"/>
+          <Column id="startList" type="INT" size="5"/>
+          <Column id="startPage" type="INT" size="5"/>
+          <Column id="totalList" type="INT" size="5"/>
+          <Column id="totalpage" type="INT" size="5"/>
+          <Column id="viewListCount" type="INT" size="5"/>
+          <Column id="viewPageNum" type="INT" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_GovrPaging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="5"/>
+          <Column id="endPage" type="INT" size="5"/>
+          <Column id="page" type="INT" size="5"/>
+          <Column id="startList" type="INT" size="5"/>
+          <Column id="startPage" type="INT" size="5"/>
+          <Column id="totalList" type="INT" size="5"/>
+          <Column id="totalpage" type="INT" size="5"/>
+          <Column id="viewListCount" type="INT" size="5"/>
+          <Column id="viewPageNum" type="INT" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.0"><![CDATA[	include "Lib::Comm.xjs";
+	
+	this.law_iStartPageNo = 0; // 전체 페이지 순서
+	this.govr_iStartPageNo = 0; // 전체 페이지 순서
+	this.law_iMaxPageNum = 10;  // 화면에 보여줄 최대 Page번호 갯수
+	this.govr_iMaxPageNum = 10;  // 화면에 보여줄 최대 Page번호 갯수
+	
+	// 실행시 바로 조회
+	this.V_LAW_020_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+	{
+		Iject.formOnload(obj);  //form onload
+		this.fn_LawSearch(1);
+		this.fn_GovrSearch(1);
+	}
+
+	//조회&검색 (법령)
+	this.fn_LawSearch = function(nowPage)
+	{
+		this.ds_lawrefformlist.clearData();
+	
+ 		var page = nowPage;
+
+ 		this.ds_LawSearch.setColumn(0,"page",page);	
+		
+		//odatas 정의
+		var oDatas = {
+			svcid : "search",
+			sController : "LawSearch.do",
+			inds : ["ds_LawSearch=ds_LawSearch"],
+			outds : ["ds_lawrefformlist = ds_lawrefformlist","ds_LawPaging=ds_LawPaging"],
+			args : [],
+			bAsync : false,
+			nDataTyep : 0, //ssv 타입
+			bCompress : false,				
+		};
+		
+		//공통 transaction 함수 호출(콜백함수)
+		Iject.transaction(this,oDatas,function(){   
+		if(this.errorcode < 0)
+			{
+			   trace("에러?");
+			   Iject.alert(this.errorMsg,"알림");			
+			   return;
+			}
+			var pThis = this.fobj;   //form object
+			pThis.fn_lawCount();
+			//trace(" ds_govrefformlist : " + pThis.ds_govrefformlist.saveXML()); // 화면 출력
+			//trace(" ds_lawrefformlist : " + pThis.ds_lawrefformlist.saveXML()); // 화면 출력
+			//pThis.fn_result();  //조회후 처리
+		});
+		this.fn_law_SetPageNo();
+	}
+	//법령 총갯수
+	this.fn_lawCount = function(){
+		var count = this.ds_LawPaging.getColumn(0,5);
+		this.tab_search.tab_law_search.div_searchList.static_law_resultCount.set_text("총 : " +count+" 건");
+	}
+	
+	//조회 기록 남기기(법령)
+	this.fn_lawSearch_key = function(){
+		
+		this.ds_LawSearch.clearData();	
+		
+		var Index = this.ds_LawSearch.addRow();
+		var lawSearch = this.tab_search.tab_law_search.div_law_search.edit_law_searchKeyword.value;
+		
+		trace(".법령 검색어 : " + lawSearch);
+		
+				
+		//검색어가 존재시 수행
+		if(lawSearch!=''){
+			this.ds_LawSearch.setColumn(Index,"searchKeyword", lawSearch);
+		}
+		this.law_iStartPageNo = 0;			
+		this.fn_LawSetStyle();
+		this.fn_LawSearch(1);
+		this.tab_search.tab_law_search.div_searchList.div_paging.stc_No0.style.set_color("red");
+		//this.fn_LawSearch(1);
+	}
+	
+	
+	//조회&검색 (행정)
+	this.fn_GovrSearch = function(page)
+	{
+		this.ds_govrefformlist.clearData();
+				
+		this.ds_GovrSearch.setColumn(0,"page",page);
+		
+		//odatas 정의
+		var oDatas = {
+			svcid : "search",
+			sController : "govrSearch.do",
+			inds : ["ds_GovrSearch=ds_GovrSearch"],
+			outds : ["ds_govrefformlist = ds_govrefformlist","ds_GovrPaging=ds_GovrPaging"],
+			args : [],
+			bAsync : false,
+			nDataTyep : 0, //ssv 타입
+			bCompress : false,				
+		};
+		
+		//공통 transaction 함수 호출(콜백함수)
+		Iject.transaction(this,oDatas,function(){   
+		if(this.errorcode < 0)
+			{
+			   Iject.alert(this.errorMsg,"알림");			
+			   return;
+			}
+			var pThis = this.fobj;   //form object
+			pThis.fn_govrCount();
+			//trace(" ds_govrefformlist : " + pThis.ds_govrefformlist.saveXML()); // 화면 출력
+			//trace(" ds_lawrefformlist : " + pThis.ds_lawrefformlist.saveXML()); // 화면 출력
+			//pThis.fn_result();  //조회후 처리
+		});
+		this.fn_govr_SetPageNo();
+	}
+	//행정 총갯수
+	this.fn_govrCount = function(){
+		var count = this.ds_GovrPaging.getColumn(0,5);
+		this.tab_search.tab_govr_search.div_govr_searchList.static_govr_searchCount.set_text("총 : " +count+" 건");
+	}
+	
+	//조회 기록 남기기(행정)
+	this.fn_govrSearch_key = function(){
+		
+		this.ds_GovrSearch.clearData();
+
+		var Index = this.ds_GovrSearch.addRow();
+		var govrSearch = this.tab_search.tab_govr_search.div_govr_search.edit_govr_searchKeyword.value;
+		
+		//검색어가 존재시 수행
+		if(govrSearch!=''){
+			trace("--행정규칙 검색어 : " + govrSearch);
+			this.ds_GovrSearch.setColumn(Index,"searchKeyword", govrSearch);
+		}
+		this.govr_iStartPageNo = 0;
+		this.fn_GovrSetStyle();
+		this.tab_search.tab_govr_search.div_govr_searchList.stc_No0.style.set_color("red");
+		this.fn_GovrSearch(1);
+	}
+
+
+	//엔터처리
+	this.tab_search_tab_law_search_div_law_search_edit_law_searchKeyword_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+	{
+		if(e.keycode == 13){
+			this.fn_lawSearch_key();
+		}
+	}
+	//엔터처리
+	this.tab_search_tab_govr_search_div_govr_search_edit_govr_searchKeyword_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+	{
+		if(e.keycode == 13){
+			this.fn_govrSearch_key();
+		}
+	}
+		
+	//조회처리
+	this.tab_search_tab_law_search_div_law_search_but_law_search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+	{
+		this.fn_lawSearch_key();
+	}
+	//조회처리
+	this.tab_search_tab_govr_search_div_govr_search_btn_govr_search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+	{
+		this.fn_govrSearch_key();
+	}
+
+
+	//페이징 처리
+	//번호 클릭 (법률)
+	this.div_lawpaging_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+	{
+		var viewPageNum = this.ds_LawPaging.getColumn(0,8); //보여줄 페이지 번호 갯수
+		
+		var iNo = new Number(obj.text);
+		var iFirstNum = (iNo-1) * viewPageNum + 1;
+		var iLastNum = iFirstNum + viewPageNum;
+		
+		this.fn_LawSetStyle();
+		obj.style.set_color("red");
+		this.fn_LawSearch(iNo);
+
+	}
+	
+	//번호 클릭 (행정)
+	this.div_govrpaging_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+	{
+		var viewPageNum = this.ds_GovrPaging.getColumn(0,8); //보여줄 페이지 번호 갯수
+		
+		var iNo = new Number(obj.text);
+		var iFirstNum = (iNo-1) * viewPageNum + 1;
+		var iLastNum = iFirstNum + viewPageNum;
+		
+		this.fn_GovrSetStyle();
+		obj.style.set_color("red");
+		this.fn_GovrSearch(iNo);
+
+	}
+
+	//prev 클릭(행정)
+	this.div_govr_paging_prev_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+	{
+		this.govr_iStartPageNo = this.govr_iStartPageNo - 1;
+		// Transaction()코딩 할 부분
+		this.fn_GovrSetStyle();	
+		this.fn_GovrSearch((this.govr_iStartPageNo*10)+1);
+		this.tab_search.tab_govr_search.div_govr_searchList.stc_No0.style.set_color("red");
+	}
+
+	//next 클릭 (행정)
+	this.div_govr_paging_next_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+	{
+		this.govr_iStartPageNo = this.govr_iStartPageNo + 1;
+		// Transaction()코딩 할 부분
+		this.fn_GovrSetStyle();	
+		this.fn_GovrSearch((this.govr_iStartPageNo*10)+1);
+		this.tab_search.tab_govr_search.div_govr_searchList.stc_No0.style.set_color("red");
+	}
+	
+	//prev 클릭 (법률)
+	this.div_law_paging_prev_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+	{
+		this.law_iStartPageNo = this.law_iStartPageNo - 1;
+		// Transaction()코딩 할 부분
+		this.fn_LawSetStyle();	
+		this.fn_LawSearch((this.law_iStartPageNo*10)+1);
+		this.tab_search.tab_law_search.div_searchList.div_paging.stc_No0.style.set_color("red");
+	}
+
+	//next 클릭 (법률)
+	this.div_law_paging_next_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+	{
+		this.law_iStartPageNo = this.law_iStartPageNo + 1;
+		// Transaction()코딩 할 부분
+		this.fn_LawSetStyle();	
+		this.fn_LawSearch((this.law_iStartPageNo*10)+1);
+		this.tab_search.tab_law_search.div_searchList.div_paging.stc_No0.style.set_color("red");
+	}
+
+	//페이지 번호 셋팅(행정)
+	this.fn_govr_SetPageNo = function()
+	{
+		var endList = this.ds_GovrPaging.getColumn(0,0); //끝 게시물 번호
+		var endPage = this.ds_GovrPaging.getColumn(0,1); //끝페이지 번호
+		var page = this.ds_GovrPaging.getColumn(0,2); //선택페이지
+		var startList = this.ds_GovrPaging.getColumn(0,3); //시작게시물번호
+		var startPage = this.ds_GovrPaging.getColumn(0,4); // 시작페이지번호
+		var totalList = this.ds_GovrPaging.getColumn(0,5); //게시물 총수 
+		var totalPage = this.ds_GovrPaging.getColumn(0,6); //총 페이지수
+		var viewListCount = this.ds_GovrPaging.getColumn(0,7); //보여질 게시물수
+		var viewPageNum = this.ds_GovrPaging.getColumn(0,8); //보여줄 페이지 번호 갯수
+				
+		var sPage = this.govr_iStartPageNo * viewPageNum;
+	 
+		// Prev 버튼 처리
+		if (this.govr_iStartPageNo < 1)
+		{
+			this.tab_search.tab_govr_search.div_govr_searchList.stc_Prev.set_visible(false);
+		} 
+		else 
+		{
+			this.tab_search.tab_govr_search.div_govr_searchList.stc_Prev.set_visible(true);
+		}
+	   
+		// Next 버튼 처리
+		if (sPage+10 > totalPage)
+		{
+			this.tab_search.tab_govr_search.div_govr_searchList.stc_Next.set_visible(false);
+		}
+		else
+		{
+			this.tab_search.tab_govr_search.div_govr_searchList.stc_Next.set_visible(true);
+		}
+
+		// 인덱스 번호 처리
+			for (var i = 0; i < 10; i++) //화면에 보여줄 페이지 갯수
+		{
+			
+			this.tab_search.tab_govr_search.div_govr_searchList.components["stc_No"+i].set_visible(true);
+			this.tab_search.tab_govr_search.div_govr_searchList.components["stc_No"+i].set_text(sPage+i+1);
+	 
+			if ( sPage+i+1 > totalPage)
+			{
+				this.tab_search.tab_govr_search.div_govr_searchList.components["stc_No"+i].set_visible(false);
+			} 
+			else 
+			{
+				this.tab_search.tab_govr_search.div_govr_searchList.components["stc_No"+i].set_visible(true);
+			}
+		}	
+	}
+	
+	//페이지 번호 셋팅(법률)
+	this.fn_law_SetPageNo = function()
+	{
+
+		var endList = this.ds_LawPaging.getColumn(0,0); //끝 게시물 번호
+		var endPage = this.ds_LawPaging.getColumn(0,1); //끝페이지 번호
+		var page = this.ds_LawPaging.getColumn(0,2); //선택페이지
+		var startList = this.ds_LawPaging.getColumn(0,3); //시작게시물번호
+		var startPage = this.ds_LawPaging.getColumn(0,4); // 시작페이지번호
+		var totalList = this.ds_LawPaging.getColumn(0,5); //게시물 총수 
+		var totalPage = this.ds_LawPaging.getColumn(0,6); //총 페이지수
+		var viewListCount = this.ds_LawPaging.getColumn(0,7); //보여질 게시물수
+		var viewPageNum = this.ds_LawPaging.getColumn(0,8); //보여줄 페이지 번호 갯수
+		
+		var sPage = this.law_iStartPageNo * viewPageNum;
+	 
+		// Prev 버튼 처리
+		if (this.law_iStartPageNo < 1)
+		{
+			this.tab_search.tab_law_search.div_searchList.div_paging.stc_Prev.set_visible(false);
+		} 
+		else 
+		{
+			this.tab_search.tab_law_search.div_searchList.div_paging.stc_Prev.set_visible(true);
+		}
+	   
+		// Next 버튼 처리
+		if (sPage+10 > totalPage)
+		{
+			this.tab_search.tab_law_search.div_searchList.div_paging.stc_Next.set_visible(false);
+		}
+		else
+		{
+			this.tab_search.tab_law_search.div_searchList.div_paging.stc_Next.set_visible(true);
+		}
+
+		// 인덱스 번호 처리
+			for (var i = 0; i < 10; i++) //화면에 보여줄 페이지 갯수
+		{
+		
+			this.tab_search.tab_law_search.div_searchList.div_paging.components["stc_No"+i].set_visible(true);
+			this.tab_search.tab_law_search.div_searchList.div_paging.components["stc_No"+i].set_text(sPage+i+1);
+	 
+			if ( sPage+i+1 > totalPage)
+			{
+				this.tab_search.tab_law_search.div_searchList.div_paging.components["stc_No"+i].set_visible(false);
+			} 
+			else 
+			{
+				this.tab_search.tab_law_search.div_searchList.div_paging.components["stc_No"+i].set_visible(true);
+			}
+		}	
+	}
+
+	//스타일 (법률)
+	this.fn_LawSetStyle = function()
+	{
+		for (var i = 0; i < this.law_iMaxPageNum; i++)
+		{
+			this.tab_search.tab_law_search.div_searchList.div_paging.components["stc_No"+i].style.set_color("blue");			
+		}	
+	}
+	
+	//스타일 (행정)
+	this.fn_GovrSetStyle = function()
+	{
+		for (var i = 0; i < this.govr_iMaxPageNum; i++)
+		{
+			this.tab_search.tab_govr_search.div_govr_searchList.components["stc_No"+i].style.set_color("blue");			
+		}	
+	}
+	
+	//다운로드(더블클릭 법률)
+	this.tab_search_tab_law_search_div_searchList_grid_law_searchList_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+	{
+		var eRow = e.row;
+		var refFormLink = this.ds_lawrefformlist.getColumn(eRow,"refFormLink");
+		var url = "https://www.law.go.kr"+refFormLink;
+		system.execBrowser(url);
+	}
+
+	//다운로드(더블클릭 법률)
+	this.tab_search_tab_law_search_div_searchList_grid_law_searchList_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+	{
+		if (e.col=="12"){
+			var eRow = e.row;
+			var refFormLink = this.ds_lawrefformlist.getColumn(eRow,"refFormLink");
+			var url = "https://www.law.go.kr"+refFormLink;
+			system.execBrowser(url);
+		}
+	}
+	
+	//다운로드 (원클릭 행정)
+	this.tab_search_tab_govr_search_div_govr_searchList_grid_govr_searchList_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+	{
+		if (e.col=="8"){
+			var eRow = e.row;
+			var refFormLink = this.ds_lawrefformlist.getColumn(eRow,"refFormLink");
+			var url = "https://www.law.go.kr"+refFormLink;
+			system.execBrowser(url);
+		}
+	}
+	//다운로드 (원클릭 행정)
+	this.tab_search_tab_govr_search_div_govr_searchList_grid_govr_searchList_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+	{
+		var eRow = e.row;
+		var govrFormLink = this.ds_lawrefformlist.getColumn(eRow,"refFormLink");
+		var url = "https://www.law.go.kr"+govrFormLink;
+		system.execBrowser(url);
+	}
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="constitution.lawmapper.service.dao.DetcMapper">
+
+	
+    <resultMap id="DetcCommonCodeVO" type="constitution.lawmapper.vo.DetcCommonCodeVO"/>
+    <resultMap id="DetcListVO" type="constitution.lawmapper.vo.DetcListVO"/>
+    <resultMap id="DetcContextVO" type="constitution.lawmapper.vo.DetcContextVO">
+    	<result property="detcno" column="DETCNO"/>
+    	<result property="casetext" column="CASETEXT"/>
+    	<result property="judgetext" column="JUDGETEXT"/>
+    	<result property="referlaw" column="REFERLAW"/>
+    	<result property="referjudge" column="REFERJUDGE"/>
+    	<result property="caseclassname" column="CASECLASSNAME"/>
+    	<result property="caseclasscode" column="CASECLASSCODE"/>
+    	<result property="judgeclasscode" column="JUDGECLASSCODE"/>
+    	<result property="targetlaw" column="TARGETLAW"/>
+    	<result property="maintext" column="MAINTEXT" jdbcType="CLOB" javaType="java.lang.String"/>
+    </resultMap>
+    
+        
+    <!--setting용 리스트 간단 검색 --> 
+    
+    <select id="getJudge" resultMap="DetcCommonCodeVO">
+    	<!-- SELECT T1.CLASS_NAME, T2.CLASS_CODE, T2.CODE_NO, T2.CODE_NAME FROM PD_LAW_CMM_CODE_DETAIL T2,
+    	(
+    	SELECT CLASS_CODE, CLASS_NAME FROM PD_LAW_TAB_CODE_MASTER
+    	WHERE USE_YN = '1' AND MAIN_COLUMN = 'CASECLASSCODE'
+    	) T1
+    	WHERE T2.CLASS_CODE = T1.CLASS_CODE AND T2.USE_YN = '1'   -->
+    </select>  
+    <select id="getCase" resultMap="DetcCommonCodeVO">
+    	SELECT 
+    		T1.CLASS_NAME, 
+    		T2.CLASS_CODE, 
+    		T2.CODE_NO, 
+    		T2.CODE_NAME, 
+    		T2.CODE_NAME2 
+    	FROM 
+    		PD_LAW_CMM_CODE_DETAIL T2,
+    		(
+    		SELECT 
+    			CLASS_CODE, 
+    			CLASS_NAME 
+    		FROM 
+    			PD_LAW_TAB_CODE_MASTER
+    		WHERE 
+    			USE_YN = '1' AND 
+    			MAIN_COLUMN = 'CASENO'
+    		) T1
+    	WHERE 
+    		T2.CLASS_CODE = T1.CLASS_CODE AND 
+    		T2.USE_YN = '1'  
+    </select>
+    
+    <!-- 리스트 간단 검색  -->
+    
+    <select id="getSimpleList" resultMap="DetcListVO">
+    	SELECT 
+    		* 
+    	FROM
+    		(
+    		SELECT 
+    			CASENO, 
+    			DETCNO, 
+    			CASENAME, 
+    			DETCDATE 
+    		FROM 
+    			T_DETCLIST
+    		WHERE 
+    			HASNULL = 'NO' AND 
+    			DETCDATE IS NOT NULL 
+    		ORDER BY DETCDATE DESC
+    		)
+    	<![CDATA[
+    	WHERE 
+    		ROWNUM <= 5
+	    ]]>
+    </select>
+    
+    
+	<!-- list있고 row갯수 가져오기 -->
+    <select id="getRowCount" parameterType="constitution.lawmapper.vo.DetcListVO" 
+    		resultType="constitution.lawmapper.vo.DetcListVO">
+    	SELECT 
+    		COUNT(*) AS TOTALCOUNT 
+    	FROM 
+    		(
+    		<if test="fromdate_search != null and fromdate_search != ''">
+    		SELECT 
+    			T3.DETCNO, 
+    			T3.DETCDATE 
+    		FROM 
+    			(
+    			</if>
+    			SELECT 
+    				T1.DETCNO, 
+    				T1.DETCDATE 
+    			FROM 
+    				T_DETCLIST T1
+    			<where>
+    				T1.HASNULL = 'NO'
+	    			<if test="casename_search != null and casename_search != ''">
+	    			AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+	    			</if>
+	    			<if test="caseno_search != null and caseno_search != ''">
+	    			AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+	    			</if>
+	    			<if test="todate_search != null and todate_search != ''">		
+	    			<![CDATA[
+	    			AND T1.DETCDATE <= #{todate_search}	
+	    			]]>
+	    			</if>
+	    			<if test="casetext_search != null or judgetext_search != null or caseclasscode_search != null or
+	    			  		  referlaw_search != null or referjudge_search != null or judgeclasscode_search != null">
+	    			AND T1.DETCNO 
+	    				IN 
+	    					(
+	    					SELECT 
+	    						T2.DETCNO 
+	    					FROM 
+	    						T_DETCTEXT T2
+	    					<where>	
+			    				<if test="caseclasscode_search != null and caseclasscode_search != ''">
+			    				CASECLASSCODE 
+			    					IN
+			    					<foreach collection="caseclasscode_list" item="caseclasscode_list" index="indexs" 
+			    						 open="(" separator="," close=")">
+			    					#{caseclasscode_list}
+			    					</foreach>
+			    				</if>
+			    				<if test="judgeclasscode_search != null and judgeclasscode_search != ''">
+			    				AND T2.JUDGECLASSCODE LIKE '%' || #{judgeclasscode_search} || '%'		
+			    				</if>
+	    						<if test="casetext_search != null and casetext_search != ''">
+	    						T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+	    						</if>
+	    						<if test="judgetext_search != null and judgetext_search != ''">
+	    						AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+	    						</if>
+	    						<if test="referlaw_search != null and referlaw_search != ''">
+	    						AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+	    						</if>
+	    						<if test="referjudge_search != null and referjudge_search != ''">
+	    						AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+	    						</if>
+	    					</where> 
+	    					)
+	    				</if>   	
+    			</where>
+    			<if test="fromdate_search != null and fromdate_search != ''">
+    			<![CDATA[
+    			) T3 
+    			WHERE 
+    				DETCDATE >= #{fromdate_search}
+    			]]>
+    			</if>
+	    	)
+    </select>
+
+		<!-- 리스트 상세 검색 with list -->
+    
+    <select id="getList" parameterType="constitution.lawmapper.vo.DetcListVO"
+     		resultMap="DetcListVO">
+	     SELECT 
+	     	T5.RNUM, 
+	     	T5.DETCDATE, 
+	    	T5.DETCNO, 
+	     	T5.CASENAME, 
+	    	T5.CASENO, 
+	     	T5.JUDGECLASSCODE 
+	     FROM
+	     	(
+	     	SELECT 
+	     		ROWNUM AS RNUM, 
+	     		T4.DETCDATE, 
+	     		T4.DETCNO, 
+	     		T4.CASENAME, 
+	     		T4.CASENO, 
+	     		T4.JUDGECLASSCODE 
+	     	FROM
+	     		(
+		     	<if test="fromdate_search != null and fromdate_search != ''">
+		    	SELECT 
+		    		T3.DETCDATE, 
+		    		T3.DETCNO, 
+		    		T3.CASENAME, 
+		    		T3.CASENO, 
+		    		T3.JUDGECLASSCODE 
+		    	FROM 
+		    		(
+		    		</if>
+			    	SELECT 
+			    		T1.DETCDATE, 
+			    		T1.DETCNO, 
+			    		T1.CASENAME, 
+			    		T1.CASENO,
+			    			(
+			    			SELECT 
+			    				TC.JUDGECLASSCODE 
+			    			FROM 
+			    				T_DETCTEXT TC 
+			    			WHERE 
+			    				T1.DETCNO = TC.DETCNO
+			    			) AS JUDGECLASSCODE
+			    	FROM 
+			    		T_DETCLIST T1
+			    	<where>
+			    	  	T1.HASNULL = 'NO'
+				    	<if test="casename_search != null and casename_search != ''">
+				    	AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+				    	</if>
+				    	<if test="caseno_search != null and caseno_search != ''">
+				    	AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+				    	</if>
+				    	<if test="todate_search != null and todate_search != ''">
+				    	<![CDATA[
+				    	AND T1.DETCDATE <= #{todate_search}	
+				    	]]>
+				    	</if>
+				    	<if test="casetext_search != null or judgetext_search != null or caseclasscode_search != null or
+				    			  referlaw_search != null or referjudge_search != null or judgeclasscode_search != null">
+				   		AND T1.DETCNO 
+				   			IN 
+				   			(
+				   			SELECT 
+				   				T2.DETCNO 
+				   			FROM 
+				   				T_DETCTEXT T2
+				    		<where>
+				    			<if test="caseclasscode_search != null and caseclasscode_search != ''">
+				    			CASECLASSCODE 
+				    				IN
+				    				<foreach collection="caseclasscode_list" item="caseclasscode_list" index="indexs" open="(" separator="," close=")">
+				    				#{caseclasscode_list}
+				    				</foreach>
+				    			</if>
+				    			<if test="judgeclasscode_search != null and judgeclasscode_search != ''">
+				    		AND T2.JUDGECLASSCODE LIKE '%' || #{judgeclasscode_search} || '%'		
+				    			</if>			    	
+				    			<if test="casetext_search != null and casetext_search != ''">
+				    		AND	T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+				    			</if>
+				    			<if test="judgetext_search != null and judgetext_search != ''">
+				    		AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+				    			</if>
+				    			<if test="referlaw_search != null and referlaw_search != ''">
+				    		AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+				    			</if>
+				    			<if test="referjudge_search != null and referjudge_search != ''">
+				    		AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+				    			</if>
+				    		</where> 
+				    		)
+				    	</if>   	
+			    	</where>
+			    	<if test="orderby == 'asc'">
+			    	ORDER BY 
+			    		DETCDATE ASC
+			    	</if>
+			    	<if test="orderby == 'desc'">
+			    	ORDER BY 
+			    		DETCDATE DESC
+			    	</if>
+			    	<if test="fromdate_search != null and fromdate_search != ''">
+		    		<![CDATA[
+		    		) T3 
+		    	WHERE 
+		    		DETCDATE >= #{fromdate_search}
+		    	]]>
+		    	</if>
+		    	<![CDATA[		    		
+				) T4 
+			WHERE 
+				ROWNUM <= #{endCount}
+			) T5 
+		WHERE 
+			RNUM >= #{startCount} 	
+	    ]]>
+    </select>
+
+		<!-- view용 내용 가져오기 -->
+    
+    <select id="getConext" parameterType="constitution.lawmapper.vo.DetcListVO"
+     resultMap="DetcContextVO">
+    	SELECT 
+    		* 
+    	FROM 
+    		T_DETCTEXT 
+    	WHERE 
+    		DETCNO = #{detcno}    
+    </select>
+    
+    <select id="getSingleAll" parameterType="constitution.lawmapper.vo.DetcListVO"
+     resultMap="DetcListVO">
+    	SELECT 
+    		* 
+    	FROM 
+    		T_DETCLIST 
+    	WHERE 
+    		DETCNO = #{detcno}    
+    </select>
+       
+    <select id="getSearchCaseCount" parameterType="constitution.lawmapper.vo.DetcListVO"
+    		resultMap="DetcCommonCodeVO">
+    	SELECT
+            CODE_NO, 
+            CODE_NAME2, 
+            CLASS_CODE
+        FROM
+            PD_LAW_CMM_CODE_DETAIL
+        WHERE
+            CODE_NO IN
+            (
+            SELECT
+                 CASECLASSCODE
+            FROM 
+                (
+                SELECT
+                    T3.CASECLASSCODE
+                FROM
+                    (
+                    SELECT 
+                        T1.DETCDATE, 
+                        (SELECT TT.CASECLASSCODE FROM T_DETCTEXT TT WHERE TT.DETCNO=T1.DETCNO) AS CASECLASSCODE        
+                    FROM 
+                        T_DETCLIST T1
+                    <where>
+                        T1.HASNULL = 'NO'
+                        <if test="casename_search != null and casename_search != ''">
+                        AND T1.CASENAME LIKE '%' || #{casename_search} || '%'
+                        </if>
+                        <if test="caseno_search != null and caseno_search != ''">
+                        AND T1.CASENO LIKE '%' || #{caseno_search} || '%'
+                        </if>
+                        <if test="todate_search != null and todate_search != ''">        
+                        <![CDATA[
+                        AND T1.DETCDATE <= #{todate_search}    
+                        ]]>
+                        </if>
+                        <if test="casetext_search != null or judgetext_search != null or caseclasscode_search != null or
+                                    referlaw_search != null or referjudge_search != null or judgeclasscode_search != null">
+                        AND T1.DETCNO 
+                            IN 
+                                (
+                                SELECT 
+                                    T2.DETCNO
+                                FROM 
+                                    T_DETCTEXT T2
+                                <where>    
+                                    <if test="caseclasscode_search != null and caseclasscode_search != ''">
+                                    CASECLASSCODE 
+                                        IN
+                                        <foreach collection="caseclasscode_list" item="caseclasscode_list" index="indexs" 
+                                             open="(" separator="," close=")">
+                                        #{caseclasscode_list}
+                                        </foreach>
+                                    </if>
+                                    <if test="judgeclasscode_search != null and judgeclasscode_search != ''">
+                                    AND T2.JUDGECLASSCODE LIKE '%' || #{judgeclasscode_search} || '%'        
+                                    </if>
+                                    <if test="casetext_search != null and casetext_search != ''">
+                                    T2.CASETEXT LIKE '%' || #{casetext_search} || '%'
+                                    </if>
+                                    <if test="judgetext_search != null and judgetext_search != ''">
+                                    AND T2.JUDGETEXT LIKE '%' || #{judgetext_search} || '%'
+                                    </if>
+                                    <if test="referlaw_search != null and referlaw_search != ''">
+                                    AND T2.REFERLAW LIKE '%' || #{referlaw_search} || '%'
+                                    </if>
+                                    <if test="referjudge_search != null and referjudge_search != ''">
+                                    AND T2.REFERJUDGE LIKE '%' || #{referjudge_search} || '%'
+                                    </if>
+                                </where> 
+                                )
+                       </if>       
+                    </where>
+                    <if test="fromdate_search != null and fromdate_search != ''">
+                    <![CDATA[
+                    ) T3 
+                    WHERE 
+                        DETCDATE >= #{fromdate_search}
+                    ]]>
+                </if>
+                )   
+            GROUP BY 
+                CASECLASSCODE
+            )
+    </select>
+    
+</mapper>

@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_21" classname="V_OPR_21" left="0" top="0" width="1000" height="600" titletext="헌재결정례 본문" onload="form_onload" style="border:1 solid #808080ff ;">
+    <Layouts>
+      <Layout>
+        <Div id="div_contents_21" taborder="0" left="1.4%" top="13" width="97.8%" height="579" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout>
+              <FileUpload id="FileUpload00" taborder="24" retry="0" index="0" onsuccess="upload_onsuccess" onerror="upload_onerror" onitemchanged="addFile" left="61.86%" top="10" right="12.37%" height="20" style="buttontext:파일추가;"/>
+              <Grid id="Grid00" taborder="25" binddataset="ds_precedentlist_Output" useinputpanel="false" autofittype="col" fillareatype="linerow" left="2.86%" top="51" right="3.37%" height="219">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="100"/>
+                      <Column size="70"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="70"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="60"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkbox" edittype="checkbox" text="chk"/>
+                      <Cell col="1" text="판례일련번호"/>
+                      <Cell col="2" text="사건명"/>
+                      <Cell col="3" text="사건번호"/>
+                      <Cell col="4" text="선고일자"/>
+                      <Cell col="5" text="법원명"/>
+                      <Cell col="6" text="법원종류코드"/>
+                      <Cell col="7" text="사건종류명"/>
+                      <Cell col="8" text="사건종류코드"/>
+                      <Cell col="9" text="판결유형"/>
+                      <Cell col="10" text="선고"/>
+                      <Cell col="11" text="상세링크"/>
+                      <Cell col="12" text="판시사항"/>
+                      <Cell col="13" text="결정요지"/>
+                      <Cell col="14" text="참조조문"/>
+                      <Cell col="15" text="참조판례"/>
+                      <Cell col="16" text="전문"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkbox" edittype="checkbox" text="bind:chk"/>
+                      <Cell col="1" text="bind:precno"/>
+                      <Cell col="2" text="bind:casename"/>
+                      <Cell col="3" text="bind:caseno"/>
+                      <Cell col="4" text="bind:judgedate"/>
+                      <Cell col="5" text="bind:courtname"/>
+                      <Cell col="6" text="bind:courtclasscode"/>
+                      <Cell col="7" text="bind:caseclassname"/>
+                      <Cell col="8" text="bind:caseclasscode"/>
+                      <Cell col="9" text="bind:judgeclassname"/>
+                      <Cell col="10" text="bind:judge"/>
+                      <Cell col="11" text="bind:precdetaillink"/>
+                      <Cell col="12" text="bind:casetext"/>
+                      <Cell col="13" text="bind:judgetext"/>
+                      <Cell col="14" text="bind:referlaw"/>
+                      <Cell col="15" text="bind:referjudge"/>
+                      <Cell col="16" text="bind:maintext"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="Button01" taborder="26" text="저장" onclick="div_contents_Button01_onclick" left="89.37%" top="6" right="3.37%" height="26" style="background:#2c4898ff;border:0 solid #808080 ;color:white;"/>
+              <Static id="Static10" taborder="27" text="* A2셀부터 데이터를 넣어주세요" onclick="div_contents_Static10_onclick" left="4.09%" top="24" right="3.99%" height="22" style="color:red;font:12 Dotum;"/>
+              <Static id="Static00" taborder="29" text="* A1 ~ P1 번까지 순서대로 위 그림과 같이 컬럼명을 넣어주세요." left="3.27%" top="326" right="45.09%" height="61" style="font:bold 10 arial;"/>
+              <Static id="Static01" taborder="30" text="예시" left="1.53%" top="275" right="92.64%" height="25" style="align:center;font:bold 10 arial;"/>
+              <ImageViewer id="ImageViewer00" taborder="31" image="URL('img::precedentSample.png')" stretch="fixaspectratio" left="2.76%" top="296" right="3.48%" height="51" style="border:0 solid #808080 ;"/>
+              <Static id="Static02" taborder="32" text="판례일련번호 : PRECNO" left="2.97%" top="370" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static04" taborder="33" text="사건명 : CASENAME" left="2.97%" top="388" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static05" taborder="34" text="사건번호 : CASENO" left="2.97%" top="406" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static06" taborder="35" text="선고일자 : JUDGEDATE" left="2.97%" top="424" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static03" taborder="36" text="법원명 : COURTNAME" onclick="Static00_onclick" left="2.97%" top="442" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static11" taborder="37" text="법원종류코드 : COURTCLASSCODE" left="2.97%" top="460" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static07" taborder="38" text="사건종류명 : CASECLASSNAME" left="2.97%" top="478" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static12" taborder="39" text="사건종류코드 : CASECLASSCODE" left="2.97%" top="496" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static08" taborder="40" text="판결유형 : JUDGECLASSNAME" left="29.96%" top="370" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static09" taborder="41" text="선고 : JUDGE" left="29.96%" top="388" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static13" taborder="42" text="상세링크 : PRECDETAILLINK" left="29.96%" top="406" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static14" taborder="43" text="판시사항 : CASETEXT" left="29.96%" top="424" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static15" taborder="44" text="결정요지 : JUDGETEXT" onclick="Static00_onclick" left="29.96%" top="442" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static16" taborder="45" text="참조조문 : REFERLAW" left="29.96%" top="460" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static17" taborder="46" text="참조판례 : REFERJUDGE" left="29.96%" top="478" width="250" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static18" taborder="47" text="전문 : MAINTEXT" left="29.96%" top="496" width="250" height="20" style="font:bold 10 arial;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_close" taborder="1" text="닫기" onclick="btn_close_onclick" left="90.7%" top="511" right="3.8%" height="25" style="bordertype:normal 0 0 ;"/>
+      </Layout>
+    </Layouts>
+    <Bind/>
+    <Objects>
+      <Dataset id="ds_detclist">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="100"/>
+          <Column id="detcdate" type="STRING" size="50"/>
+          <Column id="caseno" type="STRING" size="100"/>
+          <Column id="casename" type="STRING" size="1000"/>
+          <Column id="detaillink" type="STRING" size="200"/>
+          <Column id="caseclasscode" type="STRING" size="20"/>
+          <Column id="caseclassname" type="STRING" size="200"/>
+          <Column id="judgeclasscode" type="STRING" size="50"/>
+          <Column id="casetext" type="STRING" size="4000"/>
+          <Column id="judgetext" type="STRING" size="4000"/>
+          <Column id="maintext" type="STRING" size="4194304000"/>
+          <Column id="referlaw" type="STRING" size="2000"/>
+          <Column id="referjudge" type="STRING" size="2000"/>
+          <Column id="targetlaw" type="STRING" size="2000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_precedentlist_Output">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="precno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="1000"/>
+          <Column id="caseno" type="STRING" size="100"/>
+          <Column id="judgedate" type="STRING" size="50"/>
+          <Column id="courtname" type="STRING" size="100"/>
+          <Column id="courtclasscode" type="STRING" size="100"/>
+          <Column id="caseclassname" type="STRING" size="200"/>
+          <Column id="caseclasscode" type="STRING" size="100"/>
+          <Column id="judgeclassname" type="STRING" size="100"/>
+          <Column id="judge" type="STRING" size="100"/>
+          <Column id="precdetaillink" type="STRING" size="200"/>
+          <Column id="casetext" type="STRING" size="2000"/>
+          <Column id="judgetext" type="STRING" size="4000"/>
+          <Column id="referlaw" type="STRING" size="4000"/>
+          <Column id="referjudge" type="STRING" size="2000"/>
+          <Column id="maintext" type="STRING" size="4194304000"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_precedentlist_Import">
+        <ColumnInfo>
+          <Column id="precno" type="STRING" size="100"/>
+          <Column id="casename" type="STRING" size="1000"/>
+          <Column id="caseno" type="STRING" size="100"/>
+          <Column id="judgedate" type="STRING" size="50"/>
+          <Column id="courtname" type="STRING" size="100"/>
+          <Column id="courtclasscode" type="STRING" size="100"/>
+          <Column id="caseclassname" type="STRING" size="200"/>
+          <Column id="caseclasscode" type="STRING" size="100"/>
+          <Column id="judgeclassname" type="STRING" size="100"/>
+          <Column id="judge" type="STRING" size="100"/>
+          <Column id="precdetaillink" type="STRING" size="200"/>
+          <Column id="casetext" type="STRING" size="2000"/>
+          <Column id="judgetext" type="STRING" size="4000"/>
+          <Column id="referlaw" type="STRING" size="4000"/>
+          <Column id="referjudge" type="STRING" size="2000"/>
+          <Column id="maintext" type="STRING" size="4194304000"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+
+}
+
+//파일 추가 누르면 자동으로 그리드에 출력
+this.addFile = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	trace("@@@@@@@@@@@@@@@@@@@");
+	var value = obj.value;
+	var fileEx = value.slice(value.lastIndexOf(".")+1).toLowerCase();
+	trace(fileEx);
+	if(fileEx!="xls" && fileEx!="xlsx"){
+		alert("xls 또는 xlsx 파일양식만 가능합니다.");
+		obj.deleteItem(0);
+		obj.appendItem();
+		return false;
+	}
+	
+	var itemCount=this.div_contents.FileUpload00.getItemCount(true);
+	if(itemCount==0){
+		alert("파일을 첨부해주세요.");
+		return false;
+	}
+	
+	var url= "http://localhost:8080/nexacro-egov/precExcelUpload.do";
+	this.div_contents.FileUpload00.upload(url);
+}
+
+this.upload_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	alert("통신오류");
+}
+
+this.upload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{	
+	if(e.errorcode<0){
+		alert("오류 : "+e.errormsg);
+	}
+	trace("onsuccess errorcode=" + e.errorcode + ", errormsg=" + e.errormsg   + ", datasets=" + e.datasets + ", url=" + e.url);
+	
+	//Only Runtime
+		if(nexacro.Browser == "Runtime" && e.datasets)
+		{
+			var outputDatasets = e.datasets;
+			
+			var outDs = outputDatasets[0];
+			var ds = this.ds_precedentlist_Output;
+			ds.assign(outDs); 
+			trace(outDs.saveXML());
+			
+			//this.ds_out.copyData(outputDatasets[0]);
+		} 
+}
+
+// 파일 저장시
+this.div_contents_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.fn_import()){
+		this.fn_save();
+	}
+}
+
+this.fn_import = function(){
+	var ds = this.ds_precedentlist_Import;
+	var outds = this.ds_precedentlist_Output;
+	var cnt=0;
+	ds.clearData();
+	for(var i=0; i<outds.rowcount;i++){
+		var chkCol = outds.getColumn(i,"chk");
+		if(chkCol != undefined && chkCol != 0){
+			ds.addRow();
+			ds.copyRow(ds.getRowCount()-1,outds,i);
+			cnt++;	
+		}
+		
+	}
+	if(cnt==0){
+		alert("1개 이상의 행을 선택해주세요.");
+		return false;
+	}
+	return true;
+}
+
+this.fn_save = function(){
+//odatas 정의
+	var oDatas = {
+		svcid : "insert",
+		sController : "precedentInsert.do",
+		inds : ["ds_precedentlist_Import = ds_precedentlist_Import"],
+		outds : [],
+		args : [],
+		bAsync : false,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	 var save=confirm("데이터를 입력하시겠습니까?");
+	if(save){
+		//공통 transaction 함수 호출(콜백함수)
+		Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+			   Iject.alert(this.errormsg);
+			   return false;
+			}
+		else{
+			var pThis = this.fobj;
+			trace("this.ds_precedentlist_Output : " + pThis.ds_precedentlist_Output.saveXML());
+			alert("저장 완료");
+		}
+		});	
+	}else{
+		alert("저장을 취소하였습니다.");
+	}
+}
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

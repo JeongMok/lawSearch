@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_22" classname="V_OPR_22" left="0" top="0" width="1000" height="600" titletext="행정심판례 본문" style="border:1 solid #808080ff ;">
+    <Layouts>
+      <Layout>
+        <Div id="div_contents_22" taborder="0" left="1.4%" top="13" width="97.8%" height="579" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout>
+              <Button id="Button01" taborder="26" text="저장" onclick="div_contents_Button01_onclick" left="91.21%" top="6" right="1.53%" height="26" style="background:#2c4898ff;border:0 solid #808080 ;color:white;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="1" text="Div00" left="21.1%" top="340" right="14.6%" height="161">
+          <Layouts>
+            <Layout>
+              <Static id="Static03" taborder="10" text="* A1 ~ H1 번까지 컬럼에 맞게 A2부터 입력해주세요" left="2.33%" top="4" right="6.38%" height="21"/>
+              <Static id="Static02" taborder="11" text="일련번호 : DECCNO" onclick="Div00_Static02_onclick" left="2.33%" top="30" right="75.12%" height="20"/>
+              <Static id="Static04" taborder="12" text="재결구분명 : RECLASSNAME" left="2.33%" top="62" right="75.12%" height="20"/>
+              <Static id="Static05" taborder="13" text="주문 : MAINTEXT" left="2.33%" top="93" right="75.12%" height="20"/>
+              <Static id="Static07" taborder="14" text="사건명 : CASENAME" left="36.86%" top="27" right="35.3%" height="20"/>
+              <Static id="Static00" taborder="15" text="의결일자 : DECIDEDATE" left="37.01%" top="61" right="21.93%" height="21"/>
+              <Static id="Static09" taborder="16" text="청구취지 : OPINIONTEXT" left="36.86%" top="93" right="35.3%" height="20"/>
+              <Static id="Static01" taborder="17" text="이유 : REASONTEXT" left="2.33%" top="125" right="75.12%" height="20"/>
+              <Static id="Static06" taborder="18" text="재결요지 : REPLTEXT" left="37.33%" top="125" right="40.28%" height="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="2" binddataset="ds_out" useinputpanel="false" fillareatype="linerow" left="2.4%" top="54" right="2%" height="266">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="61"/>
+                <Column size="62"/>
+                <Column size="80"/>
+                <Column size="74"/>
+                <Column size="105"/>
+                <Column size="101"/>
+                <Column size="97"/>
+                <Column size="138"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택"/>
+                <Cell col="1" text="일련번호"/>
+                <Cell col="2" text="사건명"/>
+                <Cell col="3" text="재결구분명"/>
+                <Cell col="4" text="의결일자"/>
+                <Cell col="5" text="주문"/>
+                <Cell col="6" text="청구취지"/>
+                <Cell col="7" text="이유"/>
+                <Cell col="8" text="재결요지"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkbox" edittype="checkbox" text="bind:chk"/>
+                <Cell col="1" style="background:transparent;" text="bind:deccno"/>
+                <Cell col="2" style="background:transparent;" text="bind:casename"/>
+                <Cell col="3" style="background:transparent;" text="bind:reclassname"/>
+                <Cell col="4" style="background:transparent;" text="bind:decidedate"/>
+                <Cell col="5" style="background:transparent;" text="bind:maintext"/>
+                <Cell col="6" style="background:transparent;" text="bind:opiniontext"/>
+                <Cell col="7" style="background:transparent;" text="bind:reasontext"/>
+                <Cell col="8" style="background:transparent;" text="bind:repltext"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <FileUpload id="FileUpload00" taborder="3" retry="0" index="0" onsuccess="upload_onsuccess" onitemchanged="addFile" left="65.3%" top="21" right="10.8%" height="22" style="buttontext:파일추가;"/>
+        <Button id="btn_close" taborder="4" text="닫기" onclick="btn_close_onclick" left="92.4%" top="529" right="2.1%" height="25" style="bordertype:normal 0 0 ;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_out">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="reasontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_copy">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="reasontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="list">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="reasontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="userid" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+var userid = application.gds_userInfo.getColumn(0,"userid");
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	Iject.formOnload(obj);  //form onload
+
+		
+}
+
+this.addFile = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	
+	var value = obj.value;
+	var fileEx = value.slice(value.lastIndexOf(".")+1).toLowerCase();
+	trace(fileEx);
+	if(fileEx!="xls" && fileEx!="xlsx"){
+		alert("xls 또는 xlsx 파일양식만 가능합니다.");
+		obj.deleteItem(0);
+		obj.appendItem();
+		return false;
+	}
+		var itemCount=this.FileUpload00.getItemCount(true);
+	if(itemCount==0){
+		alert("파일을 첨부해주세요.");
+		return false;
+	}
+	var url= "http://localhost:8080/nexacro-egov/excelupload.do";
+	this.FileUpload00.upload(url);
+	trace(this.FileUpload00.getValue(0,"deccno"));
+
+
+}
+
+this.upload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{	
+	if(e.errorcode<0){
+		alert("오류 : "+e.errormsg);
+	}
+	trace("onsuccess errorcode=" + e.errorcode + ", errormsg=" + e.errormsg   + ", datasets=" + e.datasets + ", url=" + e.url);
+	
+	//Only Runtime
+		if(nexacro.Browser == "Runtime" && e.datasets)
+		{
+			var outputDatasets = e.datasets;
+			
+			var outDs = outputDatasets[0];
+			var ds = this.ds_out;
+			ds.assign(outDs); 
+			trace(outDs.saveXML());
+			
+			//this.ds_out.copyData(outputDatasets[0]);
+
+		} 
+}
+this.fn_import = function(){
+	var ds = this.ds_copy;
+	var outds = this.ds_out;
+	var cnt=0;
+	ds.clearData();
+	for(var i=0; i<outds.rowcount;i++){
+		var chkCol = outds.getColumn(i,"chk");
+		if(chkCol != undefined && chkCol != 0){
+			ds.addRow();
+			ds.copyRow(ds.getRowCount()-1,outds,i);
+			cnt++;	
+		}
+		
+	}
+	if(cnt==0){
+		alert("1개 이상의 행을 선택해주세요.");
+		return false;
+	}
+	return true;
+}
+
+this.fn_valueCheck = function(){
+  this.list.clearData();
+  var save=confirm("데이터를 입력하시겠습니까?");
+  if(save){
+  var oDatas = {
+				svcid : "execl",
+				sController : "excleselect.do",
+				inds : ["ds_copy = ds_copy"],
+				outds : [ "list =list"],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false, 
+	};  
+	  Iject.transaction(this,oDatas,function(){
+	   var pThis = this.fobj;	
+	  
+	   var deccno = pThis.list.getColumn(0,"deccno");
+	   
+		  if(deccno != null)
+			{
+				var save=confirm("중복 데이터가 있습니다. 입력하시겠습니까?");
+				if(save){
+					pThis.execlinser();
+				
+				}
+			}
+			else
+			{
+				pThis.execlinser();
+				alert("저장완료");
+				
+			}	
+			
+		
+		
+		});	
+		}
+	}
+	
+
+
+this.div_contents_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+	if(this.fn_import()){
+	this.fn_valueCheck();
+	}
+}
+
+this.execlinser = function (){
+	this.ds_copy.setColumn(0,"userid",userid)
+		var oDatas = {
+				svcid : "reorgname",
+				sController : "execlmody.do",
+				inds : ["ds_copy = ds_copy"],
+				outds : [ ],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false, 
+	};
+	
+	Iject.transaction(this,oDatas,function(){
+ 		if(this.errorcode < 0){
+ 		   Iject.alert(this.errorMsg);			
+ 		   return;
+		}	      
+ 	       var pThis = this.fobj;   //form object
+ 	       
+	});
+	
+}
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

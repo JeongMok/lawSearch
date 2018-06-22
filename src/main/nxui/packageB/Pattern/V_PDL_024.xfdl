@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_PDL_024" classname="V_PDL_024" left="0" top="0" width="1000" height="600" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="준비서면" left="0.9%" top="8" width="98.2%" height="35" style="align:left top;padding:10 0 0 10;"/>
+        <Div id="Div01" taborder="1" left="0.9%" top="44" width="98.2%" height="44" style="background:lavenderblush;border:1 solid #c8c8c8ff ;">
+          <Layouts>
+            <Layout width="982" height="44">
+              <Div id="Div00" taborder="12" left="8.47%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="3" left="4.61%" top="4" width="15.73%" height="25" style="selectbackground:blue;"/>
+                    <Combo id="Combo00" taborder="4" text="Combo00" left="45.96%" top="4" width="15.73%" height="25"/>
+                    <Div id="Div00" taborder="5" text="아직 승인되지 않은 소송입니다." left="62.25%" top="4" width="20%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div01" taborder="13" text="소송관리번호" left="0.51%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;font:9 Dotum;"/>
+              <Button id="Button00" taborder="14" text="검색" left="28.06%" top="9" width="8.47%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');" onclick="Div01_Button00_onclick"/>
+              <Button id="Button01" taborder="15" text="초기화" left="90.41%" top="9" width="8.47%" height="26" style="image:URL('img::btn_MF_Refresh_O.png');"/>
+              <Div id="Div02" taborder="16" text="심급" left="38.16%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;font:9 Dotum;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div05" taborder="2" left="0.9%" top="111" width="98.2%" height="114" style="align:left top;background:lavenderblush;border:1 solid #c8c8c8ff ;padding:0 0 0 10;">
+          <Layouts>
+            <Layout width="982" height="255">
+              <Div id="Div09" taborder="36" text="Div09" left="8.47%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="892" height="35">
+                    <Edit id="Edit00" taborder="39" left="4.61%" top="4" width="15.73%" height="25"/>
+                    <Edit id="Edit01" taborder="40" left="39.78%" top="4" width="15.73%" height="26"/>
+                    <Edit id="Edit02" taborder="41" left="72.92%" top="4" width="15.73%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div11" taborder="37" text="Div11" left="8.47%" top="72" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" width="15.73%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div10" taborder="38" text="Div10" left="8.47%" top="38" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Edit id="Edit00" taborder="40" left="4.61%" top="4" width="15.73%" height="25"/>
+                    <Edit id="Edit01" taborder="41" left="39.78%" top="4" width="15.73%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div04" taborder="39" text="사건번호" left="0.51%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div05" taborder="40" text="수행법원" left="0.51%" top="38" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div06" taborder="41" text="심급명" left="0.51%" top="72" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div00" taborder="42" text="소송진행상태" left="32.45%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div01" taborder="43" text="소제기일자" left="32.45%" top="38" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div02" taborder="44" text="판사" left="62.65%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div04" taborder="3" text="심급기본사항" left="0.9%" top="92" width="982" height="15" style="align:left middle;padding:0 0 0 10;"/>
+        <Div id="Div02" taborder="4" text="기일정보" left="0.9%" top="237" width="982" height="15" style="align:left middle;padding:0 0 0 10;"/>
+        <Button id="Button03" taborder="5" text="신규" onclick="Button03_onclick" left="81.6%" top="231" width="8.5%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+        <Button id="Button00" taborder="6" text="삭제" left="90.4%" top="231" width="8.5%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+        <Grid id="Grid00" taborder="7" binddataset="ds_cost" useinputpanel="false" left="0.9%" top="263" width="98.2%" height="92">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No."/>
+                <Cell col="1" text="변론차수"/>
+                <Cell col="2" text="쟁점사항구분"/>
+                <Cell col="3" text="준비서면제목"/>
+                <Cell col="4" text="작성일자"/>
+                <Cell col="5" text="완료여부"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="Div03" taborder="8" left="0.9%" top="364" width="98.2%" height="197" style="align:left top;background:lavenderblush;border:1 solid #c8c8c8ff ;padding:0 0 0 10;">
+          <Layouts>
+            <Layout width="982" height="255">
+              <Div id="Div09" taborder="43" text="Div09" left="8.47%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="892" height="35">
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" width="94.83%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div10" taborder="44" text="Div10" left="8.47%" top="38" width="91.02%" height="83" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="892" height="35">
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" width="94.83%" height="73"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div11" taborder="46" text="Div11" left="8.47%" top="120" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="892" height="35">
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" width="15.73%" height="25"/>
+                    <Edit id="Edit01" taborder="3" left="34.04%" top="4" width="15.73%" height="25"/>
+                    <Edit id="Edit02" taborder="4" left="63.37%" top="4" width="15.73%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div04" taborder="47" text="준비서면제목" left="0.51%" top="4" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div05" taborder="48" text="준비서면내용" left="0.51%" top="38" width="11.73%" height="83" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div06" taborder="49" text="변론차수" left="0.51%" top="120" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div01" taborder="50" text="Div11" left="8.47%" top="154" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="892" height="60">
+                    <Edit id="Edit00" taborder="0" left="4.61%" top="4" width="15.73%" height="25"/>
+                    <Edit id="Edit01" taborder="1" left="34.04%" top="4" width="15.73%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div00" taborder="51" text="첨부파일" left="0.51%" top="154" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div02" taborder="52" text="쟁점사항구분" left="27.45%" top="120" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div03" taborder="53" text="기타회신사항" left="54.08%" top="120" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div07" taborder="54" text="외부작성변호사" left="27.45%" top="154" width="11.73%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button01" taborder="9" text="저장" left="90.5%" top="567" width="8.5%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.Div01_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var objChildFrame = new ChildFrame("popup_2", "absolute", 30, 30, 30, 30, null, null, "Pattern::V_PDL_026.xfdl");
+	objChildFrame.showModal("popup_2");
+}
+]]></Script>
+  </Form>
+</FDL>

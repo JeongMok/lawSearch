@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="util.com.dao.LogDataMapper">
+	<insert id="insertLog" parameterType="util.com.vo.LogDataComVo">
+		INSERT INTO 
+			T_LOGDATA 
+			(
+			 ID
+			,LOGTYPE 
+			,USERID
+			,USERIP
+			,LOGDETAIL
+			,MACADDRESS
+			)
+     	 VALUES 
+     	 (
+     	  logdata_seq.nextval
+     	 ,#{logType, jdbcType = VARCHAR} 
+     	 ,#{userId, jdbcType = VARCHAR}
+     	 ,#{userIp, jdbcType = VARCHAR}
+     	 ,#{logDetail, jdbcType = VARCHAR}
+     	 ,#{macAddress, jdbcType = VARCHAR}
+     	 )	
+     	 
+	</insert>
+</mapper>

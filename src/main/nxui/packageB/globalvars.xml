@@ -1,0 +1,1113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GlobalVariables>
+  <Dataset id="gds_menu">
+    <ColumnInfo>
+      <Column id="MENU_NAME" type="string" size="32" prop=""/>
+      <Column id="MENU_SEQ" type="int" size="4" prop=""/>
+      <Column id="MENU_OPTP" type="string" size="32" prop=""/>
+      <Column id="PAGE_URL" type="string" size="32" prop=""/>
+      <Column id="MENU_TOP" type="string" size="32" prop=""/>
+      <Column id="MENU_ID" type="string" size="32" prop=""/>
+      <Column id="MENU_GRP" type="string" size="32" prop=""/>
+      <Column id="CREATE_DT" type="string" size="32" prop=""/>
+      <Column id="MENU_LEVEL" type="int" size="4" prop=""/>
+      <Column id="PAGE_ID" type="string" size="32" prop=""/>
+      <Column id="PAGE_NAME" type="string" size="32" prop=""/>
+      <Column id="MENU_ARGS" type="string" size="32" prop=""/>
+      <Column id="MENU_STAT" type="string" size="32" prop=""/>
+      <Column id="CREATE_USER" type="string" size="32" prop=""/>
+      <Column id="UPDATE_DT" type="string" size="32" prop=""/>
+      <Column id="UPDATE_USER" type="string" size="32" prop=""/>
+      <Column id="MENU_DESC" type="string" size="32" prop=""/>
+      <Column id="MENU_AUTH" type="STRING" size="256"/>
+    </ColumnInfo>
+    <Rows>
+      <Row>
+        <Col id="MENU_NAME">Schedule</Col>
+        <Col id="MENU_SEQ">13</Col>
+        <Col id="MENU_OPTP">SCHEDULE</Col>
+        <Col id="PAGE_URL"/>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1003</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20120831000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_SCD_100.xfdl</Col>
+        <Col id="PAGE_NAME">Schedule</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20120905000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">R</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">일정</Col>
+        <Col id="MENU_SEQ">1</Col>
+        <Col id="MENU_OPTP">V_SCD_001</Col>
+        <Col id="PAGE_URL">Pattern::V_SCD_001.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1004</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20120831000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_SCD_001.xfdl</Col>
+        <Col id="PAGE_NAME">일정</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20120905000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">R</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">일정 조회</Col>
+        <Col id="MENU_SEQ">12</Col>
+        <Col id="MENU_OPTP">V_SCD_003</Col>
+        <Col id="PAGE_URL">Pattern::V_SCD_003.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2008</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_SCD_003.xfdl</Col>
+        <Col id="PAGE_NAME">일정 보기</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">Board</Col>
+        <Col id="MENU_SEQ">11</Col>
+        <Col id="MENU_OPTP">BOARD</Col>
+        <Col id="PAGE_URL"/>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1002</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_BOD_001.xfdl</Col>
+        <Col id="PAGE_NAME">Board</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">질문/대답게시판</Col>
+        <Col id="MENU_SEQ">11</Col>
+        <Col id="MENU_OPTP">V_BOD_001</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_001.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1017</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_BOD_001.xfdl</Col>
+        <Col id="PAGE_NAME">질문/대답게시판</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">새글 작성</Col>
+        <Col id="MENU_SEQ">14</Col>
+        <Col id="MENU_OPTP">V_BOD_002</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_002.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2005</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_BOD_002.xfdl</Col>
+        <Col id="PAGE_NAME">새글 작성</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">답변 작성</Col>
+        <Col id="MENU_SEQ">15</Col>
+        <Col id="MENU_OPTP">V_BOD_003</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_003.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2006</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_BOD_003.xfdl</Col>
+        <Col id="PAGE_NAME">답변 작성</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">상세 보기</Col>
+        <Col id="MENU_SEQ">16</Col>
+        <Col id="MENU_OPTP">V_BOD_004</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_004.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2007</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_BOD_004.xfdl</Col>
+        <Col id="PAGE_NAME">상세 보기</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+        <Col id="MENU_NAME">Search</Col>
+        <Col id="MENU_SEQ">8</Col>
+        <Col id="MENU_OPTP">SEARCH</Col>
+        <Col id="PAGE_URL"/>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1008</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_LAW_100.xfdl</Col>
+        <Col id="PAGE_NAME">Search</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법령검색</Col>
+        <Col id="MENU_SEQ">2</Col>
+        <Col id="MENU_OPTP">LAWLIST</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_010.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1006</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_010.xfdl</Col>
+        <Col id="PAGE_NAME">법령 검색</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법률용어검색</Col>
+        <Col id="MENU_SEQ">3</Col>
+        <Col id="MENU_OPTP">DICTWORD</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_032.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1007</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_032.xfdl</Col>
+        <Col id="PAGE_NAME">법률용어검색</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">판례검색</Col>
+        <Col id="MENU_SEQ">4</Col>
+        <Col id="MENU_OPTP">V_LAW_001</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_001.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1009</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_001.xfdl</Col>
+        <Col id="PAGE_NAME">판례검색</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180423000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_ARGS">dataArg</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">헌재결정례검색</Col>
+        <Col id="MENU_SEQ">5</Col>
+        <Col id="MENU_OPTP">V_LAW_003</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_003.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1010</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_003.xfdl</Col>
+        <Col id="PAGE_NAME">헌재결정례검색</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180423000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_ARGS">dataArg</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">행정심판례검색</Col>
+        <Col id="MENU_SEQ">6</Col>
+        <Col id="MENU_OPTP">V_LAW_005</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_005.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1011</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_005.xfdl</Col>
+        <Col id="PAGE_NAME">행정심판례검색</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법령해석례검색</Col>
+        <Col id="MENU_SEQ">7</Col>
+        <Col id="MENU_OPTP">V_LAW_007</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_007.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1012</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_007.xfdl</Col>
+        <Col id="PAGE_NAME">법령해석례검색</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법령/행정서식검색</Col>
+        <Col id="MENU_SEQ">9</Col>
+        <Col id="MENU_OPTP">V_LAW_020</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_020.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1013</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_020.xfdl</Col>
+        <Col id="PAGE_NAME">법령/행정서식검색</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법조기관</Col>
+        <Col id="MENU_SEQ">10</Col>
+        <Col id="MENU_OPTP">V_LAW_041</Col>
+        <Col id="PAGE_URL">Pattern::V_LAW_041.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1022</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">2.01804E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_LAW_041.xfdl</Col>
+        <Col id="PAGE_NAME">법조기관 검색</Col>
+        <Col id="MENU_ARGS">[Undefined]</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">[Undefined]</Col>
+        <Col id="UPDATE_USER">[Undefined]</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">Operator</Col>
+        <Col id="MENU_SEQ">30</Col>
+        <Col id="MENU_OPTP">ADMIN_MENU</Col>
+        <Col id="PAGE_URL"/>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2004</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_OPR_030.xfdl</Col>
+        <Col id="PAGE_NAME">Operator</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">공통 코드 관리</Col>
+        <Col id="MENU_SEQ">35</Col>
+        <Col id="MENU_OPTP">V_OPR_030</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_030.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2009</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_030.xfdl</Col>
+        <Col id="PAGE_NAME">공통코드관리</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">회원관리</Col>
+        <Col id="MENU_SEQ">36</Col>
+        <Col id="MENU_OPTP">V_OPR_001</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_001.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2010</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="CREATE_DT">20180530000000000</Col>
+        <Col id="PAGE_ID">V_OPR_001.xfdl</Col>
+        <Col id="PAGE_NAME">회원관리</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180530000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">로그관리</Col>
+        <Col id="MENU_SEQ">37</Col>
+        <Col id="MENU_OPTP">V_OPR_010</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_010.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2011</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="CREATE_DT">20180530000000000</Col>
+        <Col id="PAGE_ID">V_OPR_010.xfdl</Col>
+        <Col id="PAGE_NAME">로그관리</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180530000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">판례 등록</Col>
+        <Col id="MENU_SEQ">38</Col>
+        <Col id="MENU_OPTP">V_OPR_020</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_020.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2012</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">2.01806E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_020.xfdl</Col>
+        <Col id="PAGE_NAME">판례 등록</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">2.01806E+16</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">헌재결정례 등록</Col>
+        <Col id="MENU_SEQ">39</Col>
+        <Col id="MENU_OPTP">V_OPR_021</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_021.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2013</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">2.01806E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_021.xfdl</Col>
+        <Col id="PAGE_NAME">헌재결정례 등록</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">2.01806E+16</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">행정심판례 등록</Col>
+        <Col id="MENU_SEQ">40</Col>
+        <Col id="MENU_OPTP">V_OPR_022</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_022.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2014</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">2.01806E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_022.xfdl</Col>
+        <Col id="PAGE_NAME">행정심판례 등록</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">2.01806E+16</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법령해석례 등록</Col>
+        <Col id="MENU_SEQ">41</Col>
+        <Col id="MENU_OPTP">V_OPR_023</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_023.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2015</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">2.01806E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_023.xfdl</Col>
+        <Col id="PAGE_NAME">법령해석례 등록</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">2.01806E+16</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법령 등록</Col>
+        <Col id="MENU_SEQ">42</Col>
+        <Col id="MENU_OPTP">V_OPR_024</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_024.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2016</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">2.01806E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_024.xfdl</Col>
+        <Col id="PAGE_NAME">법령 등록</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">2.01806E+16</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법령용어 등록</Col>
+        <Col id="MENU_SEQ">43</Col>
+        <Col id="MENU_OPTP">V_OPR_025</Col>
+        <Col id="PAGE_URL">Pattern::V_OPR_025.xfdl</Col>
+        <Col id="MENU_TOP">2000</Col>
+        <Col id="MENU_ID">2017</Col>
+        <Col id="MENU_GRP">2000</Col>
+        <Col id="CREATE_DT">2.01806E+16</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_ID">V_OPR_025.xfdl</Col>
+        <Col id="PAGE_NAME">법령용어 등록</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">2.01806E+16</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">pd_law</Col>
+        <Col id="MENU_SEQ">44</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="MENU_ID">3001</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_NAME">pd_law</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">소제기</Col>
+        <Col id="MENU_SEQ">45</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="MENU_ID">3002</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_NAME">소제기</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">소송관리</Col>
+        <Col id="MENU_SEQ">46</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="MENU_ID">3003</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_NAME">소송관리</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_SEQ">51</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="MENU_ID">3011</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_LEVEL">2</Col>
+        <Col id="PAGE_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_OPTP"/>
+        <Col id="PAGE_URL"/>
+        <Col id="PAGE_ID"/>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법률자문 조회</Col>
+        <Col id="MENU_SEQ">52</Col>
+        <Col id="MENU_OPTP">V_PDL_020</Col>
+        <Col id="PAGE_URL">Pattern::V_PDL_020.xfdl</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_ID">3012</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="MENU_LEVEL">3</Col>
+        <Col id="PAGE_ID">V_PDL_020.xfdl</Col>
+        <Col id="PAGE_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">법률자문 회신</Col>
+        <Col id="MENU_SEQ">53</Col>
+        <Col id="MENU_OPTP">V_PDL_021</Col>
+        <Col id="PAGE_URL">Pattern::V_PDL_021.xfdl</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_ID">3013</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="MENU_LEVEL">3</Col>
+        <Col id="PAGE_ID">V_PDL_021.xfdl</Col>
+        <Col id="PAGE_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II </Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">기일정보 관리</Col>
+        <Col id="MENU_SEQ">54</Col>
+        <Col id="MENU_OPTP">V_PDL_023</Col>
+        <Col id="PAGE_URL">Pattern::V_PDL_023.xfdl</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_ID">3014</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="MENU_LEVEL">3</Col>
+        <Col id="PAGE_ID">V_PDL_023.xfdl</Col>
+        <Col id="PAGE_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">준비서면 관리</Col>
+        <Col id="MENU_SEQ">55</Col>
+        <Col id="MENU_OPTP">V_PDL_024</Col>
+        <Col id="PAGE_URL">Pattern::V_PDL_024.xfdl</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_ID">3015</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="MENU_LEVEL">3</Col>
+        <Col id="PAGE_ID">V_PDL_024.xfdl</Col>
+        <Col id="PAGE_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">서증관리</Col>
+        <Col id="MENU_SEQ">56</Col>
+        <Col id="MENU_OPTP">V_PDL_025</Col>
+        <Col id="PAGE_URL">Pattern::V_PDL_025.xfdl</Col>
+        <Col id="MENU_TOP">3000</Col>
+        <Col id="MENU_ID">3016</Col>
+        <Col id="MENU_GRP">3000</Col>
+        <Col id="CREATE_DT">201806190000000000</Col>
+        <Col id="MENU_LEVEL">3</Col>
+        <Col id="PAGE_ID">V_PDL_025.xfdl</Col>
+        <Col id="PAGE_NAME">외부변호사 시스템</Col>
+        <Col id="MENU_ARGS">admin</Col>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">201806190000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH">[Undefined]</Col>
+      </Row>
+    </Rows>
+  </Dataset>
+  <Dataset id="gds_openMenu">
+    <ColumnInfo>
+      <Column id="WIN_ID" type="STRING" size="256"/>
+      <Column id="MENU_ID" type="STRING" size="256"/>
+      <Column id="TITLE" type="STRING" size="256"/>
+      <Column id="Desc_Url" type="STRING" size="256"/>
+      <Column id="Desc_Url_ko" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_message">
+    <ColumnInfo>
+      <Column id="MSG_CD" type="string" size="32"/>
+      <Column id="MSG_TYPE" type="string" size="32"/>
+      <Column id="MSG_NM" type="string" size="32"/>
+      <Column id="MSG_NOTE" type="string" size="32"/>
+    </ColumnInfo>
+    <Rows>
+      <Row>
+        <Col id="MSG_CD">fail.common.msg</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">error ocurred!</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">fail.common.sql</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">sql error ocurred! error code: {0}, error msg: {1}</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">info.nodata.msg</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">no data found.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">image.errorBg</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">error_en</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">errors.required</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">{0} is required.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">accounting.hgr_store_credit.amount.error</Col>
+        <Col id="MSG_TYPE">AC</Col>
+        <Col id="MSG_NM">HGR Store Credit does not have to remove.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.insert</Col>
+        <Col id="MSG_TYPE">PU</Col>
+        <Col id="MSG_NM">Transaction has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.update</Col>
+        <Col id="MSG_TYPE">PU</Col>
+        <Col id="MSG_NM">Transaction has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.delete</Col>
+        <Col id="MSG_TYPE">PU</Col>
+        <Col id="MSG_NM">Transaction has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.select</Col>
+        <Col id="MSG_TYPE">PU</Col>
+        <Col id="MSG_NM">Transaction has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">transaction.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Transaction has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.select.message</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Please select {0}</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.list.select.message</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Please select from the list.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">{0} has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.select.not.found</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">There is no data.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.input.message</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Please enter {0}</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.validation.message</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">{0} is invalid.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.print.barcode</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Want to print bar codes?</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">main.title</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">:: HGR Industrial Surplus - We Buy  Everything! ::</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">main.negotiation</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Looks back on 30 minutes after</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">error.incorrect</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">{0} is incorrect</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.button.message</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Please click the {0} button.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.data.check_status</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">The status of data has changed.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.success.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">{0} has been completed successfully.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.register</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Please save {0} information.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.already.registered</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">{0} already exists.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">comm.register.fail</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Failed to register. Please try again.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">common.date.input</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Please enter date.</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.inspection.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Inspection has been completed</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.bid.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Bid has been completed</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.createoffer.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Create Offer has been completed</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.po.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">PO has been completed</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.revised.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Revised Offer has been completed</Col>
+      </Row>
+      <Row>
+        <Col id="MSG_CD">success.exception.complete</Col>
+        <Col id="MSG_TYPE">CO</Col>
+        <Col id="MSG_NM">Exception has been completed</Col>
+      </Row>
+    </Rows>
+  </Dataset>
+  <Variable id="gv_host" initval="http://localhost/"/>
+  <Variable id="gv_userAuth" initval="admin"/>
+  <Variable id="gv_openOnlyOne" initval="true"/>
+  <Variable id="gv_loadCnt" initval="0"/>
+  <Dataset id="gds_userInfo">
+    <ColumnInfo>
+      <Column id="userid" type="STRING" size="256"/>
+      <Column id="name" type="STRING" size="256"/>
+      <Column id="password" type="STRING" size="256"/>
+      <Column id="grade" type="STRING" size="256"/>
+      <Column id="address" type="STRING" size="256"/>
+      <Column id="phone" type="STRING" size="256"/>
+      <Column id="email" type="STRING" size="256"/>
+      <Column id="career" type="STRING" size="256"/>
+      <Column id="position" type="STRING" size="256"/>
+      <Column id="sex" type="STRING" size="256"/>
+      <Column id="birth" type="STRING" size="256"/>
+      <Column id="engname" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_hiddenMenu">
+    <ColumnInfo>
+      <Column id="MENU_NAME" type="string" size="32" prop=""/>
+      <Column id="MENU_SEQ" type="int" size="4" prop=""/>
+      <Column id="MENU_OPTP" type="string" size="32" prop=""/>
+      <Column id="PAGE_URL" type="string" size="32" prop=""/>
+      <Column id="MENU_TOP" type="string" size="32" prop=""/>
+      <Column id="MENU_ID" type="string" size="32" prop=""/>
+      <Column id="MENU_GRP" type="string" size="32" prop=""/>
+      <Column id="CREATE_DT" type="string" size="32" prop=""/>
+      <Column id="MENU_LEVEL" type="int" size="4" prop=""/>
+      <Column id="PAGE_ID" type="string" size="32" prop=""/>
+      <Column id="PAGE_NAME" type="string" size="32" prop=""/>
+      <Column id="MENU_ARGS" type="string" size="32" prop=""/>
+      <Column id="MENU_STAT" type="string" size="32" prop=""/>
+      <Column id="CREATE_USER" type="string" size="32" prop=""/>
+      <Column id="UPDATE_DT" type="string" size="32" prop=""/>
+      <Column id="UPDATE_USER" type="string" size="32" prop=""/>
+      <Column id="MENU_DESC" type="string" size="32" prop=""/>
+      <Column id="MENU_AUTH" type="STRING" size="256"/>
+    </ColumnInfo>
+    <Rows>
+      <Row>
+        <Col id="MENU_NAME">새글 작성</Col>
+        <Col id="MENU_SEQ">1</Col>
+        <Col id="MENU_OPTP">V_BOD_002</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_002.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1014</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_BOD_002.xfdl</Col>
+        <Col id="PAGE_NAME">새글 작성</Col>
+        <Col id="MENU_ARGS"/>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">답변 작성</Col>
+        <Col id="MENU_SEQ">2</Col>
+        <Col id="MENU_OPTP">V_BOD_003</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_003.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1015</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_BOD_003.xfdl</Col>
+        <Col id="PAGE_NAME">답변 작성</Col>
+        <Col id="MENU_ARGS"/>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">상세 보기</Col>
+        <Col id="MENU_SEQ">3</Col>
+        <Col id="MENU_OPTP">V_BOD_004</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_004.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1016</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_BOD_004.xfdl</Col>
+        <Col id="PAGE_NAME">상세 보기</Col>
+        <Col id="MENU_ARGS"/>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">질문/대답게시판</Col>
+        <Col id="MENU_SEQ">4</Col>
+        <Col id="MENU_OPTP">V_BOD_001</Col>
+        <Col id="PAGE_URL">Pattern::V_BOD_001.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1017</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_BOD_001.xfdl</Col>
+        <Col id="PAGE_NAME">상세 보기</Col>
+        <Col id="MENU_ARGS"/>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+      <Row>
+        <Col id="MENU_NAME">일정조회</Col>
+        <Col id="MENU_SEQ">5</Col>
+        <Col id="MENU_OPTP">V_SCD_003</Col>
+        <Col id="PAGE_URL">Pattern::V_SCD_003.xfdl</Col>
+        <Col id="MENU_TOP">1000</Col>
+        <Col id="MENU_ID">1018</Col>
+        <Col id="MENU_GRP">1000</Col>
+        <Col id="CREATE_DT">20180410000000000</Col>
+        <Col id="MENU_LEVEL">1</Col>
+        <Col id="PAGE_ID">V_SCD_003.xfdl</Col>
+        <Col id="PAGE_NAME">일정 보기</Col>
+        <Col id="MENU_ARGS"/>
+        <Col id="MENU_STAT">VIEW</Col>
+        <Col id="CREATE_USER">admin</Col>
+        <Col id="UPDATE_DT">20180410000000000</Col>
+        <Col id="UPDATE_USER">admin</Col>
+        <Col id="MENU_DESC">II</Col>
+        <Col id="MENU_AUTH"/>
+      </Row>
+    </Rows>
+  </Dataset>
+  <Dataset id="gds_board">
+    <ColumnInfo>
+      <Column id="bNo" type="STRING" size="50" description="NO"/>
+      <Column id="userID" type="STRING" size="50" description="사용자ID"/>
+      <Column id="writerName" type="STRING" size="50" description="작성자이름"/>
+      <Column id="title" type="STRING" size="200" description="제목"/>
+      <Column id="body" type="STRING" size="4000" description="본문"/>
+      <Column id="wDate" type="STRING" size="200" description="작성일"/>
+      <Column id="password" type="STRING" size="50" description="패스워드"/>
+      <Column id="bGroup" type="STRING" size="5" description="그룹"/>
+      <Column id="bOrder" type="STRING" size="5" description="정렬순서"/>
+      <Column id="step" type="STRING" size="5" description="스텝"/>
+      <Column id="isshow" type="STRING" size="1" description="화면표시여부"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_date">
+    <ColumnInfo>
+      <Column id="date" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_select">
+    <ColumnInfo>
+      <Column id="selectrow" type="INT" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_precno">
+    <ColumnInfo>
+      <Column id="precno" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_detcno">
+    <ColumnInfo>
+      <Column id="deccno" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_address">
+    <ColumnInfo>
+      <Column id="code" type="STRING" size="256"/>
+      <Column id="road" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_search">
+    <ColumnInfo>
+      <Column id="writerName" type="STRING" size="256"/>
+      <Column id="title" type="STRING" size="256"/>
+      <Column id="body" type="STRING" size="256"/>
+      <Column id="page" type="INT" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="gds_index">
+    <ColumnInfo>
+      <Column id="savePage" type="INT" size="256"/>
+    </ColumnInfo>
+    <Rows>
+      <Row/>
+    </Rows>
+  </Dataset>
+</GlobalVariables>

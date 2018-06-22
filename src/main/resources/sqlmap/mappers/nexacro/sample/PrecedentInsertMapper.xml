@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insertlaw.lawmapper.service.dao.PrecedentInsertMapper">
+	<!-- 판례 목록 등록 -->
+	<insert id="precedentList" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO">
+		<!-- 현재 기본키인 판례일련번호 중 최대값 + 1 하는 것. -->
+		<selectKey resultType="string" keyProperty="precno" order="BEFORE">
+	        SELECT 
+	        			NVL(MAX(TO_NUMBER(PRECNO)), 0) + 1 
+	        		FROM 
+	        			T_PRECEDENTLIST      
+	    </selectKey> 
+	<![CDATA[
+		 INSERT INTO
+				T_PRECEDENTLIST(
+				PRECNO,
+				JUDGEDATE,
+				CASENAME,
+				CASENO,
+				COURTNAME,
+				COURTCLASSCODE,
+				CASECLASSCODE,
+				CASECLASSNAME,
+				JUDGECLASSNAME,
+				JUDGE,
+				PRECDETAILLINK
+			) VALUES(
+				#{precno},
+				#{judgedate, jdbcType=VARCHAR},
+				#{casename, jdbcType=VARCHAR},
+				#{caseno, jdbcType=VARCHAR},
+				#{courtname, jdbcType=VARCHAR},
+				#{courtclasscode, jdbcType=VARCHAR},
+				#{caseclasscode, jdbcType=VARCHAR},
+				#{caseclassname, jdbcType=VARCHAR},
+				#{judgeclassname, jdbcType=VARCHAR},
+				#{judge, jdbcType=VARCHAR},
+				#{precdetaillink, jdbcType=VARCHAR}
+			) 
+	]]>
+	</insert>
+	<!-- 판례 본문 등록 -->
+	<insert id="precedentText" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO">
+	<![CDATA[
+		INSERT	INTO
+				T_PRECTEXT(
+				PRECNO,
+				CASETEXT,
+				JUDGETEXT,
+				REFERLAW,
+				REFERJUDGE,
+				MAINTEXT
+			) VALUES(
+				#{precno},
+				#{casetext, jdbcType=VARCHAR},
+				#{judgetext, jdbcType=VARCHAR},
+				#{referlaw, jdbcType=VARCHAR},
+				#{referjudge, jdbcType=VARCHAR},
+				#{maintext, jdbcType=VARCHAR}
+			) 
+	]]>
+	</insert>
+	<!-- 법원명 콤보 박스 -->
+	<select id="courtNameSelect" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO" resultType="insertlaw.lawmapper.vo.PrecedentInsertVO">
+		SELECT
+				CLASS_CODE, 
+				CODE_NO, 
+				CODE_NAME 
+			FROM 
+				PD_LAW_CMM_CODE_DETAIL 
+			WHERE 
+				CLASS_CODE='CRT'
+	</select>
+	<!-- 사건종류 콤보 박스 -->
+	<select id="caseClassSelect" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO" resultType="insertlaw.lawmapper.vo.PrecedentInsertVO">
+		SELECT 
+				CLASS_CODE, 
+				CODE_NO, 
+				CODE_NAME 
+			FROM 
+				PD_LAW_CMM_CODE_DETAIL 
+			WHERE 
+				CLASS_CODE='L1' 
+				AND 
+				CODE_NAME 
+			<![CDATA[
+				<> 
+			]]> 
+				'특'
+	</select>
+	<!-- 판결유형 콤보 박스 -->
+	<select id="judgeClassSelect" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO" resultType="insertlaw.lawmapper.vo.PrecedentInsertVO">
+		SELECT 
+                DISTINCT JUDGECLASSNAME
+            FROM 
+                T_PRECEDENTLIST
+	</select>
+	<!-- 선고 콤보 박스 -->
+	<select id="judgeSelect" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO" resultType="insertlaw.lawmapper.vo.PrecedentInsertVO">
+		SELECT 
+                DISTINCT JUDGE
+            FROM 
+                T_PRECEDENTLIST 
+            WHERE 
+            	JUDGE 
+            <![CDATA[
+				<> 
+			]]> 
+            	' '
+	</select>
+	
+	<!-- 판례 목록 엑셀 등록 -->
+	<update id="precListInsert" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO"> 
+		INSERT INTO
+				T_PRECEDENTLIST(
+				PRECNO,
+				JUDGEDATE,
+				CASENAME,
+				CASENO,
+				COURTNAME,
+				COURTCLASSCODE,
+				CASECLASSCODE,
+				CASECLASSNAME,
+				JUDGECLASSNAME,
+				JUDGE,
+				PRECDETAILLINK
+			) VALUES(
+				#{precno},
+				#{judgedate, jdbcType=VARCHAR},
+				#{casename, jdbcType=VARCHAR},
+				#{caseno, jdbcType=VARCHAR},
+				#{courtname, jdbcType=VARCHAR},
+				#{courtclasscode, jdbcType=VARCHAR},
+				#{caseclasscode, jdbcType=VARCHAR},
+				#{caseclassname, jdbcType=VARCHAR},
+				#{judgeclassname, jdbcType=VARCHAR},
+				#{judge, jdbcType=VARCHAR},
+				#{precdetaillink, jdbcType=VARCHAR}
+			) 
+	</update>
+	<!-- 판례 본문 엑셀 등록 -->
+	<update id="precTextInsert" parameterType="insertlaw.lawmapper.vo.PrecedentInsertVO"> 
+		INSERT INTO 
+				T_PRECTEXT(
+				PRECNO,
+				CASETEXT,
+				JUDGETEXT,
+				REFERLAW,
+				REFERJUDGE,
+				MAINTEXT
+			) VALUES(
+				#{precno},
+				#{casetext, jdbcType=VARCHAR},
+				#{judgetext, jdbcType=VARCHAR},
+				#{referlaw, jdbcType=VARCHAR},
+				#{referjudge, jdbcType=VARCHAR},
+				#{maintext, jdbcType=VARCHAR}
+			) 
+	</update>
+</mapper>

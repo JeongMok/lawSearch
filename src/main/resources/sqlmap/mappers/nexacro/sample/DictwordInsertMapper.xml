@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insertlaw.mapper.service.dao.DictWordMapper">
+
+<update id="dictwordInsert">
+MERGE INTO T_DICTWORDLIST
+            USING DUAL
+            ON (DICTWORD = #{dictword})
+            WHEN MATCHED THEN
+                      UPDATE SET
+                            DETAILLINK = #{detaillink, jdbcType=VARCHAR}
+            WHEN NOT MATCHED THEN
+                      INSERT (DICTWORD, DETAILLINK) 
+                                 VALUES (#{dictword},#{detaillink, jdbcType=VARCHAR})
+</update>
+<update id="dictwordContentInsert">
+MERGE INTO T_DICTWORDTEXT
+            USING DUAL
+            ON (DICTWORD = #{dictword})
+            WHEN MATCHED THEN
+                      UPDATE SET
+                            DICTWORDCODE = #{dictwordCode, jdbcType=VARCHAR},
+							DICTWORDCODENAME = #{dictwordCodename, jdbcType=VARCHAR},
+							DICTWORDSOURCE = #{dictwordSource, jdbcType=VARCHAR},
+							MAINTEXT = #{mainText, jdbcType=VARCHAR},
+							DICTWORDNO = #{dictwordNo, jdbcType=VARCHAR}
+            WHEN NOT MATCHED THEN
+			INSERT(
+					DICTWORD,
+					DICTWORDCODE,
+					DICTWORDCODENAME,
+					DICTWORDSOURCE,
+					MAINTEXT,
+					DICTWORDNO
+				) VALUES(
+					#{dictword},
+					#{dictwordCode, jdbcType=VARCHAR},
+					#{dictwordCodename, jdbcType=VARCHAR},
+					#{dictwordSource, jdbcType=VARCHAR},
+					#{mainText, jdbcType=VARCHAR},
+					#{dictwordNo, jdbcType=VARCHAR}
+				)
+</update>
+<update id="allInsert" parameterType="insertlaw.lawmapper.vo.DictwordVO">
+INSERT ALL
+	INTO 
+		T_DICTWORDLIST(DICTWORD,DETAILLINK) 
+		VALUES(
+			#{dictword},
+			#{detaillink, jdbcType=VARCHAR}
+		)
+	INTO 
+		T_DICTWORDTEXT(DICTWORD,DICTWORDCODE,DICTWORDCODENAME,DICTWORDSOURCE,MAINTEXT,DICTWORDNO) 
+		VALUES(
+			#{dictword},
+			#{dictwordCode, jdbcType=VARCHAR},
+			#{dictwordCodename, jdbcType=VARCHAR},
+			#{dictwordSource, jdbcType=VARCHAR},
+			#{mainText, jdbcType=VARCHAR},
+			#{dictwordNo, jdbcType=VARCHAR}
+		)
+SELECT  * FROM DUAL
+</update>
+<select id="excelSearch" parameterType="insertlaw.lawmapper.vo.DictwordVO" resultType="insertlaw.lawmapper.vo.DictwordVO">
+	SELECT
+		DICTWORD
+	FROM
+		T_DICTWORDLIST
+	WHERE DICTWORD = #{dictword}
+</select>
+</mapper>

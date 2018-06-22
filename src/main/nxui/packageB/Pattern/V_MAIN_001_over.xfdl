@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_MAIN_001_over" classname="V_MAIN_001_over" left="0" top="0" width="644" height="200" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static02" taborder="0" cssclass="sta_MF_line" left="198" top="37" width="54" height="10" style="font:8 Dotum;"/>
+        <Static id="Static03" taborder="1" cssclass="sta_MF_line" left="342" top="37" width="170" height="10" style="font:8 Dotum;"/>
+        <Static id="Static08" taborder="2" cssclass="sta_MF_line" left="198" top="93" width="110" height="10" style="font:8 Dotum;"/>
+        <Static id="Static04" taborder="3" cssclass="sta_MF_line" left="384" top="93" width="142" height="10" style="font:8 Dotum;"/>
+        <Static id="Static10" taborder="4" cssclass="sta_MF_line" left="198" top="145" width="418" height="14" style="font:8 Dotum;"/>
+        <Static id="Static14" taborder="5" cssclass="sta_MF_line" left="30" top="149" width="142" height="10" style="font:8 Dotum;"/>
+        <Static id="Static01" taborder="6" text="&lt;b v='true'&gt;님이 로그인 하셨습니다&lt;/b&gt;" usedecorate="true" cssclass="sta_MF_Group" left="30" top="129" width="160" height="24" style="font:8 Dotum;"/>
+        <Static id="Static09" taborder="7" text="ss" usedecorate="true" cssclass="sta_MF_Group" left="198" top="112" width="410" height="39" style="font:8 Dotum;" onclick="Static09_onclick"/>
+        <Static id="Static07" taborder="8" text="ss" usedecorate="true" cssclass="sta_MF_Group" left="198" top="72" width="139" height="27" style="font:8 Dotum;"/>
+        <Static id="Static00" taborder="9" text="ss" usedecorate="true" cssclass="sta_MF_Group" left="198" top="16" width="67" height="27" style="font:8 Dotum;" onclick="Static00_onclick"/>
+        <Static id="Static06" taborder="10" text="&lt;b v='true'&gt;님이 로그인 하셨습니다&lt;/b&gt;" usedecorate="true" cssclass="sta_MF_Group" left="342" top="17" width="183" height="24" style="font:8 Dotum;"/>
+        <Static id="Static05" taborder="11" text="ss" usedecorate="true" cssclass="sta_MF_Group" left="384" top="72" width="139" height="19" style="font:8 Dotum;"/>
+        <Static id="st_name" taborder="12" usedecorate="true" cssclass="sta_MF_Name" left="25" top="20" width="97" height="130" style="font:8 Dotum;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_main">
+        <ColumnInfo>
+          <Column id="CLASS_NAME" type="STRING" size="256"/>
+          <Column id="CLASS_CODE" type="STRING" size="256"/>
+          <Column id="CODE_NO" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+this.user_load = function(){
+	var welcome = "<b v='true'>"+application.gds_userInfo.getColumn(0,"name")+"</b> 님이 로그인 하셨습니다";
+	this.Static01.set_text(welcome);
+	var position = application.gds_userInfo.getColumn(0,"position");
+	var position_name = "";
+	
+	/*
+	for(var i = 0; i < this.ds_main.getRowCount(); i++){
+		trace("직급확인 : "+this.ds_main.getColumn(i,"CODE_NO"));
+		if(position == this.ds_main.getColumn(i,"CODE_NO")){
+			position_name = this.ds_main.getColumn(i,"CODE_NAME");
+		}
+	}
+	if(position_name == ""){	position_name = "미지정";	}
+	*/
+	
+	position_name = "직급 <b v='true'>"+position+"</b>";
+	this.Static00.set_text(position_name);
+	var phone = "전화번호 <b v='true'>"+application.gds_userInfo.getColumn(0,"phone")+"</b>";
+	this.Static05.set_text(phone);
+	var email = "이메일 <b v='true'>"+application.gds_userInfo.getColumn(0,"email")+"</b>";
+	this.Static06.set_text(email);
+	var birth = "생년월일 <b v='true'>"+application.gds_userInfo.getColumn(0,"birth")+"</b>";
+	this.Static07.set_text(birth);
+	var address = "주소 <b v='true'>"+application.gds_userInfo.getColumn(0,"address")+"</b>";
+	trace("주소 : "+address);
+	this.Static09.set_text(address);
+}
+
+]]></Script>
+  </Form>
+</FDL>

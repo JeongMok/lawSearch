@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insertlaw.lawmapper.service.dao.LawInsertMapper">
+	<insert id="lawList" parameterType="insertlaw.lawmapper.vo.LawListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_LAWLIST(
+				LAWID,
+				LAWNO,
+				NOWHISTORYCODE,
+				LAWNAME,
+				CREATEDATE,
+				CREATENO,
+				ISMODIFY,
+				CAREDEPT,
+				LAWCLASSNAME,
+				ACTDATE,
+				ISSELF,
+				DETAILLINK
+			) VALUES( 
+				#{lawid},
+				#{lawno, jdbcType=VARCHAR},
+				#{nowhistorycode, jdbcType=VARCHAR},
+				#{lawname, jdbcType=VARCHAR},
+				#{createdate, jdbcType=VARCHAR},
+				#{createno, jdbcType=VARCHAR},
+				#{ismodify, jdbcType=VARCHAR},
+				#{caredept, jdbcType=VARCHAR},
+				#{lawclassname, jdbcType=VARCHAR},
+				#{actdate, jdbcType=VARCHAR},
+				#{isself, jdbcType=VARCHAR},
+				#{detaillink, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+	<insert id="lawBaseInfo" parameterType="insertlaw.lawmapper.vo.LawListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_LAWBASEINFO(
+				LAWID,
+				CATENO,
+				ISSHOW,
+				MODIFYTEXT,
+				MODIFYREASON
+			) VALUES( 
+				#{lawid},
+				#{cateno, jdbcType=VARCHAR},
+				#{isshow, jdbcType=VARCHAR},
+				#{modifytext, jdbcType=VARCHAR},
+				#{modifyreason, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+	<insert id="lawArticle" parameterType="insertlaw.lawmapper.vo.LawArticleVO">
+	<![CDATA[
+		 INSERT INTO
+				T_LAWARTICLE(
+				LAWID,
+				ARTICLEKEY,
+				ARTICLENO,
+				NAME,
+				ACTDATE,
+				BEFOREMOVE,
+				AFTERMOVE,
+				ISMODIFY,
+				MAINTEXT
+			) VALUES( 
+				#{lawid},
+				#{articlekey},
+				#{articleno, jdbcType=VARCHAR},
+				#{name, jdbcType=VARCHAR},
+				#{actdate, jdbcType=VARCHAR},
+				#{beforemove, jdbcType=VARCHAR},
+				#{aftermove, jdbcType=VARCHAR},
+				#{ismodify, jdbcType=VARCHAR},
+				#{maintext, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+	<insert id="lawSubText" parameterType="insertlaw.lawmapper.vo.LawSubTextVO">
+	<![CDATA[
+		 INSERT INTO
+				T_LAWSUBTEXT(
+				LAWID,
+				SUBKEY,
+				SHOWDATE,
+				SHOWNO,
+				MAINTEXT
+			) VALUES( 
+				#{lawid},
+				#{subkey},
+				#{showdate, jdbcType=VARCHAR},
+				#{showno, jdbcType=VARCHAR},
+				#{maintext, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+</mapper>

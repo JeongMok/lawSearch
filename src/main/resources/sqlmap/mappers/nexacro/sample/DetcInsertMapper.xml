@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insertlaw.lawmapper.service.dao.DetcInsertMapper">
+	<insert id="detcList" parameterType="insertlaw.lawmapper.vo.DetcListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_DETCLIST(
+				DETCNO,
+				DETCDATE,
+				CASENO,
+				CASENAME,
+				DETAILLINK
+			) VALUES( 
+				#{detcno},
+				#{detcdate, jdbcType=VARCHAR},
+				#{caseno, jdbcType=VARCHAR},
+				#{casename, jdbcType=VARCHAR},
+				#{detaillink, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+	<insert id="detcText" parameterType="insertlaw.lawmapper.vo.DetcListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_DETCTEXT(
+				DETCNO,
+				CASECLASSCODE,
+				CASECLASSNAME,
+				JUDGECLASSCODE,
+				CASETEXT,
+				JUDGETEXT,
+				MAINTEXT,
+				REFERLAW,
+				REFERJUDGE,
+				TARGETLAW
+			) VALUES( 
+				#{detcno},
+				#{caseclasscode, jdbcType=VARCHAR},
+				#{caseclassname, jdbcType=VARCHAR},
+				#{judgeclasscode, jdbcType=VARCHAR},
+				#{casetext, jdbcType=VARCHAR},
+				#{judgetext, jdbcType=VARCHAR},
+				#{maintext, jdbcType=VARCHAR},
+				#{referlaw, jdbcType=VARCHAR},
+				#{referjudge, jdbcType=VARCHAR},
+				#{targetlaw, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+</mapper>

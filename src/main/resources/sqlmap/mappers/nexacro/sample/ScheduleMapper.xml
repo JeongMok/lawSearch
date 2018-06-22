@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="schedule.lawmapper.service.ScheduleMapper">
+
+	<resultMap type="schedule.lawmapper.vo.ScheduleVO" id="resultschedule"></resultMap>
+
+<insert id="addschedule">
+		INSERT INTO T_EVENT(
+				USERID,
+				EVENTDATE,
+				EVENTMAIN,
+				EVENTTITLE
+		) VALUES (
+			#{userid},
+			#{pdate},
+			#{eventmain},
+			#{eventtitle}
+		)
+	</insert>
+
+	<delete id="deleteschedule" >
+		DELETE 
+		FROM 
+			T_EVENT 
+		WHERE 
+			USERID=#{userid} 
+		AND 
+			TO_CHAR(EVENTDATE,'YYYY-MM-DD HH24:MI:SS') =TO_CHAR(#{pdate},'YYYY-MM-DD HH24:MI:SS') 
+	</delete>
+
+	<update id="updateschedule" >
+		UPDATE 
+			T_EVENT 
+		SET 
+			EVENTMAIN=#{eventmain},
+			EVENTTITLE=#{eventtitle}
+		WHERE 
+			USERID=#{userid} 
+		AND 
+			TO_CHAR(EVENTDATE,'YYYY-MM-DD HH24:MI:SS')=TO_CHAR(#{pdate},'YYYY-MM-DD HH24:MI:SS')
+	</update>
+	
+	<select id="schedulelist" resultMap="resultschedule">
+		SELECT USERID,
+				EVENTDATE,
+				EVENTMAIN,
+				EVENTTITLE 
+				FROM T_EVENT
+				WHERE USERID=#{userid}
+	</select>
+	
+	<select id="findschedule" parameterType="String" resultMap="resultschedule">
+		SELECT USERID,
+				EVENTDATE,
+				EVENTMAIN,
+				EVENTTITLE 
+				FROM T_EVENT
+				WHERE USERID=#{userid} 
+			AND 
+				TO_CHAR(EVENTDATE,'YYYY-MM-DD')=#{eventdate}
+	</select>
+	
+</mapper>

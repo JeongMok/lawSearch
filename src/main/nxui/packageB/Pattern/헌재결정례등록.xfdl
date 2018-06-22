@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="헌재결정례등록" classname="헌재결정례등록" left="0" top="0" width="1000" height="600" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Div id="Div02" taborder="3" text="Div02" left="0.3%" top="1" right="-0.1%" height="598" style="color:black;">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="20" text="사건번호" left="26.98%" top="65" right="66.8%" height="21" style="align:center;"/>
+              <Edit id="caseno" taborder="21" oneditclick="Div02_Edit01_oneditclick" left="33.4%" top="61" right="44.63%" height="27"/>
+              <Static id="Static03" taborder="24" text="종국일자" left="3.91%" top="101" right="89.97%" height="21" style="align:middle;"/>
+              <Edit id="detcdate" taborder="25" oneditclick="Div02_Edit01_oneditclick" left="10.93%" top="98" right="67.2%" height="27"/>
+              <Edit id="casename" taborder="26" left="61.08%" top="57" right="17.15%" height="27"/>
+              <Edit id="detaillink" taborder="27" left="40.22%" top="102" right="19.56%" height="27"/>
+              <Static id="Static04" taborder="28" text="사건종류" left="4.01%" top="63" right="89.87%" height="21" style="align:middle;"/>
+              <Combo id="caseclassname" taborder="31" left="10.53%" top="61" right="73.82%" height="21" innerdataset="@ds_caseclassname" codecolumn="code_name" datacolumn="code_name"/>
+              <Grid id="Grid00" taborder="32" binddataset="ds_output" useinputpanel="false" autofittype="col" left="3.01%" top="208" right="5.42%" height="241">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="120"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="참조판례"/>
+                      <Cell col="1" text="참조조문"/>
+                      <Cell col="2" text="심판대상조문"/>
+                      <Cell col="3" text="판결요지"/>
+                      <Cell col="4" text="판시사항"/>
+                      <Cell col="5" text="전문"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:dictword"/>
+                      <Cell col="1" text="bind:detaillink"/>
+                      <Cell col="2" text="bind:dictwordCode"/>
+                      <Cell col="3" text="bind:dictwordCodename"/>
+                      <Cell col="4"/>
+                      <Cell col="5"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <FileUpload id="FileUpload00" taborder="33" retry="0" index="0" onsuccess="upload_onsuccess" onerror="upload_onerror" onitemchanged="addFile" left="23.87%" top="465" right="29.99%" height="40" style="buttontext:파일추가;"/>
+              <Button id="Button00" taborder="34" text="불러오기" left="72.02%" top="466" right="17.75%" height="36" style="background:#fffeff00;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static03" taborder="7" text="상세링크" left="33.5%" top="103" right="60.3%" height="27" style="align:middle;"/>
+        <Static id="Static01" taborder="8" text="사건명" left="55.2%" top="64" right="37.9%" height="21" style="align:middle;"/>
+        <Button id="Button04" taborder="9" text="등록" onclick="Button04_onclick" left="91.9%" top="53" right="1%" height="44" style="background:#2c4898ff;color:white;"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item1" compid="Div02.detcdate" propid="value" datasetid="ds_detclist" columnid="detcdate"/>
+      <BindItem id="item2" compid="Div02.caseno" propid="value" datasetid="ds_detclist" columnid="caseno"/>
+      <BindItem id="item3" compid="Div02.casename" propid="value" datasetid="ds_detclist" columnid="casename"/>
+      <BindItem id="item4" compid="Div02.detaillink" propid="value" datasetid="ds_detclist" columnid="detaillink"/>
+      <BindItem id="item0" compid="Div02.caseclassname" propid="value" datasetid="ds_detclist" columnid="caseclassname"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_detclist">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="100"/>
+          <Column id="detcdate" type="STRING" size="50"/>
+          <Column id="caseno" type="STRING" size="100"/>
+          <Column id="casename" type="STRING" size="1000"/>
+          <Column id="detaillink" type="STRING" size="200"/>
+          <Column id="caseclasscode" type="STRING" size="20"/>
+          <Column id="caseclassname" type="STRING" size="200"/>
+          <Column id="judgeclasscode" type="STRING" size="50"/>
+          <Column id="casetext" type="STRING" size="4000"/>
+          <Column id="judgetext" type="STRING" size="4000"/>
+          <Column id="maintext" type="STRING" size="4194304000"/>
+          <Column id="referlaw" type="STRING" size="2000"/>
+          <Column id="referjudge" type="STRING" size="2000"/>
+          <Column id="targetlaw" type="STRING" size="2000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_caseclassname">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();
+   
+} 
+//저장버튼 클릭시
+this.Button04_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_save("save");
+}
+//저장
+this.fn_save = function(strid)
+{
+	var detcno = this.Div02.detcno.value;
+			if(detcno == null){
+				alert("일련번호를 입력하세요");
+				return;
+			}
+	
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "detcInsert.do",			 
+			  inds :["detcInsert = ds_detclist"],
+			  outds :[
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    var save = confirm("저장하시겠습니까 ?");
+	
+	if(save){
+		Iject.transaction(this,oDatas,function(){
+		
+			if(this.errorcode < 0)
+			{
+				alert("일련번호가 중복 되었습니다.");
+				//this.opener.fn_search(1);
+				//Iject.alert(this.errorMsg,"알림")				
+				return;
+			}
+			alert("저장 완료");
+		});
+	}else{
+		alert("취소 되었습니다.");
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_MAIN_001_right" classname="V_MAIN_001_right" left="0" top="0" width="535" height="200" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Grid id="grid_searchList" cssclass="grd_MF_Notice" taborder="0" binddataset="ds_board" useinputpanel="false" autofittype="col" oncelldblclick="grid_searchList_oncellclick" left="3.18%" top="37" right="2.8%" height="145" style="border:2 solid #9f8f71ff,0 none #808080ff,1 solid #9f8f71ff,0 none #808080ff;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="150"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="10" band="head"/>
+                <Row size="20"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:bNo"/>
+                <Cell col="1" text="bind:title"/>
+                <Cell col="2" text="bind:writerName"/>
+                <Cell col="3" displaytype="normal" edittype="none" text="bind:wDate"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="문의(답변) 게시판" left="3.21%" top="8" right="59.88%" height="27" style="padding:0 0 0 10;font:bold 10 arial;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_board">
+        <ColumnInfo>
+          <Column id="bNo" type="INT" size="50" description="NO"/>
+          <Column id="userId" type="STRING" size="50" description="사용자ID"/>
+          <Column id="writerName" type="STRING" size="50" description="작성자이름"/>
+          <Column id="title" type="STRING" size="200" description="제목"/>
+          <Column id="body" type="STRING" size="4000" description="본문"/>
+          <Column id="wDate" type="STRING" size="200" description="작성일"/>
+          <Column id="password" type="STRING" size="50" description="패스워드"/>
+          <Column id="bGroup" type="INT" size="5" description="그룹"/>
+          <Column id="bOrder" type="INT" size="5" description="정렬순서"/>
+          <Column id="step" type="INT" size="5" description="스텝"/>
+          <Column id="isshow" type="STRING" size="1" description="화면표시여부"/>
+          <Column id="startPage" type="INT" size="5" description="페이징 시작번호"/>
+          <Column id="endPage" type="INT" size="5" description="페이징 끝번호"/>
+          <Column id="totalPage" type="INT" size="5" description="총 페이지수"/>
+          <Column id="page" type="INT" size="5" description="선택 페이지"/>
+          <Column id="viewPageNum" type="INT" size="5" description="보여줄 게시물수"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="string" size="32"/>
+          <Column id="MENU_SEQ" type="int" size="4"/>
+          <Column id="MENU_OPTP" type="string" size="32"/>
+          <Column id="PAGE_URL" type="string" size="32"/>
+          <Column id="MENU_TOP" type="string" size="32"/>
+          <Column id="MENU_ID" type="string" size="32"/>
+          <Column id="MENU_GRP" type="string" size="32"/>
+          <Column id="CREATE_DT" type="string" size="32"/>
+          <Column id="MENU_LEVEL" type="int" size="4"/>
+          <Column id="PAGE_ID" type="string" size="32"/>
+          <Column id="PAGE_NAME" type="string" size="32"/>
+          <Column id="MENU_ARGS" type="string" size="32"/>
+          <Column id="MENU_STAT" type="string" size="32"/>
+          <Column id="CREATE_USER" type="string" size="32"/>
+          <Column id="UPDATE_DT" type="string" size="32"/>
+          <Column id="UPDATE_USER" type="string" size="32"/>
+          <Column id="MENU_DESC" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <ConstColumn id="pageIndex" type="INT" size="1" value=""/>
+          <ConstColumn id="pageSize" type="INT" size="5" value=""/>
+          <ConstColumn id="pageUnit" type="INT" size="5" value=""/>
+          <Column id="userId" type="STRING" size="100"/>
+          <Column id="title" type="STRING" size="100"/>
+          <Column id="body" type="STRING" size="256"/>
+          <Column id="page" type="INT" size="5"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="userId"/>
+            <Col id="title"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_board00">
+        <ColumnInfo>
+          <Column id="bNo" type="INT" size="50" description="NO"/>
+          <Column id="userId" type="STRING" size="50" description="사용자ID"/>
+          <Column id="writerName" type="STRING" size="50" description="작성자이름"/>
+          <Column id="title" type="STRING" size="200" description="제목"/>
+          <Column id="body" type="STRING" size="4000" description="본문"/>
+          <Column id="wDate" type="STRING" size="200" description="작성일"/>
+          <Column id="password" type="STRING" size="50" description="패스워드"/>
+          <Column id="bGroup" type="INT" size="5" description="그룹"/>
+          <Column id="bOrder" type="INT" size="5" description="정렬순서"/>
+          <Column id="step" type="INT" size="5" description="스텝"/>
+          <Column id="isshow" type="STRING" size="1" description="화면표시여부"/>
+          <Column id="startPage" type="INT" size="5" description="페이징 시작번호"/>
+          <Column id="endPage" type="INT" size="5" description="페이징 끝번호"/>
+          <Column id="totalPage" type="INT" size="5" description="총 페이지수"/>
+          <Column id="page" type="INT" size="5" description="선택 페이지"/>
+          <Column id="viewPageNum" type="INT" size="5" description="보여줄 게시물수"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_paging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="5"/>
+          <Column id="endPage" type="INT" size="5"/>
+          <Column id="page" type="INT" size="5"/>
+          <Column id="startList" type="INT" size="5"/>
+          <Column id="startPage" type="INT" size="5"/>
+          <Column id="totalList" type="INT" size="5"/>
+          <Column id="totalpage" type="INT" size="5"/>
+          <Column id="viewListCount" type="INT" size="5"/>
+          <Column id="viewPageNum" type="INT" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.board_load = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.ds_menu.assign(application.gds_hiddenMenu);
+	Iject.formOnload(obj);
+	this.fn_search(1);
+}
+
+//검색
+this.fn_search = function(page){	
+	this.ds_board00.deleteAll();	
+	var nowPage = page; // 선택페이지	
+	this.ds_search.clearData();
+	this.ds_search.addRow();
+	this.ds_search.setColumn(0,"userId", application.gds_userInfo.getColumn(0,"userid"));
+	this.ds_search.setColumn(0,"page",nowPage);	   
+	trace("page :"+this.ds_search.getColumn(0,"page"));
+		
+	var oDatas = { 
+		svcid : "search",
+		sController : "boardSearch.do",
+		inds : ["ds_search = ds_search"],
+		outds : ["ds_board00 = ds_board","ds_paging = ds_paging"],
+		args : [],
+		bAsync : false,
+		nDataTyep : 0, //xml 타입
+		bCompress : false,
+	}
+	
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   alert(this.errorMsg,"알림");			
+		   return;
+		}
+	var pThis = this.fobj;
+	});
+	
+	//this.fn_SetPageNo();
+	this.ds_board.clearData();
+	for(var i=0; i<5; i++){
+		this.ds_board.addRow();
+		this.ds_board.copyRow(i,this.ds_board00,i);
+		var date1 = this.ds_board.getColumn(i,"wDate");
+		trace("날짜 타입 확인 : "+date1);
+		if(date1 != null || date1 != undefined){
+			var year	=	date1.slice(0,4);
+			trace("년도 : "+year);
+			var month	=	date1.slice(4,6);
+			var day		=	date1.slice(6,8);
+			var	date2	=	year+"."+month+"."+day;
+			trace("날짜 : "+date2);
+			this.ds_board.setColumn(i,"wDate",date2);
+		}	
+	}
+	this.grid_searchList.set_enable(true);
+	if(this.ds_board00.getRowCount() < 1 ){
+		this.ds_board.setColumn(2, "title", "				작성한 글이 없습니다");
+		this.grid_searchList.set_enable(false);
+	}
+}
+
+//상세보기
+this.grid_searchList_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	application.gds_board.clearData();
+	application.gds_board.addRow();
+	
+	var nToRow = 0;
+	var nFromRow = e.row;	//선택 row
+	
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	var test=application.gds_board.copyRow(nToRow, this.ds_board00, nFromRow);
+	
+	this.fn_goPage(2);
+	
+}
+
+//화면 전환 
+this.fn_goPage = function(page)
+{
+	var oObj = {
+          ds    : this.ds_menu,    // 메뉴 dataset 
+          nRow  : page,              // 선택된 
+          oArgs : []               // 넘길 argument
+    };    
+    Iject.Mdi.call(this,oObj);
+    //trace("이동 체크 :"+oObj.nRow);
+    this.close(obj);
+    application.gds_openMenu.deleteRow(3);
+}]]></Script>
+  </Form>
+</FDL>

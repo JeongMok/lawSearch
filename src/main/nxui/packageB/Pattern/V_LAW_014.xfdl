@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_014" classname="V_LAW_013" left="0" top="0" width="900" height="700" titletext="법령 insert" onload="form_onload" style="border:1 solid #808080ff ;color:ivory;">
+    <Layouts>
+      <Layout>
+        <Div id="div_mainText" taborder="0" left="0%" top="32" height="95.43%" width="100%" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout width="816" height="30"/>
+          </Layouts>
+        </Div>
+        <Button id="btn_close" taborder="2" text="닫기" onclick="btn_close_onclick" left="93.11%" top="664" right="1.33%" height="25" style="color:#46463dff;"/>
+        <Static id="stc_title" taborder="3" text="법령 등록" left="0.44%" top="7" right="80%" height="25" style="padding:0 0 0 10;font:bold 16 arial;"/>
+        <Button id="btn_insert" taborder="4" text="등록" left="16.89%" top="174" right="77.56%" height="25" onclick="btn_insert_onclick" style="color:#46463dff;"/>
+        <Edit id="edt_searchKeyword" taborder="5" left="27.56%" top="168" right="38.78%" height="23" oneditclick="edt_searchKeyword_oneditclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_chooseLaw">
+        <ColumnInfo>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+          <Column id="articleNo" type="STRING" size="50" description="조문번호"/>
+          <Column id="name" type="STRING" size="200" description="조문제목"/>
+          <Column id="actDate" type="STRING" size="50" description="조문시행일자"/>
+          <Column id="beforeMove" type="STRING" size="50" description="조문이동이전"/>
+          <Column id="afterMove" type="STRING" size="50" description="조문이동이후"/>
+          <Column id="isModify" type="STRING" size="50" description="조문변경여부"/>
+          <Column id="mainText" type="STRING" size="4000" description="조문내용"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_lawItem">
+        <ColumnInfo>
+          <Column id="cate" type="STRING" size="5" description="항,호,목 구분"/>
+          <Column id="itemNo" type="STRING" size="50" description="번호"/>
+          <Column id="itemText" type="STRING" size="4000" description="내용"/>
+          <Column id="higherItemNo" type="STRING" size="50" description="상위아이템번호"/>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="50" description="검색구분"/>
+          <Column id="searchKeyword" type="STRING" size="256" description="검색어"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="searchCondition"/>
+            <Col id="searchKeyword"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="articleSearchKeyword" compid="edt_searchKeyword" propid="value" datasetid="ds_search" columnid="searchKeyword"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close("OK");
+}
+
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	
+}
+this.btn_insert_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var searchKeyword = this.edt_searchKeyword.value;
+
+	var oDatas =  {
+		  svcid : "lawArticleInsert",
+		  sController : "lawArticleInsert.do", 
+		  inds :["ds_search = ds_search"],
+		  outds :[],			     
+		  args  : [				
+		  ],
+		  bAsync : true,    // 비동기여부 (true : async  false: sync)
+		  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+		  bCompress :false,	 //			  
+		}; 
+		
+	//공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+			/*  
+			*   callback argument
+			*   @param : {string}    this.svcid      : 서비스 ID
+			*   @param : {object}    this.fobj       : 현재 form object
+			*   @param : {number}    this.errorcode  : 서비스 에러 코드
+			*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+			*/   
+				
+		if(this.errorcode < 0)
+		{		
+			Iject.alert(this.errorMsg);			
+			return;
+		} 
+		
+// 		var pThis = this.fobj;   //form object	      
+// 		   
+// 		trace(" ds_lawItem : " + pThis.ds_lawItem.saveXML()); // 화면 출력
+			
+	});
+}
+]]></Script>
+  </Form>
+</FDL>

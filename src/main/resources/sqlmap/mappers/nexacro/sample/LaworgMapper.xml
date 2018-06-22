@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="laworg.lawmapper.service.dao.LaworgDAO">
+	
+	<!-- 대분류 -->
+    <resultMap id="laworg" type="laworg.lawmapper.vo.LaworgVO">
+		<result property="name" column="NAME" />
+       	<result property="laworgcode" column="LAWORGCODE" />
+        <result property="address" column="ADDRESS" />
+        <result property="phone" column="PHONE" />
+        <result property="areacode" column="AREACODE" />
+        <result property="etc" column="ETC" />
+        <result property="orgcode" column="ORGCODE" />
+        <result property="zipcode" column="ZIPCODE" />
+        <result property="orgno" column="ORGNO" />
+        
+    </resultMap>
+    
+ 
+   
+   <select id="laworgsearchVOList" parameterType="laworg.lawmapper.vo.LaworgVO" resultMap="laworg">
+		SELECT * FROM T_LAWORGLIST WHERE NAME LIKE '%' || #{searchKeyword} || '%'
+	</select>
+	
+	<select id="laworgselectOneVO"  resultMap="laworg">
+		SELECT * FROM T_LAWORGLIST WHERE ORGCODE = #{orgcode} 
+			<if test="areacode != null">
+				AND AREACODE = #{areacode}  
+			</if>
+			ORDER BY NAME ASC
+	</select>
+		 
+	<select id="laworgselectTwoVO1"  resultMap="laworg">
+		SELECT * FROM T_LAWORGLIST WHERE AREACODE = #{areacode}
+			<if test="orgcode != null">
+				AND ORGCODE = #{orgcode}
+			</if>
+	</select>
+	
+	<update id="laworgUpdate" parameterType="laworg.lawmapper.vo.LaworgVO" >
+		UPDATE
+			T_LAWORGLIST
+		SET
+			
+			ORGCODE = #{orgcode, jdbcType = VARCHAR},
+			AREACODE = #{areacode, jdbcType = VARCHAR},
+			LAWORGCODE = #{laworgcode, jdbcType = VARCHAR},
+			NAME = #{name, jdbcType = VARCHAR},
+			PHONE = #{phone, jdbcType = VARCHAR},
+			ADDRESS = #{address, jdbcType = VARCHAR}, 	
+			ZIPCODE = #{zipcode, jdbcType = VARCHAR},
+			ETC = #{etc, jdbcType = VARCHAR}
+		WHERE 
+			ORGNO = #{orgno, jdbcType = INTEGER}
+	</update>
+	
+	<insert id="laworgInsert">
+			INSERT	INTO
+				T_LAWORGLIST(
+				ORGNO,
+				ORGCODE,
+				AREACODE,
+				LAWORGCODE,
+				NAME,
+				PHONE,
+				ADDRESS,
+				ZIPCODE,
+				ETC				
+			) VALUES(
+				 laworglist_seq.nextval, 
+				#{orgcode, jdbcType=INTEGER},
+				#{areacode, jdbcType=VARCHAR},
+				#{laworgcode, jdbcType=VARCHAR},
+				#{name, jdbcType=VARCHAR},
+				#{phone, jdbcType=VARCHAR},
+				#{address, jdbcType=VARCHAR},
+				#{zipcode, jdbcType=VARCHAR},
+				#{etc, jdbcType=VARCHAR}
+				
+			) 
+	</insert>
+	
+	<delete id="laworgDelete">
+		delete * from T_LAWORGLIST where USER_ID = #{userId}
+	</delete> 
+</mapper>
+

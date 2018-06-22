@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_PDL_022" classname="V_PDL_022" left="0" top="0" width="750" height="355" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Div id="Div01" taborder="0" left="0.93%" top="36" width="98.27%" height="79" style="background:lavenderblush;border:1 solid #c8c8c8ff ;">
+          <Layouts>
+            <Layout width="982" height="74">
+              <Div id="Div00" taborder="6" left="8.44%" top="4" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout width="885" height="35">
+                    <Edit id="Edit00" taborder="4" left="4.65%" top="4" width="15.74%" height="25" style="selectbackground:blue;"/>
+                    <Calendar id="Calendar00" taborder="5" left="42.73%" top="4" width="15.74%" height="25"/>
+                    <Div id="Div00" taborder="6" text="~" left="59.52%" top="4" width="1.65%" height="25"/>
+                    <Calendar id="Calendar01" taborder="7" left="62.97%" top="4" width="15.74%" height="25"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div01" taborder="7" text="의뢰번호" left="0.54%" top="4" width="11.7%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;font:9 Dotum;"/>
+              <Div id="Div02" taborder="8" text="의뢰일자" left="35.1%" top="4" width="11.7%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div03" taborder="9" left="8.44%" top="38" width="91.02%" height="35" style="background:#f4f4f4ff;border:1 solid #c8c8c8ff ;">
+                <Layouts>
+                  <Layout>
+                    <Combo id="Combo00" taborder="4" text="Combo00" left="4.65%" top="4" width="15.74%" height="25"/>
+                    <Radio id="Radio00" taborder="5" innerdataset="ds_search" codecolumn="codeNo" datacolumn="codeName" direction="vertical" left="42.73%" top="6" width="19.49%" height="25"/>
+                    <Button id="Button00" taborder="6" text="검색" left="81.86%" top="4" width="8.4%" height="26" style="image:URL('img::btn_WF_SearchSmall.png');"/>
+                    <Button id="Button01" taborder="7" text="초기화" left="91.3%" top="4" width="8.4%" height="26" style="image:URL('img::btn_MF_Refresh_O.png');"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div04" taborder="10" text="법률자문구분" left="0.54%" top="38" width="11.7%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+              <Div id="Div05" taborder="11" text="회신여부" left="35.1%" top="38" width="11.7%" height="35" style="background:#f4edfaff;border:1 solid #c8c8c8ff ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="1" text="법률자문의뢰목록" left="0.93%" top="8" width="98.27%" height="35" style="align:center top;padding:10 0 0 10;"/>
+        <Grid id="Grid00" taborder="2" useinputpanel="false" left="0.93%" top="126" height="218" width="98.27%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="의뢰번호"/>
+                <Cell col="1" text="자문구분"/>
+                <Cell col="2" text="의뢰제목"/>
+                <Cell col="3" text="회신여부"/>
+                <Cell col="4" text="의뢰일자"/>
+                <Cell col="5" text="의뢰담당자"/>
+                <Cell col="6" text="회선일자"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

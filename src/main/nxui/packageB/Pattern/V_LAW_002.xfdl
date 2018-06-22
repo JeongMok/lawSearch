@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_002" classname="V_LAW_002" left="0" top="0" width="1000" height="725" titletext="V_LAW_002" onload="V_LAW_002_onload">
+    <Layouts>
+      <Layout>
+        <Div id="Div02" taborder="2" text="Div02" left="0.8%" top="5" right="0.6%" height="67">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="선고일자" left="2.77%" top="9" right="91.16%" height="23"/>
+              <Edit id="Edit00" taborder="1" oneditclick="Div02_Edit00_oneditclick" left="8.02%" top="5" right="71.94%" height="29"/>
+              <Static id="Static01" taborder="2" text="선고법원" onclick="Div02_Static01_onclick" left="29.91%" top="9" right="63.93%" height="23"/>
+              <Edit id="Edit01" taborder="3" left="35.25%" top="5" right="44.6%" height="29"/>
+              <Static id="Static02" taborder="4" text="사건번호" left="57.25%" top="9" right="36.69%" height="23"/>
+              <Edit id="Edit02" taborder="5" left="62.59%" top="5" right="17.37%" height="29"/>
+              <Button id="Button04" taborder="6" text="목록으로" onclick="Div02_Button04_onclick" left="90.37%" top="5" right="1.01%" height="47"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="5" text="Div01" left="23.3%" top="48" right="0.8%" height="673">
+          <Layouts>
+            <Layout>
+              <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" oneditclick="Div01_TextArea00_oneditclick" left="1.31%" top="23" right="1.31%" height="644" style=":readonly {cursor:default;}"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="6" text="Div00" left="0.8%" top="43" right="76.3%" height="679">
+          <Layouts>
+            <Layout>
+              <Tab id="Tab00" taborder="0" left="3.49%" top="5" right="2.62%" height="162" tabindex="0" scrollbars="autoboth" dragscrolltype="both" tooltiptype="default">
+                <Tabpages>
+                  <Tabpage id="tabpage1" text="참조판례">
+                    <Layouts>
+                      <Layout width="221" height="643">
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" dragscrolltype="none" left="0.94%" top="4" right="0.47%" height="128"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                  <Tabpage id="tabpage2" text="참조조문">
+                    <Layouts>
+                      <Layout>
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" usecontextmenu="false" dragscrolltype="none" left="0.94%" top="5" right="0.47%" height="128"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                </Tabpages>
+              </Tab>
+              <Tab id="Tab01" taborder="1" left="3.49%" top="181" right="3.49%" height="491" tabindex="0" scrollbars="autoboth">
+                <Tabpages>
+                  <Tabpage id="tabpage1" text="판결요지">
+                    <Layouts>
+                      <Layout width="221" height="643">
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" dragscrolltype="none" left="0.95%" top="2" right="0.47%" height="460"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                  <Tabpage id="tabpage2" text="판시사항">
+                    <Layouts>
+                      <Layout>
+                        <TextArea id="TextArea00" taborder="0" scrollbars="autovert" wordwrap="char" readonly="true" usecontextmenu="false" dragscrolltype="none" left="0.95%" top="3" right="0.47%" height="459"/>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                </Tabpages>
+              </Tab>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_precedent_detail">
+        <ColumnInfo>
+          <Column id="precno" type="STRING" size="256"/>
+          <Column id="judgedate" type="STRING" size="256"/>
+          <Column id="judgeno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="courtname" type="STRING" size="256"/>
+          <Column id="courtclasscode" type="STRING" size="256"/>
+          <Column id="caseclasscode" type="STRING" size="256"/>
+          <Column id="caseclassname" type="STRING" size="256"/>
+          <Column id="judgeclassname" type="STRING" size="256"/>
+          <Column id="judge" type="STRING" size="256"/>
+          <Column id="precdetaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="precno"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_precedent_context">
+        <ColumnInfo>
+          <Column id="precno" type="STRING" size="256"/>
+          <Column id="casetext" type="STRING" size="256"/>
+          <Column id="judgetext" type="STRING" size="256"/>
+          <Column id="referlaw" type="STRING" size="256"/>
+          <Column id="referjudge" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item5" compid="Div00.Tab00.tabpage2.TextArea00" propid="value" datasetid="ds_precedent_context" columnid="referlaw"/>
+      <BindItem id="item4" compid="Div00.Tab00.tabpage1.TextArea00" propid="value" datasetid="ds_precedent_context" columnid="referjudge"/>
+      <BindItem id="item2" compid="Div01.TextArea00" propid="value" datasetid="ds_precedent_context" columnid="maintext"/>
+      <BindItem id="item0" compid="Div02.Edit00" propid="value" datasetid="ds_precedent_detail" columnid="judgedate"/>
+      <BindItem id="item3" compid="Div02.Edit02" propid="value" datasetid="ds_precedent_detail" columnid="caseno"/>
+      <BindItem id="item6" compid="Div02.Edit01" propid="value" datasetid="ds_precedent_detail" columnid="courtname"/>
+      <BindItem id="item1" compid="Div00.Tab01.tabpage2.TextArea00" propid="value" datasetid="ds_precedent_context" columnid="casetext"/>
+      <BindItem id="item7" compid="Div00.Tab01.tabpage1.TextArea00" propid="value" datasetid="ds_precedent_context" columnid="judgetext"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.V_LAW_002_onload = function (obj:Form, e:LoadEventInfo){	
+	this.ds_precedent_detail.copyData(this.parent.ds_precedent_detail);
+	this.ds_precedent_context.copyData(this.parent.ds_precedent_context);
+	if(this.ds_precedent_context.getColumn(0,"precno") == null || this.ds_precedent_context.getColumn(0,"precno") == undefined){
+		this.close();
+	}else{
+		this.fn_context_fix("maintext");
+		this.fn_context_fix("referlaw");
+		this.fn_context_fix("referjudge");
+		this.fn_context_fix("casetext");
+		this.fn_context_fix("judgetext");
+	}
+}
+
+this.fn_context_fix = function(text){
+	var context	=	this.ds_precedent_context.getColumn(0,text);
+	if(context != null){
+		context		=	context.replace(/<br\/>/gi,"\r\n");
+		context		=	context.replace(/\[/gi,"\r\n[");
+		var loop	=	true;
+		while(loop){
+			var start	=	context.indexOf("<");
+			var end		=	context.indexOf(">")+1;
+			var slice	=	context.slice(start,end);
+			context		=	context.replace(slice, "");
+			if(start < 0){
+				loop	=	false;
+			}
+		}
+		this.ds_precedent_context.setColumn(0,text,context);
+	}
+}
+
+this.Div02_Button04_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+
+this.Button05_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

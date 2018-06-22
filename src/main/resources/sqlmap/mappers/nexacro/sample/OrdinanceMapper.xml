@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="mappers.nexacro.sample.OrdinanceMapper">
+
+
+<!-- selectList -->
+<resultMap id="OrdVO" type="administrative.lawmapper.vo.OrdVO">
+	<result property="expcno" column="EXPCNO"/>
+	<result property="itemname" column="ITEMNAME"/>
+	<result property="itemno" column="ITEMNO"/>
+	<result property="quesorgcode" column="QUESORGCODE"/>
+	<result property="quesorgname" column="QUESORGNAME"/>
+	<result property="replorgcode" column="REPLORGCODE"/>
+	<result property="replydate" column="REPLYDATE"/>
+	<result property="classname" column="CLASSNAME"/>
+	<result property="detaillink" column="DATAILLINK"/>
+	<result property="replorgname" column="REPLORGNAME"/>
+	<result property="analyzedate" column="ANALYZEDATE"/>
+	<result property="repltext" column="REPLTEXT"/>
+	<result property="questext" column="QUESTEXT"/>
+</resultMap>
+<resultMap type="administrative.lawmapper.vo.OrdSlectClickListVO" id="ClickListVO">
+	<result property="expcno" column="EXPCNO"/>
+	<result property="analyzedate" column="ANALYZEDATE"/>
+	<result property="repltext" column="REPLTEXT"/>
+	<result property="questext" column="QUESTEXT"/>
+</resultMap>
+<select id="getOrdClickList" resultMap="ClickListVO">
+	SELECT 
+		   T2.EXPCNO,
+		   T2.ANALYZEDATE,
+		   T2.REPLTEXT,
+		   T2.QUESTEXT
+		   
+	FROM   T_EXPCTEXT T2
+	WHERE  T2.EXPCNO = #{expcno}
+</select>
+
+<select id="getList" resultMap="OrdVO">
+	SELECT DISTINCT
+		REPLORGNAME
+    FROM T_EXPCLIST
+    ORDER BY CONVERT (REPLORGNAME, 'ISO2022-KR')
+	
+</select> 
+<select id ="getcount" resultType="int"  >
+		 SELECT
+	 	COUNT(*) AS totalCount
+	 	
+	 FROM (SELECT 
+	  			  T1.EXPCNO,
+	              T1.ITEMNAME,
+	              T1.ITEMNO,
+	              T1.QUESORGCODE,
+	              T1.QUESORGNAME,
+	              T1.REPLORGCODE,
+	              T1.REPLORGNAME,
+	              T1.REPLYDATE,
+	              T1.CLASSNAME,
+	              T1.DETAILLINK,
+ 				  T2.ANALYZEDATE,
+				  T2.ANALYZEORGNAME,
+				  T2.CAREORGCODE,
+				  T2.REGDATE,
+				  T2.QUESTEXT,
+				  T2.REPLTEXT,
+				  T2.REASONTEXT 
+			<choose>
+				<when test="fromdate_search != '1970.01.01' or today_search != '1970.01.01'">
+					FROM( SELECT EXPCNO,
+								 ITEMNAME,
+						         ITEMNO,
+						         QUESORGCODE,
+						         QUESORGNAME,
+						         REPLORGCODE,
+						         REPLORGNAME,
+						         REPLYDATE,
+						         CLASSNAME,
+						         DETAILLINK
+						         
+			        		FROM( SELECT EXPCNO,
+									     ITEMNAME,
+									     ITEMNO,
+									     QUESORGCODE,
+									     QUESORGNAME,
+									     REPLORGCODE,
+									     REPLORGNAME,
+									     REPLYDATE,
+									     CLASSNAME,
+									     DETAILLINK
+									     
+			        			 FROM    T_EXPCLIST
+			       	 <if test="fromdate_search != '1970.01.01'">
+	        	 	 <![CDATA[WHERE   REPLYDATE >= #{fromdate_search}]]></if>)
+			        <if test="today_search != '1970.01.01'">
+	        	    <![CDATA[	 WHERE REPLYDATE <= #{today_search}]]></if> ) T1 
+				</when>
+				<otherwise>
+					FROM	T_EXPCLIST T1
+				</otherwise>    
+			</choose>     
+	        , T_EXPCTEXT T2
+	       	WHERE T1.EXPCNO = T2.EXPCNO(+)
+	       	<if test="itemname != null and itemname !=''">
+	         AND T1.ITEMNAME LIKE '%' || #{itemname} || '%'
+	        </if>
+	        <if test="itemno != null and itemno !=''">
+	         AND T1.ITEMNO LIKE '%' || #{itemno} || '%'
+	        </if>
+	        <if test="question != null and question !=''">
+	         AND T2.QUESTEXT LIKE '%' || #{question} || '%'
+	        </if>
+	        <if test="reason != null and reason !=''">
+	         AND T2.REASONTEXT LIKE '%' || #{reason} || '%'
+	        </if>
+	        <if test="reply != null and reply !=''">
+	         AND T2.REPLTEXT LIKE '%' || #{reply} || '%'
+	        </if>
+	        <if test="questionorganization != null and questionorganization !=''">
+	         AND T1.QUESORGNAME LIKE '%' || #{questionorganization} || '%'
+	        </if>
+	       	<!-- <if test="orderby == 'desc'">
+			 ORDER BY 
+			    	REPLYDATE DESC
+			</if> -->
+			<!-- WHERE 
+					REPLYDATE <> ' ' -->
+			ORDER BY 
+			    	REPLYDATE DESC
+			  ) 
+			
+</select>
+
+
+
+
+<select id="getpaing" resultMap="OrdVO">
+	SELECT  *
+FROM (SELECT 
+			  EXPCNO,
+			  ITEMNAME,
+			  ITEMNO,
+			  QUESORGCODE,
+			  QUESORGNAME,
+			  REPLORGCODE,
+			  REPLORGNAME,
+			  REPLYDATE,
+			  CLASSNAME,
+			  DETAILLINK,
+			  ANALYZEDATE,
+			  QUESTEXT,
+			  REPLTEXT,
+			  ROWNUM AS RNUM
+		FROM (SELECT 
+	              	 T1.ITEMNAME,
+	                 T1.ITEMNO,
+	                 T1.QUESORGCODE,
+	                 T1.QUESORGNAME,
+	                 T1.REPLORGCODE,
+	                 T1.REPLORGNAME,
+	                 T1.REPLYDATE,
+	                 T1.CLASSNAME,
+	                 T1.DETAILLINK,
+	              	 T1.EXPCNO,
+				     T2.ANALYZEDATE,
+				     T2.ANALYZEORGNAME,
+				     T2.CAREORGCODE,
+				     T2.REGDATE,
+				     T2.QUESTEXT,
+				     T2.REPLTEXT,
+				     T2.REASONTEXT 
+		<choose>
+	    <when test="fromdate_search != '1970.01.01' or today_search != '1970.01.01'">
+		
+	        		FROM( SELECT	EXPCNO,
+	        						ITEMNAME,
+			  					    ITEMNO,
+			  						QUESORGCODE,
+			  						QUESORGNAME,
+			  						REPLORGCODE,
+			  						REPLORGNAME,
+			  						REPLYDATE,
+			  						CLASSNAME,
+			  						DETAILLINK	
+	        			FROM( SELECT	EXPCNO,
+	        							ITEMNAME,
+			  							ITEMNO,
+			  							QUESORGCODE,
+			  							QUESORGNAME,
+			  							REPLORGCODE,
+			  							REPLORGNAME,
+			  							REPLYDATE,
+			  							CLASSNAME,
+			  							DETAILLINK	
+			  							
+	        			 	  FROM 		T_EXPCLIST T1
+	        			 	  
+	      			 <if test="fromdate_search != '1970.01.01'">
+	        	 	 <![CDATA[WHERE   REPLYDATE >= #{fromdate_search}]]></if>)
+			        <if test="today_search != '1970.01.01'">
+	        	    <![CDATA[	 WHERE REPLYDATE <= #{today_search}]]></if> ) T1 
+	        	
+			</when>
+			<otherwise>
+			FROM T_EXPCLIST T1
+			</otherwise>
+			 		
+		</choose>		  	
+    		   , T_EXPCTEXT T2
+	       WHERE T1.EXPCNO = T2.EXPCNO(+)
+	       	<if test="itemname != null and itemname !=''">
+	         AND T1.ITEMNAME LIKE '%' || #{itemname} || '%'
+	        </if>
+	        <if test="itemno != null and itemno !=''">
+	         AND T1.ITEMNO LIKE '%' || #{itemno} || '%'
+	        </if>
+	        <if test="question != null and question !=''">
+	         AND T2.QUESTEXT LIKE '%' || #{question} || '%'
+	        </if>
+	        <if test="reason != null and reason !=''">
+	         AND T2.REASONTEXT LIKE '%' || #{reason} || '%'
+	        </if>
+	        <if test="reply != null and reply !=''">
+	         AND T2.REPLTEXT LIKE '%' || #{reply} || '%'
+	        </if>
+	        <if test="questionorganization != null and questionorganization !=''">
+	         AND T1.QUESORGNAME LIKE '%' || #{questionorganization} || '%'
+	        </if>
+	       	<!-- <if test="orderby == 'desc'">
+			 ORDER BY 
+			    	REPLYDATE DESC
+			</if> -->
+			<!-- WHERE 
+					REPLYDATE <> ' ' -->
+			ORDER BY 
+			    	REPLYDATE DESC
+			  )
+	  <![CDATA[
+	 
+        WHERE ROWNUM <= #{lastIndex}  )
+       
+	WHERE  RNUM > #{firstIndex}
+	
+ 	]]>   
+</select>
+<update id="getupdate" parameterType="administrative.lawmapper.vo.OrdVO">
+	 UPDATE T_EXPCLIST
+            SET 
+            	ITEMNAME = #{itemname, jdbcType=VARCHAR},
+            	ITEMNO = #{itemno, jdbcType=VARCHAR},
+            	QUESORGNAME = #{quesorgname, jdbcType=VARCHAR},
+            	REPLORGNAME = #{replorgname, jdbcType=VARCHAR},
+            	REPLYDATE = #{replydate, jdbcType=VARCHAR}
+            WHERE 
+            	EXPCNO = #{expcno}
+</update>
+<update id="getcontextupdate" parameterType="administrative.lawmapper.vo.OrdVO">
+	 UPDATE T_EXPCTEXT
+            SET
+            	ANALYZEDATE = #{analyzedate, jdbcType=VARCHAR}, 
+            	QUESTEXT = #{questext, jdbcType=VARCHAR},
+            	REPLTEXT = #{repltext, jdbcType=VARCHAR}
+            WHERE 
+            	EXPCNO = #{expcno}
+</update>
+</mapper>

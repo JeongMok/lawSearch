@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="refformlist.lawmapper.service.dao.RefFromListMapper">
+	
+	<select id="selectGovList" parameterType="refformlist.lawmapper.vo.GovRefFormListVo" resultType="refformlist.lawmapper.vo.GovRefFormListVo">
+		SELECT
+            X.RNUM,
+            REFFORMNO AS refFormNo,
+            REFRULENO AS refRuleNo,
+            REFRULEID AS refRuleID,
+            REFFORMNAME AS refFormName,
+            REFRULENAME AS refRuleName,
+            REFFORMSECNO AS refFormSecNo,
+            REFFORMCLASSNAME AS refFormClassName,
+            CAREORGNAME AS careOrgName,
+            PROMULDATE AS proMulDate,
+            PROMULNO AS proMulNo,
+            REFRULECLASSNAME AS refRuleClassName,
+            REFFORMLINK AS refFormLink,
+            DETAILLINK AS detailLink
+        FROM (
+            SELECT
+                ROWNUM AS RNUM,
+                A.REFFORMNO,
+                A.REFRULENO,
+                A.REFRULEID,
+                A.REFFORMNAME,
+                A.REFRULENAME,
+                A.REFFORMSECNO,
+                A.REFFORMCLASSNAME,
+                A.CAREORGNAME,
+                A.PROMULDATE,
+                A.PROMULNO,
+                A.REFRULECLASSNAME,
+                A.REFFORMLINK,
+                A.DETAILLINK
+            FROM (
+                SELECT
+                    ROWNUM AS RNUM,
+                    REFFORMNO,
+                    REFRULENO,
+                    REFRULEID,
+                    REFFORMNAME,
+                    REFRULENAME,
+                    REFFORMSECNO,
+                    REFFORMCLASSNAME,
+                    CAREORGNAME,
+                    PROMULDATE,
+                    PROMULNO,
+                    REFRULECLASSNAME,
+                    REFFORMLINK,
+                    DETAILLINK
+                FROM 
+                    T_GOVREFFORMLIST
+                WHERE
+                	1=1
+                	<if test="searchKeyword != null">
+					AND
+                    REFFORMNAME LIKE '%'||#{searchKeyword, jdbcType=VARCHAR}||'%'
+                	</if>
+                ORDER BY
+                    REFFORMNO DESC) A
+            WHERE
+            	<![CDATA[ 
+                ROWNUM <= #{endList, jdbcType=INTEGER}) X
+                ]]>
+        WHERE 
+            X.RNUM >= #{startList, jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectLawList" parameterType="refformlist.lawmapper.vo.LawRefFormListVo" resultType="refformlist.lawmapper.vo.LawRefFormListVo">
+		SELECT
+			X.RNUM,
+			X.REFFORMNO AS refFormNo,
+			X.REFLAWNO AS refLawNo,
+			X.REFLAWID AS refLawId,
+			X.REFFORMNAME AS refFormName,
+			X.REFLAWNAME AS refLawName,
+			X.REFFORMSECNO AS refFormSecNo,
+			X.REFFORMCLASSNAME AS refFormClassName,
+			X.CAREORGNAME AS careOrgName,
+			X.PROMULDATE AS proMulDate,
+			X.PROMULNO AS proMulNo,
+			X.CHANGECLASSNAME AS changeClassName,
+			X.REFLAWCLASSNAME AS refLawClassName,
+			X.REFFORMLINK AS refFormLink,
+			X.REFFORMPDFLINK AS refFormPDFLink,
+			X.DETAILLINK AS detailLink
+		FROM (
+			SELECT
+				ROWNUM AS RNUM,
+				A.REFFORMNO,
+				A.REFLAWNO,
+				A.REFLAWID,
+				A.REFFORMNAME,
+				A.REFLAWNAME,
+				A.REFFORMSECNO,
+				A.REFFORMCLASSNAME,
+				A.CAREORGNAME,
+				A.PROMULDATE,
+				A.PROMULNO,
+				A.CHANGECLASSNAME,
+				A.REFLAWCLASSNAME,
+				A.REFFORMLINK,
+				A.REFFORMPDFLINK,
+				A.DETAILLINK
+			FROM (
+				SELECT
+					ROWNUM AS RNUM,
+					REFFORMNO,
+					REFLAWNO,
+					REFLAWID,
+					REFFORMNAME,
+					REFLAWNAME,
+					REFFORMSECNO,
+					REFFORMCLASSNAME,
+					CAREORGNAME,
+					PROMULDATE,
+					PROMULNO,
+					CHANGECLASSNAME,
+					REFLAWCLASSNAME,
+					REFFORMLINK,
+					REFFORMPDFLINK,
+					DETAILLINK
+				FROM
+					T_LAWREFFORMLIST
+				WHERE
+					1=1
+					<if test="searchKeyword != null">
+					AND
+                    REFFORMNAME LIKE '%'||#{searchKeyword, jdbcType=VARCHAR}||'%'	
+					</if>
+				ORDER BY
+					REFFORMNO DESC) A
+			WHERE
+				<![CDATA[
+				ROWNUM <= #{endList, jdbcType=INTEGER}) X
+				]]>
+		WHERE
+			X.RNUM >= #{startList, jdbcType=INTEGER}
+	</select>
+	
+	<select id="govrCount" parameterType="refformlist.lawmapper.vo.LawRefFormListVo" resultType="integer">
+		SELECT 
+		    COUNT(*)
+		FROM
+		    T_GOVREFFORMLIST
+		WHERE
+		    1=1
+		    <if test="searchKeyword != null"> 
+		    AND
+		    REFFORMNAME LIKE '%'||#{searchKeyword, jdbcType=VARCHAR}||'%'
+		    </if>
+	</select>
+	
+	<select id="lawCount" parameterType="refformlist.lawmapper.vo.GovRefFormListVo" resultType="integer">
+		SELECT 
+			COUNT(*)
+		FROM
+			T_LAWREFFORMLIST
+		WHERE
+			1=1
+			<if test="searchKeyword != null"> 
+		    AND
+		    REFFORMNAME LIKE '%'||#{searchKeyword, jdbcType=VARCHAR}||'%'
+		    </if>			
+	</select>
+
+</mapper>

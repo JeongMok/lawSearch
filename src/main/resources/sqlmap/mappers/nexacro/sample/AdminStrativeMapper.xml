@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="mappers.nexacro.sample.AdminStrativeMapper">
+
+
+<!-- selectList -->
+<resultMap id="AstVO" type="administrative.lawmapper.vo.AstVO">
+	<result property="deccno" column="DECCNO"/>
+	<result property="casename" column="CASENAME"/>
+	<result property="reclassname" column="RECLASSNAME"/>
+	<result property="decidedate" column="DECIDETATE"/>
+	<result property="reorgname" column="REORGNAME"/>
+    <result property="userid" column="USERID"/>
+    
+</resultMap>
+<resultMap type="administrative.lawmapper.vo.SlectClickListVO" id="ClickListVO">
+	<result property="deccno" column="DECCNO"/>
+	<result property="maintext" column="MAINTEXT"/>
+	<result property="opiniontext" column="OPINIONTEXT"/>
+	<result property="reasontext" column="REASONTEXT"/>
+	<result property="repltext" column="REPLTEXT"/>
+	<result property="userid" column="USERID"/>
+	<result property="seq" column="CHOICE"/>
+</resultMap>
+
+<update id="getexeclmody">
+
+	MERGE INTO T_DECCLIST 
+	USING DUAL
+	ON (DECCNO = #{deccno} )
+	WHEN MATCHED THEN 
+		UPDATE 
+		SET     
+		        CASENAME = #{casename, jdbcType=VARCHAR},
+            	RECLASSNAME = #{reclassname, jdbcType=VARCHAR},
+            	DECIDEDATE = #{decidedate, jdbcType=VARCHAR}
+            	
+            	
+    WHEN NOT MATCHED THEN
+   		INSERT (
+   		  			DECCNO,
+   		  			CASENAME,
+   		  			RECLASSNAME,
+   		  			DECIDEDATE
+   		  			
+   		  	   )
+        VALUES (
+        			#{deccno},
+        			#{casename,jdbcType=VARCHAR},
+        			#{reclassname,jdbcType=VARCHAR},
+        			#{decidedate,jdbcType=VARCHAR}
+        			
+        			
+        	   )
+
+</update>
+<update id="getexecltext">
+
+	MERGE INTO T_DECCTEXT 
+	USING DUAL
+	ON (DECCNO = #{deccno})
+	WHEN MATCHED THEN
+		UPDATE 
+		SET     
+		        MAINTEXT=#{maintext},
+            	OPINIONTEXT=#{opiniontext},
+            	REPLTEXT=#{repltext}
+    WHEN NOT MATCHED THEN
+   		INSERT (
+   		  			DECCNO,
+   		  			MAINTEXT,
+   		  			OPINIONTEXT,
+   		  			REPLTEXT
+   		  			
+   		  	   )
+        VALUES (
+        			#{deccno},
+        			#{maintext,jdbcType=VARCHAR},
+        			#{opiniontext,jdbcType=VARCHAR},
+        			#{repltext,jdbcType=VARCHAR}
+        			
+        			
+        	   )
+
+</update>
+<select id="getexeclselect" resultMap="AstVO">
+	SELECT DECCNO
+	FROM T_DECCLIST
+	WHERE DECCNO = #{deccno}
+</select>
+<select id="getlist" resultMap="AstVO">
+	SELECT  T1.DECIDEDATE,
+			T1.DECCNO,
+	        T1.CASENAME,
+	        T1.RECLASSNAME,
+	        T1.REORGNAME,
+	        T1.CASENO,
+ 			T2.MAINTEXT,
+			T2.OPINIONTEXT,
+			T2.REPLTEXT
+	FROM T_DECCLIST T1 ,(SELECT MAINTEXT,
+					            OPINIONTEXT,
+				                REPLTEXT	
+							FROM T_DECCTEXT
+							 WHERE DECCNO = #{deccno})T2	
+	WHERE T1.DECCNO = #{deccno}
+</select>
+<select id="getcontextlist" resultMap="AstVO">
+	SELECT *
+	FROM T_DECCTEXT T1
+	WHERE T1.DECCNO = #{deccno}
+</select>
+
+
+<select id="gethistroyList" resultMap="AstVO">
+	SELECT T2.DECCNO,
+		   T2.CASENAME,
+		   T2.DECIDEDATE,
+		   T2.RECLASSNAME,
+		   T2.REORGNAME,
+		   T1.ITEM,
+		   T1.CHOICE
+		   
+		   
+    FROM T_DECCLIST T2, (SELECT *
+		 				 FROM T_SEARCHHISTORY 
+		  				 WHERE USERID=#{userid,jdbcType=VARCHAR}
+		  				 <![CDATA[
+		  				 		AND ROWNUM <= 5
+		  				 ]]>
+		  				 ORDER BY 
+    							LOGDATE DESC
+    						)T1
+	WHERE T2.DECCNO = T1.ITEM
+	<![CDATA[
+			AND ROWNUM <= 5
+	 ]]>
+</select>
+<update id="getupdate" >
+	
+	 UPDATE T_DECCLIST
+	  
+            SET 
+                CASENAME=#{casename},
+            	RECLASSNAME=#{reclassname},
+            	DECIDEDATE=#{decidedate}
+            	
+            WHERE DECCNO=#{deccno}
+       
+</update>
+<update id="getcontextupdate">
+
+	UPDATE T_DECCTEXT
+	 
+            SET
+            	MAINTEXT=#{maintext}, 
+            	OPINIONTEXT=#{opiniontext},
+            	REPLTEXT=#{repltext}
+            	
+            WHERE DECCNO=#{deccno}
+
+</update>
+
+<insert id="getinsert">
+	INSERT INTO
+		T_SEARCHHISTORY
+		(
+			USERID,
+			ITEM,
+			CHOICE
+		)
+		VALUES
+		(
+			#{userid,jdbcType = VARCHAR},
+			#{deccno,jdbcType = VARCHAR},
+			#{seq,jdbcType = VARCHAR}
+		)
+</insert>
+
+<select id="getreognamelist" resultMap="AstVO">
+	SELECT DISTINCT
+		REORGNAME
+    FROM T_DECCLIST
+    ORDER BY CONVERT (REORGNAME, 'ISO2022-KR')
+	
+</select> 
+
+
+
+<select id="getClickList" resultMap="ClickListVO">
+	SELECT 
+		   T2.DECCNO,
+		   T2.MAINTEXT,
+		   T2.OPINIONTEXT,
+		   T2.REPLTEXT
+	FROM   T_DECCTEXT T2
+	WHERE  T2.DECCNO = #{deccno}
+</select>
+
+<select id ="getcount" resultType="int"  >
+	 SELECT
+	 	COUNT(*) AS totalCount
+	 	
+	 FROM (SELECT T1.DECIDEDATE,
+	              T1.DECCNO,
+	              T1.CASENAME,
+	              T1.RECLASSNAME,
+	              T1.REORGNAME,
+	              T1.CASENO,
+ 				  T2.MAINTEXT,
+				  T2.OPINIONTEXT,
+				  T2.REASONTEXT,
+				  T2.REPLTEXT	 
+			<choose>
+				<!-- <when test="fromdate_search != null and fromdate_search != ''"> -->
+				<when test="fromdate_search != '1970.01.01' or today_search != '1970.01.01'">
+					FROM( SELECT DECIDEDATE,
+	        			   			DECCNO,
+	        			   			CASENO,
+	        			  			CASENAME,
+	        			  			REORGNAME,
+	        			  			RECLASSNAME
+			        		FROM( SELECT DECIDEDATE,
+			        			   	   DECCNO,
+			        			   	   CASENO,
+			        			   	   REORGNAME,
+			        			   	   CASENAME,
+			        			   	   RECLASSNAME
+			        			 FROM T_DECCLIST
+			       	 <if test="fromdate_search != '1970.01.01'">
+	        	 	 <![CDATA[WHERE   DECIDEDATE >= #{fromdate_search}]]></if>)
+			        <if test="today_search != '1970.01.01'">
+	        	    <![CDATA[	 WHERE DECIDEDATE <= #{today_search}]]></if> ) T1 
+				</when>
+				<otherwise>
+					FROM	T_DECCLIST T1
+				</otherwise>    
+			</choose>     
+	        , T_DECCTEXT T2
+	       	WHERE T1.DECCNO = T2.DECCNO(+)
+	       	<if test="searchCondition != null and searchCondition !='' and searchCondition != '==전체=='">
+	         AND T1.REORGNAME LIKE '%' || #{searchCondition} || '%'
+	        </if>
+	       	<if test="incident != null and incident !=''">
+	         AND T1.CASENAME LIKE '%' || #{incident} || '%'
+	        </if>
+	        <if test="casenumber != null and casenumber !=''">
+	         AND T1.CASENO LIKE '%' || #{casenumber} || '%'
+	        </if>
+	        <if test="decision != null and decision !=''">
+	         AND T2.REPLTEXT LIKE '%' || #{decision} || '%'
+	        </if>
+	        <if test="claim != null and claim !=''">
+	         AND T2.OPINIONTEXT LIKE '%' || #{claim} || '%'
+	        </if>
+	        <if test="request != null and request !=''">
+	         AND T2.MAINTEXT LIKE '%' || #{request} || '%'
+	        </if>
+	        <if test="reason != null and reason !=''">
+	         AND T2.REASONTEXT LIKE '%' || #{reason} || '%'
+	        </if>
+	    	<if test="authorities != null and authorities !=''">
+	         AND T1.DEALORGNAME LIKE '%' || #{authorities} || '%'
+	        </if>
+	       	<if test="orderby == 'desc'">
+			 ORDER BY 
+			    	DECIDEDATE DESC
+			</if>
+			  ) 
+			
+</select>
+
+
+<!-- <select id="getpaging" resultMap="AstVO">
+SELECT DECCNO,
+	   CASENAME,
+	   RECLASSNAME,
+	   DECIDEDATE
+	   	
+FROM (SELECT DECCNO,
+			CASENAME,
+			RECLASSNAME,
+			DECIDEDATE, 
+			ROWNUM AS RNUM
+        FROM T_DECCLIST
+<![CDATA[
+	
+        WHERE ROWNUM <= #{lastIndex}
+        			
+        )
+WHERE  RNUM > #{firstIndex}
+   ]]>
+</select> -->
+
+
+<select id="getpaging" resultMap="AstVO">
+SELECT  *
+FROM (SELECT  RECLASSNAME,
+			  DECIDEDATE,
+	          DECCNO,
+	          CASENAME,
+	          CASENO,
+	          REORGNAME,
+			  MAINTEXT,
+			  OPINIONTEXT,
+			  REASONTEXT,
+			  REPLTEXT,		
+			  ROWNUM AS RNUM
+		FROM (SELECT T1.DECIDEDATE,
+	              	 T1.DECCNO,
+	              	 T1.CASENAME,
+	              	 T1.RECLASSNAME,
+	              	 T1.REORGNAME,
+	              	 T1.CASENO,
+	              	 T2.MAINTEXT,
+					 T2.OPINIONTEXT,
+					 T2.REASONTEXT,
+					 T2.REPLTEXT
+		<choose>
+	    <when test="fromdate_search != '1970.01.01' or today_search != '1970.01.01'">
+		
+	        		FROM( SELECT DECIDEDATE,
+	        			 		 DECCNO,
+	        			 	     CASENAME,
+	        			 	     REORGNAME,
+	        			 	     CASENO,
+	        			 	     RECLASSNAME
+	        			FROM( SELECT DECIDEDATE,
+	        			   	     DECCNO,
+	        			   	     CASENAME,
+	        			   	     CASENO,
+	        			   	     REORGNAME,
+	        			   	     RECLASSNAME
+	        			 	  FROM T_DECCLIST
+	        			 	  
+	      				 <if test="fromdate_search != '1970.01.01'">
+	        	 	 <![CDATA[WHERE   DECIDEDATE >= #{fromdate_search}]]></if>)
+	        	 	  <if test="today_search != '1970.01.01'">
+	        	    <![CDATA[	 WHERE DECIDEDATE <= #{today_search}]]></if> ) T1 
+	        	
+			</when>
+			<otherwise>
+			FROM T_DECCLIST T1
+			</otherwise>
+			 		
+		</choose>		  	
+    		   , T_DECCTEXT T2
+	       	WHERE  T1.DECCNO = T2.DECCNO(+)
+	       	 <if test="searchCondition != null and searchCondition !='' and searchCondition != '==전체=='">
+	         AND T1.REORGNAME = #{searchCondition}
+	        </if>
+	       
+	       	<if test="incident != null and incident !=''">
+	         AND T1.CASENAME LIKE '%' || #{incident} || '%'
+	        </if>
+	        <if test="casenumber != null and casenumber !=''">
+	         AND T1.CASENO LIKE '%' || #{casenumber} || '%'
+	        </if>
+	        <if test="decision != null and decision !=''">
+	         AND T2.REPLTEXT LIKE '%' || #{decision} || '%'
+	        </if>
+	        <if test="claim != null and claim !=''">
+	         AND T2.OPINIONTEXT LIKE '%' || #{claim} || '%'
+	        </if>
+	        <if test="request != null and request !=''">
+	         AND T2.MAINTEXT LIKE '%' || #{request} || '%'
+	        </if>
+	        <if test="reason != null and reason !=''">
+	         AND T2.REASONTEXT LIKE '%' || #{reason} || '%'
+	        </if>
+	    	<if test="authorities != null and authorities !=''">
+	         AND T1.DEALORGNAME LIKE '%' || #{authorities} || '%'
+	        </if>
+	         <if test="orderby == 'desc'">
+			    	ORDER BY 
+			    		DECIDEDATE DESC
+			</if>
+	        
+	    )
+	  <![CDATA[
+	 
+        WHERE ROWNUM <= #{lastIndex}  )
+       
+	WHERE  RNUM > #{firstIndex}
+	
+ 	]]>   
+</select>
+
+
+</mapper>

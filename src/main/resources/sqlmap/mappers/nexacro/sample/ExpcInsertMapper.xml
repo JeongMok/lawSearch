@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insertlaw.lawmapper.service.dao.ExpcInsertMapper">
+	<insert id="expcList" parameterType="insertlaw.lawmapper.vo.ExpcListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_EXPCLIST(
+				EXPCNO,
+				ITEMNAME,
+				ITEMNO,
+				QUESORGCODE,
+				QUESORGNAME,
+				REPLORGCODE,
+				REPLORGNAME,
+				REPLYDATE,
+				CLASSNAME,
+				DETAILLINK
+			) VALUES( 
+				#{expcno},
+				#{itemname, jdbcType=VARCHAR},
+				#{itemno, jdbcType=VARCHAR},
+				#{quesorgcode, jdbcType=VARCHAR},
+				#{quesorgname, jdbcType=VARCHAR},
+				#{replorgcode, jdbcType=VARCHAR},
+				#{replorgname, jdbcType=VARCHAR},
+				#{replydate, jdbcType=VARCHAR},
+				#{classname, jdbcType=VARCHAR},
+				#{detaillink, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+	<insert id="expcText" parameterType="insertlaw.lawmapper.vo.ExpcListVO">
+	<![CDATA[
+		 INSERT INTO
+				T_EXPCTEXT(
+				EXPCNO,
+				ANALYZEDATE,
+				ANALYZEORGCODE,
+				ANALYZEORGNAME,
+				CAREORGCODE,
+				REGDATE,
+				QUESTEXT,
+				REPLTEXT,
+				REASONTEXT
+			) VALUES( 
+				#{expcno},
+				#{analyzedate, jdbcType=VARCHAR},
+				#{analyzeorgcode, jdbcType=VARCHAR},
+				#{analyzeorgname, jdbcType=VARCHAR},
+				#{careorgcode, jdbcType=VARCHAR},
+				#{regdate, jdbcType=VARCHAR},
+				#{questext, jdbcType=VARCHAR},
+				#{repltext, jdbcType=VARCHAR},
+				#{reasontext, jdbcType=VARCHAR}
+			)
+	]]>
+	</insert>
+</mapper>

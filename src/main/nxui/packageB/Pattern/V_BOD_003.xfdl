@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_BOD_002" classname="V_BOD_002" left="0" top="0" width="1000" height="725" titletext="New Form" onload="V_BOD_002_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="문의(답변) 게시판 / 답변 작성" left="4.3%" top="31" right="65.9%" height="25" style="padding:0 0 0 10;font:bold 16 arial;"/>
+        <Static id="Static01" taborder="1" text="* 는 필수 입력사항입니다." left="4.5%" top="394" right="78%" height="14" style="color:red;"/>
+        <Div id="Div00" taborder="2" left="4.3%" top="416" right="5%" height="251" style="border:1 solid darkgray ;">
+          <Layouts>
+            <Layout>
+              <Static id="Static02" taborder="2" text="* 제목" left="2.81%" top="16" right="82.14%" height="33" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="Static03" taborder="3" left="2.81%" top="64" right="82.14%" height="33" style="border:1 solid #edededff ;align:center middle;" text="* 내용"/>
+              <Edit id="Edit02" taborder="6" left="19.67%" top="17" right="32.04%" height="30" style="padding:0 3 0 10;" displaynulltext="제목을 입력하세요."/>
+              <TextArea id="TextArea00" taborder="7" left="19.59%" top="64" right="2.92%" height="162" style="padding:10 10 0 10;" displaynulltext="답변 내용을 입력하세요."/>
+              <Edit id="Edit00" taborder="8" displaynulltext="비밀번호를 입력하세요." left="79.78%" top="17" right="2.87%" height="30" style="padding:0 3 0 10;"/>
+              <Static id="Static00" taborder="9" text="* 비밀번호" left="69.06%" top="16" right="21.1%" height="33" style="border:1 solid #edededff ;align:center middle;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button00" taborder="3" text="목록 으로" left="88.2%" top="681" right="5.3%" height="31" style="background:#444444ff;border:1 solid #444444ff ;color:#ffffffff;bordertype:round 0 0 ;cursor:pointer;" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="4" text="답변 등록" left="80.5%" top="681" right="13%" height="31" style="background:#444444ff;border:1 solid #444444ff ;color:#ffffffff;bordertype:round 0 0 ;cursor:pointer;" onclick="Button01_onclick"/>
+        <Static id="Static02" taborder="5" left="4.3%" top="80" right="5%" height="40" wordwrap="none" style="background:#f8f8f8ff;border:1 solid darkgray ;color:darkgray;padding:0 0 0 10;font:bold 9 arial;" text=" ※ 답변하시기전에 질문 내용을 확인해 주세요."/>
+        <Div id="Div01" taborder="6" left="4.3%" top="129" right="5%" height="251" style="border:1 solid darkgray ;">
+          <Layouts>
+            <Layout>
+              <Static id="제목" taborder="0" text="제목" left="2.76%" top="56" right="82.21%" height="36" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="제목00" taborder="1" text="문의내용" left="2.76%" top="96" right="82.21%" height="36" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="Static00" taborder="2" left="19.67%" top="57" right="2.76%" height="37" style="background:#edededff;padding:0 0 0 10;"/>
+              <TextArea id="TextArea00" taborder="3" left="19.67%" top="96" right="2.76%" height="137" readonly="true" style="padding:10 10 10 10;background:#edededff;color:#46463dff;"/>
+              <Static id="제목01" taborder="4" text="번호 :" left="2.76%" top="14" right="91.93%" height="36" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="제목02" taborder="5" text="작성자 :" left="19.56%" top="14" right="73.37%" height="36" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="제목03" taborder="6" text="작성일 :" left="69.72%" top="14" right="24.09%" height="36" style="border:1 solid #edededff ;align:center middle;"/>
+              <Static id="Static01" taborder="7" text="Static01" left="9.28%" top="15" right="82.43%" height="36"/>
+              <Static id="Static02" taborder="8" text="Static01" left="28.62%" top="14" right="58.01%" height="36"/>
+              <Static id="Static03" taborder="9" text="Static01" left="77.35%" top="15" right="2.87%" height="36"/>
+              <Static id="static_bOrder" taborder="10" text="Static04" left="-1.66%" top="232" right="101.66%" height="5"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="string" size="32"/>
+          <Column id="MENU_SEQ" type="int" size="4"/>
+          <Column id="MENU_OPTP" type="string" size="32"/>
+          <Column id="PAGE_URL" type="string" size="32"/>
+          <Column id="MENU_TOP" type="string" size="32"/>
+          <Column id="MENU_ID" type="string" size="32"/>
+          <Column id="MENU_GRP" type="string" size="32"/>
+          <Column id="CREATE_DT" type="string" size="32"/>
+          <Column id="MENU_LEVEL" type="int" size="4"/>
+          <Column id="PAGE_ID" type="string" size="32"/>
+          <Column id="PAGE_NAME" type="string" size="32"/>
+          <Column id="MENU_ARGS" type="string" size="32"/>
+          <Column id="MENU_STAT" type="string" size="32"/>
+          <Column id="CREATE_USER" type="string" size="32"/>
+          <Column id="UPDATE_DT" type="string" size="32"/>
+          <Column id="UPDATE_USER" type="string" size="32"/>
+          <Column id="MENU_DESC" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_board">
+        <ColumnInfo>
+          <Column id="bNo" type="INT" size="50" description="NO"/>
+          <Column id="userId" type="STRING" size="50" description="사용자ID"/>
+          <Column id="writerName" type="STRING" size="50" description="작성자이름"/>
+          <Column id="title" type="STRING" size="200" description="제목"/>
+          <Column id="body" type="STRING" size="4000" description="본문"/>
+          <Column id="wDate" type="STRING" size="200" description="작성일"/>
+          <Column id="password" type="STRING" size="50" description="패스워드"/>
+          <Column id="bGroup" type="INT" size="5" description="그룹"/>
+          <Column id="bOrder" type="INT" size="5" description="정렬순서"/>
+          <Column id="step" type="INT" size="5" description="스텝"/>
+          <Column id="isshow" type="STRING" size="1" description="화면표시여부"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item1" compid="Div01.TextArea00" propid="value" datasetid="gds_board" columnid="body"/>
+      <BindItem id="item2" compid="Div01.Static01" propid="text" datasetid="gds_board" columnid="bNo"/>
+      <BindItem id="item3" compid="Div01.Static02" propid="text" datasetid="gds_board" columnid="writerName"/>
+      <BindItem id="item4" compid="Div01.Static03" propid="text" datasetid="gds_board" columnid="wDate"/>
+      <BindItem id="item5" compid="Div01.static_bOrder" propid="text" datasetid="gds_board" columnid="bOrder"/>
+      <BindItem id="item6" compid="Div00.Edit02" propid="value" datasetid="ds_board" columnid="title"/>
+      <BindItem id="item7" compid="Div00.Edit00" propid="value" datasetid="ds_board" columnid="password"/>
+      <BindItem id="item9" compid="Div00.TextArea00" propid="value" datasetid="ds_board" columnid="body"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.V_BOD_002_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.ds_menu.assign(application.gds_hiddenMenu);
+	this.fn_setDate();
+	this.fn_title();
+	this.ds_board.clearData();
+	this.ds_board.addRow();
+}
+
+//제목 셋팅
+this.fn_title = function(){
+	var step = application.gds_board.getColumn(0,"step");
+	var title = application.gds_board.getColumn(0,"title");
+	
+	if(step != 0){
+		var delStep = step*2;
+		var endTitle = title.length;
+		var newTitle = title.substring(delStep,endTitle);
+		this.Div01.Static00.set_text(newTitle);
+	}else{
+		this.Div01.Static00.set_text(title);
+	}
+
+}
+
+this.fn_setDate = function(){
+	var viewDate = application.gds_board.getColumn(0,"wDate");
+	var year = viewDate.substring(0,4);
+	var mon = viewDate.substring(4,6);
+	var day = viewDate.substring(6,8);
+	var hour = viewDate.substring(8,10);
+	var min = viewDate.substring(10,12);
+	var sec = viewDate.substring(12,14);
+	
+	var viewDate = year+"년 "+mon+"월 "+day+"일 "+hour+":"+min+":"+sec;
+
+	this.Div01.Static03.set_text(viewDate);
+}
+
+//목록 으로
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var precMenuId = application.gds_openMenu.findRow("MENU_ID","1007");
+	var precWinId = application.gds_openMenu.getColumn(precMenuId,"WIN_ID");
+	application.all["mainframe"].all["VFrameSet"].all["HFrameSet"].all["VFrameSet1"].all["WorkFrame"].all[precWinId];
+	
+	this.fn_goPage(3);
+}
+
+//답변 등록
+this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var title = this.Div00.Edit02.value;
+	var body = this.Div00.TextArea00.value;
+	var password = this.Div00.Edit00.value;
+	
+	if(title == null){
+		alert("제목을 입력해 주세요");
+		return;
+	}else if(body == null){
+		alert("내용을 입력해 주세요");
+		return;
+	}else if(password == null){
+		alert("비밀번호를 입력해 주세요");
+		return;
+	}	
+	
+	var bGroup = application.gds_board.getColumn(0,7);
+	var bOrder = application.gds_board.getColumn(0,8);
+	var step = application.gds_board.getColumn(0,9);
+	var loginId = application.gds_userInfo.getColumn(0,"userid"); 
+
+	this.ds_board.setColumn(0,"bGroup",bGroup);
+	this.ds_board.setColumn(0,"bOrder",bOrder);
+	this.ds_board.setColumn(0,"step",step);
+	this.ds_board.setColumn(0,"userID",loginId);
+	this.ds_board.setColumn(0,"writerName",loginId);
+	this.ds_board.setColumn(0,"isshow",'Y');
+	
+	//this.ds_board.set_step = application.gds_board.
+	//this.ds_search.setColumn(0,"step", searchKeyword);
+	
+	var oDate = {
+		svcid : "insert",
+		sController : "boardreply.do",
+		inds:["ds_board=ds_board:U"],
+		outds:[],
+		args:[],
+		bAsync: true, // 비동기여부 (true : async  false: sync)
+		nDataType : 0, // (0: XML타입)
+		bCompress : false,			
+	};
+	//trace(" this.ds_board : " + this.ds_board.saveXML());
+	
+	var save = confirm("등록 하시겠습니까 ?");
+	
+	if(save){
+		Iject.transaction(this,oDate,function(){
+		
+			if(this.errorcode < 0)
+			{
+				alert("등록 완료");
+				
+				//Iject.alert(this.errorMsg,"알림")
+				//return;
+			}
+			//this.fn_goPage(3);
+		});
+	}else{
+		alert("취소 되었습니다.");
+		return;
+	}
+	
+	var precMenuId = application.gds_openMenu.findRow("MENU_ID","1007");
+	var precWinId = application.gds_openMenu.getColumn(precMenuId,"WIN_ID");
+	application.all["mainframe"].all["VFrameSet"].all["HFrameSet"].all["VFrameSet1"].all["WorkFrame"].all[precWinId];
+	
+	this.V_BOD_002_onload();
+	this.fn_goPage(3);
+}
+
+//화면전환
+this.fn_goPage = function(page)
+{
+	var oObj = {
+          ds    : this.ds_menu,    // 메뉴 dataset 
+          nRow  : page,              // 선택된 
+          oArgs : []               // 넘길 argument
+    };
+    
+    Iject.Mdi.call(this,oObj);
+    //trace("이동 체크 :"+oObj.nRow);
+}]]></Script>
+  </Form>
+</FDL>

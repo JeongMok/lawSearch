@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="판례등록" classname="판례등록" left="0" top="0" width="1000" height="600" titletext="New Form" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="Div02" taborder="1" text="Div02" left="0.8%" top="6" right="1.5%" height="593" style="background:white;">
+          <Layouts>
+            <Layout width="100%" height="67">
+              <Static id="Static00" taborder="41" text="선고일자" left="43.09%" top="83" right="50.87%" height="23"/>
+              <Edit id="judgedate" taborder="42" oneditclick="Div02_Edit00_oneditclick" left="49.03%" top="82" right="38.49%" height="21"/>
+              <Static id="Static02" taborder="45" text="사건번호" left="23.23%" top="47" right="70.62%" height="23"/>
+              <Edit id="caseno" taborder="46" left="28.56%" top="43" right="58.24%" height="24"/>
+              <Button id="save" taborder="47" text="등록" left="91.71%" top="46" right="2.66%" height="38" style="background:#2c4898ff;border:0 solid #999999ff ;color:white;font:bold 9 Gulim;" onclick="Div02_save_onclick" cssclass="btn_WF_save"/>
+              <Static id="Static03" taborder="48" text="법원명" left="2.76%" top="46" right="91.2%" height="23" style="align:left middle;"/>
+              <Static id="Static05" taborder="50" text="사건명" left="43.09%" top="45" right="51.59%" height="23" style="align:middle;"/>
+              <Edit id="casename" taborder="51" left="48.93%" top="43" right="20.37%" height="24"/>
+              <Static id="Static06" taborder="52" text="판결유형" left="23.23%" top="83" right="70.73%" height="23"/>
+              <Static id="Static07" taborder="53" text="선고" onclick="Div02_Static01_onclick" left="62.23%" top="81" right="33.27%" height="23" style="align:middle;"/>
+              <Static id="Static11" taborder="56" text="사건종류" left="1.64%" top="83" right="91.1%" height="23" style="align:middle;"/>
+              <Static id="Static09" taborder="57" text="상세링크" left="2.76%" top="127" right="91.2%" height="23"/>
+              <Edit id="precdetaillink" taborder="58" oneditclick="Div02_Edit00_oneditclick" left="8.8%" top="126" right="43.4%" height="22"/>
+              <Button id="select" taborder="59" text="조회" left="85.16%" top="46" right="9.21%" height="38" cssclass="btn_WF_Search"/>
+              <Combo id="courtname" taborder="60" innerdataset="ds_courtname" codecolumn="code_name" datacolumn="code_name" left="8.8%" top="46" right="77.89%" height="21" displaynulltext="법원명" onitemchanged="Div02_courtname_onitemchanged" type="filter"/>
+              <Combo id="judgeclassname" taborder="61" left="28.45%" top="83" right="58.24%" height="21" innerdataset="@ds_judgeclassname" codecolumn="judgeclassname" datacolumn="judgeclassname" displaynulltext="판결유형" type="filter"/>
+              <Combo id="caseclassname" taborder="64" innerdataset="@ds_caseclassname" codecolumn="code_name" datacolumn="code_name" left="8.8%" top="84" right="77.89%" height="21" displaynulltext="사건종류" type="filter" onitemchanged="Div02_caseclassname_onitemchanged"/>
+              <Combo id="judge" taborder="65" innerdataset="@ds_judge" codecolumn="judge" datacolumn="judge" left="66.43%" top="81" right="20.37%" height="21" displaynulltext="선고" type="filter"/>
+              <Button id="Button00" taborder="66" text="불러오기" left="65.92%" top="466" right="23.85%" height="36" style="background:#fffeff00;" onclick="Div02_Button00_onclick"/>
+              <FileUpload id="FileUpload00" taborder="67" retry="0" index="0" onsuccess="upload_onsuccess" onerror="upload_onerror" onitemchanged="addFile" left="17.71%" top="465" right="36.13%" height="40" style="buttontext:파일추가;"/>
+              <Grid id="Grid00" taborder="68" binddataset="ds_output" useinputpanel="false" autofittype="col" left="2.97%" top="208" right="5.42%" height="241">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="참조판례"/>
+                      <Cell col="1" text="참조조문"/>
+                      <Cell col="2" text="판결요지"/>
+                      <Cell col="3" text="판시사항"/>
+                      <Cell col="4" text="전문"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:dictword"/>
+                      <Cell col="1" text="bind:detaillink"/>
+                      <Cell col="2" text="bind:dictwordCode"/>
+                      <Cell col="3" text="bind:dictwordCodename"/>
+                      <Cell col="4" text="bind:dictwordSource"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="Div02.judgedate" propid="value" datasetid="ds_precedentlist" columnid="judgedate"/>
+      <BindItem id="item6" compid="Div02.precdetaillink" propid="value" datasetid="ds_precedentlist" columnid="precdetaillink"/>
+      <BindItem id="item7" compid="Div02.caseno" propid="value" datasetid="ds_precedentlist" columnid="caseno"/>
+      <BindItem id="item8" compid="Div02.casename" propid="value" datasetid="ds_precedentlist" columnid="casename"/>
+      <BindItem id="item1" compid="Div02.courtname" propid="value" datasetid="ds_precedentlist" columnid="courtname"/>
+      <BindItem id="item2" compid="Div02.caseclassname" propid="value" datasetid="ds_precedentlist" columnid="caseclassname"/>
+      <BindItem id="item3" compid="Div02.judgeclassname" propid="value" datasetid="ds_precedentlist" columnid="judgeclassname"/>
+      <BindItem id="item4" compid="Div02.judge" propid="value" datasetid="ds_precedentlist" columnid="judge"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_precedentlist">
+        <ColumnInfo>
+          <Column id="precno" type="STRING" size="256"/>
+          <Column id="judgedate" type="STRING" size="50"/>
+          <Column id="judgeno" type="STRING" size="100"/>
+          <Column id="casename" type="STRING" size="1000"/>
+          <Column id="caseno" type="STRING" size="600"/>
+          <Column id="courtname" type="STRING" size="100"/>
+          <Column id="courtclasscode" type="STRING" size="100"/>
+          <Column id="caseclasscode" type="STRING" size="100"/>
+          <Column id="caseclassname" type="STRING" size="200"/>
+          <Column id="judgeclassname" type="STRING" size="100"/>
+          <Column id="judge" type="STRING" size="100"/>
+          <Column id="precdetaillink" type="STRING" size="200"/>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_courtname">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_caseclassname">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_judge">
+        <ColumnInfo>
+          <Column id="judge" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_judgeclassname">
+        <ColumnInfo>
+          <Column id="judgeclassname" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();'
+ 
+// 폼을 킬때 법원명 정보를 미리 가져온다.
+    var oDatas =  {
+			  svcid : "selectCourtName",
+			  sController : "prec.do",			 
+			  inds :[],
+			  outds :["ds_courtname = ds_courtname, ds_caseclassname = ds_caseclassname," 
+			  +	"ds_judgeclassname = ds_judgeclassname, ds_judge = ds_judge"],			     
+			  args  : [],
+			  bAsync : false,    
+			  nDataType : 0,   
+			  bCompress :false,	 			  
+			}; 
+//	 trace(" this.ds_laworg_filter : " + this.ds_laworg_filter.saveXML());
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+ 
+		if(this.errorcode < 0)
+		{
+		   Iject.alert("법원명을 선택해 주세요.");			
+		   return;
+		} 
+	      
+	       var pThis = this.fobj;   //form object	      
+//	       trace(" ds_laworg_filter : " + pThis.ds_laworg_filter.saveXML());	   
+	});
+} 
+
+//등록버튼 클릭시
+this.Div02_save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_save("save");
+}
+
+//등록
+this.fn_save = function(strid)
+{	
+	//법원명 콤보박스 클릭시 법원명과 법원코드 한번에 보냄.
+	var court = this.Div02.courtname.index; //클릭한 법원의 코드와 이름 출력
+	var code_no = this.ds_courtname.getColumn(court,"code_no")
+	var code_name = this.ds_courtname.getColumn(court,"code_name")
+	this.ds_precedentlist.setColumn(0, "courtclasscode", code_no);
+	this.ds_precedentlist.setColumn(0, "courtname", code_name);
+	
+	//사건종류 콤보박스 클릭시 사건종류와 사건종류코드 한번에 보냄.
+	var caseclass = this.Div02.caseclassname.index; //클릭한 사건의 코드와 이름 출력
+	var code_no1 = this.ds_caseclassname.getColumn(caseclass,"code_no")
+	var code_name1 = this.ds_caseclassname.getColumn(caseclass,"code_name")
+	this.ds_precedentlist.setColumn(0, "caseclasscode", code_no1);
+	this.ds_precedentlist.setColumn(0, "caseclassname", code_name1);
+
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "precedentInsert.do",			 
+			  inds :["precedentInsert = ds_precedentlist"],
+			  outds :[
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    var save = confirm("저장하시겠습니까 ?");
+	
+	if(save){
+		Iject.transaction(this,oDatas,function(){
+		
+			if(this.errorcode < 0)
+			{
+				alert("일련번호가 중복 되었습니다.");
+				//this.opener.fn_search(1);
+				//Iject.alert(this.errorMsg,"알림")				
+				return;
+			}
+			alert("저장 완료");
+		});
+	}else{
+		alert("취소 되었습니다.");
+	}
+}
+
+//불러오기 클릭시
+this.Div02_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+	var itemCount=this.div_contents.FileUpload00.getItemCount(true);
+	if(itemCount==0){
+		alert("파일을 첨부해주세요.");
+		return false;
+	}
+	
+	var url= "http://localhost:8080/nexacro-egov/excelUpload.do";
+	this.div_contents.FileUpload00.upload(url);
+}
+
+//파일 추가
+this.addFile = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	trace("@@@@@@@@@@@@@@@@@@@");
+	var value = obj.value;
+	var fileEx = value.slice(value.lastIndexOf(".")+1).toLowerCase();
+	trace(fileEx);
+	if(fileEx!="xls" && fileEx!="xlsx"){
+		alert("xls 또는 xlsx 파일양식만 가능합니다.");
+		obj.deleteItem(0);
+		obj.appendItem();
+		return false;
+	}
+}
+
+this.upload_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	alert("통신오류");
+}
+
+this.upload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{	
+	if(e.errorcode<0){
+		alert("오류 : "+e.errormsg);
+	}
+	trace("onsuccess errorcode=" + e.errorcode + ", errormsg=" + e.errormsg   + ", datasets=" + e.datasets + ", url=" + e.url);
+	
+	//Only Runtime
+		if(nexacro.Browser == "Runtime" && e.datasets)
+		{
+			var outputDatasets = e.datasets;
+			
+			var outDs = outputDatasets[0];
+			var ds = this.ds_output;
+			ds.assign(outDs); 
+			trace(outDs.saveXML());
+			
+			//this.ds_out.copyData(outputDatasets[0]);
+		} 
+}
+
+// 파일 등록시
+this.div_contents_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	//odatas 정의
+	var oDatas = {
+		svcid : "insert",
+		sController : "dictwordInsert.do",
+		inds : ["ds_output=ds_output"],
+		outds : [],
+		args : [],
+		bAsync : false,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	 var save=confirm("데이터를 입력하시겠습니까?");
+	if(save){
+		//공통 transaction 함수 호출(콜백함수)
+		Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0)
+			{	
+			   Iject.alert(this.errormsg);
+			   return;
+			}
+		else{
+			alert("입력완료");
+		}
+		});	
+	}else{
+		alert("입력을 취소하셨습니다.");
+	}
+}
+
+// 콤보박스로 법원명 조회
+this.Div02_courtname_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo)
+{
+	var nToRow = 0;
+	var nFromRow = e.row;	//복사할 row의 Position
+	//this.ds_laworg_filter.setColumn(0,'areacode',this.div0.Combo.value);
+	
+// 위에서 가져온 법원명 list 출력	
+	
+	var rowNum = e.row;
+	var thr_search = this.ds_courtname.getColumn(rowNum, "courtname")
+	this.ds_search.setColumn(0, "courtname", courtname);
+}
+
+]]></Script>
+  </Form>
+</FDL>

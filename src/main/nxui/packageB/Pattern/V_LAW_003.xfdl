@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_003" classname="V_LAW_003" onkeyup="div_login_btn_login_onkeyup" onload="V_LAW_003_onload" onsize="frm_onsize" left="0" top="0" width="1000" height="725" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Div id="Div01" taborder="1" text="Div01" left="0.1%" top="3" right="0.1%" height="133">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="사건 번호" left="2.81%" top="51" right="91.28%" height="32"/>
+              <Static id="Static01" taborder="2" text="사건명" left="2.81%" top="9" right="91.28%" height="32"/>
+              <Edit id="Edit01" taborder="3" left="12.73%" top="11" right="63.43%" height="28"/>
+              <Static id="Static02" taborder="4" text="판시 사항" left="45.99%" top="9" right="48.1%" height="32"/>
+              <Static id="Static03" taborder="6" text="결정 요지" left="45.99%" top="51" right="47.9%" height="32"/>
+              <Static id="Static05" taborder="10" text="참조 사항" left="2.81%" top="95" right="91.28%" height="32"/>
+              <Static id="Static06" taborder="12" text="참조조문" left="10.92%" top="95" right="84.07%" height="32"/>
+              <Static id="Static07" taborder="13" text="참조판례" left="43.19%" top="95" right="50.9%" height="32"/>
+              <Edit id="Edit00" taborder="21" left="12.73%" top="53" right="63.43%" height="28"/>
+              <Edit id="Edit03" taborder="23" left="56.21%" top="11" right="19.94%" height="28"/>
+              <Edit id="Edit04" taborder="24" left="56.21%" top="53" right="19.94%" height="28"/>
+              <Edit id="Edit06" taborder="26" left="16.73%" top="95" right="59.42%" height="28"/>
+              <Edit id="Edit07" taborder="27" left="48.8%" top="95" right="27.35%" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" text="Div02" left="0.1%" top="132" right="1.6%" height="100">
+          <Layouts>
+            <Layout width="983" height="188">
+              <Static id="Static00" taborder="0" text="검색 범위" left="2.85%" top="6" right="91.25%" height="22"/>
+              <Static id="Static02" taborder="5" text="사건종류" left="11.09%" top="7" right="83.01%" height="20"/>
+              <CheckBox id="CheckBox03" taborder="6" text="전체" onclick="fn_chkbxAll_onclick" left="18.31%" top="6" right="77.11%" height="23"/>
+              <Static id="Static05" taborder="20" text="~" left="37.64%" top="68" right="61.24%" height="26"/>
+              <Button id="Button00" taborder="21" text="X" onclick="Div02_Button00_onclick" left="59.61%" top="66" right="38.25%" height="28"/>
+              <Button id="Button01" taborder="22" text="최근 1년" onclick="Div02_Button01_onclick" left="63.89%" top="66" right="30.93%" height="28"/>
+              <Button id="Button02" taborder="23" text="최근 3년" onclick="Div02_Button02_onclick" left="69.58%" top="66" right="25.33%" height="28"/>
+              <Button id="Button03" taborder="24" text="최근 5년" onclick="Div02_Button03_onclick" left="75.18%" top="66" right="19.74%" height="28"/>
+              <Calendar id="Calendar01" taborder="26" left="18.31%" top="66" right="62.87%" height="28" type="spin"/>
+              <Button id="Button04" taborder="30" text="검색" left="86.47%" top="47" right="7.12%" height="47" onclick="Div02_Button04_onclick"/>
+              <Button id="Button05" taborder="31" text="초기화" onclick="Div02_Button05_onclick" left="93.39%" top="47" right="0.2%" height="47"/>
+              <CheckBox id="CheckBox04" taborder="32" text="위헌법률심판사건" onclick="fn_CheckBox_onclick" left="23.91%" top="6" right="64.29%" height="23"/>
+              <CheckBox id="CheckBox05" taborder="33" text="탄핵심판사건" onclick="fn_CheckBox_onclick" left="36.72%" top="6" right="53.81%" height="23"/>
+              <CheckBox id="CheckBox06" taborder="34" text="정당해산심판사건" onclick="fn_CheckBox_onclick" left="47.2%" top="6" right="40.79%" height="23" enable="true"/>
+              <CheckBox id="CheckBox07" taborder="35" text="권한쟁의심판사건" onclick="fn_CheckBox_onclick" left="60.22%" top="6" right="27.67%" height="23"/>
+              <CheckBox id="CheckBox08" taborder="36" text="제1종 헌법소원심판사건" onclick="fn_CheckBox_onclick" left="18.31%" top="34" right="66.23%" height="23"/>
+              <CheckBox id="CheckBox00" taborder="37" text="제2종 헌법소원심판사건" onclick="fn_CheckBox_onclick" left="34.79%" top="34" right="49.75%" height="23"/>
+              <CheckBox id="CheckBox01" taborder="38" text="각종신청사건" onclick="fn_CheckBox_onclick" left="51.27%" top="34" right="38.86%" height="23"/>
+              <CheckBox id="CheckBox02" taborder="39" text="각종특별사건" onclick="fn_CheckBox_onclick" left="62.16%" top="34" right="27.98%" height="23"/>
+              <Static id="Static04" taborder="40" text="종국일자" left="11.09%" top="72" right="83.52%" height="20"/>
+              <Calendar id="Calendar00" taborder="41" left="39.17%" top="66" right="42.01%" height="28" type="spin"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid01" taborder="6" binddataset="ds_detc_list" useinputpanel="false" autofittype="col" oncelldblclick="fn_listClick" left="26%" top="280" right="1%" height="386">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="255"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사건번호"/>
+                <Cell col="1" text="사건명"/>
+                <Cell col="2" text="종국일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:caseno"/>
+                <Cell col="1" text="bind:casename"/>
+                <Cell col="2" text="bind:detcdate"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="Div03" taborder="7" left="0.1%" top="240" right="0%" height="38">
+          <Layouts>
+            <Layout>
+              <Button id="Button01" taborder="2" text="이전 판례 순" onclick="Div03_Button01_onclick" left="11.81%" top="0" right="79.28%" height="30"/>
+              <Button id="Button00" taborder="3" text="최신 판례 순" onclick="Div03_Button00_onclick" left="2.3%" top="0" right="88.79%" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="9" useinputpanel="false" left="1%" top="280" right="74.5%" height="122" binddataset="ds_filter_1" autofittype="col" treeinitstatus="expand,all" treeusecheckbox="false" treeusebutton="no">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="tree" edittype="tree" text="bind:class_name" treelevel="bind:column_code"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid02" taborder="10" binddataset="ds_filter_2" useinputpanel="false" autofittype="col" cellclickbound="cell" treeusecheckbox="false" treeinitstatus="expand,all" oncellclick="ds_filter_2_onclicked" left="1%" top="424" right="74.5%" height="242">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="tree" edittype="tree" text="bind:code_name2" treelevel="bind:column_code"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_paging" taborder="11" left="25.9%" top="678" right="1.8%" height="41"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_detc_list">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="256"/>
+          <Column id="detcdate" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="judgeclasscode" type="STRING" size="256"/>
+          <Column id="precdetaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_detc_context">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="256"/>
+          <Column id="caseclasscode" type="STRING" size="256"/>
+          <Column id="caseclassname" type="STRING" size="256"/>
+          <Column id="judgeclasscode" type="STRING" size="256"/>
+          <Column id="casetext" type="STRING" size="256"/>
+          <Column id="judgetext" type="STRING" size="256"/>
+          <Column id="referlaw" type="STRING" size="256"/>
+          <Column id="referjudge" type="STRING" size="256"/>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="targetlaw" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_detc_detail">
+        <ColumnInfo>
+          <Column id="detcno" type="STRING" size="256"/>
+          <Column id="detcdate" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="caseno" type="STRING" size="256"/>
+          <Column id="judgeclasscode" type="STRING" size="256"/>
+          <Column id="precdetaillink" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_detc_search" onload="fn_initPageSet">
+        <ColumnInfo>
+          <Column id="fromdate_search" type="STRING" size="256"/>
+          <Column id="todate_search" type="STRING" size="256"/>
+          <Column id="casename_search" type="STRING" size="256"/>
+          <Column id="caseno_search" type="STRING" size="256"/>
+          <Column id="caseclasscode_search" type="STRING" size="256"/>
+          <Column id="casetext_search" type="STRING" size="256"/>
+          <Column id="judgetext_search" type="STRING" size="256"/>
+          <Column id="referlaw_search" type="STRING" size="256"/>
+          <Column id="referjudge_search" type="STRING" size="256"/>
+          <Column id="judgeclasscode_search" type="STRING" size="256"/>
+          <Column id="orderby" type="STRING" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="totalPage" type="INT" size="256"/>
+          <Column id="startPage" type="INT" size="256"/>
+          <Column id="endPage" type="INT" size="256"/>
+          <Column id="countList" type="INT" size="256"/>
+          <Column id="countPage" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_detc_case_list" onload="filter_onload_check">
+        <ColumnInfo>
+          <Column id="class_name" type="STRING" size="256"/>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+          <Column id="code_name2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_filter_1" onrowposchanged="ds_filter_1_onrowposchanged">
+        <ColumnInfo>
+          <Column id="class_name" type="STRING" size="256"/>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+          <Column id="code_name2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_filter_2">
+        <ColumnInfo>
+          <Column id="class_name" type="STRING" size="256"/>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+          <Column id="code_name2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_detc_judge_list">
+        <ColumnInfo>
+          <Column id="class_name" type="STRING" size="256"/>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_commonCase_search">
+        <ColumnInfo>
+          <Column id="class_name" type="STRING" size="256"/>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div01.Edit01" propid="value" datasetid="ds_detc_search" columnid="casename_search"/>
+      <BindItem id="item1" compid="Div01.Edit00" propid="value" datasetid="ds_detc_search" columnid="caseno_search"/>
+      <BindItem id="item2" compid="Div01.Edit03" propid="value" datasetid="ds_detc_search" columnid="casetext_search"/>
+      <BindItem id="item3" compid="Div01.Edit04" propid="value" datasetid="ds_detc_search" columnid="judgetext_search"/>
+      <BindItem id="item4" compid="Div01.Edit06" propid="value" datasetid="ds_detc_search" columnid="referlaw_search"/>
+      <BindItem id="item5" compid="Div01.Edit07" propid="value" datasetid="ds_detc_search" columnid="referjudge_search"/>
+      <BindItem id="item6" compid="Div02.Calendar01" propid="value" datasetid="ds_detc_search" columnid="fromdate_search"/>
+      <BindItem id="item7" compid="Div02.Calendar00" propid="value" datasetid="ds_detc_search" columnid="todate_search"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+var chkbxStr = "";	//체크박스에서 체크한 조건들 string
+var gDetcno = application.gds_detcno.getColumn(0,"detcno");
+trace("detcno : "+gDetcno);
+
+
+//시작
+this.V_LAW_003_onload = function (obj:Form, e:LoadEventInfo){
+	Iject.formOnload(obj);
+	this.filter1_set(this.ds_filter_1);
+	this.fn_setting();
+	this.ds_detc_search.setColumn(0,"todate_search",this.nowDate(0));
+	if(gDetcno != null || gDetcno != undefined){
+		var no = gDetcno;
+		gDetcno=null;
+		application.gds_detcno.clearData();
+		this.fn_single_get(no);
+	}
+	this.ds_filter_1.set_rowposition(0);
+	this.ds_filter_2.set_rowposition(0);
+}
+
+//single
+this.fn_single_get = function(no){
+	this.ds_detc_detail.deleteAll();
+	this.ds_detc_detail.addRow();
+	this.ds_detc_detail.setColumn(0,"detcno",no);
+	var oDatas = {
+				svcid : "selectSingle",
+				sController : "DetcSelectSingleVO.do",
+				inds : ["ds_detc_detail=ds_detc_detail"],
+				outds : ["ds_detc_detail=ds_detc_detail, ds_detc_context=ds_detc_context"],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false,
+	};
+	
+	//trace(" this.ds_detc_search : " + this.ds_detc_detail.saveXML());
+	Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+		   Iject.alert(this.errorMsg);			
+		   return;
+		}	      
+	       var pThis = this.fobj;   //form object	      
+	       //trace("pThis.ds_detc_search : " + pThis.ds_detc_detail.saveXML());
+	       
+	});
+	this.ds_detc_list.addRow();
+	this.ds_detc_list.copyRow(0,this.ds_detc_detail,0);
+	
+	this.fn_popup_setting();
+}
+
+//ds 내의 row 정보 지우기
+this.fn_clear_ds = function(){
+	this.ds_detc_list.clearData();
+	this.ds_detc_context.clearData();
+	this.ds_detc_context.addRow();
+	this.ds_detc_detail.clearData();
+	this.ds_detc_detail.addRow();
+	this.ds_detc_case_list.clearData();
+	this.ds_detc_case_list.addRow();
+	this.ds_detc_judge_list.clearData();
+	this.ds_detc_judge_list.addRow();
+	this.ds_detc_search.clearData();
+	this.ds_detc_search.addRow();
+	this.ds_filter_2.clearData();
+	this.Div02.CheckBox00.set_value(false);
+	this.Div02.CheckBox01.set_value(false);
+	this.Div02.CheckBox02.set_value(false);
+	this.Div02.CheckBox03.set_value(false);
+	this.Div02.CheckBox04.set_value(false);
+	this.Div02.CheckBox05.set_value(false);
+	this.Div02.CheckBox06.set_value(false);
+	this.Div02.CheckBox07.set_value(false);
+	this.Div02.CheckBox08.set_value(false);
+	this.Div02.Calendar00.set_value("");
+	this.Div02.Calendar01.set_value("");
+	chkbxStr = "";
+	this.div_paging.destroy();
+	var objDiv = new Div("div_paging","absolute","25.90%",678,null,41,"1.80%",null);
+	this.addChild("div_paging",objDiv);
+	objDiv.show();
+}
+
+//시작 직후 셋팅
+this.fn_setting = function (){	
+	var oDatas = {
+				svcid : "setting",
+				sController : "DetcSettingVO.do",
+				inds : [],
+				outds : ["ds_detc_case_list=ds_detc_case_list"],
+				args  : [],
+				bAsync : true, 
+				nDataType : 0, 
+				bCompress :false,
+	};	
+	Iject.transaction(this,oDatas,function(){
+		var pThis = this.fobj;   //form object
+		//trace(" this.ds_detc_case_list : " + pThis.ds_detc_case_list.saveXML());
+		//trace(" this.ds_detc_judge_list : " + pThis.ds_detc_judge_list.saveXML());
+	});
+		
+}
+
+//시작 직후 오늘 날짜 셋팅
+this.nowDate = function (plus){
+    var nowDate = "";
+    var objDate = new Date();
+    var sToday  = objDate.getFullYear() + plus;
+    var sMonth = objDate.getMonth()+1;
+    var sDate = objDate.getDate();    
+
+    if(sMonth.toString().length == 1){
+      sMonth = "0" + sMonth;
+    }
+    if(sDate.toString().length == 1){
+      sDate = "0" + sDate;
+    }
+    nowDate = sToday+sMonth+sDate;
+    return nowDate;
+}
+
+//DB 갔다 오기
+this.fn_DB_search = function(){
+	var oDatas = {
+				svcid : "selectList",
+				sController : "DetcSelectVO.do",
+				inds : ["ds_detc_search=ds_detc_search"],
+				outds : ["ds_detc_list=ds_detc_list, ds_detc_search=ds_detc_search, "
+						+"ds_commonCase_search=ds_commonCase_search"],
+				args  : [],
+				bAsync : false,    
+				nDataType : 0,   
+				bCompress :false,
+	};
+	
+	trace(" this.ds_detc_search : " + this.ds_detc_search.saveXML());
+	Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+		   Iject.alert(this.errorMsg);			
+		   return;
+		}	      
+	       var pThis = this.fobj;   //form object	      
+	       trace("pThis.ds_detc_search : " + pThis.ds_detc_search.saveXML());
+	       
+	});
+	this.filter1_set(this.ds_filter_1);
+	this.ds_filter_2.clearData();
+	var case1 = this.ds_detc_case_list.getColumn(0,"class_name");
+	this.ds_commonCase_search.setColumn(0,"class_name",case1);
+	this.filter_onload_check(this.ds_commonCase_search);
+	this.ds_filter_1.set_rowposition(0);
+	this.ds_filter_2.set_rowposition(0);
+}
+
+
+//검색 버튼 클릭 시 동작
+this.Div02_Button04_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	var fromdate_search = this.Div02.Calendar01.value+"";
+	var todate_search = this.Div02.Calendar00.value+"";
+	if(fromdate_search == "" || fromdate_search ==  null || fromdate_search == "undefined"){fromdate_search = "00000000";}
+	if(todate_search == "" || todate_search ==  null || todate_search == "undefined"){todate_search = this.nowDate(0)+"";}
+	this.ds_detc_search.setColumn(0,"fromdate_search",fromdate_search);
+	this.ds_detc_search.setColumn(0,"todate_search",todate_search);
+	this.ds_detc_search.setColumn(0,"orderby", null);
+	trace("이전 확인"+chkbxStr);
+	var chkbxStr_1="";
+	if(chkbxStr != "" && chkbxStr.indexOf("/") == 0){
+		chkbxStr_1 = chkbxStr.replace("/","");
+	}else{
+		chkbxStr_1 = chkbxStr;
+	}
+	this.ds_detc_search.setColumn(0,"caseclasscode_search",chkbxStr_1);
+	//page 다시 원상복구
+	this.ds_detc_search.setColumn(0,"page",1);
+	this.fn_ds_empty_chk();
+	this.fn_DB_search();
+}
+
+this.fn_ds_empty_chk = function(){
+	this.ds_detc_search.setColumn(0,"casename_search",this.fn_empty_chk(this.ds_detc_search.getColumn(0,"casename_search")));
+	this.ds_detc_search.setColumn(0,"caseno_search",this.fn_empty_chk(this.ds_detc_search.getColumn(0,"caseno_search")));
+	this.ds_detc_search.setColumn(0,"casetext_search",this.fn_empty_chk(this.ds_detc_search.getColumn(0,"casetext_search")));
+	this.ds_detc_search.setColumn(0,"judgetext_search",this.fn_empty_chk(this.ds_detc_search.getColumn(0,"judgetext_search")));
+	this.ds_detc_search.setColumn(0,"referlaw_search",this.fn_empty_chk(this.ds_detc_search.getColumn(0,"referlaw_search")));
+	this.ds_detc_search.setColumn(0,"referjudge_search",this.fn_empty_chk(this.ds_detc_search.getColumn(0,"referjudge_search")));
+}
+
+//공백 여부 체크
+this.fn_empty_chk = function(PrevStr){
+	var str		=	PrevStr;
+	if(str != null || str != undefined){
+		var leng	=	str.length;
+		var loopChk	=	true;
+		while(loopChk){
+			var leng	=	str.length;
+			str=str.replace("  "," ");
+			//str=nexacro.trim(str);
+			if(str.indexOf(" ") == 0){	str=str.slice(1);	}
+			if(str.lastIndexOf(" ") ==(leng-1)){	str=str.slice(0,(leng-1));	}
+			if(leng == str.length || str.length <= 0){	loopChk = false;	}
+		}
+		trace("공백없앤 문장 : "+str);
+	}
+	return str;
+}
+
+//page버튼 클릭시 동작
+this.page_click = function(pagenum){
+	//page정보 갱신
+	var pnum = 0;
+	pnum = pagenum;
+	trace("페이지 갱신 정보 여부 : "+pnum);
+	this.ds_detc_search.setColumn(0,"page",pnum);
+	this.fn_DB_search();	
+}
+
+//grid내의 select list의 one row클릭 시 동작
+this.fn_listClick = function(obj:Grid, e:nexacro.GridClickEventInfo){
+	//Grid내의 선택한 row의 위치 가져오기 
+	var nToRow = 0;
+	var nFromRow = e.row;	//복사할 row의 Position, int값
+	var strColInfo = "detcno=detcno";
+	this.ds_detc_detail.clearData();
+	this.ds_detc_detail.addRow();
+	//선택한 row위치의 값들을 검색용 ds에 복사하기
+	var test=this.ds_detc_detail.copyRow(nToRow, this.ds_detc_list, nFromRow);
+	
+	var oDatas = {
+				svcid : "selectOne",
+				sController : "DetcSelectOneVO.do",
+				inds : ["ds_detc_detail=ds_detc_detail"],
+				outds : ["ds_detc_context=ds_detc_context"],
+				args  : [],
+				bAsync : false,    	// 비동기여부 (true : async  false: sync)
+				nDataType : 0,   	// (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+				bCompress :false,	//	
+	};
+					
+	trace("this.ds_detc : " + this.ds_detc_list.saveXML);
+	
+	//선택한 row의 정보를 가지고 db접속해서 정보 불러오기
+	
+	Iject.transaction(this,oDatas,function(){
+		if(this.errorcode < 0){
+		   Iject.alert(this.errorMsg);			
+		   return;
+		}	      
+	       var pThis = this.fobj;   //form object	      
+	       trace("pThis.ds_detc_context : " + pThis.ds_detc_context.saveXML());
+	});
+	this.fn_popup_setting();	
+}
+
+//팝업창 띄워서 데이터 셋팅하기
+this.fn_popup_setting = function(){
+	var strName		=	"V_LAW_004_open_modeless";
+	var strFormURL	=	"Pattern::V_LAW_004.xfdl";
+	var objParam	=	{ds_detc_detail:this.ds_detc_detail, 
+						ds_detc_context:this.ds_detc_context};
+	var strOpenStyle=	"dragmovetype=all showtitlebar=true"
+						+"showstatusbar=false autosize=false resizable=false titletext=Modeless";
+	var nLeft 		=	380;
+	var nTop 		= 	150;
+	var nWidth 		= 	1000;
+	var nHeight 	= 	800;
+	
+	application.open(strName,strFormURL,this.getOwnerFrame(),
+					 objParam,
+					 strOpenStyle, nLeft, nTop, nWidth, nHeight, this);
+}
+
+//1차 filter 전체 삽입
+this.filter1_set = function(objDs){
+	objDs.deleteAll();
+	objDs.addRow();
+	objDs.setColumn(0,"class_code","");
+	objDs.setColumn(0,"class_name","전체");
+}
+//필터 리스트 제작
+this.filter_onload_check = function(obj:Dataset, e:nexacro.DSLoadEventInfo){
+	//trace("필터 리스트 제작");
+	this.filter1_setting_temp(obj);
+	this.filter_setting_temp(obj);
+	//this.fn_text_existchk();
+	//trace("필터 리스트 제작 끝");
+}
+//1차 filter 생성
+this.filter1_setting_temp = function(obj){
+	//trace("1차 필터 생성");
+	var class_name = obj.getColumn(0,"class_name");
+	var class_code = obj.getColumn(0,"class_code");
+	var i = this.ds_filter_1.rowcount;
+	this.ds_filter_1.addRow();
+	this.ds_filter_1.setColumn(i,"class_code",class_code);
+	this.ds_filter_1.setColumn(i,"class_name",class_name);
+	//trace("1차 필터 생성 끝");
+}
+//2차 filter 생성
+this.filter_setting_temp = function(objDs){
+	//trace("2차 필터 생성");
+	var nowRowCnt = this.ds_filter_2.getRowCount();
+	var addRowCnt = objDs.rowcount;
+	//trace("숫자 확인 : "+nowRowCnt+" // "+addRowCnt);
+	this.ds_filter_2.appendData(objDs, true);
+	//trace("2차 필터 생성 끝");
+}
+
+//filter1 선택시 작동 //온클릭으로 바꾸기
+this.ds_filter_1_onrowposchanged = function(obj:Dataset, e:nexacro.DSRowPosChangeEventInfo){
+		var clickedRow = this.ds_filter_1.getColumn(e.newrow, "class_code");
+		if(clickedRow != ""){
+			this.ds_filter_2.filter("class_code=='"+clickedRow+"'");
+		}else{
+			this.ds_filter_2.filter("");
+		}
+}
+
+//filter2 선택시 작동
+this.ds_filter_2_onclicked = function(obj:Grid,e:nexacro.GridClickEventInfo){
+	if(this.ds_detc_list.getRowCount() > 1){
+		var div2_component_list = this.Div02.components;
+		var code = this.ds_filter_2.getColumn(e.row,"class_code");
+		var name = this.ds_filter_2.getColumn(e.row,"code_no");
+		var name2 = this.ds_filter_2.getColumn(e.row,"code_name2");
+		if(code == this.ds_detc_case_list.getColumn(0,"class_code")){
+			var i = 0;
+			var existanceChk = true;
+			while(existanceChk){
+				var chkbx;
+				if(i<10){
+					chkbx = div2_component_list["CheckBox0"+i];
+				}else{
+					chkbx = div2_component_list["CheckBox"+i];
+				}
+				if(chkbx === undefined || chkbx === null){
+					existanceChk = false;
+				}else{
+					chkbx.set_value(false);
+					if(name2 == chkbx.text){	chkbx.set_value(true);	}
+				}
+				i++;
+			}
+			chkbxStr = name;
+		}
+		this.Div02_Button04_onclick();
+	}
+}
+
+//정렬하기 최신 판례 순
+this.Div03_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	if(this.ds_detc_list.getRowCount() > 1){
+		this.ds_detc_search.setColumn(0,"orderby","desc");
+		this.page_click(1);
+	}
+}
+
+//정렬하기 이전 판례 순
+this.Div03_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	if(this.ds_detc_list.getRowCount() > 1){
+		this.ds_detc_search.setColumn(0,"orderby","asc");
+		this.page_click(1);
+	}
+}
+
+//버튼 누르면 현재 날짜 가져오고 거기에 -1 년 세팅
+this.Div02_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	this.ds_detc_search.setColumn(0,"todate_search",this.nowDate(0));
+	this.ds_detc_search.setColumn(0,"fromdate_search",this.nowDate(-1));
+}
+//버튼 누르면 현재 날짜 가져오고 거기에 -3 년 세팅
+this.Div02_Button02_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	this.ds_detc_search.setColumn(0,"todate_search",this.nowDate(0));
+	this.ds_detc_search.setColumn(0,"fromdate_search",this.nowDate(-3));
+}
+//버튼 누르면 현재 날짜 가져오고 거기에 -5 년 세팅
+this.Div02_Button03_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	this.ds_detc_search.setColumn(0,"todate_search",this.nowDate(0));
+	this.ds_detc_search.setColumn(0,"fromdate_search",this.nowDate(-5));
+}
+//버튼 누르면 날짜 창 초기화
+this.Div02_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	this.ds_detc_search.setColumn(0,"todate_search","");
+	this.ds_detc_search.setColumn(0,"fromdate_search","");
+}
+
+//체크박스내 데이터 실존 여부 판별
+this.fn_text_existchk = function(obj:Form, e:LoadEventInfo){
+	//체크박스에 있는 사건 분류가 DB엔 없을 때
+	var chk1 = this.ds_detc_case_list.getRowCount();
+	for(var i=0; i<9; i++){
+		var ori = this.Div02.components["CheckBox0"+i];
+		ori.set_enable(false);
+		for(var j=0; j<chk1; j++){
+			if(ori.text == this.ds_detc_case_list.getColumn(j,"code_name2") || ori.text == "전체"){
+				ori.set_enable(true);
+				break;
+			}
+		}
+	}
+}
+
+//체크박스 '전체'
+this.fn_chkbxAll_onclick = function(obj:CheckBox,  e:nexacro.ClickEventInfo){
+    obj.enableevent = false;
+    var div2_component_list = this.Div02.components;
+    var i = 0;
+    var existanceChk = true;
+    chkbxStr = "";
+    if(obj.value == true) {    
+        while(existanceChk){
+			var chkbx;
+			if(i<10){
+				chkbx = div2_component_list["CheckBox0"+i];
+			}else{
+				chkbx = div2_component_list["CheckBox"+i];
+			}
+			if(chkbx === undefined || chkbx === null){
+				existanceChk = false;
+			}else{
+				chkbx.set_value(true);
+				this.fn_CheckBox_onclick(chkbx);
+			}
+			i++;
+        }
+    } else if(obj.value == false) {   
+        while(existanceChk){
+			var chkbx;
+			if(i<10){
+				chkbx = div2_component_list["CheckBox0"+i];
+			}else{
+				chkbx = div2_component_list["CheckBox"+i];
+			}
+			if(chkbx === undefined || chkbx === null){
+				existanceChk = false;
+			}else{
+				chkbx.set_value(false);
+			}
+			i++;
+        }
+        chkbxStr = "";
+    }
+    obj.enableevent = true;
+    trace("체크 값 확인 : "+chkbxStr);
+}
+
+//체크박스 '나머지'
+this.fn_CheckBox_onclick = function(obj:CheckBox,  e:nexacro.ClickEventInfo){
+    obj.enableevent = false;
+    var div2_component_list = this.Div02.components;
+    var i = 0;
+    var existanceChk = true;
+    var str = this.ds_detc_case_list.getColumn(this.ds_detc_case_list.findRow("code_name2",obj.text),"code_no");
+    if(str == undefined || str == null){	str = "";	}
+    if(obj.value == true) {
+		var chkCnt = 0;
+		while(existanceChk){
+			var chkbx;
+			if(i<10){
+				chkbx = div2_component_list["CheckBox0"+i];
+			}else{
+				chkbx = div2_component_list["CheckBox"+i];
+			}
+			if(chkbx === undefined || chkbx === null){
+				existanceChk = false;
+			}else{
+				if(chkbx.value){	chkCnt++;	}
+			}
+			i++;
+        }
+        if(chkCnt == 8){	this.Div02.CheckBox03.set_value(true);	}
+        else if(chkCnt != 8 && chkbxStr.indexOf("/"+str) == -1){	chkbxStr = chkbxStr +"/"+ str;	}
+    } else if(obj.value == false) {
+		var chkCnt = 8;
+		while(existanceChk){
+			var chkbx;
+			if(i<10){
+				chkbx = div2_component_list["CheckBox0"+i];
+			}else{
+				chkbx = div2_component_list["CheckBox"+i];
+			}
+			if(chkbx === undefined || chkbx === null){
+				existanceChk = false;
+			}else{
+				if(!chkbx.value){	chkCnt--;	}
+			}
+			i++;
+        }
+        trace("ㅇㄹㄴㄹㄴㅁㅇㄹㄴㅁㄹㄴㅁㅇ: "+"/"+str);
+        if(chkCnt != 8){	this.Div02.CheckBox03.set_value(false);	chkbxStr = chkbxStr.replace("/"+str,"")	}
+    }
+    obj.enableevent = true;
+    trace("ㄹㄴㅁㄹㄴㄹㄴㅁㄹ: "+chkbxStr);
+}
+
+//초기화
+this.Div02_Button05_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+	this.fn_clear_ds();
+	this.V_LAW_003_onload();
+}
+
+//페이징 처리
+this.div_pagingButton_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+    var objName = obj.name.split('paging_btn_');
+    this.fn_page (objName[1]);  
+};
+
+this.div_pagingNumber_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo){
+    this.fn_page (obj.text);
+};
+
+//버튼 셋팅
+this.fn_initPageSet = function(){
+	this.div_paging.destroy();
+	var objDiv = new Div("div_paging","absolute","25.90%",678,null,41,"1.80%",null);
+	this.addChild("div_paging",objDiv);
+	objDiv.show();
+	this.initPageSet(this.ds_detc_search);
+}
+this.initPageSet = function (objDs){	
+	var startPage = objDs.getColumn(0,"startPage");
+    var endPage = objDs.getColumn(0,"endPage");
+    var totalPage = objDs.getColumn(0,"totalPage");
+    var page = objDs.getColumn(0,"page");
+    var countPage = objDs.getColumn(0,"countPage");
+    
+    //현재 width 값 가져오기
+    var fWidth = 1000;
+    var gWidth = fWidth*(0.99-0.26);
+    //(button width = 35, button space = 5, page button start = 20, page button space = 10)
+    var sDivPagingWidth = (45*4+5+5)+(20+20)+((endPage-startPage + 1)*25)+((endPage-startPage)*10);
+    this.div_paging.setOffsetWidth(sDivPagingWidth);
+    var center = fWidth-(gWidth/2);
+    //this.div_paging.setOffsetLeft(parseInt((fWidth-sDivPagingWidth)/3)*2);
+    this.div_paging.setOffsetLeft(center-(sDivPagingWidth/20*11));
+    
+    //페이징처리 버튼 생성
+    var btnLeft = 0;
+    var btnTop = 5;
+    var btnWidth = 45;
+    var btnHeight = 21;    
+    var i = startPage;
+    var j = endPage;
+    
+    // 처음으로버튼 생성
+    if(page != 1 && totalPage > 1){
+		var objBtnId    = "paging_btn_First";
+		var objButton = new Button(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);
+		this.div_paging.addChild(objBtnId, objButton);
+		this.div_paging.paging_btn_First.set_text("처음");
+		this.div_paging.paging_btn_First.set_enable(true);
+		this.div_paging.paging_btn_First.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.paging_btn_First.show();
+    }
+    btnLeft = btnLeft + 45+5;
+    
+    // 이전버튼 생성
+    if(page > 10){
+		var prevButton = new Button();
+		var prevBtnId    = "paging_btn_Prev";
+		prevButton.init(prevBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+		prevButton.set_text("이전");
+		prevButton.set_enable(true);
+		prevButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(prevBtnId,prevButton);
+		prevButton.show();
+    }
+    btnLeft = btnLeft + 45+20;
+    btnWidth = 25;
+    if(totalPage > 1){
+		for(i ; i <= j; i++) {
+			var objButton = new Button();
+			var objBtnId    = "paging_btn_"+i;
+			objButton.init(objBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+			objButton.set_text(i);
+			if(page == i ){
+				objButton.set_enable(false);
+			}else{
+				objButton.set_enable(true);
+			}
+			objButton.addEventHandler("onclick",this.div_pagingNumber_onclick , this);
+			
+			this.div_paging.addChild(objBtnId,objButton);
+			objButton.show();
+			
+			btnLeft = btnLeft + 35;
+		}
+	}
+    btnWidth = 45;
+    btnLeft = btnLeft + 10;
+    
+    // 다음버튼 생성
+    if(endPage != totalPage){
+		var nextButton = new Button();
+		var nextBtnId    = "paging_btn_Next";
+		nextButton.init(nextBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+		nextButton.set_text("다음");
+		nextButton.set_enable(true);
+		nextButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(nextBtnId,nextButton);
+		nextButton.show();
+    }
+    btnLeft = btnLeft + 45+5;
+    
+    // 마지막으로버튼 생성
+	if(page < totalPage && totalPage > 1){
+		var lastButton = new Button();
+		var lastBtnId    = "paging_btn_Last";
+		lastButton.init(lastBtnId,"absolute",btnLeft,btnTop,btnWidth,btnHeight,null,null);       
+		lastButton.set_text("끝");
+		lastButton.set_enable(true);
+		lastButton.addEventHandler("onclick",this.div_pagingButton_onclick, this);
+		this.div_paging.addChild(lastBtnId,lastButton);
+		lastButton.show();
+	}
+};
+
+//버튼 클릭 후
+this.fn_page = function (btnText){
+    var objNum = 1;
+    trace("버튼 클릭 반응 전: "+btnText);
+    if(btnText=='First'){
+        objNum = 1;
+    }else if(btnText=='Prev'){
+        objNum = this.ds_detc_search.getColumn(0,"startPage")-1;
+    }else if(btnText=='Last'){
+        objNum = this.ds_detc_search.getColumn(0,"totalPage");
+    }else if(btnText=='Next'){
+        objNum = this.ds_detc_search.getColumn(0,"endPage")+1;
+    }else{
+		objNum = btnText;
+    }
+    trace("버튼 클릭 반응 후: "+objNum);
+    this.page_click(objNum);
+};
+
+
+this.frm_onsize = function(obj:Form, e:nexacro.SizeEventInfo){
+	this.on_size();
+}
+this.on_size = function(){
+	var fWidth = this.parent.width;
+	//trace("프레임 조정 확인 "+fWidth);
+	var startPage = this.ds_detc_search.getColumn(0,"startPage");
+    var endPage = this.ds_detc_search.getColumn(0,"endPage");
+    var gWidth = fWidth*(0.99-0.26);
+    var sDivPagingWidth = (45*4+5+5)+(20+20)+((endPage-startPage + 1)*25)+((endPage-startPage)*10);
+    this.div_paging.setOffsetWidth(sDivPagingWidth);
+    var center = fWidth-(gWidth/2);
+    this.div_paging.setOffsetLeft(center-(sDivPagingWidth/20*11));
+}
+
+this.div_login_btn_login_onkeyup = function(obj:Button, e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.Div02_Button04_onclick();
+	}
+}]]></Script>
+  </Form>
+</FDL>

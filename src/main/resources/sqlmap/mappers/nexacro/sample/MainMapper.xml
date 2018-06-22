@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="constitution.lawmapper.service.dao.MainMapper">
+	<resultMap id="mainLevelset" type="constitution.lawmapper.vo.MainLevelSettingVO"/>
+
+	<select id="mainLevelSetting" resultMap="mainLevelset">
+		SELECT 
+		T1.CLASS_NAME, 
+		T2.CLASS_CODE, 
+		T2.CODE_NO, 
+		T2.CODE_NAME 
+		FROM PD_LAW_CMM_CODE_DETAIL T2,
+    		(
+    		SELECT CLASS_CODE, 
+    		CLASS_NAME 
+    		FROM PD_LAW_TAB_CODE_MASTER
+    		WHERE 
+    		USE_YN = '1' AND 
+    		MAIN_COLUMN = 'POSITION' AND
+    		MAIN_TABLE = 'T_USER'
+    		) T1
+    	WHERE 
+    	T2.CLASS_CODE = T1.CLASS_CODE AND 
+    	T2.USE_YN = '1'  
+	</select>
+</mapper>

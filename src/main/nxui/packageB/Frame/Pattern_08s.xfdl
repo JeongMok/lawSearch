@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Pattern_08s" classname="Pattern_08s" left="0" top="0" width="800" height="388" titletext="New Form" style="font:13 Dotum;cursor:hand;" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_search" taborder="0" left="1%" top="6" right="0.88%" height="42" style="border:0none solid #808080ff ;">
+          <Layouts>
+            <Layout width="785" height="42">
+              <Static id="sataic_name" taborder="0" text="사용자" left="1.65%" top="7" right="84.73%" height="27" onclick="div_search_sataic_name_onclick"/>
+              <Edit id="edit_searchid" taborder="1" left="17.32%" top="7" right="52.99%" height="27" value="홍길동" onkeyup="search_onkeyup"/>
+              <Button id="btn_search" taborder="2" text="조회" left="86.77%" top="7" right="0.76%" height="27" onclick="fn_search"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_grid_top" taborder="1" left="1%" top="52" right="0.88%" height="44" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="상세정보" left="1.66%" top="6" right="82.27%" height="31"/>
+              <Button id="btn_save" taborder="1" text="저장" left="90.43%" top="6" right="0.77%" height="31" style="cursor:hand;gradation:linear 0,0 #ffffffff 1,100 #f9f9f9ff;" onclick="div_grid_top_btn_save_onclick"/>
+              <Button id="btn_reset" taborder="2" text="리셋" left="80.84%" top="6" right="10.6%" height="31" style="cursor:hand;gradation:linear 0,0 #ffffffff 1,100 #f9f9f9ff;" onclick="fn_reset"/>
+              <Button id="btn_delete" taborder="3" text="삭제" onclick="fn_delete" left="71.01%" top="6" right="20.43%" height="31" style="cursor:hand;gradation:linear 0,0 #ffffffff 1,100 #f9f9f9ff;"/>
+              <Button id="btn_add" taborder="4" text="추가" onclick="fn_add" left="61.43%" top="6" right="30%" height="31" style="padding:1 0 0 0;cursor:hand;shadow:outer 0,1 1 #00000019;gradation:linear 0,0 #ffffffff 1,100 #f9f9f9ff;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_input" taborder="2" left="1%" top="104" right="0.88%" height="278" style="border:1solid solid #808080ff ;">
+          <Layouts>
+            <Layout width="785" height="278">
+              <Static id="Static00" taborder="0" text="ID" left="3.07%" top="17" right="76.63%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Static id="Static01" taborder="1" text="FullName" left="2.94%" top="69" right="76.76%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Static id="Static02" taborder="2" text="Email" left="3.07%" top="120" right="76.63%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Static id="Static03" taborder="3" text="Phone" left="2.94%" top="170" right="76.76%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Static id="Static04" taborder="4" text="zipCode" left="2.94%" top="221" right="76.76%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Edit id="edit_userId" taborder="5" left="25.54%" top="17" right="50.06%" height="37"/>
+              <Edit id="edit_userName" taborder="6" left="25.54%" top="69" right="50.06%" height="37"/>
+              <Edit id="edit_email" taborder="7" left="25.54%" top="120" right="1.66%" height="37"/>
+              <Edit id="edit_phone" taborder="8" left="25.54%" top="170" right="50.06%" height="37"/>
+              <Edit id="edit_zipCode" taborder="9" left="25.54%" top="221" right="50.06%" height="37"/>
+              <Static id="Static05" taborder="10" text="Password" left="51.98%" top="17" right="27.71%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;" onclick="Div02_Static05_onclick"/>
+              <Edit id="edit_password" taborder="11" left="73.95%" top="17" right="1.66%" height="37"/>
+              <Static id="Static06" taborder="12" text="EngName" onclick="Div02_Static05_onclick" left="51.98%" top="69" right="27.71%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Edit id="edit_enName" taborder="13" left="73.95%" top="69" right="1.66%" height="37"/>
+              <Static id="Static07" taborder="14" text="cellphone" onclick="Div02_Static05_onclick" left="51.98%" top="170" right="27.71%" height="37" style="background:#e0eeffff;padding:10px 10px 10px 10px;"/>
+              <Edit id="edit_cellPhone" taborder="15" left="73.95%" top="170" right="1.66%" height="37"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="100"/>
+          <Column id="searchKeyword" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="searchKeyword">홍길동</Col>
+            <Col id="searchCondition"> </Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_user">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="userName" type="STRING" size="256"/>
+          <Column id="enName" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="cellPhone" type="STRING" size="256"/>
+          <Column id="zipCode" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="edit_searchid" compid="div_search.edit_searchid" propid="value" datasetid="ds_search" columnid="searchKeyword"/>
+      <BindItem id="userId" compid="div_input.edit_userId" propid="value" datasetid="ds_user" columnid="userId"/>
+      <BindItem id="password" compid="div_input.edit_password" propid="value" datasetid="ds_user" columnid="password"/>
+      <BindItem id="userName" compid="div_input.edit_userName" propid="value" datasetid="ds_user" columnid="userName"/>
+      <BindItem id="enName" compid="div_input.edit_enName" propid="value" datasetid="ds_user" columnid="enName"/>
+      <BindItem id="email" compid="div_input.edit_email" propid="value" datasetid="ds_user" columnid="email"/>
+      <BindItem id="phone" compid="div_input.edit_phone" propid="value" datasetid="ds_user" columnid="phone"/>
+      <BindItem id="cellPhone" compid="div_input.edit_cellPhone" propid="value" datasetid="ds_user" columnid="cellPhone"/>
+      <BindItem id="zipCode" compid="div_input.edit_zipCode" propid="value" datasetid="ds_user" columnid="zipCode"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();   
+} 
+
+//조회
+this.fn_search = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+
+    var searchCondition = "NAME";
+    var searchKeyword = this.div_search.edit_searchid.value;       
+
+	this.ds_search.setColumn(0, "searchCondition", searchCondition);
+	this.ds_search.setColumn(0, "searchKeyword", searchKeyword);
+   
+    var oDatas =  {
+			  svcid : "search",
+			  sController : "crudSelectVo.do",			 
+			  inds :["ds_search=ds_search"],
+			  outds :[
+				 "ds_user=output1"
+			     ],			     
+			  args : [],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,    // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,		  
+			}; 
+	 trace(" this.ds_search : " + this.ds_search.saveXML());
+    
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+				
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid      : 서비스 ID
+		*   @param : {object}    this.fobj       : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/   
+		if(this.errorcode < 0)
+		{
+		   Iject.alert(this.errorMsg);			
+		   return;
+		} 
+	     
+	      var pThis = this.fobj;   //form object	      
+	      trace(" ds_user : " + pThis.ds_user.saveXML());
+	});
+}
+
+
+//추가
+this.fn_add = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_user.addRow();
+	this.div_search.edit_searchid.set_value("");
+}
+
+
+//삭제
+this.fn_delete = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_user.rowposition;
+	this.ds_user.deleteRow(nRow);
+	
+	var rtnValue = Iject.confirm("삭제 하시겠습니까?");
+	
+	if(rtnValue)
+	{
+		this.fn_save("delete");
+	}else{
+		this.fn_search();
+	}		
+}
+
+//리셋
+this.fn_reset = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ds_user.reset();
+}
+
+//저장
+this.div_grid_top_btn_save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	
+	this.fn_save("insert");
+}
+
+//삭제&저장
+this.fn_save = function(strid) 
+{	
+	var oDate = {
+		svcid : strid,
+		sController : "crudModifyVo.do",
+		inds:["input1=ds_user:u"],
+		outds:["ds_user=output1"],
+		args:[],
+		bAsync: true, // 비동기여부 (true : async  false: sync)
+		nDataType : 0, // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+		bCompress : false,			
+	};
+	Iject.transaction(this,oDate,function(){
+	
+	if(this.errorcode < 0)
+	{
+		this.alert(this.errorMsg,"알림")
+		return;
+	}
+	
+	var pThis = this.fobj //fomr object
+	
+	switch(strid){
+		case "insert" :				
+			alert("저장 완료");
+		break;
+		case "delete" :
+			alert("삭제 완료");
+		break;
+	}
+	
+	pThis.div_search.edit_searchid.set_value(pThis.edit_userName.value);
+	pThis.fn_search();
+		
+	});
+}
+
+//enter 처리
+this.search_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.fn_search();
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

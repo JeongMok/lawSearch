@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="management.lawmapper.service.MemberMapper">
+    <resultMap id="memberVo" type="management.lawmapper.vo.MemberSearchVo">
+        <result property="userId" column="USERID" />
+        <result property="name" column="NAME" />
+        <result property="password" column="PASSWORD" />
+        <result property="grade" column="GRADE" />
+        <result property="address" column="ADDRESS" />
+        <result property="phone" column="PHONE" />
+        <result property="email" column="EMAIL" />
+        <result property="career" column="CAREER" />
+        <result property="position" column="POSITION" />
+        <result property="sex" column="SEX" />
+        <result property="birth" column="BIRTH" />
+        <result property="engName" column="ENGNAME" />
+        <result property="gradeName" column="GRADENAME" /> 
+    </resultMap>
+
+		<select id="memberCount" resultType="int" parameterType="management.lawmapper.vo.MemberSearchVo">
+			SELECT
+				COUNT(USERID) 
+			FROM 
+				T_USER 
+			WHERE 
+				ISSHOW = 'Y'
+				<if  test="search_userId != null">
+						AND
+						USERID
+					LIKE
+						'%'||#{search_userId}||'%'	
+				</if>
+				<if test = "search_career != null">
+					AND
+					CAREER
+				LIKE
+					'%'||#{search_career}||'%'	
+				</if>		
+				<if test = "search_name != null">
+					AND	
+					NAME 
+				LIKE
+					'%'||#{search_name}||'%'	
+				</if>
+
+		</select>
+		
+		<select id="memberSelectOne" resultMap="memberVo">
+			SELECT
+				*
+			FROM
+			(
+				SELECT
+					ROWNUM RNUM,
+					USERID,
+					NAME,
+					GRADE,
+					ADDRESS,
+					PHONE,
+					EMAIL,
+					CAREER,
+					POSITION,
+					SEX,
+					BIRTH,
+					ENGNAME,
+					CASE
+						WHEN GRADE = '0'
+						THEN '관리자'
+						ELSE '일반회원'
+					END AS GRADENAME,
+					CASE
+						WHEN SEX = 'M'
+						THEN '남'
+						ELSE '여'
+					END AS SEXNAME	
+				FROM
+					T_USER
+				WHERE
+					1=1 AND ISSHOW = 'Y'
+					<if  test="search_userId != null">
+							AND
+							USERID
+						LIKE
+							'%'||#{search_userId}||'%'	
+					</if>		
+					<if test = "search_name != null">
+						AND	
+						NAME 
+					LIKE
+						'%'||#{search_name}||'%'	
+					</if>
+					<if test = "search_career != null">
+						AND
+						CAREER
+					LIKE
+						'%'||#{search_career}||'%'	
+					</if>		
+				)
+				
+				WHERE RNUM BETWEEN #{startList} AND #{endList}
+		</select>
+		<update id="memberUpdate">
+			UPDATE
+				T_USER
+			SET
+				NAME = #{name, jdbcType = VARCHAR},
+				GRADE = #{grade, jdbcType = VARCHAR},
+				ADDRESS = #{address, jdbcType = VARCHAR},
+				PHONE = #{phone, jdbcType = VARCHAR},
+				EMAIL = #{email, jdbcType = VARCHAR},
+				CAREER = #{career, jdbcType = VARCHAR},
+				POSITION = #{position, jdbcType = VARCHAR},
+				SEX = #{sex, jdbcType = VARCHAR},
+				BIRTH = #{birth, jdbcType = VARCHAR},
+				ENGNAME = #{engName, jdbcType = VARCHAR}
+
+			WHERE
+				USERID = #{userId, jdbcType = VARCHAR}	
+		</update>
+		<update id="memberDelete">
+			UPDATE
+				T_USER
+			SET
+				ISSHOW = 'N'
+			WHERE
+				USERID = #{userId}			
+		</update>
+</mapper>

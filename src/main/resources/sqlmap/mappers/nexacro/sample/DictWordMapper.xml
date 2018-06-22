@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="searchdictword.mapper.service.dao.DictWordMapper">
+
+<select id="selectDictwordListVO" parameterType="searchdictword.lawmapper.vo.DictwordVO" resultType="searchdictword.lawmapper.vo.DictwordVO">
+
+	SELECT
+		*
+	FROM
+		(
+		SELECT
+			ROWNUM RNUM, T3.*
+		FROM
+			(
+			SELECT
+			T1.DICTWORD,
+			T1.DETAILLINK,
+			T2.DICTWORDCODE,
+			T2.DICTWORDCODENAME,
+			T2.DICTWORDSOURCE,
+			T2.MAINTEXT,
+			T2.DICTWORDNO
+		FROM
+			T_DICTWORDLIST T1,
+			T_DICTWORDTEXT T2
+			<where>
+				T1.DICTWORD = T2.DICTWORD
+				<if test="dictwordCodeSearch !=null and dictwordCodeSearch != ''">
+					AND T2.DICTWORDCODE
+					IN
+					<foreach collection="dictwordCodeList" item="dictwordCodeList"
+						index="indexs" open="(" separator="," close=")">
+						#{dictwordCodeList}
+					</foreach>
+				</if>
+				<if test="dictwordCodeSearch ==null or dictwordCodeSearch == ''">
+					AND NOT T2.DICTWORDCODE IS NULL
+				</if>
+				<if test="beforeIndex != null and beforeIndex != '' and afterIndex != null and afterIndex != ''">
+					<![CDATA[
+					AND T2.DICTWORD >=#{beforeIndex} AND T2.DICTWORD < #{afterIndex}
+					]]>
+				</if>
+					AND UPPER(T2.DICTWORD) LIKE UPPER('%' || #{dictKeyword} || '%')					
+			</where>
+			ORDER BY CONVERT(T1.DICTWORD, 'ISO2022-KR')
+			) T3
+			WHERE	
+				<![CDATA[
+                ROWNUM <=#{endCount}
+                ]]>
+		)
+	WHERE
+		<![CDATA[
+		RNUM >=#{startCount}
+		]]>
+	
+</select>
+<select id="getRowCount" parameterType="searchdictword.lawmapper.vo.DictwordVO" resultType="searchdictword.lawmapper.vo.DictwordVO">
+	SELECT 
+		COUNT(*) AS TOTALCOUNT
+	FROM 
+		T_DICTWORDLIST
+	WHERE
+		DICTWORD 
+			IN
+			(
+			SELECT
+				DICTWORD
+			FROM
+				T_DICTWORDTEXT
+			<where>
+				<if test="dictwordCodeSearch !=null and dictwordCodeSearch != ''">
+				DICTWORDCODE
+					IN
+					<foreach collection="dictwordCodeList"
+					item="dictwordCodeList" index="indexs" open="(" separator="," close=")">
+					#{dictwordCodeList}
+					</foreach>
+				</if>
+				<if test="dictwordCodeSearch ==null or dictwordCodeSearch == ''">
+					NOT DICTWORDCODE IS NULL
+					</if>	
+				<if test="beforeIndex != null and beforeIndex != '' and afterIndex != null and afterIndex != ''">
+				<![CDATA[
+				AND DICTWORD >=#{beforeIndex} 
+				AND DICTWORD < #{afterIndex}
+				]]>
+				</if>
+				AND DICTWORD LIKE '%' || #{dictKeyword} || '%'
+			</where>				
+			)
+					
+	
+</select>
+<select id="selectDictwordOneVO" parameterType="searchdictword.lawmapper.vo.DictwordVO" resultType="searchdictword.lawmapper.vo.DictwordVO">
+	SELECT
+		*
+	FROM
+		T_DICTWORDLIST T1, T_DICTWORDTEXT T2
+	WHERE
+		T1.DICTWORD = T2.DICTWORD
+		AND T2.DICTWORD LIKE #{dictword}
+</select>
+
+<update id="updateDictword">
+	UPDATE 
+		T_DICTWORDLIST
+	SET
+		DETAILLINK = #{detaillink}
+	WHERE
+		DICTWORD = #{dictword}		
+</update>
+
+<update id="updateDictwordContent">
+	UPDATE 
+		T_DICTWORDTEXT
+	SET
+		DICTWORDCODE = #{dictwordCode, jdbcType=VARCHAR},
+		DICTWORDCODENAME = #{dictwordCodename, jdbcType=VARCHAR},
+		DICTWORDSOURCE = #{dictwordSource, jdbcType=VARCHAR},
+		MAINTEXT = #{mainText, jdbcType=VARCHAR},
+		DICTWORDNO = #{dictwordNo, jdbcType=VARCHAR}
+	WHERE
+		DICTWORD = #{dictword}		
+</update>
+
+<select id="exportExcel" parameterType="java.util.ArrayList" resultType="searchdictword.lawmapper.vo.DictwordExcelVO">
+	SELECT 
+		T1.DETAILLINK, T2.*
+	FROM 
+		T_DICTWORDLIST T1
+		INNER JOIN T_DICTWORDTEXT T2
+		ON T2.DICTWORD = T1.DICTWORD
+	<where>		
+		<if test="dictwordList !=null and dictwordList !=''">
+		T1.DICTWORD 
+			IN
+			<foreach collection="dictwordList"
+			item="item" index="index" open="(" separator="," close=")">
+			#{item}
+			</foreach>		
+		</if>
+	</where>
+	
+</select>	
+</mapper>

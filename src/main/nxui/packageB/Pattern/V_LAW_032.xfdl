@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_032" classname="DictWordList" left="0" top="0" width="1000" height="600" titletext="법률용어검색" onload="page_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_search" taborder="1" left="0.6%" top="7" height="356" style="border:0 none #808080ff ;" scrollbars="none" right="0">
+          <Layouts>
+            <Layout>
+              <Tab id="tab_search" taborder="0" left="0.81%" top="0%" tabindex="0" scrollbars="autoboth" multiline="false" tabjustify="true" onchanged="tab_onchanged" preload="false" style="showextrabutton:false;" right="0.81%" bottom="12.36%">
+                <Tabpages>
+                  <Tabpage id="tabpage_keyword" scrollbars="none" text="키워드" url="Pattern::V_LAW_030.xfdl" onclick="tabpage_keword_onclick">
+                    <Layouts/>
+                  </Tabpage>
+                  <Tabpage id="tabpage_wordtree" text="가나다" scrollbars="none" url="Pattern::V_LAW_031.xfdl" onclick="tabpage_wordtree_onclick"/>
+                </Tabpages>
+              </Tab>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_contents" taborder="2" left="1%" style="border:0 none #808080ff ;" right="0" height="241" top="336">
+          <Layouts>
+            <Layout>
+              <Static id="stc_04" taborder="8" text="법령 용어 정의" left="0.81%" top="30" height="22" style="border:1 solid #edededff ;align:center middle;" width="115"/>
+              <TextArea id="edt_text" taborder="12" left="13.23%" top="30" right="0.71%" oneditclick="div_contents_TextArea00_oneditclick" readonly="true" style="border:1 solid gray ;" scrollbars="autoboth" wordwrap="char" height="162" enable="true"/>
+              <Static id="stc_00" taborder="13" text="법령 용어 출처" left="0.91%" top="1" width="115" height="22" style="border:1 solid #edededff ;align:center middle;"/>
+              <Edit id="edt_source" taborder="14" left="13.23%" top="3" right="0.71%" height="19" readonly="true" style="border:1 solid gray ;" enable="true"/>
+              <Edit id="edit_05" taborder="15" readonly="true" oneditclick="div_contents_edit_05_oneditclick" visible="false" left="13.33%" top="198" right="56.57%" height="17" style="border:1 solid gray ;cursor:hand;" enable="false"/>
+              <Static id="stc_05" taborder="16" text="상세링크" visible="false" left="0.81%" top="196" width="115" height="22" style="border:1 solid #edededff ;align:center middle;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_update" taborder="3" text="수정" onclick="Button00_onclick" left="76.4%" top="533" right="17.6%" style="background:transparent;" height="27"/>
+        <Button id="btn_save" taborder="4" text="저장" onclick="save_onclick" left="83.6%" top="533" right="10.4%" style="background:transparent;" height="27"/>
+        <Button id="btn_importExcel" taborder="5" text="용어 등록" onclick="div_keyword_Button01_onclick" left="91%" top="533" right="1.4%" style="background:transparent;border:1 solid #999999ff ;" height="27"/>
+        <Button id="btn_update00" taborder="6" text="인쇄" left="69.2%" top="533" right="24.8%" onclick="btn_update00_onclick" style="background:transparent;" height="27"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dict_content" oncolumnchanged="content_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+          <Column id="link" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dict_list">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item5" compid="div_contents.edit_05" propid="value" datasetid="ds_dict_content" columnid="dictwordNo"/>
+      <BindItem id="item4" compid="div_contents.edt_text" propid="value" datasetid="ds_dict_content" columnid="mainText"/>
+      <BindItem id="" compid="" propid="" datasetid="" columnid=""/>
+      <BindItem id="item0" compid="div_contents.edt_source" propid="value" datasetid="ds_dict_content" columnid="dictwordSource"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+this.content_oncolumnchanged = function(obj:Dataset, e:nexacro.DSColChangeEventInfo)
+{	 
+	this.fn_context_fix("mainText");
+}
+	this.fn_context_fix = function(text){
+	
+	var context = this.ds_dict_content.getColumn(0,text);
+	var code = this.ds_dict_content.getColumn(0,"dictwordCode");
+	
+	if(context != null){	
+						
+
+		context=nexacro.replaceAll(context,"&middot;",", ");
+		context=nexacro.replaceAll(context,"&nbsp;"," ");
+		context=nexacro.replaceAll(context,"<br />","\r\n");
+		
+		this.ds_dict_content.setColumn(0,text,context);
+		
+		this.div_contents.stc_05.set_visible(false);
+		this.div_contents.edit_05.set_visible(false);
+	}
+	
+	
+	if(context != null && code =='011405'){	
+
+		var aStart = context.indexOf("href=")+6;
+		var aEnd = context.indexOf(">")-1;
+		var aSlice = context.slice(aStart,aEnd);
+		trace("링크내용 : "+aSlice);
+		
+		var loop = true;
+		while(loop){
+			var start = context.indexOf("<");
+			var end = context.indexOf(">")+1;
+			var slice = context.slice(start, end);
+			context = context.replace(slice,"");
+			if(start<0){
+				loop = false;
+			}
+			
+		}
+		this.ds_dict_content.setColumn(0,text,context);
+		this.ds_dict_content.setColumn(0,"dictwordNo", aSlice);
+		this.div_contents.stc_05.set_visible(true);
+		this.div_contents.edit_05.set_visible(true);
+	}else{
+		this.div_contents.stc_05.set_visible(false);
+		this.div_contents.edit_05.set_visible(false);
+	}
+}
+this.div_contents_edit_05_oneditclick = function(obj:Edit,  e:nexacro.EditClickEventInfo)
+{
+	system.execBrowser(this.ds_dict_content.getColumn(0,"dictwordNo"));
+}
+
+this.tab_onchanged = function(obj:Tab, e:nexacro.TabIndexChangeEventInfo)
+{
+	this.div_contents.edt_source.set_readonly("true");
+	this.div_contents.edt_text.set_readonly("true");
+	this.ds_dict_content.clearData();
+	this.ds_dict_content.addRow();
+}
+
+this.div_keyword_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var strOpenStyle = "dragmovetype=all showtitlebar=true"
+				+"showstatusbar=false autosize=false resizable=false";
+	var popup = application.open("modeless_lawSub","Pattern::V_OPR_025.xfdl",this.getOwnerFrame(), 
+	{mode:'modeless'}, strOpenStyle, 300, 20, 900, 600);
+
+}
+
+this.fn_DB_modify = function(){
+	var oDatas = {
+		svcid: "update",
+		sController: "dicSearchUpdateVO.do",
+		inds:["ds_dict_list=ds_dict_list:U"],
+		outds:[],
+		args:[],
+		bAsync:false,
+		nDataType:0,
+		bCompress:false
+	};
+	
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode<0){
+			Iject.alert(this.errormsg);
+			return ;
+		}
+		var pThis = this.fobj;
+		trace("this.ds_dict_list : " + pThis.ds_dict_list.saveXML());
+	});
+}
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var list;
+	if(this.div_search.tab_search.tabindex==0){
+		var list = this.div_search.tab_search.tabpage_keyword.ds_dict_list;
+		
+	}else if(this.div_search.tab_search.tabindex==1){
+		var list = this.div_search.tab_search.tabpage_wordtree.ds_dict_list;
+	}
+
+		this.ds_dict_list.copyRow(0,list,list.rowposition);
+		
+	if(list.rowposition==-1){
+		alert("수정할 항목을 선택하세요.");
+		return false;
+	}
+	
+	this.div_contents.edt_source.set_readonly(false);
+	this.div_contents.edt_text.set_readonly(false);
+	
+	
+}
+
+
+this.save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var list;
+	if(this.div_search.tab_search.tabindex==0){
+		var list = this.div_search.tab_search.tabpage_keyword.ds_dict_list;
+		
+	}else if(this.div_search.tab_search.tabindex==1){
+		var list = this.div_search.tab_search.tabpage_wordtree.ds_dict_list;
+	}
+	this.ds_dict_list.copyRow(0,list,list.rowposition);
+		
+	if(list.rowposition==-1){
+		alert("수정할 항목을 선택하세요.");
+		return false;
+	}
+	
+	var content = this.ds_dict_content;
+		
+		list.copyRow(list.rowposition,content,content.rowposition);
+		this.ds_dict_list.assign(list);
+		
+		var userId = application.gds_userInfo.getColumn(0,"userid");
+		this.ds_dict_list.setColumn(0,"userId",userId);
+		this.fn_DB_modify();
+		this.div_contents.edt_source.set_readonly(true);
+		this.div_contents.edt_text.set_readonly(true);
+
+}
+
+this.page_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+  var grade = application.gds_userInfo.getColumn(0,"grade");
+  if(grade != "0"){
+    this.btn_save.set_visible(false);
+    this.btn_update.set_visible(false);
+	this.btn_importExcel.set_visible(false);
+  }else{
+	this.btn_save.set_visible(true);
+    this.btn_update.set_visible(true);
+	this.btn_importExcel.set_visible(true);
+  }
+}
+
+this.btn_update00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+	var list;
+	if(this.div_search.tab_search.tabindex==0){
+		var list = this.div_search.tab_search.tabpage_keyword.ds_dict_list;
+		
+	}else if(this.div_search.tab_search.tabindex==1){
+		var list = this.div_search.tab_search.tabpage_wordtree.ds_dict_list;
+	}
+
+		this.ds_dict_list.copyRow(0,list,list.rowposition);
+		
+	if(list.rowposition==-1){
+		alert("먼저 검색을 해주세요.");
+		return false;
+	}
+
+	application.open("modeless_lawSub","Pattern::V_LAW_33.xfdl",this.getOwnerFrame(), 
+	{mode:'modeless',ds_dict_list:this.ds_dict_list}, "showtitlebar=true", 300, 20, 600, 600);
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_013" classname="V_LAW_013" left="0" top="0" width="900" height="700" titletext="법령조문전체보기" onload="form_onload" style="border:1 solid #808080ff ;color:ivory;">
+    <Layouts>
+      <Layout>
+        <Div id="div_mainText" taborder="0" left="0%" top="32" height="95.43%" width="100%" style="border:0 none #808080ff ;">
+          <Layouts>
+            <Layout width="816" height="30"/>
+          </Layouts>
+        </Div>
+        <TextArea id="txa_mainText" taborder="1" wordwrap="char" readonly="true" left="25" top="21" style="background:transparent;border:0 solid gray ;" oneditclick="txa_mainText_oneditclick" width="850" height="609"/>
+        <Button id="btn_close" taborder="2" text="닫기" onclick="btn_close_onclick" left="92.22%" top="652" right="2.22%" height="25" style="background:transparent;color:#46463dff;"/>
+        <Button id="Button00" taborder="3" onclick="Button00_onclick" left="83.89%" top="92.71%" height="5.86%" style="image:URL('img::bnt_print.png');background:transparent;border:0 solid #808080ff ;" width="6.11%"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_chooseLaw">
+        <ColumnInfo>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+          <Column id="articleNo" type="STRING" size="50" description="조문번호"/>
+          <Column id="name" type="STRING" size="200" description="조문제목"/>
+          <Column id="actDate" type="STRING" size="50" description="조문시행일자"/>
+          <Column id="beforeMove" type="STRING" size="50" description="조문이동이전"/>
+          <Column id="afterMove" type="STRING" size="50" description="조문이동이후"/>
+          <Column id="isModify" type="STRING" size="50" description="조문변경여부"/>
+          <Column id="mainText" type="STRING" size="4000" description="조문내용"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_lawItem">
+        <ColumnInfo>
+          <Column id="cate" type="STRING" size="5" description="항,호,목 구분"/>
+          <Column id="itemNo" type="STRING" size="50" description="번호"/>
+          <Column id="itemText" type="STRING" size="4000" description="내용"/>
+          <Column id="higherItemNo" type="STRING" size="50" description="상위아이템번호"/>
+          <Column id="lawId" type="STRING" size="50" description="법령 ID"/>
+          <Column id="articleKey" type="STRING" size="50" description="조문키"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="articleMainText" compid="txa_mainText" propid="value" datasetid="ds_lawItem" columnid="itemText"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+this.btn_close_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close("OK");
+}
+
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	var lawId = this.parent.ds_chooseLaw.getColumn(0,"lawId");
+	this.ds_chooseLaw.setColumn(0,"lawId",lawId);
+	
+	this.ds_lawItem.clearData();
+	this.ds_lawItem.addRow();
+
+	var oDatas =  {
+		  svcid : "searchLawArticleAll",
+		  sController : "searchLawArticleAll.do", 
+		  inds :["ds_search = ds_chooseLaw"],
+		  outds :[
+			"ds_lawItem = articleDetail"
+			 ],			     
+		  args  : [				
+		  ],
+		  bAsync : true,    // 비동기여부 (true : async  false: sync)
+		  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+		  bCompress :false,	 //			  
+		}; 
+		
+	//공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+			/*  
+			*   callback argument
+			*   @param : {string}    this.svcid      : 서비스 ID
+			*   @param : {object}    this.fobj       : 현재 form object
+			*   @param : {number}    this.errorcode  : 서비스 에러 코드
+			*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+			*/   
+				
+		if(this.errorcode < 0)
+		{		
+			Iject.alert(this.errorMsg);			
+			return;
+		} 
+		
+		var pThis = this.fobj;   //form object	      
+		   
+		trace(" ds_lawItem : " + pThis.ds_lawItem.saveXML()); // 화면 출력
+			
+	});
+}
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	system.print(this.txa_mainText,false,"left", false);
+}
+]]></Script>
+  </Form>
+</FDL>

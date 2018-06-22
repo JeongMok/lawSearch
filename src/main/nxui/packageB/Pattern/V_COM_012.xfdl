@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_COM_012" classname="V_COM_012" left="0" top="0" width="774" height="510" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="JUSOWBrowser" left="0" top="3" right="7" bottom="6" taborder="0" url="http://localhost:8080/nexacro-egov/daumAddress.html" onusernotify="JUSOWBrowser_onusernotify"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_address">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="road" type="STRING" size="256"/>
+          <Column id="building" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+// 웹브라우저에서 처리하는 문서안에서 필요한 정보를 Webbrowser 컴포넌트를 통해서 메인창쪽으로 알리기 위한 이벤트
+var test = 0;
+
+this.JUSOWBrowser_onusernotify = function(obj:WebBrowser, e:nexacro.WebTitleChangeEventInfo)
+{	
+	application.gds_address.clearData();
+	application.gds_address.addRow();
+	
+ 	var data = e.userdata.split(',');
+ 	for(var i in data){
+ 	//	alert(data[0]);
+ 	//	alert(data[1]);
+ 	//	alert(data[2]);
+ 		//data[0].substring();
+ 		application.gds_address.setColumn(0,"code",data[0]);
+ 		application.gds_address.setColumn(0,"road",data[1]);
+ 		//alert(data[i]);
+ 	}	
+	if(application.gds_address.getColumn(0,"code").length<=20){
+	this.close();
+	}
+ 	//alert(application.gds_address.getColumn(0,"code"));
+ 	//alert(application.gds_address.getColumn(0,"road"));
+ 	//alert(application.gds_address.getColumn(0,"building"));
+}
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+//	this.fn_address(0);
+//objWb._ifrm_elem._object_id
+//alert(this.JUSOWBrowser._ifrm_elem);
+}
+]]></Script>
+  </Form>
+</FDL>

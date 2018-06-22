@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_LAW_002_1" classname="V_LAW_002_1" left="0" top="0" width="405" height="579" titletext="행정심판례본문" style="background:floralwhite;border:1 solid black ;" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="Div01" taborder="3" text="Div01" left="0.25%" top="4" right="0.99%" height="524" style="background:transparent;border:0 none #808080ff ;">
+          <Layouts>
+            <Layout width="993" height="673">
+              <TextArea id="TextArea00" taborder="6" wordwrap="char" oneditclick="Div01_TextArea00_oneditclick" left="3.25%" top="170" right="0.25%" height="71" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:10 Dotum;}" enable="false"/>
+              <TextArea id="TextArea01" taborder="7" wordwrap="char" left="3.25%" top="285" right="0.25%" height="222" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:10 Dotum;}" enable="false"/>
+              <TextArea id="TextArea02" taborder="8" wordwrap="char" oneditclick="Div01_TextArea02_oneditclick" left="3.25%" top="76" right="0.25%" height="53" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:9 Dotum;}" enable="false"/>
+              <Static id="주문" taborder="9" text="주문" left="3.21%" top="53" right="84.26%" height="19" style="font:bold 12 arial;"/>
+              <Static id="Static00" taborder="10" text="청구취지" left="3.21%" top="133" right="76.09%" height="44" style="font:bold 12 arial;"/>
+              <Static id="Static01" taborder="11" text="재결요지" left="3.21%" top="240" right="76.09%" height="42" style="font:bold 12 arial;"/>
+              <Static id="Static02" taborder="13" text="의결일자" left="3.21%" top="14" right="73.18%" height="23" style="font:bold 12 arial;"/>
+              <Edit id="Edit00" taborder="14" enable="false" left="26.53%" top="14" right="53.64%" height="19" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:10 Dotum;}"/>
+              <Static id="Static03" taborder="15" text="일련번호" left="52.19%" top="14" right="25.66%" height="23" style="font:bold 12 arial;"/>
+              <Edit id="Edit01" taborder="16" enable="false" left="74.64%" top="15" right="4.37%" height="19" style="border:0 solid #808080ff ; :disabled {background:transparent;border:0 none transparent ;color:black;font:10 Dotum;}"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button00" taborder="4" left="26.42%" top="521" right="53.58%" height="37" onclick="Button00_onclick" enable="true" style="image:URL('img::bnt_print.png');background:transparent;border:0 solid #808080ff ;"/>
+        <Button id="Button01" taborder="5" text="닫기" onclick="Button01_onclick" left="51.36%" top="521" right="23.7%" height="37" style="background:transparent;border:0 solid #808080ff ;font:12 Dotum;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_selectlist">
+        <ColumnInfo>
+          <Column id="deccno" type="STRING" size="256"/>
+          <Column id="casename" type="STRING" size="256"/>
+          <Column id="reclassname" type="STRING" size="256"/>
+          <Column id="decidedate" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_decctext" onload="form_onload">
+        <ColumnInfo>
+          <Column id="maintext" type="STRING" size="256"/>
+          <Column id="opiniontext" type="STRING" size="256"/>
+          <Column id="repltext" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item2" compid="Div01.TextArea02" propid="value" datasetid="ds_decctext" columnid="maintext"/>
+      <BindItem id="item3" compid="Div01.TextArea00" propid="value" datasetid="ds_decctext" columnid="opiniontext"/>
+      <BindItem id="item4" compid="Div01.TextArea01" propid="value" datasetid="ds_decctext" columnid="repltext"/>
+      <BindItem id="item5" compid="Div01.Edit00" propid="value" datasetid="ds_selectlist" columnid="decidedate"/>
+      <BindItem id="item1" compid="Div01.Edit01" propid="value" datasetid="ds_selectlist" columnid="deccno"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.ds_selectlist.copyData(this.parent.ds_selectlist);
+	this.ds_decctext.copyData(this.parent.ds_decctext);
+	
+
+} 
+
+
+
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		
+		system.print(this.Div01,false,"left", false);
+		
+	
+}
+
+this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

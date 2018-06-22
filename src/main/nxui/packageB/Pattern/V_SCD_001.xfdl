@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_SCD_001" classname="V_SCD_001" left="0" top="0" width="1030" height="799" titletext="New Form" name="Schedule" onload="execute_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="grd_output" taborder="0" binddataset="ds_data" useinputpanel="false" selecttype="cell" useselcolor="false" onheadclick="grd_output_onheadclick" left="0.23%" top="0" height="790" width="1021" oncellclick="grd_output_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="150"/>
+                <Column size="145"/>
+                <Column size="145"/>
+                <Column size="145"/>
+                <Column size="145"/>
+                <Column size="145"/>
+                <Column size="145"/>
+              </Columns>
+              <Rows>
+                <Row size="36" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="114"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="◀"/>
+                <Cell col="1" colspan="5"/>
+                <Cell col="6" text="▶"/>
+                <Cell row="1" style="color:red" text="SUN"/>
+                <Cell row="1" col="1" text="MON"/>
+                <Cell row="1" col="2" text="TUE"/>
+                <Cell row="1" col="3" text="WED"/>
+                <Cell row="1" col="4" text="THU"/>
+                <Cell row="1" col="5" text="FRI"/>
+                <Cell row="1" col="6" style="color:blue" text="SAT"/>
+              </Band>
+              <Band id="body" style="cellbackground:white;cellbackground2:white;cellcolor:black;cellcolor2:black;">
+                <Cell style="align:center top;color:red;color2:red;" text="bind:COL_D0"/>
+                <Cell col="1" style="align:center top;" text="bind:COL_D1"/>
+                <Cell col="2" style="align:center top;" text="bind:COL_D2"/>
+                <Cell col="3" style="align:center top;" text="bind:COL_D3"/>
+                <Cell col="4" style="align:center top;" text="bind:COL_D4"/>
+                <Cell col="5" style="align:center top;" text="bind:COL_D5"/>
+                <Cell col="6" style="align:center top;color:blue;color2:blue;" text="bind:COL_D6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="★   ----&gt; 일정 있는 날" left="76.41%" top="744" right="0.68%" height="40" style="color:red;font:13 Dotum;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="COL_D0" type="STRING" size="256"/>
+          <Column id="COL_D1" type="STRING" size="256"/>
+          <Column id="COL_D2" type="STRING" size="256"/>
+          <Column id="COL_D3" type="STRING" size="256"/>
+          <Column id="COL_D4" type="STRING" size="256"/>
+          <Column id="COL_D5" type="STRING" size="256"/>
+          <Column id="COL_D6" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_calendar">
+        <ColumnInfo>
+          <Column id="day0" type="STRING" size="256"/>
+          <Column id="day1" type="STRING" size="256"/>
+          <Column id="day2" type="STRING" size="256"/>
+          <Column id="day3" type="STRING" size="256"/>
+          <Column id="day4" type="STRING" size="256"/>
+          <Column id="day5" type="STRING" size="256"/>
+          <Column id="day6" type="STRING" size="256"/>
+          <Column id="hol0" type="STRING" size="256"/>
+          <Column id="hol1" type="STRING" size="256"/>
+          <Column id="hol2" type="STRING" size="256"/>
+          <Column id="hol3" type="STRING" size="256"/>
+          <Column id="hol4" type="STRING" size="256"/>
+          <Column id="hol5" type="STRING" size="256"/>
+          <Column id="hol6" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="STRING" size="32"/>
+          <Column id="MENU_SEQ" type="INT" size="4"/>
+          <Column id="MENU_OPTP" type="STRING" size="32"/>
+          <Column id="PAGE_URL" type="STRING" size="32"/>
+          <Column id="MENU_TOP" type="STRING" size="32"/>
+          <Column id="MENU_ID" type="STRING" size="32"/>
+          <Column id="MENU_GRP" type="STRING" size="32"/>
+          <Column id="CREATE_DT" type="STRING" size="32"/>
+          <Column id="MENU_LEVEL" type="INT" size="4"/>
+          <Column id="PAGE_ID" type="STRING" size="32"/>
+          <Column id="PAGE_NAME" type="STRING" size="32"/>
+          <Column id="MENU_ARGS" type="STRING" size="32"/>
+          <Column id="MENU_STAT" type="STRING" size="32"/>
+          <Column id="CREATE_USER" type="STRING" size="32"/>
+          <Column id="UPDATE_DT" type="STRING" size="32"/>
+          <Column id="UPDATE_USER" type="STRING" size="32"/>
+          <Column id="MENU_DESC" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_result">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="eventdate" type="STRING" size="256"/>
+          <Column id="eventmain" type="STRING" size="256"/>
+          <Column id="eventtitle" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_schedulelist">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="eventdate" type="STRING" size="256"/>
+          <Column id="eventmain" type="STRING" size="256"/>
+          <Column id="eventtitle" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[this.fv_CurYear = 0;
+this.fv_CurMonth = "";
+
+this.execute_onload = function(obj:Form,  e:nexacro.LoadEventInfo)
+{
+
+	//모든 일정 목록 조회
+    this.ds_schedulelist.clearData();
+    this.ds_schedulelist.addRow();
+    this.ds_schedulelist.setColumn(0,"userid",application.gds_userInfo.getColumn(0,14)); 
+    
+    //this.ds_result.clearData();
+   
+    this.fn_search();
+    
+    var size = this.ds_result.getRowCount();
+    
+    var objDate = new Date();
+    var sYear  = objDate.getYear();
+    var sMonth = objDate.getMonth() + 1;
+
+    this.fn_drawCalendar(this.ds_data, this.grd_output, sYear, sMonth);
+    
+    this.ds_menu.assign(application.gds_hiddenMenu);
+    
+    
+}
+
+this.fn_drawCalendar = function(objDS, objGrid, sYear, sMonth)
+{
+    this.fv_CurYear  = sYear;
+    this.fv_CurMonth = sMonth.toString().padLeft(2, '0');
+
+    // Grid Header
+    objGrid.setCellProperty("Head", 1, "text", sYear + "년" + " "+ sMonth + "월");
+
+    objDS.clearData();
+    
+    var sCurDateF = sYear  + "-" + this.fv_CurMonth + "-" + "01";
+
+    var objDate = new Date(sCurDateF);
+    var nStartDay = objDate.getDay();
+
+    var nLastDate = 0;
+    var nMonth = parseInt(sMonth, 10);
+    if (nMonth == 1 || nMonth == 3 || nMonth == 5 || nMonth == 7  || nMonth == 8 || nMonth == 10 || nMonth == 12)
+    {
+        nLastDate = 31;
+    }
+    else if (nMonth == 2)  
+    {
+        var nYear = parseInt(sYear, 10);
+        if ((nYear % 4) == 0) 
+        {
+            if ((nYear % 100) != 0 || (nYear % 400) == 0)
+            {
+                nLastDate = 29;
+            }
+            else
+            {
+                nLastDate = 28;
+            }
+        } 
+        else
+        {
+            nLastDate = 28;
+        }
+    } 
+    else
+    {
+        nLastDate = 30;
+    }    
+        
+    var day;
+    var nRow = objDS.addRow();
+	
+	var pday;
+	var size = this.ds_result.getRowCount();
+	
+    
+    for (var i = 1, day = nStartDay; i <= nLastDate; i++ )
+    {
+        objDS.setColumn(nRow, "COL_D"+day, i);
+              
+		var dd = objDS.getColumn(nRow, "COL_D"+day);
+	
+		for(var j=0; j< size; j++){
+		var bb = this.ds_result.getColumn(j,"eventdate");
+		var mo = bb.substring(5,7);
+		if(mo<10){
+		mo = bb.substring(6,7);
+		}else{
+		mo = bb.substring(5,7);
+		}
+		if(mo==sMonth){
+		var aa = bb.substring(8,10);
+		if(aa<10){
+		pday = bb.substring(9,10);
+		}else{
+		pday = aa;
+		}
+		if(dd==pday){
+        objDS.setColumn(nRow, "COL_D"+day, i+"\n"+"\n"+"★");
+        }
+		}
+		}
+        day = (day + 1) % 7;
+        if (day == 0 && i != nLastDate)
+        {
+            nRow = objDS.addRow();
+        }
+    }
+}
+
+this.grd_output_onheadclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+    var objDate = new Date(this.fv_CurYear + "-" + this.fv_CurMonth + "-" + "01");
+
+    if (e.cell == 0)
+    {
+		objDate.setMonth(objDate.getMonth() - 1);
+        this.fn_drawCalendar(this.ds_data, this.grd_output, objDate.getYear(), objDate.getMonth()+1);
+    }
+    else if( e.cell == 2 )
+    {
+        objDate.setMonth(objDate.getMonth() +1);
+        this.fn_drawCalendar(this.ds_data, this.grd_output, objDate.getYear(), objDate.getMonth()+1);
+    }    
+    
+    var selectedRow = this.grd_output.getSelectedRows();
+	var selectedCell = this.grd_output.getCellPos();
+	
+}
+this.grd_output_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var year = this.fv_CurYear;
+	var month = this.fv_CurMonth;
+	var selectedRow = this.grd_output.getSelectedRows();
+	var selectedCell = this.grd_output.getCellPos();
+	
+	var ldate = this.ds_data.getColumn(selectedRow,selectedCell);
+	var cdate = ldate.substring(0,2);
+	if(cdate<10){
+	var day = "0"+ldate.substring(0,1);
+	}else{
+	var day = ldate.substring(0,2);
+	}
+
+	var date = year + "-" + month + "-" + day;
+	application.gds_date.clearData();
+	application.gds_date.addRow();
+	application.gds_date.setColumn(0,"date",date);	
+	//application.gds_date.getColumn(0);
+	//alert(date);
+	this.fn_goPage(4);
+}
+
+//화면전환
+this.fn_goPage = function(page)
+{
+	var oObj = {
+          ds    : this.ds_menu,    // 메뉴 dataset 
+          nRow  : page,              // 선택된 
+          oArgs : []               // 넘길 argument
+    };
+    Iject.Mdi.call(this,oObj);
+    
+}
+
+//모든일정목록조회
+this.fn_search = function(strid){
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "schedulelist.do",			 
+			  inds :["input1=ds_schedulelist"],
+			  outds :[
+				 "ds_result=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : false,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+			
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/  
+		
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");	
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	       var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	      } 
+	       var pThis = this.fobj;   //form object	      
+	       
+});
+}
+]]></Script>
+  </Form>
+</FDL>

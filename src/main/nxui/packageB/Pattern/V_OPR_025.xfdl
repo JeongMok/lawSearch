@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_25" classname="V_OPR_25" left="0" top="0" width="1000" height="600" titletext="법률용어등록" style="border:1 solid #808080ff ;" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_search" taborder="1" left="0.56%" top="64" width="297" height="503" style="border:0 none #808080ff ;" scrollbars="none">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="div_contents" taborder="2" left="0%" top="16" height="559" style="border:0 none #808080ff ;" right="0%">
+          <Layouts>
+            <Layout>
+              <FileUpload id="FileUpload00" taborder="1" retry="0" index="0" left="52.64%" top="11" right="20.28%" height="20" style="buttontext:파일추가;" onitemchanged="addFile" onerror="upload_onerror" onsuccess="upload_onsuccess"/>
+              <Static id="Static01" taborder="2" text="예시" left="3.96%" top="247" right="90.16%" height="16" style="border:0 none #808080ff ;font:bold 10 arial;"/>
+              <Grid id="Grid00" taborder="3" useinputpanel="false" left="2.76%" top="42" right="3.48%" height="192" binddataset="ds_output" autofittype="col" fillareatype="linerow">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="normal" edittype="none" text="항목"/>
+                      <Cell col="1" text="법률용어"/>
+                      <Cell col="2" text="상세링크"/>
+                      <Cell col="3" text="법률코드"/>
+                      <Cell col="4" text="법률코드이름"/>
+                      <Cell col="5" text="출처"/>
+                      <Cell col="6" text="본문"/>
+                      <Cell col="7" text="법률번호"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkbox" edittype="checkbox" text="bind:chk"/>
+                      <Cell col="1" displaytype="normal" edittype="none" text="bind:dictword"/>
+                      <Cell col="2" text="bind:detaillink"/>
+                      <Cell col="3" text="bind:dictwordCode"/>
+                      <Cell col="4" text="bind:dictwordCodename"/>
+                      <Cell col="5" text="bind:dictwordSource"/>
+                      <Cell col="6" text="bind:mainText"/>
+                      <Cell col="7" text="bind:dictwordNo"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="Button01" taborder="4" text="저장" left="81.19%" top="6" right="11.55%" height="26" onclick="div_contents_Button01_onclick" style="background:#2c4898ff;color:white;gradation:linear 0,0 #fefefeff 0,100 #ecece5ff;"/>
+              <ImageViewer id="ImageViewer01" taborder="5" image="URL('img::dictwordSample.png')" stretch="fit" left="2.8%" top="264" right="3.5%" height="87" style="border:0 solid #808080 ;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="4" text="Div00" left="2.76%" top="389" height="121" style="border:1 solid #808080ff ;" right="3.48%">
+          <Layouts>
+            <Layout width="502" height="232">
+              <Static id="Static06" taborder="1" text="법률코드이름 : DICTWORDCODENAME" left="2%" top="93" right="60.51%" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static05" taborder="2" text="법률코드 : DICTWORDCODE" left="2%" top="69" right="71.86%" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static04" taborder="3" text="상세링크 : DETAILLINK" left="2%" top="46" right="71.86%" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static02" taborder="4" text="법률용어 : DICTWORD" left="2%" top="22" right="71.91%" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static03" taborder="5" text="* A1 ~ G1 번까지 순서대로 위 그림과 같이 컬럼명을 넣어주세요." left="2%" top="4" right="3.19%" height="21" style="font:bold 10 arial;"/>
+              <Static id="Static09" taborder="8" text="법률번호 : DICTWORDNO" left="40.06%" top="69" right="32.08%" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static07" taborder="9" text="출처 : DICTWORDSOURCE" left="40.07%" top="22" right="32.05%" height="20" style="font:bold 10 arial;"/>
+              <Static id="Static00" taborder="10" text="법률내용 : MAINTEXT" left="40.18%" top="46" right="18.85%" height="21" style="font:bold 10 arial;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static10" taborder="5" text="* A2셀부터 데이터를 넣어주세요" onclick="div_contents_Static10_onclick" left="5.8%" top="33" right="49.6%" height="22" style="color:red;font:12 Dotum;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_output">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="dictword" type="STRING" size="10000"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_import">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="dictword" type="STRING" size="256"/>
+          <Column id="detaillink" type="STRING" size="256"/>
+          <Column id="dictwordCode" type="STRING" size="256"/>
+          <Column id="dictwordCodename" type="STRING" size="256"/>
+          <Column id="dictwordSource" type="STRING" size="256"/>
+          <Column id="mainText" type="STRING" size="4000"/>
+          <Column id="dictwordNo" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_select">
+        <ColumnInfo>
+          <Column id="dictword" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+} 
+
+this.addFile = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	trace("@@@@@@@@@@@@@@@@@@@");
+	var value = obj.value;
+	var fileEx = value.slice(value.lastIndexOf(".")+1).toLowerCase();
+	trace(fileEx);
+	if(fileEx!="xls" && fileEx!="xlsx"){
+		alert("xls 또는 xlsx 파일양식만 가능합니다.");
+		obj.deleteItem(0);
+		obj.appendItem();
+		return false;
+	}
+	var itemCount=this.div_contents.FileUpload00.getItemCount(true);
+	if(itemCount==0){
+		alert("파일을 첨부해주세요.");
+		return false;
+	}
+	
+	
+	
+	var url= "http://localhost:8080/nexacro-egov/excelUpload.do";
+	this.div_contents.FileUpload00.upload(url);
+}
+
+this.upload_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	alert(e.errormsg);
+}
+
+this.upload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{	
+	if(e.errorcode<0){
+		alert("오류 : "+e.errormsg);
+	}
+	trace("onsuccess errorcode=" + e.errorcode + ", errormsg=" + e.errormsg   + ", datasets=" + e.datasets + ", url=" + e.url);
+	
+	//Only Runtime
+		if(nexacro.Browser == "Runtime" && e.datasets)
+		{
+			var outputDatasets = e.datasets;
+			
+			var outDs = outputDatasets[0];
+			var ds = this.ds_output;
+			ds.assign(outDs); 
+			trace(outDs.saveXML());
+			
+			//this.ds_out.copyData(outputDatasets[0]);
+
+		} 
+}
+
+this.div_contents_Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	
+	if(this.fn_import()){	
+		var valChk=this.fn_valueCheck();
+		if(valChk=="update"){
+			var save = confirm("DB에 이미 값이 있습니다. 수정하시겠습니까? ("+this.ds_select.getColumn(0,"dictword")+")");
+			if(save){
+				this.fn_save();
+			}else{
+				alert("입력을 취소하셨습니다.");
+			}
+		}else if(valChk=="insert"){
+			this.fn_save();
+		}else{
+			alert("입력을 취소하셨습니다.");
+		}
+	}
+	
+	
+}
+this.fn_import = function(){
+	var ds = this.ds_import;
+	var outds = this.ds_output;
+	var cnt=0;
+	ds.clearData();
+	for(var i=0; i<outds.rowcount;i++){
+		var chkCol = outds.getColumn(i,"chk");
+		if(chkCol != undefined && chkCol != 0){
+			ds.addRow();
+			ds.copyRow(ds.getRowCount()-1,outds,i);
+			cnt++;	
+		}
+		
+	}
+	if(cnt==0){
+		alert("1개 이상의 행을 선택해주세요.");
+		return false;
+	}
+	return true;
+}
+
+this.fn_valueCheck = function(){
+	this.ds_select.clearData();
+	var chk="close";
+	var search = {
+		svcid : "select",
+		sController : "dictwordExcelSearch.do",
+		inds : ["ds_import=ds_import"],
+		outds : ["ds_select=ds_select"],
+		args : [],
+		bAsync : false,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+
+	var save = confirm("데이터를 입력하시겠습니까?");
+	if(save){
+		Iject.transaction(this,search,function(){
+			if(this.errorcode < 0){
+			   Iject.alert(this.errormsg);
+			   return false;
+			}else{
+				var pThis = this.fobj;
+				var dictword = pThis.ds_select.getColumn(0,"dictword");
+				trace("this.ds_select : " + pThis.ds_select.saveXML());
+				if(dictword == undefined){
+					chk="insert";
+				}else{
+					chk="update";
+				}
+			}	
+		});	
+	}else{
+		return chk;
+	}
+	
+	return chk;
+}
+
+
+this.fn_save = function(){
+//odatas 정의
+	
+	var oDatas = {
+		svcid : "insert",
+		sController : "dictwordInsert.do",
+		inds : ["ds_import=ds_import"],
+		outds : [],
+		args : [],
+		bAsync : false,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+		};	
+		
+		var userId = application.gds_userInfo.getColumn(0,"userid");
+		this.ds_import.setColumn(0,"userId",userId);
+		
+		Iject.transaction(this,oDatas,function(){
+			if(this.errorcode < 0){
+			Iject.alert(this.errormsg);
+			   return false;
+			}
+			else{
+				var pThis = this.fobj;
+				trace("this.ds_output : " + pThis.ds_output.saveXML());
+				alert("입력완료");
+			}	
+		});	
+}
+
+this.div_contents_ImageViewer00_onclick = function(obj:ImageViewer,  e:nexacro.ClickEventInfo)
+{
+	
+}
+
+]]></Script>
+  </Form>
+</FDL>

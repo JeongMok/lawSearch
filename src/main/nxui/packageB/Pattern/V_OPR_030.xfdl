@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_030" classname="V_OPR_030" left="0" top="0" width="1002" height="720" titletext="New Form" onload="V_OPR_030_onload">
+    <Layouts>
+      <Layout><Div id="div_search" taborder="0" left="1%" top="9" right="1%" height="37" style="border:1 solid #808080ff ;"><Layouts><Layout><Static id="static_searchCondition" taborder="8" text="검색 조건" left="1.33%" top="6" right="90.61%" height="24"/><Edit id="edit_searchKeyword" taborder="9" onkeyup="div_search_edit_searchKeyword_onkeyup" left="30.82%" top="6" right="40%" height="24"/><Combo id="cmb_searchCondition" taborder="11" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="div_search_cmb_searchCondition_onitemchanged" left="10.41%" top="6" right="71.53%" height="24"><Dataset id="innerdataset"><ColumnInfo><Column id="codecolumn" size="256"/><Column id="datacolumn" size="256"/></ColumnInfo><Rows><Row><Col id="codecolumn">0</Col><Col id="datacolumn">코드</Col></Row><Row><Col id="codecolumn">1</Col><Col id="datacolumn">명칭</Col></Row></Rows></Dataset></Combo><Button id="btn_search" taborder="12" text="조회" onclick="div_search_btn_search_onclick" onkeyup="div_search_btn_search_onkeyup" left="79.69%" top="6" right="11.53%" height="24"/></Layout></Layouts></Div><Div id="div_top" taborder="4" left="1%" top="60" right="1%" height="32" style="border:1 solid #808080ff ;"><Layouts><Layout width="784" height="32"><Static id="Static00" taborder="3" text="코드 목록" left="1.33%" top="5" right="90.41%" height="20"/><Button id="btn_group_modify" taborder="4" text="등 록" onclick="div_top_btn_group_modify_onclick" left="90.51%" top="5" right="0.71%" height="20"/></Layout></Layouts></Div><Grid id="Grid00" taborder="5" useinputpanel="false" left="1%" top="100" right="1.1%" height="220" binddataset="ds_codemaster" oncellclick="Grid00_oncellclick"><Formats><Format id="default"><Columns><Column size="88"/><Column size="105"/><Column size="76"/><Column size="50"/><Column size="95"/><Column size="106"/><Column size="147"/><Column size="124"/><Column size="69"/><Column size="120"/></Columns><Rows><Row size="24" band="head"/><Row size="24"/></Rows><Band id="head"><Cell text="분류코드"/><Cell col="1" text="분류코드명칭"/><Cell col="2" text="코드길이"/><Cell col="3" text="사용"/><Cell col="4" edittype="normal" text="사용테이블"/><Cell col="5" text="사용컬럼명칭"/><Cell col="6" text="분류코드설명"/><Cell col="7" text="등록일시"/><Cell col="8" text="등록자"/><Cell col="9" text="전화번호코드"/></Band><Band id="body"><Cell edittype="normal" editfilter="alpha,digit" text="bind:class_code" editlimit="3" editimemode="none"/><Cell col="1" edittype="normal" text="bind:class_name"/><Cell col="2" edittype="normal" editfilter="number" text="bind:class_len"/><Cell col="3" displaytype="checkbox" edittype="checkbox" text="bind:use_yn"/><Cell col="4" edittype="normal" text="bind:main_table"/><Cell col="5" edittype="normal" text="bind:main_column"/><Cell col="6" edittype="normal" text="bind:class_desc"/><Cell col="7" displaytype="normal" edittype="normal" text="bind:regist_time"/><Cell col="8" edittype="normal" text="bind:regist_id"/><Cell col="9" edittype="normal" editfilter="number" text="bind:phone" editlimit="3"/></Band></Format></Formats></Grid><Grid id="grid_codelist" taborder="6" useinputpanel="false" left="1%" top="361" right="1.2%" height="338" binddataset="ds_codelist"><Formats><Format id="default"><Columns><Column size="76"/><Column size="74"/><Column size="87"/><Column size="100"/><Column size="81"/><Column size="69"/><Column size="82"/><Column size="124"/><Column size="52"/><Column size="74"/><Column size="110"/><Column size="70"/><Column size="110"/><Column size="70"/><Column size="110"/><Column size="72"/><Column size="97"/></Columns><Rows><Row size="24" band="head"/><Row size="24"/></Rows><Band id="head"><Cell text="분류코드"/><Cell col="1" text="상세코드"/><Cell col="2" text="상세코드명"/><Cell col="3" text="상세코드명2"/><Cell col="4" text="코드영문명"/><Cell col="5" text="기타코드"/><Cell col="6" text="기타코드2"/><Cell col="7" text="상세코드설명"/><Cell col="8" text="사용"/><Cell col="9" text="소팅순서"/><Cell col="10" text="등록일시"/><Cell col="11" text="등록자"/><Cell col="12" text="수정일시"/><Cell col="13" text="수정자"/><Cell col="14" text="최종수정일시"/><Cell col="15" text="상위코드"/><Cell col="16" style="color:black;" text="상위상세코드"/></Band><Band id="body"><Cell edittype="none" editfilter="alpha" text="bind:class_code" editlimit="3"/><Cell col="1" edittype="none" editfilter="none" text="bind:code_no" editlimit="6"/><Cell col="2" edittype="normal" text="bind:code_name"/><Cell col="3" edittype="normal" text="bind:code_name2"/><Cell col="4" edittype="normal" text="bind:code_eng_name"/><Cell col="5" edittype="normal" text="bind:etc_code1"/><Cell col="6" edittype="normal" text="bind:etc_code2"/><Cell col="7" edittype="normal" text="bind:code_desc"/><Cell col="8" displaytype="checkbox" edittype="checkbox" text="bind:use_yn"/><Cell col="9" edittype="normal" text="bind:sort_seq"/><Cell col="10" displaytype="normal" edittype="none" text="bind:regist_time"/><Cell col="11" edittype="none" text="bind:regist_id"/><Cell col="12" displaytype="normal" edittype="normal" text="bind:modify_time"/><Cell col="13" displaytype="normal" edittype="normal" text="bind:modify_id"/><Cell col="14" displaytype="normal" edittype="normal" text="bind:last_mody_time"/><Cell col="15" edittype="normal" editfilter="alpha,digit" text="bind:higher_class_code" editlimit="3"/><Cell col="16" edittype="normal" editfilter="alpha,digit" text="bind:higher_code_no" editlimit="6"/></Band></Format></Formats></Grid><Div id="div_code" taborder="7" text="Div00" left="1%" top="327" right="0.9%" height="32" style="border:1 solid #808080ff ;"><Layouts><Layout><Static id="Static00" taborder="0" text="코드 상세 목록" left="0.31%" top="6" right="89.81%" height="19" style="align:center;"/><Button id="btn_code_add" taborder="1" text="행 추가" left="60.14%" top="5" right="30.68%" height="19" onclick="Div00_Button00_onclick"/><Button id="btn_code_delete" taborder="2" text="행 삭제" left="69.83%" top="5" right="21.2%" height="19" onclick="div_code_btn_code_delete_onclick"/><Button id="btn_code_delete00" taborder="3" text="코 드 저 장" onclick="div_code_btn_code_save_onclick" left="79.65%" top="5" right="11.05%" height="19"/><Button id="btn_code_modify" taborder="4" text="코 드 수 정" left="89.4%" top="5" right="1.12%" height="19" onclick="div_code_btn_code_modify_onclick"/></Layout></Layouts></Div>
+  //      <Button id="Button00" taborder="8" text="추가" left="79.34%" top="66" right="11.88%" height="20" onclick="div_top_btn_group_insert_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="class_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_codemaster">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="class_name" type="STRING" size="256"/>
+          <Column id="class_len" type="STRING" size="256"/>
+          <Column id="use_yn" type="STRING" size="256"/>
+          <Column id="main_table" type="STRING" size="256"/>
+          <Column id="main_column" type="STRING" size="256"/>
+          <Column id="class_desc" type="STRING" size="256"/>
+          <Column id="regist_time" type="STRING" size="256"/>
+          <Column id="regist_id" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_codelist">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+          <Column id="code_name2" type="STRING" size="256"/>
+          <Column id="code_eng_name" type="STRING" size="256"/>
+          <Column id="etc_code1" type="STRING" size="256"/>
+          <Column id="etc_code2" type="STRING" size="256"/>
+          <Column id="code_desc" type="STRING" size="256"/>
+          <Column id="use_yn" type="STRING" size="256"/>
+          <Column id="sort_seq" type="STRING" size="256"/>
+          <Column id="regist_time" type="STRING" size="256"/>
+          <Column id="regist_id" type="STRING" size="256"/>
+          <Column id="modify_time" type="STRING" size="256"/>
+          <Column id="modify_id" type="STRING" size="256"/>
+          <Column id="last_mody_time" type="STRING" size="256"/>
+          <Column id="higher_class_code" type="STRING" size="256"/>
+          <Column id="higher_code_no" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_deletemaster">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_deletecode">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[this.V_OPR_030_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();
+    this.ds_deletemaster.clearData();
+	this.ds_deletemaster.addRow();
+    this.ds_deletecode.clearData();
+	this.ds_deletecode.addRow();
+	this.Grid00.autoFitCol();
+	this.grid_codelist.setCellProperty("body",1,"edittype","none");
+}
+
+this.div_search_btn_search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.ds_codemaster.clearData();
+	this.ds_codemaster.addRow();
+	this.ds_codelist.clearData();
+	this.ds_codelist.addRow();
+	if(this.div_search.cmb_searchCondition.value==null && this.div_search.edit_searchKeyword.value!=null){
+	this.ds_codemaster.clearData();
+	this.ds_codelist.clearData();
+	alert("검색조건을 선택해주세요");
+	}else{
+	this.fn_search();
+	}
+	this.grid_codelist.setCellProperty("body",1,"edittype","none");
+}
+
+//조회
+this.fn_search = function()
+{
+	this.ds_search.clearData();
+	var rowIdx = this.ds_search.addRow();
+	
+	//조회 조건
+	if(this.div_search.cmb_searchCondition.value == 0){
+		this.ds_search.setColumn(rowIdx,"class_code", this.div_search.edit_searchKeyword.value);
+	}else if(this.div_search.cmb_searchCondition.value==1){
+		this.ds_search.setColumn(rowIdx,"class_name", this.div_search.edit_searchKeyword.value);
+	}
+	
+	
+	//odatas 정의
+	var oDatas = {
+		svcid : "search",
+		sController : "selectAllList.do",
+		inds : ["ds_search=ds_search"],
+		outds : ["ds_codemaster = ds_codemaster", "ds_codelist = ds_codelist"],
+		args : [],
+		bAsync : false,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	
+	//공통 transaction 함수 호출(콜백함수)
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}
+
+	var pThis = this.fobj;   //form object
+
+	pThis.fn_result();  //조회후 처리
+	});
+	
+	if(this.ds_codemaster.getColumn(0,0)==null){
+	this.ds_codemaster.clearData();
+	this.ds_codelist.clearData();
+	}
+}
+
+/*********************************그룹코드*******************************************/
+//그룹코드행 추가
+this.div_top_btn_group_insert_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var today = new Date();
+	var dd = today.getDate();
+	var m = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	var mstr = new String();
+	mstr = m;
+	if(m<10){
+	 var mm = "0"+mstr
+	}else{
+	 var mm = m;
+	}
+	
+	today = yyyy+"-"+mm+"-"+dd;
+
+	var nRow = this.ds_codemaster.addRow();
+	//새로운 행 추가시 시간 넣기
+	this.ds_codemaster.setColumn(nRow,"regist_time",today);
+	//새로운 행 추가시 사용자명 넣기
+	this.ds_codemaster.setColumn(nRow,"regist_id",application.gds_userInfo.getColumn(0,14));
+
+}
+
+//그룹코드행 삭제
+this.div_top_btn_group_delete_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var ok = application.confirm("삭제하시겠습니까?");
+	if(ok){
+	this.fn_d_groupcde();
+	}
+}
+
+this.fn_d_groupcde = function(){
+	this.ds_deletemaster.clearData();
+	this.ds_deletemaster.addRow();
+	this.ds_deletemaster.setColumn(0,"class_code",this.ds_codemaster.getColumn(this.Grid00.getSelectedRows(),0));
+	nDelRow = this.Grid00.getSelectedRows();
+	var nRowType = this.ds_codemaster.getRowType(nDelRow);
+	this.ds_codemaster.deleteRow(nDelRow);
+	this.fn_delete_groupcode();
+}
+
+
+this.div_top_btn_group_save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_master_save();
+}
+
+// 그룹코드저장
+this.fn_master_save = function(){
+	var oData ={
+		svcid : "save",
+		sController : "AddGroupCode.do",
+		inds : ["ds_codemaster=ds_codemaster:U"],
+		outds : [],
+		args : [],
+		bAsync : true,
+		nDataType : 0,
+		bCompress : false,
+	};
+	
+	Iject.transaction(this,oData,function(){
+		if(this.errorcode <0){
+			//Iject.alert(this.errorMsg,"알림");
+			alert("실패하였습니다");
+			return;
+		}
+		
+		var pThis = this.fobj; //form object
+		//this.fn_result();
+		//this.fn_result_bottom();
+	
+	});
+	var row = this.ds_codemaster.getRowCount();
+	this.ds_codemaster.rowposition(row);
+}
+
+
+//그룹코드 삭제
+this.fn_delete_groupcode = function()
+{
+	//odatas 정의
+	var oDatas = {
+		svcid : "delete",
+		sController : "DeleteGroupCode.do",
+		inds : ["ds_deletemaster=ds_deletemaster"],
+		outds : ["ds_codemaster = ds_codemaster"],
+		args : [],
+		bAsync : true,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	
+	//공통 transaction 함수 호출(콜백함수)
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}
+
+	var pThis = this.fobj;   //form object
+
+	pThis.fn_result();  //조회후 처리
+	});
+}
+
+// 그룹코드수정
+this.fn_master_modify = function(){
+	var oData ={
+		svcid : "modify",
+		sController : "ModifyGroupCode.do",
+		inds : ["ds_codemaster=ds_codemaster:U"],
+		outds : ["ds_codemaster=ds_codemaster"],
+		args : [],
+		bAsync : true,
+		nDataType : 0,
+		bCompress : false,
+	};
+	
+	Iject.transaction(this,oData,function(){
+		if(this.errorcode <0){
+			//Iject.alert(this.errorMsg,"알림");
+			alert("실패하였습니다");
+			return;
+		}
+		
+		var pThis = this.fobj; //form object
+		//this.fn_result();
+		//this.fn_result_bottom();
+	
+	});
+}
+
+//그룹코드 수정버튼
+this.div_top_btn_group_modify_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_master_modify();
+}
+/*********************************그룹코드 끝*******************************************/
+
+/*********************************상세코드 시작*******************************************/
+//상세목록조회
+this.fn_detail_search = function()
+{
+	//odatas 정의
+	var oDatas = {
+		svcid : "search",
+		sController : "selectCodeList.do",
+		inds : ["ds_codelist=ds_codelist"],
+		outds : ["ds_codelist = ds_codelist"],
+		args : [],
+		bAsync : true,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	
+	//공통 transaction 함수 호출(콜백함수)
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}
+
+	var pThis = this.fobj;   //form object
+
+	pThis.fn_result();  //조회후 처리
+	});
+}
+
+//상세코드 삭제
+this.fn_delete_detailcode = function()
+{
+	//odatas 정의
+	var oDatas = {
+		svcid : "delete",
+		sController : "DeleteCode.do",
+		inds : ["ds_deletecode=ds_deletecode"],
+		outds : ["ds_codelist = ds_codelist"],
+		args : [],
+		bAsync : true,
+		nDataTyep : 2, //ssv 타입
+		bCompress : false,				
+	};
+	
+	//공통 transaction 함수 호출(콜백함수)
+	Iject.transaction(this,oDatas,function(){   
+	if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}
+
+	var pThis = this.fobj;   //form object
+
+	pThis.fn_result();  //조회후 처리
+	});
+}
+
+//상세코드행 추가
+this.Div00_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	var mstr = new String();
+	mstr = mm;
+	if(mm<10){
+	 var mm = "0"+mstr
+	}else{
+	 var mm = mm;
+	}
+	today = yyyy+"-"+mm+"-"+dd;
+
+	var nRow = this.ds_codelist.addRow();
+	
+	var nGroupVal;
+
+	nGroupVal = this.ds_codemaster.getColumn(this.Grid00.getSelectedRows(),"class_code");
+	
+	this.ds_codelist.setColumn(nRow,"class_code",nGroupVal);
+	this.ds_codelist.setColumn(nRow, "regist_time", today);
+	this.ds_codelist.setColumn(nRow, "modify_time", today);
+	this.ds_codelist.setColumn(nRow, "last_mody_time", today);
+	this.ds_codelist.setColumn(nRow, "regist_id", application.gds_userInfo.getColumn(0,14));
+	this.ds_codelist.setColumn(nRow, "modify_id", application.gds_userInfo.getColumn(0,14));
+	
+	this.grid_codelist.setCellProperty("body",1,"edittype","normal");
+}
+
+//상세코드행 삭제
+this.div_code_btn_code_delete_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var ok = application.confirm("삭제하시겠습니까?");
+	if(ok){
+	this.fn_code_delete();
+	}
+}
+
+this.fn_code_delete=function(){
+	this.ds_deletecode.clearData();
+	this.ds_deletecode.addRow();
+	this.ds_deletecode.setColumn(0,"class_code",this.ds_codelist.getColumn(this.grid_codelist.getSelectedRows(),"class_code"));
+	this.ds_deletecode.setColumn(0,"code_no",this.ds_codelist.getColumn(this.grid_codelist.getSelectedRows(),"code_no"));
+
+		
+	nDelRow = this.grid_codelist.getSelectedRows();
+	var nRowType = this.ds_codelist.getRowType(nDelRow);
+	this.ds_codelist.deleteRow(nDelRow);
+	this.fn_delete_detailcode();
+}
+
+// 상세코드저장
+this.fn_code_save = function(){
+	var oData ={
+		svcid : "save",
+		sController : "AddCode.do",
+		inds : ["ds_codelist=ds_codelist:U"],
+		outds : [],
+		args : [],
+		bAsync : true,
+		nDataType : 0,
+		bCompress : false,
+	};
+	
+	Iject.transaction(this,oData,function(){
+		if(this.errorcode <0){
+			//Iject.alert(this.errorMsg,"알림");
+			alert("실패하였습니다");
+			return;
+		}
+		
+		var pThis = this.fobj; //form object
+		//this.fn_result();
+		//this.fn_result_bottom();
+	
+	});
+}
+
+//상세코드 저장버튼
+this.div_code_btn_code_save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_code_save();
+	this.grid_codelist.setCellProperty("body",1,"edittype","none");
+}
+
+//상세코드 수정버튼
+this.div_code_btn_code_modify_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var size = this.ds_codelist.getRowCount();
+	for(var i=0; i<size; i++){
+	this.ds_codelist.setColumn(i, "modify_id", application.gds_userInfo.getColumn(0,14));
+	}
+	
+	this.fn_code_modify();
+}
+
+// 상세코드수정
+this.fn_code_modify = function(){
+	
+	var oData ={
+		svcid : "modify",
+		sController : "Modifycode.do",
+		inds : ["ds_codelist=ds_codelist:U"],
+		outds : ["ds_codelist=ds_codelist"],
+		args : [],
+		bAsync : true,
+		nDataType : 0,
+		bCompress : false,
+	};
+	
+	Iject.transaction(this,oData,function(){
+		if(this.errorcode <0){
+			//Iject.alert(this.errorMsg,"알림");
+			alert("실패하였습니다");
+			return;
+		}
+		
+		var pThis = this.fobj; //form object
+		//this.fn_result();
+		//this.fn_result_bottom();
+	
+	});
+	var row = this.grid_codelist.getSelectedRows();
+	this.ds_codelist.set_rowposition(row);
+}
+
+/***********************************************************************************
+* User Function
+***********************************************************************************/
+/**
+ * 페이징 없는 경우
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */ 
+this.fn_search_post = function()
+{
+	var nTotalCnt01 = this.ds_codeGroupList.rowcount;
+    var nCnt01 = this.ds_codeGroupList.rowcount;
+
+	this.div_grid_bottom.sta_grid_cnt.set_text("Rows : "+nTotalCnt01);
+	this.div_grid_bottom.sta_msg.set_text("Select has been complted successfully.");	
+	this.div_grid_bottom.sta_grid_cnt.set_text("Rows : " + nCnt01);
+	
+	var nTotalCnt02 = this.ds_codeList.rowcount;
+    var nCnt02 = this.ds_codeList.rowcount;
+	this.div_grid_bottom00.sta_grid_cnt.set_text("Rows : "+nTotalCnt02);
+	this.div_grid_bottom00.sta_msg.set_text("Select has been complted successfully.");	
+	this.div_grid_bottom00.sta_grid_cnt.set_text("Rows : " + nCnt02);
+}
+
+
+this.Grid00_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	this.ds_codelist.clearData();
+	this.ds_codelist.addRow();
+	this.ds_codelist.setColumn(0,"class_code",this.ds_codemaster.getColumn(this.Grid00.getSelectedRows(),"class_code"));
+	this.fn_detail_search();
+}
+this.div_search_btn_search_onkeyup = function(obj:Button, e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+	this.ds_codemaster.clearData();
+	this.ds_codemaster.addRow();
+	this.ds_codelist.clearData();
+	this.ds_codelist.addRow();
+	if(this.div_search.cmb_searchCondition.value==null && this.div_search.edit_searchKeyword.value!=null){
+	this.ds_codemaster.clearData();
+	this.ds_codelist.clearData();
+	alert("검색조건을 선택해주세요");
+	}else{
+	this.fn_search();
+	}
+	this.grid_codelist.setCellProperty("body",1,"edittype","none");
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

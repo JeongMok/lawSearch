@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_COM_011" classname="V_COM_011" left="0" top="0" width="531" height="773" titletext="New Form" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="아 이 디" left="9.25%" top="90" right="81.31%" height="30"/>
+        <Static id="Static01" taborder="1" text="비 밀 번 호" onclick="Static01_onclick" left="9.44%" top="249" right="76.88%" height="33"/>
+        <Static id="Static02" taborder="2" text="비 밀 번 호 확인" left="9.44%" top="290" right="72.25%" height="38"/>
+        <Static id="Static04" taborder="4" text="핸 드 폰 번 호" onclick="Static03_onclick" left="9.42%" top="420" right="74.39%" height="30"/>
+        <Static id="Static05" taborder="5" text="이 메 일" onclick="Static03_onclick" left="9.23%" top="561" right="81.17%" height="30"/>
+        <Static id="Static06" taborder="6" text="성 별" onclick="Static03_onclick" left="9.42%" top="611" right="80.98%" height="30"/>
+        <Static id="Static07" taborder="7" text="생 년 월 일" onclick="Static03_onclick" left="9.42%" top="651" right="76.84%" height="30"/>
+        <Static id="Static08" taborder="8" text="이 름" onclick="Static03_onclick" left="9.25%" top="146" right="81.31%" height="30"/>
+        <Static id="Static09" taborder="9" text="영 문 이 름" onclick="Static03_onclick" left="9.44%" top="192" right="74.57%" height="32"/>
+        <Edit id="ed_id" taborder="10" readonly="true" left="32.18%" top="90" right="36.99%" height="24" style="border:1 solid black ;" oneditclick="ed_id_oneditclick"/>
+        <Edit id="ed_name" taborder="11" readonly="true" left="32.18%" top="144" right="36.99%" height="24" style="border:1 solid black ;"/>
+        <Edit id="ed_ename" taborder="12" left="32.18%" top="192" right="36.99%" height="24"/>
+        <Edit id="ed_password" taborder="13" left="32.18%" top="249" right="36.99%" height="24" password="true"/>
+        <Edit id="ed_passwordchk" taborder="14" left="32.18%" top="306" right="36.99%" height="24" password="true"/>
+        <Edit id="ed_phone" taborder="16" left="32.2%" top="420" right="37.1%" height="24" onkeyup="ed_phone_onkeyup"/>
+        <Edit id="ed_email" taborder="17" left="32.2%" top="561" right="36.91%" height="24"/>
+        <Edit id="ed_birth" taborder="18" readonly="true" left="32.2%" top="657" right="36.91%" height="24" style="border:1 solid black ;"/>
+        <Radio id="rd_sex" taborder="19" readonly="true" direction="vertical" left="32.2%" top="614" right="37.1%" height="21" innerdataset="@ds_sex" datacolumn="code_name2" codecolumn="code_name"/>
+        <Button id="btn_join" taborder="20" text="수 정" left="20.99%" top="701" right="65.84%" height="31" style="background:#444444ff;color:white;" onclick="btn_join_onclick"/>
+        <Button id="btn_cancel" taborder="21" text="취 소" left="50.57%" top="701" right="37.02%" height="31" style="background:#444444ff;color:white;" onclick="btn_cancel_onclick"/>
+        <Button id="btn_delete" taborder="25" text="탈 퇴" left="49.9%" top="48" right="36.99%" height="29" style="background:#444444ff;color:white;" onclick="btn_delete_onclick"/>
+        <Static id="Static13" taborder="29" text="*6글자 이상 영문,숫자,특수기호 사용가능" left="31.98%" top="272" right="26.01%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static17" taborder="32" text="직 장" left="9.42%" top="477" right="81.17%" height="30"/>
+        <Static id="Static18" taborder="33" text="직 급" left="9.42%" top="515" right="81.17%" height="30"/>
+        <Edit id="ed_career" taborder="34" left="32.2%" top="480" right="37.1%" height="24"/>
+        <Combo id="cb_position" taborder="35" innerdataset="ds_position" codecolumn="code_name" datacolumn="code_name" left="32.2%" top="515" right="37.1%" height="27" enable="true"/>
+        <Static id="Static12" taborder="36" text="*영문이름은 영어만 입력가능" left="32.06%" top="218" right="29.58%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static15" taborder="38" text="*핸드폰 번호는 10자리 이상 숫자만 등록 가능" left="32.2%" top="448" right="21.28%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Static id="Static14" taborder="39" text="*이메일 형식으로 등록 ex)xxx@xxx.com" left="32.02%" top="586" right="26.37%" height="30" style="color:tomato;font:8 Dotum;"/>
+        <Edit id="ed_address" taborder="40" left="32.2%" top="345" right="51.22%" height="24"/>
+        <Static id="Static19" taborder="41" text="우 편 번 호" left="8.66%" top="348" right="73.07%" height="18"/>
+        <Static id="Static03" taborder="42" text="상 세 주 소" onclick="Static03_onclick" left="8.66%" top="381" right="74.01%" height="30"/>
+        <Edit id="ed_address01" taborder="43" left="32.02%" top="384" right="37.1%" height="24"/>
+        <Button id="Button00" taborder="44" text="주소검색" onclick="Button00_onclick" left="50.28%" top="346" right="37.29%" height="22"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_position">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLogin">
+        <ColumnInfo>
+          <Column id="userid" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_sex">
+        <ColumnInfo>
+          <Column id="class_code" type="STRING" size="256"/>
+          <Column id="code_no" type="STRING" size="256"/>
+          <Column id="code_name" type="STRING" size="256"/>
+          <Column id="code_name2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item4" compid="ed_address" propid="value" datasetid="gds_address" columnid="code"/>
+      <BindItem id="item0" compid="ed_id" propid="value" datasetid="gds_userInfo" columnid="userid"/>
+      <BindItem id="item1" compid="ed_name" propid="value" datasetid="gds_userInfo" columnid="name"/>
+      <BindItem id="item2" compid="ed_ename" propid="value" datasetid="gds_userInfo" columnid="engname"/>
+      <BindItem id="item5" compid="ed_phone" propid="value" datasetid="gds_userInfo" columnid="phone"/>
+      <BindItem id="item6" compid="ed_career" propid="value" datasetid="gds_userInfo" columnid="career"/>
+      <BindItem id="item7" compid="cb_position" propid="value" datasetid="gds_userInfo" columnid="position"/>
+      <BindItem id="item8" compid="ed_email" propid="value" datasetid="gds_userInfo" columnid="email"/>
+      <BindItem id="item10" compid="ed_birth" propid="value" datasetid="gds_userInfo" columnid="birth"/>
+      <BindItem id="item9" compid="ed_address01" propid="value" datasetid="gds_address" columnid="road"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+    //this.fn_search();
+	 this.ds_sex.clearData();
+     this.ds_sex.addRow();
+     this.ds_position.clearData();
+     this.ds_position.addRow();
+	 this.fn_start();	
+	 this.fn_start_position();
+	 application.gds_address.clearData();
+	 application.gds_address.addRow();
+	 this.fn_search_user();
+	
+} 
+this.btn_cancel_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		this.close();
+}
+
+this.btn_delete_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+    var nRow = application.gds_userInfo.rowposition;
+	application.gds_userInfo.deleteRow(nRow);
+	
+	var rtnValue = Iject.confirm("탈퇴 하시겠습니까?");
+	
+	if(rtnValue)
+	{
+		this.fn_save("delete");
+	}else{
+		this.fn_search();
+	}		
+	
+}
+
+this.fn_save = function(strid)
+{
+     
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "userdeleteVO.do",			 
+			  inds :["input1=gds_userInfo:U"],
+			  outds :[
+				 "ds_user=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+		
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/    
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	      var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	         case "delete" : 
+	            Iject.alert("삭제완료");
+				break; 
+			case "update" :
+				Iject.alert("수정완료");
+				break; 
+	      }
+	});
+	this.close();
+	Iject.login(0);
+}
+
+this.btn_join_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.gds_userInfo.setColumn(0,"engname",this.ed_ename.value);
+	application.gds_userInfo.setColumn(0,"password",this.ed_password.value);
+	var address = "["+this.ed_address.value+"]"+this.ed_address01.value;
+	application.gds_userInfo.setColumn(0,"address",address);
+	application.gds_userInfo.setColumn(0,"address01",this.ed_address01.value);
+	application.gds_userInfo.setColumn(0,"phone",this.ed_phone.value);
+	application.gds_userInfo.setColumn(0,"email",this.ed_email.value);	
+	application.gds_userInfo.setColumn(0,"career",this.ed_career.value);
+	application.gds_userInfo.setColumn(0,"position",this.cb_position.value);
+	
+	this.fn_chk();
+}
+
+this.fn_update = function(strid)
+{	
+	var oDatas =  {
+			  svcid : strid,
+			  sController : "userModifyVO.do",			 
+			  inds :["input1=gds_userInfo:U"],
+			  outds :[
+				 "gds_userInfo=output1"
+			     ],			     
+			  args  : [				
+			  ],
+			  bAsync : true,    // 비동기여부 (true : async  false: sync)
+			  nDataType : 0,   // (0: XML타입, 1: 이진 타입, 2: SSV 타입)
+			  bCompress :false,	 //			  
+			}; 
+		
+    //공통 transaction 함수 호츨   //function callback 
+	Iject.transaction(this,oDatas,function(){   
+		/*  
+		*   callback argument
+		*   @param : {string}    this.svcid       서비스 ID
+		*   @param : {object}    this.fobj        : 현재 form object
+		*   @param : {number}    this.errorcode  : 서비스 에러 코드
+		*   @param : {string}    this.errormsg   : 서비스 에러 메세지
+		*/    
+		if(this.errorcode < 0)
+		{
+		   //Iject.alert(this.errorMsg,"알림");			
+		   alert("실패하였습니다");
+		   return;
+		}			
+	      
+	      var pThis = this.fobj;   //form object
+	       
+	      switch(this.svcid)
+	      {
+	         case "save" : 
+				Iject.alert("저장완료");
+				break;
+	         case "delete" : 
+	            Iject.alert("삭제완료");
+				break; 
+			case "update" :
+				Iject.alert("수정완료");
+				break; 
+	      }
+	});
+	
+	application.gds_userInfo.setColumn(0,"engname",this.ed_ename.value);
+	application.gds_userInfo.setColumn(0,"password",this.ed_password.value);
+	application.gds_userInfo.setColumn(0,"address",this.ed_address.value);
+	application.gds_userInfo.setColumn(0,"phone",this.ed_phone.value);
+	application.gds_userInfo.setColumn(0,"email",this.ed_email.value);	
+	application.gds_userInfo.setColumn(0,"career",this.ed_career.value);
+	application.gds_userInfo.setColumn(0,"position",this.cb_position.value);
+	
+	application.mainframe.VFrameSet.HFrameSet.VFrameSet1.WorkFrame.MainForm.form.fn_chk_f();
+	
+	this.close();
+}
+
+//유효성 검사
+this.fn_chk = function(){
+
+//비밀번호 유효성 검사
+if(this.ed_password.value==null|| this.ed_password.value=="" || this.ed_passwordchk.value==null 
+	|| this.ed_passwordchk.value=="" ||this.ed_password.value!=this.ed_passwordchk.value || 
+	this.ed_password.value<6 || this.ed_passwordchk.value<6){
+	alert("비밀번호를 확인해주세요.");
+	return;
+}
+
+
+//영문이름 유효성 검사
+if(this.ed_ename.value==null || this.ed_ename.value=="" || this.ed_ename.value.length<3 || this.ed_ename.value.length>20){
+	alert("세 글자 이상 영문이름을 입력해주세요.");
+	return;
+	}
+	//var kpattern = /[^가-힣ㄱ-ㅎㅏ-ㅣ0-9]/gi;
+	var epattern = /[^a-zA-Z]/gi;
+	//alert(this.ed_ename.value.length);
+for(var i=0; i<this.ed_ename.value.length; i++){
+if(this.ed_ename.value.charAt(i).match(epattern))
+{
+alert("영문만 사용 가능합니다.");
+	return;
+}
+}
+//주소 유효성
+if(this.ed_address.value==null || this.ed_address==""
+	|| this.ed_address.value.length < 5 || this.ed_address.value.length >30){
+alert("주소를 정확히 입력해주세요.");
+return;
+}
+var apattern = /[^가-힣ㄱ-ㅎㅏ-ㅣ0-9]/gi;
+for(var i=0; i<this.ed_address.value.length; i++){
+if(this.ed_address.value.charAt(i).match(apattern))
+{
+alert("한글만 사용 가능합니다.");
+	return;
+}
+}
+
+//핸드폰 유효성검사
+if(this.ed_phone.value==null || this.ed_phone==""
+	|| this.ed_phone.value.length < 12 || this.ed_phone.value.length >16){
+alert("핸드폰번호를 정확히 입력해주세요.");
+return;
+}
+
+//직장 유효성 검사
+if(this.ed_career.value==null || this.ed_career.value=="")
+{
+alert("직장을 입력해주세요.");
+return;
+}
+//직급 유효성 검사
+if(this.cb_position.value==null || this.cb_position.value=="")
+{
+alert("직급을 선택해주세요.");
+return;
+}
+
+//이메일 유효성 검사
+if(this.ed_email.value==null || this.ed_email.value=="")
+{
+alert("이메일을 입력해주세요.");
+return;
+}
+
+var epattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+if(this.ed_email.value.match(epattern)!=null){
+}else{
+alert("이메일 형식이 잘못되었습니다.");
+	return;
+}
+
+
+this.fn_update("update");
+}
+
+this.ed_phone_onkeyup = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	var str = this.ed_phone.value;
+	this.ed_phone.set_maxlength(13);
+	this.autoHypenPhone(str);
+}
+
+this.autoHypenPhone = function(str){
+var tmp = '';
+  if(str.length < 4){
+    return str;
+  }else if(str.length < 7){
+	tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3);
+    this.ed_phone.value.trim();
+    return tmp;
+  }else if(str.length < 11){
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3, 3);
+    tmp += '-';
+    tmp += str.substr(6);
+    this.ed_phone.value.trim();
+    return tmp;
+  }else{        
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3, 4);
+    tmp += '-';
+    tmp += str.substr(7);
+    this.ed_phone.value.trim();
+    this.ed_phone.set_value(tmp);
+    return tmp;
+  }
+  }
+
+this.fn_start = function(){
+	
+	var oDatas = {
+				svcid : "setting",
+				sController : "usersexdata.do",
+				inds : [],
+				outds :[
+				 "ds_sex=ds_sex"
+			     ],	
+				args  : [],
+				bAsync : false, 
+				nDataType : 0, 
+				bCompress :false,
+	};
+	
+	trace(" this.ds_sex : " + this.ds_sex.saveXML());
+	Iject.transaction(this,oDatas,function(){
+	});
+	this.rd_sex.set_value(application.gds_userInfo.getColumn(0,13));
+}
+
+this.fn_start_position = function(){
+	
+	var oDatas = {
+				svcid : "setting",
+				sController : "userpositiondata.do",
+				inds : [],
+				outds :[
+				 "ds_position=ds_position"
+			     ],	
+				args  : [],
+				bAsync : false, 
+				nDataType : 0, 
+				bCompress :false,
+	};
+	
+	trace(" this.ds_position : " + this.ds_position.saveXML());
+	Iject.transaction(this,oDatas,function(){
+	});
+}
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nLeft = (application.mainframe.width / 2); - Math.round((this.getOffsetWidth()) / 4);
+  	var nTop = (application.mainframe.height / 2); - Math.round((this.getOffsetHeight()) / 2);
+	application.open("search","Pattern::V_COM_012.xfdl",this.getOwnerFrame(), 
+   {mode:'modeless',ds:this.Dataset01}, "showtitlebar=true", nLeft, nTop);
+}
+
+this.fn_search_user = function(){
+var oDatas = {
+				svcid : "search",
+				sController : "userfindVO.do",
+				inds : ["dsLogin=dsLogin"],
+				outds :[
+				 "gds_userInfo=output1"
+			     ],	
+				args  : [],
+				bAsync : false, 
+				nDataType : 0, 
+				bCompress :false,
+	};
+	
+
+	Iject.transaction(this,oDatas,function(){
+	});
+	
+	var address = application.gds_userInfo.getColumn(0,"address").substring(1);
+	var saddress = address.split(']');
+	
+	for(var i in saddress){
+ 		application.gds_address.setColumn(0,"code",saddress[0]);
+ 		application.gds_address.setColumn(0,"road",saddress[1]);
+ 	}	
+	
+}]]></Script>
+  </Form>
+</FDL>

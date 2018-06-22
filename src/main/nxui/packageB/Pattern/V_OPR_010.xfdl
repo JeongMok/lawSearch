@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="V_OPR_010" classname="V_OPR_010" left="0" top="0" width="1000" height="600" titletext="New Form" onload="V_OPR_010_onload">
+    <Layouts>
+      <Layout>
+        <Edit id="edit_userId" taborder="1" displaynulltext="아이디입력" left="51.1%" top="44" right="30.6%" height="24"/>
+        <Grid id="Grid00" taborder="3" useinputpanel="false" left="1.7%" top="75" height="385" titletext="LogList" binddataset="ds_logData" autofittype="col" width="97%" fillareatype="allrow">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="200"/>
+                <Column size="200"/>
+                <Column size="200"/>
+                <Column size="200"/>
+                <Column size="200"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:8 arial;" text="LOGDATE"/>
+                <Cell col="1" style="font:8 arial;" text="LOGTYPE"/>
+                <Cell col="2" style="font:8 arial;" text="USERID"/>
+                <Cell col="3" style="font:8 arial;" text="MacAddress"/>
+                <Cell col="4" style="font:8 arial;" text="USERIP"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:logDate"/>
+                <Cell col="1" text="bind:logType"/>
+                <Cell col="2" text="bind:userId"/>
+                <Cell col="3" text="bind:macAddress"/>
+                <Cell col="4" text="bind:userIp"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="edit_logType" taborder="4" displaynulltext="로그타입입력" left="75.1%" top="44" right="6.6%" height="24"/>
+        <Div id="log_count" taborder="7" text="총 :  0개" left="1.7%" top="56" right="91.8%" height="10" style="font:8 Dotum;"/>
+        <Button id="search_info" taborder="21" onclick="search_log_Button00_onclick" left="94%" top="44" width="46" height="24" tooltiptext="검색버튼" style="image:URL('img::btn_MF_Search.png');imagealign:center;align:right;cursor:hand;"/>
+        <Calendar id="edit_logDate" taborder="22" dateformat="yyyy-MM-dd " oneditclick="edit_logDate_oneditclick" left="32.8%" top="44" right="51.9%" height="24"/>
+        <Static id="Static00" taborder="23" text="검색일자 : " left="27.1%" top="44" right="68.2%" height="24"/>
+        <Static id="Static01" taborder="24" text="ID :" left="48.4%" top="44" right="49%" height="24" style="align:right;"/>
+        <Static id="Static02" taborder="25" text="Type : " left="70.3%" top="44" right="25%" height="24" style="align:right;"/>
+        <Div id="Div00" taborder="26" left="27.2%" top="501" right="333" height="50">
+          <Layouts>
+            <Layout width="314" height="67">
+              <Static id="stc_Prev" taborder="0" text="&lt;&lt;" onclick="div_paging_prev_onclick" left="32.66%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No0" taborder="1" text="1" onclick="div_paging_onclick" left="37.72%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No1" taborder="2" text="2" onclick="div_paging_onclick" left="41.77%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No2" taborder="3" text="3" onclick="div_paging_onclick" left="46.58%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No3" taborder="4" text="4" onclick="div_paging_onclick" left="50.63%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No4" taborder="5" text="5" onclick="div_paging_onclick" left="55.19%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No5" taborder="6" text="6" onclick="div_paging_onclick" left="59.75%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No6" taborder="7" text="7" onclick="div_paging_onclick" left="64.05%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No7" taborder="8" text="8" onclick="div_paging_onclick" left="68.61%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No8" taborder="9" text="9" onclick="div_paging_onclick" left="73.42%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_No9" taborder="10" text="10" onclick="div_paging_onclick" left="78.48%" top="17" width="15" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+              <Static id="stc_Next" taborder="11" text="&gt;&gt;" onclick="div_paging_next_onclick" left="84.3%" top="17" width="17" height="24" style="background:transparent;border:0 none #808080ff ;color:navy;align:middle;font:11 Arial;cursor:hand;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_searchLog">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="256"/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="search_userId" type="STRING" size="256"/>
+          <Column id="search_logType" type="STRING" size="256"/>
+          <Column id="search_logDate" type="STRING" size="256"/>
+          <Column id="page" type="STRING" size="256"/>
+          <Column id="viewListCount" type="STRING" size="256"/>
+          <Column id="viewPageNum" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="viewListCount">15</Col>
+            <Col id="page"/>
+            <Col id="viewPageNum">10</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_menu">
+        <ColumnInfo>
+          <Column id="MENU_NAME" type="string" size="32"/>
+          <Column id="MENU_SEQ" type="int" size="4"/>
+          <Column id="MENU_OPTP" type="string" size="32"/>
+          <Column id="PAGE_URL" type="string" size="32"/>
+          <Column id="MENU_TOP" type="string" size="32"/>
+          <Column id="MENU_ID" type="string" size="32"/>
+          <Column id="MENU_GRP" type="string" size="32"/>
+          <Column id="CREATE_DT" type="string" size="32"/>
+          <Column id="MENU_LEVEL" type="int" size="4"/>
+          <Column id="PAGE_ID" type="string" size="32"/>
+          <Column id="PAGE_NAME" type="string" size="32"/>
+          <Column id="MENU_ARGS" type="string" size="32"/>
+          <Column id="MENU_STAT" type="string" size="32"/>
+          <Column id="CREATE_USER" type="string" size="32"/>
+          <Column id="UPDATE_DT" type="string" size="32"/>
+          <Column id="UPDATE_USER" type="string" size="32"/>
+          <Column id="MENU_DESC" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_logData">
+        <ColumnInfo>
+          <Column id="id" type="INT" size="256"/>
+          <Column id="logType" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="userIp" type="STRING" size="256"/>
+          <Column id="logDetail" type="STRING" size="256"/>
+          <Column id="macAddress" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_paging">
+        <ColumnInfo>
+          <Column id="endList" type="INT" size="256"/>
+          <Column id="endPage" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="startList" type="INT" size="256"/>
+          <Column id="startPage" type="INT" size="256"/>
+          <Column id="totalList" type="INT" size="256"/>
+          <Column id="totalpage" type="INT" size="256"/>
+          <Column id="viewListCount" type="INT" size="256"/>
+          <Column id="viewPageNum" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[include "Lib::Comm.xjs";
+
+this.log_iStartPageNo = 0;
+this.log_iMaxPageNo = 10;
+
+//실행 시 바로 조회
+
+this.V_OPR_010_onload = function(obj:Form, e:nexacro.LoadEventInfo){
+	Iject.formOnload(obj);
+	this.fn_logList(1);
+}
+
+//전체 리스트 조회
+this.fn_logList = function(nowPage){
+	  this.ds_logData.clearData();
+	  this.ds_paging.clearData();
+	  this.ds_logData.addRow();
+      var search_Condition =  "USERID";
+      var search_userId = this.edit_userId.value;       
+      var search_logType = this.edit_logType.value;
+	  var search_logDate = this.edit_logDate.value;
+
+		this.ds_searchLog.setColumn(0, "search_Condition", "USERID");
+		this.ds_searchLog.setColumn(0, "search_userId", search_userId);
+ 		this.ds_searchLog.setColumn(0, "search_logType", search_logType);
+		this.ds_searchLog.setColumn(0, "search_logDate", search_logDate);
+		
+		if(nowPage == null || nowPage == undefined){
+ 			nowPage = 1;
+ 		}
+		
+	var page = nowPage;
+	
+	this.ds_searchLog.setColumn(0, "page", page);
+	
+	var oDatas = {
+		svcid : "search",
+		sController : "logDataSelectList.do",
+		inds : ["ds_searchLog = ds_searchLog"],
+		outds : ["ds_logData = ds_logData", "ds_paging = ds_paging"],
+		args : [],
+		bAsync : false,
+		nDataType : 0,
+		bCompress : false,
+		
+	};
+	
+	//공통함수 transaction
+	
+	Iject.transaction(this, oDatas, function(){
+		if(this.errorcode < 0){
+			trace("에러");
+			Iject.alert("검색결과가 없습니다.","알림");
+			return;
+		}
+		
+		var pThis = this.fobj;
+		pThis.fn_logCount();
+		
+// 		trace("ds_logData : " + pThis.ds_logData.saveXML());
+// 		trace("ds_paging : " + pThis.ds_paging.saveXML());
+		
+
+	});
+
+	this.fn_log_setPageNo();
+	
+}
+//조건검색
+this.search_log_Button00_onclick = function(obj:Button, e:nexacro.ClickEventInfo){
+	this.log_iStartPageNo=0;
+	this.fn_logList(1);
+}
+
+
+//회원 총 인원
+this.fn_logCount = function(){
+	var count = this.ds_paging.getColumn(0,"totalList");
+	this.log_count.set_text("총 : " + count);
+}
+
+//번호클릭
+this.div_paging_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	var viewPageNum = this.ds_paging.getColumn(0,"viewPageNum"); //보여줄 페이지 번호 갯수
+	
+	var iNo = new Number(obj.text);
+	var iFirstNum = (iNo-1) * viewPageNum + 1;
+	var iLastNum = iFirstNum + viewPageNum;
+	this.fn_logList(iNo);
+	
+}
+
+
+//prev  클릭
+this.div_paging_prev_onclick = function(obj:Static,  e:nexacro.ClickEventInfo){
+		
+		this.log_iStartPageNo = this.log_iStartPageNo - 1;
+			
+		this.fn_logList((this.log_iStartPageNo*10)+1);
+		
+	}
+
+
+//next 클릭
+this.div_paging_next_onclick = function(obj:Static,  e:nexacro.ClickEventInfo){
+		
+		this.log_iStartPageNo = this.log_iStartPageNo + 1;
+		
+		this.fn_logList((this.log_iStartPageNo*10)+1);
+		
+	}
+	
+//페이지 셋팅
+this.fn_log_setPageNo = function(){
+		
+		var endList = this.ds_paging.getColumn(0,"endList"); //끝 게시물 번호
+		var endPage = this.ds_paging.getColumn(0,"endPage"); //끝페이지 번호
+		var page = this.ds_paging.getColumn(0,"page"); //선택페이지
+		var startList = this.ds_paging.getColumn(0,"startList"); //시작게시물번호
+		var startPage = this.ds_paging.getColumn(0,"startPage"); // 시작페이지번호
+		var totalList = this.ds_paging.getColumn(0,"totalList"); //게시물 총수 
+		var totalPage = this.ds_paging.getColumn(0,"totalPage"); //총 페이지수
+		var viewListCount = this.ds_paging.getColumn(0,"viewListCount"); //보여질 게시물수
+		var viewPageNum = this.ds_paging.getColumn(0,"viewPageNum"); //보여줄 페이지 번호 갯수
+				
+		var sPage = this.log_iStartPageNo * viewPageNum;
+
+		// Prev 버튼 처리
+		if (this.log_iStartPageNo < 1)
+		{
+			this.Div00.stc_Prev.set_visible(false);
+		} 
+		else 
+		{
+			this.Div00.stc_Prev.set_visible(true);
+		}
+	   
+		// Next 버튼 처리
+		if (sPage+10 > totalPage)
+		{
+			this.Div00.stc_Next.set_visible(false);
+		}
+		else
+		{
+			this.Div00.stc_Next.set_visible(true);
+		}
+
+		// 인덱스 번호 처리
+			for (var i = 0; i < 10; i++) //화면에 보여줄 페이지 갯수
+		{
+		
+			this.Div00.components["stc_No"+i].set_visible(true);
+			this.Div00.components["stc_No"+i].set_text(sPage+i+1);
+	 
+			if ( sPage+i+1 > totalPage)
+			{
+				this.Div00.components["stc_No"+i].set_visible(false);
+				position = i;
+			} 
+			else 
+			{
+				this.Div00.components["stc_No"+i].set_visible(true);
+			}
+		}
+		var test = 27.2+position*0.8+"%";
+		this.Div02.set_left(test);	
+	}
+
+]]></Script>
+  </Form>
+</FDL>
